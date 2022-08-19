@@ -13,6 +13,9 @@
       "require": "./dist/interactive-map.umd.js"
     }
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
