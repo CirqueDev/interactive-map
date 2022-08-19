@@ -1,10 +1,12 @@
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
-import { ref, onMounted, watch, nextTick } from "vue";
+import Vue, { ref, onMounted, watch, nextTick } from "vue";
 import { Loader } from "@googlemaps/js-api-loader";
-import { format } from "date-fns";
-import { locales } from "../date-fns-locales";
 import useGtm from "./useGtm";
 import locationImg from "../assets/location.png";
+import InfoWindowComponent from "../components/InfoWindowComponent.vue";
+
+const InfoWindow = Vue.extend(InfoWindowComponent);
+const instance = new InfoWindow();
 
 export default function useGoogleMap(
   data = {
@@ -111,17 +113,7 @@ export default function useGoogleMap(
           }
         : undefined;
 
-      if (
-        markerData.showName &&
-        markerData.latitude &&
-        markerData.longitude &&
-        parseFloat(markerData.latitude) != NaN &&
-        parseFloat(markerData.longitude) != NaN &&
-        parseFloat(markerData.latitude) >= -90 &&
-        parseFloat(markerData.latitude) <= 90 &&
-        parseFloat(markerData.longitude) >= -180 &&
-        parseFloat(markerData.longitude) <= 180
-      ) {
+      if (isMarkerPositionLegal(markerData)) {
         const position = new google.maps.LatLng(
           parseFloat(markerData.latitude),
           parseFloat(markerData.longitude)
@@ -135,6 +127,7 @@ export default function useGoogleMap(
           map,
           label,
         });
+
         marker.info = markerData;
         tmpMarkers.push(marker);
       }
@@ -155,6 +148,20 @@ export default function useGoogleMap(
     });
 
     markers.value = tmpMarkers;
+  };
+
+  const isMarkerPositionLegal = (marker) => {
+    return (
+      marker.showName &&
+      marker.latitude &&
+      marker.longitude &&
+      parseFloat(marker.latitude) != NaN &&
+      parseFloat(marker.longitude) != NaN &&
+      parseFloat(marker.latitude) >= -90 &&
+      parseFloat(marker.latitude) <= 90 &&
+      parseFloat(marker.longitude) >= -180 &&
+      parseFloat(marker.longitude) <= 180
+    );
   };
 
   const clearClusters = () => {
@@ -236,91 +243,20 @@ export default function useGoogleMap(
   const openShowInfo = (marker) => {
     if (!marker || !marker.info) return;
 
-    // Parse quote for the like of "O"
-    const nameNoQuote = marker.info.showName
-      ? marker.info.showName.split('"').join("")
-      : "";
-
-    // Find an image to put in the InfoWindow
-    const img = marker.info.showThumbnail
-      ? marker.info.showThumbnail
-      : marker.info.showImage;
-
-    const pageUrlGtm = marker.info.showPageUrl
-      ? JSON.stringify(
-          `[{ "event": "userAction", "eventAction": "Buy Tickets", "eventCategory": "Interactive Map", "eventLabel": "${nameNoQuote} - ${marker.info.city}"}]`
-        )
-      : null;
-    const directionGtm = JSON.stringify(
-      `[{ "event": "userAction", "eventAction": "View on Google Maps", "eventCategory": "Interactive Map", "eventLabel": "${nameNoQuote} - ${marker.info.city}"}]`
-    );
-
     // Create InfoWindow Content
-    const options = {
-      pixelOffset: marker ? null : new google.maps.Size(0, -50),
-      content: `<div class="marker marker--${marker.info.id}">
-            <div class="marker__image-wrapper">
-              ${
-                img
-                  ? ` <img class="marker__image" width="590" height="590" src="${img}" />`
-                  : ""
-              }
-              <div class="marker__content">
-                <h2 class="marker__title">${marker.info.showName}</h2>
-                ${
-                  marker.info.city
-                    ? `<p class="marker__city">${marker.info.city}</p>`
-                    : ""
-                }
-                ${
-                  marker.info.facility
-                    ? `<p class="marker__venue">${marker.info.facility}</p>`
-                    : ""
-                }
-                ${
-                  data.dateLocale &&
-                  marker.info.startDate &&
-                  marker.info.endDate
-                    ? `<p class="marker__date">${format(
-                        new Date(marker.info.startDate),
-                        "PPP",
-                        { locale: locales[data.dateLocale.value] }
-                      )} - ${format(new Date(marker.info.endDate), "PPP", {
-                        locale: locales[data.dateLocale.value],
-                      })}</p>`
-                    : ""
-                }
-              </div>
-            </div>
-            <div class="marker__buttons">
-              <a class="marker__cta marker__cta--small cta-btn cta-btn--ghost cta-btn--full-width" href="https://www.google.com/maps/dir/?api=1&destination=${
-                marker.info.latitude
-              },${
-        marker.info.longitude
-      }&travelmode=driving" onclick='window.mapPushToDataLayer(${directionGtm})'>
-      ${data.labelDirectionButton.value}
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8.12498 1.875L10.1831 3.93313L5.80811 8.30812L6.69186 9.19187L11.0669 4.81687L13.125 6.875V1.875H8.12498Z" fill="white"/>
-                  <path d="M11.875 11.875H3.125V3.125H7.5L6.25 1.875H3.125C2.43562 1.875 1.875 2.43562 1.875 3.125V11.875C1.875 12.5644 2.43562 13.125 3.125 13.125H11.875C12.5644 13.125 13.125 12.5644 13.125 11.875V8.75L11.875 7.5V11.875Z" fill="white"/>
-                </svg>
-              </a>
-              ${
-                marker.info.showPageUrl
-                  ? `<a class="marker__cta cta-btn cta-btn--grey cta-btn--full-width" href="${marker.info.showPageUrl}" onclick='window.mapPushToDataLayer(${pageUrlGtm})'>
-                  ${data.labelBuyButton.value}
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8.12498 1.875L10.1831 3.93313L5.80811 8.30812L6.69186 9.19187L11.0669 4.81687L13.125 6.875V1.875H8.12498Z" fill="white"/>
-                  <path d="M11.875 11.875H3.125V3.125H7.5L6.25 1.875H3.125C2.43562 1.875 1.875 2.43562 1.875 3.125V11.875C1.875 12.5644 2.43562 13.125 3.125 13.125H11.875C12.5644 13.125 13.125 12.5644 13.125 11.875V8.75L11.875 7.5V11.875Z" fill="white"/>
-                </svg>
-              </a>`
-                  : ""
-              }
+    instance.$props.markerData = marker.info;
+    instance.$props.dateLocale = data.dateLocale.value;
+    instance.$props.labelDirectionButton = data.labelDirectionButton.value;
+    instance.$props.labelBuyButton = data.labelBuyButton.value;
 
-            </div>
-            </div>`,
-    };
+    nextTick(() => {
+      const options = {
+        pixelOffset: marker ? null : new google.maps.Size(0, -50),
+        content: instance.$el,
+      };
 
-    openInfoWindow(marker, options);
+      openInfoWindow(marker, options);
+    });
   };
 
   const openInfoWindow = (anchor, options) => {
@@ -396,6 +332,7 @@ export default function useGoogleMap(
   };
 
   onMounted(() => {
+    instance.$mount();
     window.mapPushToDataLayer = (gtmEvent) => pushEvent(gtmEvent);
 
     nextTick(async () => {
