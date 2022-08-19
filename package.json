@@ -1,0 +1,44 @@
+{
+  "name": "@cirquedev/interactive-map",
+  "version": "1.0.0",
+  "description": "A map component to visualise our touring shows",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/interactive-map.umd.js",
+  "module": "./dist/interactive-map.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/interactive-map.es.js",
+      "require": "./dist/interactive-map.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:staging": "vite build --mode staging",
+    "serve": "vite preview",
+    "test": "jest --verbose"
+  },
+  "dependencies": {
+    "@googlemaps/js-api-loader": "^1.12.4",
+    "@googlemaps/markerclusterer": "^2.0.8",
+    "date-fns": "^2.27.0",
+    "vue": "^2.7.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@vitejs/plugin-vue2": "^1.1.2",
+    "@vue/compiler-sfc": "^3.2.20",
+    "@vue/test-utils": "^1.2.2",
+    "babel-jest": "^26.6.3",
+    "dotenv": "^16.0.1",
+    "flush-promises": "^1.0.2",
+    "jest": "^26.6.3",
+    "sass": "^1.43.2",
+    "vite": "^2.6.4",
+    "vue-jest": "^4.0.1",
+    "vue-template-compiler": "^2.7.0"
+  }
+}
