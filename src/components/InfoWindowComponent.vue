@@ -16,21 +16,8 @@
         <p v-if="markerData.facility" class="marker__venue">
           {{ markerData.facility }}
         </p>
-        <p
-          class="marker__date"
-          v-if="dateLocale && markerData.startDate && markerData.endDate"
-        >
-          {{
-            format(new Date(markerData.startDate), "PPP", {
-              locale: locales[dateLocale],
-            })
-          }}
-          -
-          {{
-            format(new Date(markerData.endDate), "PPP", {
-              locale: locales[dateLocale],
-            })
-          }}
+        <p v-if="dates" class="marker__date">
+          {{ dates }}
         </p>
       </div>
     </div>
@@ -60,8 +47,8 @@
       </a>
       <a
         class="marker__cta cta-btn cta-btn--grey cta-btn--full-width"
-        :href="markerData.showPageUrl"
         v-if="markerData.showPageUrl"
+        :href="markerData.showPageUrl"
         onclick="window.mapPushToDataLayer(pageUrlGtm)"
       >
         {{ labelBuyButton }}
@@ -113,18 +100,37 @@ export default defineComponent({
 
     // Find an image to put in the InfoWindow
     const img = computed(() => {
+      if (!markerData.value) return null;
       return markerData.value.showThumbnail
         ? markerData.value.showThumbnail
         : markerData.value.showImage;
     });
 
+    // Format the dates to show
+    const dates = computed(() => {
+      if (!dateLocale.value || !markerData.value.startDate) return null;
+
+      const start = format(new Date(markerData.value.startDate), "PPP", {
+        locale: locales[dateLocale.value],
+      });
+
+      const end = markerData.value.endDate
+        ? ` - ${format(new Date(markerData.value.endDate), "PPP", {
+            locale: locales[dateLocale.value],
+          })}`
+        : "";
+
+      return start + end;
+    });
+
+    // 'Buy Tickets' Button GTM
     const pageUrlGtm = computed(() => {
-      // if(!markerData.value && !markerData.value.showPageUrl) return null;
       return JSON.stringify(
         `[{ "event": "userAction", "eventAction": "Buy Tickets", "eventCategory": "Interactive Map", "eventLabel": "${nameNoQuote} - ${markerData.value.city}"}]`
       );
     });
 
+    // 'View on Google Maps' Button GTM
     const directionGtm = computed(() => {
       return JSON.stringify(
         `[{ "event": "userAction", "eventAction": "View on Google Maps", "eventCategory": "Interactive Map", "eventLabel": "${nameNoQuote} - ${markerData.value.city}"}]`
@@ -135,12 +141,12 @@ export default defineComponent({
       markerData,
       labelBuyButton,
       labelDirectionButton,
-      format,
       locales,
       dateLocale,
       img,
       pageUrlGtm,
       directionGtm,
+      dates,
     };
   },
 });

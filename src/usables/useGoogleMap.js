@@ -62,40 +62,33 @@ export default function useGoogleMap(
   };
 
   const createMarkers = () => {
+    bounds.value = new google.maps.LatLngBounds();
     clearMarkers();
     const markersData = [...data.markersData.value];
     if (!markersData) return;
-    const tmpMarkers = [];
 
     markersData.forEach((m) => {
       if (!m || (typeof m.visible !== "undefined" && !m.visible)) {
         return;
       }
 
-      let markerData = { ...m };
-      let icon = null;
+      const markerData = { ...m };
+      const options = {
+        title: `${markerData.showName}`,
+        optimized: false,
+        map,
+      };
 
+      let iconUrl = data.defaultPinImg ? data.defaultPinImg : null;
       if (markerData.pinImg) {
-        icon = {
-          url: markerData.pinImg,
-          scaledSize: new google.maps.Size(data.markerSize, data.markerSize),
-          labelOrigin: new google.maps.Point(
-            data.markerSize / 2,
-            data.markerSize + 4
-          ),
-        };
+        iconUrl = markerData.pinImg;
       } else if (markerData.category && markerData.category.pinImg) {
-        icon = {
-          url: markerData.category.pinImg,
-          scaledSize: new google.maps.Size(data.markerSize, data.markerSize),
-          labelOrigin: new google.maps.Point(
-            data.markerSize / 2,
-            data.markerSize + 4
-          ),
-        };
-      } else if (data.defaultPinImg) {
-        icon = {
-          url: data.defaultPinImg,
+        iconUrl = markerData.category.pinImg;
+      }
+
+      if (iconUrl) {
+        options.icon = {
+          url: iconUrl,
           scaledSize: new google.maps.Size(data.markerSize, data.markerSize),
           labelOrigin: new google.maps.Point(
             data.markerSize / 2,
@@ -104,50 +97,36 @@ export default function useGoogleMap(
         };
       }
 
-      const label = markerData.pinLabel
-        ? {
-            text: markerData.pinLabel,
-            color: "#000",
-            fontSize: "14px",
-            fontWeight: "bold",
-          }
-        : undefined;
+      if (markerData.pinLabel) {
+        options.label = {
+          text: markerData.pinLabel,
+          color: "#fff",
+          fontSize: "14px",
+          fontWeight: "bold",
+        };
+      }
 
       if (isMarkerPositionLegal(markerData)) {
-        const position = new google.maps.LatLng(
+        options.position = new google.maps.LatLng(
           parseFloat(markerData.latitude),
           parseFloat(markerData.longitude)
         );
 
-        const marker = new google.maps.Marker({
-          position,
-          icon,
-          title: `${markerData.showName}`,
-          optimized: false,
-          map,
-          label,
-        });
-
+        const marker = new google.maps.Marker(options);
+        bounds.value.extend(marker.getPosition());
         marker.info = markerData;
-        tmpMarkers.push(marker);
+        marker.addListener("click", (evt) => {
+          openShowInfo(marker);
+
+          if (markerData.showName) {
+            pushEvent(
+              `[{ "event": "userAction", "eventAction": "Click on Map", "eventCategory": "Interactive Map", "eventLabel": "${markerData.showName} - ${markerData.city}"}]`
+            );
+          }
+        });
+        markers.value.push(marker);
       }
     });
-
-    bounds.value = new google.maps.LatLngBounds();
-    tmpMarkers.forEach((marker) => {
-      bounds.value.extend(marker.getPosition());
-      marker.addListener("click", (evt) => {
-        openShowInfo(marker);
-
-        if (marker && marker.info && marker.info.showName) {
-          pushEvent(
-            `[{ "event": "userAction", "eventAction": "Click on Map", "eventCategory": "Interactive Map", "eventLabel": "${marker.info.showName} - ${marker.info.city}"}]`
-          );
-        }
-      });
-    });
-
-    markers.value = tmpMarkers;
   };
 
   const isMarkerPositionLegal = (marker) => {
@@ -165,9 +144,7 @@ export default function useGoogleMap(
   };
 
   const clearClusters = () => {
-    if (clusters.value) {
-      clusters.value.clearMarkers();
-    }
+    if (clusters.value) clusters.value.clearMarkers();
     clusters.value = null;
   };
 
@@ -297,7 +274,7 @@ export default function useGoogleMap(
                 : locationImg,
               scaledSize: new google.maps.Size(30, 30),
             };
-            const marker = new google.maps.Marker({
+            new google.maps.Marker({
               position: pos,
               optimized: false,
               map,

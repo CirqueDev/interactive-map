@@ -6,28 +6,27 @@
     <InteractiveMapApi
       class="map"
       map-id="map-api"
+      map-title="When and Where"
       :google-map-api-key="mapApiKey"
       :google-map-style-id="mapStyleId"
-      :fit-markers="true"
-      :run-id="runId"
-      :zoom="2"
+      :fit-markers="false"
+      :zoom="1"
       :api-url="apiUrl"
+      :api-key="apiKey"
       :has-cluster="true"
       :date-locale="lang"
-      :label-buy-button="labelBuyButton"
-      :label-direction-button="labelDirectionButton"
-      :label-clear-button="labelClearButton"
-      :label-save-button="labelSaveButton"
-      :aria-toggle-calendar="ariaToggleCalendar"
-      :aria-select-date="ariaSelectDate"
-      :aria-next-month="ariaNextMonth"
-      :aria-previous-month="ariaPreviousMonth"
-      :categories-overwrite="categoriesOverwrite"
-      :shows-overwrite="showsOverwrite"
       :marker-size="53"
       :hide-filters="false"
       default-pin-img="/cds-pin-ticket.png"
+      label-buy-button="Buy Tickets"
+      label-direction-button="View on Google Maps"
+      label-clear-button="Clear"
+      label-save-button="Search"
       aria-locate-button="Your Location"
+      aria-toggle-calendar="Toggle the calendar"
+      aria-select-date="Select "
+      aria-next-month="Next Month"
+      aria-previous-month="Previous Month"
       label-dates-filter="Label For Date Filter"
       placeholder-show-name-filter="Placeholder for Show Name"
       label-show-name-filter-default="Default Label For 'All Shows'"
@@ -38,7 +37,10 @@
           height: 53,
         },
       ]"
-      map-title="When and Where"
+    >
+    </InteractiveMapApi>
+    <!-- 
+      :center="{ lat: 0, lng: 0 }"
       :restriction="{
         strictBounds: false,
         latLngBounds: {
@@ -48,8 +50,41 @@
           east: 179,
         },
       }"
-    >
-    </InteractiveMapApi>
+      :categories-overwrite="[
+        { value: 'BIG TOP', label: '', pinImg: '' },
+        { value: 'ARENA', label: '', pinImg: '' },
+        { value: 'OTHER', label: '', pinImg: '' },
+        { value: 'THEATER', label: '', pinImg: '' },
+        { value: 'RESIDENT', label: '', pinImg: '' },
+      ]"
+      :shows-overwrite="[
+        {
+          visible: false,
+          value: 'Blue Man Group North American Tour',
+          pinImg: 'other.png',
+        },
+        {
+          visible: false,
+          value: 'Blue Man Group Chicago',
+          pinImg: 'other.png',
+        },
+        {
+          visible: false,
+          value: 'Blue Man Group Boston',
+          pinImg: 'other.png',
+        },
+        {
+          visible: false,
+          value: 'Bue Man Group Las Vegas',
+          pinImg: 'other.png',
+        },
+        {
+          visible: false,
+          value: 'Blue Man Group New York',
+          pinImg: 'other.png',
+        },
+      ]"
+    -->
   </div>
 </template>
 
@@ -66,107 +101,15 @@ export default defineComponent({
     const mapApiKey = import.meta.env.VITE_MAP_API_KEY;
     const mapStyleId = import.meta.env.VITE_MAP_STYLE_ID;
     const apiUrl = ref(import.meta.env.VITE_API_URL);
+    const apiKey = ref(import.meta.env.VITE_API_KEY);
     const lang = ref("en");
-    const runId = ref(null);
-
-    onMounted(() => {
-      const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get("run_id")) {
-        runId.value = parseInt(urlParams.get("run_id"));
-      }
-    });
-
-    // Fake the translation service of the application
-    const labelBuyButton = computed(() =>
-      lang.value == "fr" ? "Acheter des billets" : "Buy Tickets"
-    );
-    const labelDirectionButton = computed(() =>
-      lang.value == "fr" ? "Directions sur Google" : "View on Google Maps"
-    );
-    const labelClearButton = computed(() =>
-      lang.value == "fr" ? "Réinitialiser" : "Clear"
-    );
-    const labelSaveButton = computed(() =>
-      lang.value == "fr" ? "Rechercher" : "Search"
-    );
-    const ariaToggleCalendar = computed(() =>
-      lang.value == "fr" ? "Ouvrir/Fermer le calendrier" : "Toggle the calendar"
-    );
-    const ariaSelectDate = computed(() =>
-      lang.value == "fr" ? "Sélectionner " : "Select "
-    );
-    const ariaNextMonth = computed(() =>
-      lang.value == "fr" ? "Mois suivant" : "Next Month"
-    );
-    const ariaPreviousMonth = computed(() =>
-      lang.value == "fr" ? "Mois précédent" : "Previous Month"
-    );
-
-    const categoriesOverwrite = computed(() =>
-      lang.value == "fr"
-        ? [
-            { value: "BIG TOP", label: "CHAPITEAU", pinImg: "" },
-            { value: "ARENA", label: "ARENA", pinImg: "" },
-            { value: "OTHER", label: "AUTRES", pinImg: "" },
-            { value: "THEATER", label: "THEÂTRE", pinImg: "" },
-            {
-              value: "RESIDENT",
-              label: "RÉSIDENT",
-              pinImg: "",
-            },
-          ]
-        : [
-            { value: "BIG TOP", label: "", pinImg: "" },
-            { value: "ARENA", label: "", pinImg: "" },
-            { value: "OTHER", label: "", pinImg: "" },
-            { value: "THEATER", label: "", pinImg: "" },
-            { value: "RESIDENT", label: "", pinImg: "" },
-          ]
-    );
-    const showsOverwrite = computed(() => [
-      {
-        visible: false,
-        value: "Blue Man Group North American Tour",
-        pinImg: "other.png",
-      },
-      {
-        visible: false,
-        value: "Blue Man Group Chicago",
-        pinImg: "other.png",
-      },
-      {
-        visible: false,
-        value: "Blue Man Group Boston",
-        pinImg: "other.png",
-      },
-      {
-        visible: false,
-        value: "Bue Man Group Las Vegas",
-        pinImg: "other.png",
-      },
-      {
-        visible: false,
-        value: "Blue Man Group New York",
-        pinImg: "other.png",
-      },
-    ]);
 
     return {
       apiUrl,
+      apiKey,
       mapApiKey,
       mapStyleId,
       lang,
-      runId,
-      labelBuyButton,
-      labelDirectionButton,
-      labelClearButton,
-      labelSaveButton,
-      ariaToggleCalendar,
-      ariaSelectDate,
-      ariaNextMonth,
-      ariaPreviousMonth,
-      categoriesOverwrite,
-      showsOverwrite,
     };
   },
 });

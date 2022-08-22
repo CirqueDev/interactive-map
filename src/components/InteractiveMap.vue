@@ -147,7 +147,7 @@ export default defineComponent({
         '[{ "event": "userAction", "eventAction": "Click on All Shows", "eventCategory": "Interactive Map", "eventLabel": "Show Selector Toggle"}]',
     },
   },
-  setup(props, { emit }) {
+  setup(props) {
     const markersData = toRef(props, "markersData");
     const locale = toRef(props, "dateLocale");
     const labelBuyButton = toRef(props, "labelBuyButton");

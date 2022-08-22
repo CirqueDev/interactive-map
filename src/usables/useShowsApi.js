@@ -2,6 +2,7 @@ import { computed, ref, onMounted, watch } from "vue";
 
 export default function useShowsApi(
   apiUrl,
+  apiKey,
   categoriesOverwrite,
   showsOverwrite
 ) {
@@ -45,7 +46,20 @@ export default function useShowsApi(
 
     isLoading.value = true;
 
-    const response = fetch(apiUrl.value)
+    const options =
+      apiKey && apiKey.value
+        ? {
+            method: "GET",
+            mode: "cors",
+            headers: {
+              Accept: "application/json",
+              ApiKey: apiKey.value,
+              "Referrer-Policy": "origin-when-cross-origin",
+            },
+          }
+        : undefined;
+
+    const response = fetch(apiUrl.value, options)
       .then((response) => response.json())
       .catch((error) => {
         console.warn("[InteractiveMapApi] Failed silently because of: ", error);

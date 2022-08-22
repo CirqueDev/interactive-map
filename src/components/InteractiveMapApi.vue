@@ -24,15 +24,18 @@ export default defineComponent({
   },
   props: {
     apiUrl: { type: String, required: true },
+    apiKey: { type: String, required: false, default: null },
     categoriesOverwrite: { type: Array, default: () => [] },
     showsOverwrite: { type: Array, default: () => [] },
   },
   setup(props) {
     const apiUrl = toRef(props, "apiUrl");
+    const apiKey = toRef(props, "apiKey");
     const categoriesOverwrite = toRef(props, "categoriesOverwrite");
     const showsOverwrite = toRef(props, "showsOverwrite");
     const { runs, isLoading } = useShowsApi(
       apiUrl,
+      apiKey,
       categoriesOverwrite,
       showsOverwrite
     );
