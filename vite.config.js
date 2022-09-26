@@ -1,9 +1,12 @@
 import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue2";
+import vue from "@vitejs/plugin-vue";
 const path = require("path");
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => ({
+  server: {
+    port: 8080,
+  },
   publicDir:
     command === "serve" || (command === "build" && mode === "staging")
       ? "public_dev"
