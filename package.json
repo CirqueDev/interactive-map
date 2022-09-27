@@ -6,10 +6,10 @@
     "dist"
   ],
   "main": "./dist/interactive-map.umd.js",
-  "module": "./dist/interactive-map.es.js",
+  "module": "./dist/interactive-map.mjs",
   "exports": {
     ".": {
-      "import": "./dist/interactive-map.es.js",
+      "import": "./dist/interactive-map.mjs",
       "require": "./dist/interactive-map.umd.js"
     }
   },
