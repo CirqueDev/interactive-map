@@ -307,17 +307,19 @@ export default function useGoogleMap(
               ${
                 marker.info.showPageUrl
                   ? `<a class="marker__cta cta-btn cta-btn--grey cta-btn--full-width" href="${marker.info.showPageUrl}" onclick='window.mapPushToDataLayer(${pageUrlGtm})'>
-                  ${data.labelBuyButton.value}
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8.12498 1.875L10.1831 3.93313L5.80811 8.30812L6.69186 9.19187L11.0669 4.81687L13.125 6.875V1.875H8.12498Z" fill="white"/>
-                  <path d="M11.875 11.875H3.125V3.125H7.5L6.25 1.875H3.125C2.43562 1.875 1.875 2.43562 1.875 3.125V11.875C1.875 12.5644 2.43562 13.125 3.125 13.125H11.875C12.5644 13.125 13.125 12.5644 13.125 11.875V8.75L11.875 7.5V11.875Z" fill="white"/>
-                </svg>
-              </a>`
+                      ${data.labelBuyButton.value}
+                    </a>`
                   : ""
               }
 
             </div>
             </div>`,
+      /*
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8.12498 1.875L10.1831 3.93313L5.80811 8.30812L6.69186 9.19187L11.0669 4.81687L13.125 6.875V1.875H8.12498Z" fill="white"/>
+          <path d="M11.875 11.875H3.125V3.125H7.5L6.25 1.875H3.125C2.43562 1.875 1.875 2.43562 1.875 3.125V11.875C1.875 12.5644 2.43562 13.125 3.125 13.125H11.875C12.5644 13.125 13.125 12.5644 13.125 11.875V8.75L11.875 7.5V11.875Z" fill="white"/>
+        </svg>
+      */
     };
 
     openInfoWindow(marker, options);

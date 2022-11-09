@@ -1,4 +1,4 @@
-import { defineComponent as ce, toRef as I, ref as O, computed as _, openBlock as T, createElementBlock as N, createElementVNode as b, withDirectives as Ve, toDisplayString as z, Fragment as J, renderList as pe, vModelSelect as ot, reactive as Xe, onMounted as De, onBeforeUnmount as st, createTextVNode as ge, createCommentVNode as F, normalizeClass as ut, vShow as lt, nextTick as dt, watch as we, resolveComponent as be, renderSlot as Re, createBlock as We, createVNode as Be, Transition as mt, withCtx as Ue, mergeProps as ct } from "vue";
+import { defineComponent as ce, toRef as I, ref as O, computed as _, openBlock as T, createElementBlock as N, createElementVNode as b, withDirectives as Xe, toDisplayString as z, Fragment as J, renderList as pe, vModelSelect as ot, reactive as Re, onMounted as De, onBeforeUnmount as st, createTextVNode as ge, createCommentVNode as F, normalizeClass as ut, vShow as lt, nextTick as dt, watch as we, resolveComponent as be, renderSlot as Ve, createBlock as We, createVNode as Be, Transition as mt, withCtx as Ue, mergeProps as ct } from "vue";
 const he = (e, t) => {
   const a = e.__vccOpts || e;
   for (const [r, n] of t)
@@ -49,7 +49,7 @@ const he = (e, t) => {
 function Mt(e, t, a, r, n, i) {
   return T(), N("div", ft, [
     b("div", gt, [
-      Ve(b("select", {
+      Xe(b("select", {
         name: "dropdown-filters__select",
         class: "dropdown-filters__select",
         onChange: t[0] || (t[0] = (o) => e.filter(o.target.value)),
@@ -288,12 +288,12 @@ var Ht = {
   narrow: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
   abbreviated: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
   wide: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-}, Vt = {
+}, Xt = {
   narrow: ["S", "M", "T", "W", "T", "F", "S"],
   short: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
   abbreviated: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
   wide: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-}, Xt = {
+}, Rt = {
   narrow: {
     am: "a",
     pm: "p",
@@ -324,7 +324,7 @@ var Ht = {
     evening: "evening",
     night: "night"
   }
-}, Rt = {
+}, Vt = {
   narrow: {
     am: "a",
     pm: "p",
@@ -385,13 +385,13 @@ var Ht = {
     defaultWidth: "wide"
   }),
   day: h({
-    values: Vt,
+    values: Xt,
     defaultWidth: "wide"
   }),
   dayPeriod: h({
-    values: Xt,
+    values: Rt,
     defaultWidth: "wide",
-    formattingValues: Rt,
+    formattingValues: Vt,
     defaultFormattingWidth: "wide"
   })
 };
@@ -1440,14 +1440,14 @@ var Ia = {
   })
 };
 const Ya = Ga;
-var Va = {
+var Xa = {
   lastWeek: "'el' eeee 'passat a la' LT",
   yesterday: "'ahir a la' p",
   today: "'avui a la' p",
   tomorrow: "'dem\xE0 a la' p",
   nextWeek: "eeee 'a la' p",
   other: "P"
-}, Xa = {
+}, Ra = {
   lastWeek: "'el' eeee 'passat a les' p",
   yesterday: "'ahir a les' p",
   today: "'avui a les' p",
@@ -1455,8 +1455,8 @@ var Va = {
   nextWeek: "eeee 'a les' p",
   other: "P"
 };
-function Ra(e, t, a, r) {
-  return t.getUTCHours() !== 1 ? Xa[e] : Va[e];
+function Va(e, t, a, r) {
+  return t.getUTCHours() !== 1 ? Ra[e] : Xa[e];
 }
 var Ba = {
   narrow: ["aC", "dC"],
@@ -1675,7 +1675,7 @@ var pr = {
   code: "ca",
   formatDistance: Fa,
   formatLong: Ya,
-  formatRelative: Ra,
+  formatRelative: Va,
   localize: ar,
   match: vr,
   options: {
@@ -1930,13 +1930,13 @@ var zr = /^(\d+)(\.)?/i, Ar = /\d+/i, _r = {
   short: /^(søn.|man.|tir.|ons.|tor.|fre.|lør.)/i,
   abbreviated: /^(søn|man|tir|ons|tor|fre|lør)/i,
   wide: /^(søndag|mandag|tirsdag|onsdag|torsdag|fredag|lørdag)/i
-}, Vr = {
+}, Xr = {
   narrow: [/^s/i, /^m/i, /^t/i, /^o/i, /^t/i, /^f/i, /^l/i],
   any: [/^s/i, /^m/i, /^ti/i, /^o/i, /^to/i, /^f/i, /^l/i]
-}, Xr = {
+}, Rr = {
   narrow: /^(a|p|midnat|middag|(om) (morgenen|eftermiddagen|aftenen|natten))/i,
   any: /^([ap]\.?\s?m\.?|midnat|middag|(om) (morgenen|eftermiddagen|aftenen|natten))/i
-}, Rr = {
+}, Vr = {
   any: {
     am: /^a/i,
     pm: /^p/i,
@@ -1979,13 +1979,13 @@ var zr = /^(\d+)(\.)?/i, Ar = /\d+/i, _r = {
   day: f({
     matchPatterns: Yr,
     defaultMatchWidth: "wide",
-    parsePatterns: Vr,
+    parsePatterns: Xr,
     defaultParseWidth: "any"
   }),
   dayPeriod: f({
-    matchPatterns: Xr,
+    matchPatterns: Rr,
     defaultMatchWidth: "any",
-    parsePatterns: Rr,
+    parsePatterns: Vr,
     defaultParseWidth: "any"
   })
 };
@@ -2589,12 +2589,12 @@ var Yn = {
     one: "casi 1 a\xF1o",
     other: "casi {{count}} a\xF1os"
   }
-}, Vn = function(e, t, a) {
+}, Xn = function(e, t, a) {
   var r, n = Yn[e];
   return typeof n == "string" ? r = n : t === 1 ? r = n.one : r = n.other.replace("{{count}}", t.toString()), a != null && a.addSuffix ? a.comparison && a.comparison > 0 ? "en " + r : "hace " + r : r;
 };
-const Xn = Vn;
-var Rn = {
+const Rn = Xn;
+var Vn = {
   full: "EEEE, d 'de' MMMM 'de' y",
   long: "d 'de' MMMM 'de' y",
   medium: "d MMM y",
@@ -2611,7 +2611,7 @@ var Rn = {
   short: "{{date}}, {{time}}"
 }, Jn = {
   date: M({
-    formats: Rn,
+    formats: Vn,
     defaultWidth: "full"
   }),
   time: M({
@@ -2840,7 +2840,7 @@ var mi = /^(\d+)(º)?/i, ci = /\d+/i, hi = {
 const ki = Di;
 var $i = {
   code: "es",
-  formatDistance: Xn,
+  formatDistance: Rn,
   formatLong: Qn,
   formatRelative: ti,
   localize: di,
@@ -3016,13 +3016,13 @@ var qi = /^(\d+)(ième|ère|ème|er|e)?/i, Hi = /\d+/i, Gi = {
   wide: /^(avant Jésus-Christ|après Jésus-Christ)/i
 }, Yi = {
   any: [/^av/i, /^ap/i]
-}, Vi = {
+}, Xi = {
   narrow: /^T?[1234]/i,
   abbreviated: /^[1234](er|ème|e)? trim\.?/i,
   wide: /^[1234](er|ème|e)? trimestre/i
-}, Xi = {
-  any: [/1/i, /2/i, /3/i, /4/i]
 }, Ri = {
+  any: [/1/i, /2/i, /3/i, /4/i]
+}, Vi = {
   narrow: /^[jfmasond]/i,
   abbreviated: /^(janv|févr|mars|avr|mai|juin|juill|juil|août|sept|oct|nov|déc)\.?/i,
   wide: /^(janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)/i
@@ -3066,16 +3066,16 @@ var qi = /^(\d+)(ième|ère|ème|er|e)?/i, Hi = /\d+/i, Gi = {
     defaultParseWidth: "any"
   }),
   quarter: f({
-    matchPatterns: Vi,
+    matchPatterns: Xi,
     defaultMatchWidth: "wide",
-    parsePatterns: Xi,
+    parsePatterns: Ri,
     defaultParseWidth: "any",
     valueCallback: function(e) {
       return e + 1;
     }
   }),
   month: f({
-    matchPatterns: Ri,
+    matchPatterns: Vi,
     defaultMatchWidth: "wide",
     parsePatterns: Bi,
     defaultParseWidth: "any"
@@ -3467,7 +3467,7 @@ var No = /^(\d+)(º)?/i, xo = /\d+/i, Eo = {
   })
 };
 const Yo = Go;
-var Vo = {
+var Xo = {
   code: "it",
   formatDistance: mo,
   formatLong: vo,
@@ -3479,8 +3479,8 @@ var Vo = {
     firstWeekContainsDate: 4
   }
 };
-const Xo = Vo;
-var Ro = {
+const Ro = Xo;
+var Vo = {
   lessThanXSeconds: {
     one: "1\uCD08 \uBBF8\uB9CC",
     other: "{{count}}\uCD08 \uBBF8\uB9CC"
@@ -3543,7 +3543,7 @@ var Ro = {
     other: "\uAC70\uC758 {{count}}\uB144"
   }
 }, Bo = function(e, t, a) {
-  var r, n = Ro[e];
+  var r, n = Vo[e];
   return typeof n == "string" ? r = n : t === 1 ? r = n.one : r = n.other.replace("{{count}}", t.toString()), a != null && a.addSuffix ? a.comparison && a.comparison > 0 ? r + " \uD6C4" : r + " \uC804" : r;
 };
 const Uo = Bo;
@@ -4021,8 +4021,8 @@ var _s = {
     defaultFormattingWidth: "wide"
   })
 };
-const Vs = Ys;
-var Xs = /^(\d+)(º|ª)?/i, Rs = /\d+/i, Bs = {
+const Xs = Ys;
+var Rs = /^(\d+)(º|ª)?/i, Vs = /\d+/i, Bs = {
   narrow: /^(ac|dc|a|d)/i,
   abbreviated: /^(a\.?\s?c\.?|a\.?\s?e\.?\s?c\.?|d\.?\s?c\.?|e\.?\s?c\.?)/i,
   wide: /^(antes de cristo|antes da era comum|depois de cristo|era comum)/i
@@ -4066,8 +4066,8 @@ var Xs = /^(\d+)(º|ª)?/i, Rs = /\d+/i, Bs = {
   }
 }, nu = {
   ordinalNumber: q({
-    matchPattern: Xs,
-    parsePattern: Rs,
+    matchPattern: Rs,
+    parsePattern: Vs,
     valueCallback: function(e) {
       return parseInt(e, 10);
     }
@@ -4112,7 +4112,7 @@ var ou = {
   formatDistance: Ts,
   formatLong: Ls,
   formatRelative: zs,
-  localize: Vs,
+  localize: Xs,
   match: iu,
   options: {
     weekStartsOn: 1,
@@ -4604,9 +4604,9 @@ var Gu = {
     firstWeekContainsDate: 1
   }
 };
-const Yu = Gu, de = { en: Gn, fr: so, es: Ci, de: En, ca: wr, it: Xo, ru: Yu, pt: su, da: Qr, ko: Ws };
-function Vu(e = O(new Date()), t = O("en")) {
-  const a = Xe({
+const Yu = Gu, de = { en: Gn, fr: so, es: Ci, de: En, ca: wr, it: Ro, ru: Yu, pt: su, da: Qr, ko: Ws };
+function Xu(e = O(new Date()), t = O("en")) {
+  const a = Re({
     start: null,
     end: null
   }), r = _(() => ({
@@ -4701,7 +4701,7 @@ function Vu(e = O(new Date()), t = O("en")) {
     }
   };
 }
-const Xu = ce({
+const Ru = ce({
   name: "DateRangePicker",
   emits: ["datechanged", "close"],
   props: {
@@ -4726,7 +4726,7 @@ const Xu = ce({
     gtm: { type: String, required: !1, default: void 0 }
   },
   setup(e, { emit: t }) {
-    const a = I(e, "dateLocale"), r = O(!1), n = O(null), i = O(null), o = O(null), u = (X) => X.stopPropagation(), s = () => {
+    const a = I(e, "dateLocale"), r = O(!1), n = O(null), i = O(null), o = O(null), u = (R) => R.stopPropagation(), s = () => {
       r.value && (r.value = !1);
     };
     De(() => {
@@ -4748,7 +4748,7 @@ const Xu = ce({
       showPreviousMonth: w,
       daysInMonth: D,
       selectedDates: C
-    } = Vu(O(e.defaultDate), a);
+    } = Xu(O(e.defaultDate), a);
     return {
       locale: a,
       isoSelectedDates: d,
@@ -4774,7 +4774,7 @@ const Xu = ce({
       dateRangePickerElement: n
     };
   }
-}), Ru = {
+}), Vu = {
   class: "date-range-picker__wrapper",
   ref: "dateRangePickerElement"
 }, Bu = ["aria-label", "aria-expanded", "aria-controls", "data-gtm"], Uu = /* @__PURE__ */ b("svg", {
@@ -4823,7 +4823,7 @@ const Xu = ce({
   class: "day__number"
 }, ll = { class: "date-range-picker__buttons" }, dl = ["disabled"], ml = { class: "week" };
 function cl(e, t, a, r, n, i) {
-  return T(), N("div", Ru, [
+  return T(), N("div", Vu, [
     b("button", {
       class: "date-range-picker__toggle",
       onClick: t[0] || (t[0] = (o) => e.showDateRange = !e.showDateRange),
@@ -4843,7 +4843,7 @@ function cl(e, t, a, r, n, i) {
       ], 64)) : F("", !0),
       Uu
     ], 8, Bu),
-    Ve(b("div", {
+    Xe(b("div", {
       id: e.pickerId,
       class: "date-range-picker"
     }, [
@@ -4905,7 +4905,7 @@ function cl(e, t, a, r, n, i) {
     ])
   ], 512);
 }
-const hl = /* @__PURE__ */ he(Xu, [["render", cl]]);
+const hl = /* @__PURE__ */ he(Ru, [["render", cl]]);
 function Me(e, t, a, r, n, i) {
   if (n - r <= a)
     return;
@@ -5151,8 +5151,8 @@ class bl {
           if (L.zoom <= a)
             continue;
           L.zoom = a;
-          const X = L.numPoints || 1;
-          v += L.x * X, w += L.y * X, L.parentId = C, o && (D || (D = this._map(l, !0)), o(D, this._map(L)));
+          const R = L.numPoints || 1;
+          v += L.x * R, w += L.y * R, L.parentId = C, o && (D || (D = this._map(l, !0)), o(D, this._map(L)));
         }
         l.parentId = C, r.push(yl(v / p, w / p, C, p, D));
       } else if (r.push(l), p > 1)
@@ -5529,14 +5529,14 @@ var Q;
 (function(e) {
   e[e.INITIALIZED = 0] = "INITIALIZED", e[e.LOADING = 1] = "LOADING", e[e.SUCCESS = 2] = "SUCCESS", e[e.FAILURE = 3] = "FAILURE";
 })(Q || (Q = {}));
-class V {
+class X {
   constructor({ apiKey: t, channel: a, client: r, id: n = Ye, libraries: i = [], language: o, region: u, version: s, mapIds: d, nonce: l, retries: m = 3, url: g = "https://maps.googleapis.com/maps/api/js" }) {
-    if (this.CALLBACK = "__googleMapsCallback", this.callbacks = [], this.done = !1, this.loading = !1, this.errors = [], this.version = s, this.apiKey = t, this.channel = a, this.client = r, this.id = n || Ye, this.libraries = i, this.language = o, this.region = u, this.mapIds = d, this.nonce = l, this.retries = m, this.url = g, V.instance) {
-      if (!El(this.options, V.instance.options))
-        throw new Error(`Loader must not be called again with different options. ${JSON.stringify(this.options)} !== ${JSON.stringify(V.instance.options)}`);
-      return V.instance;
+    if (this.CALLBACK = "__googleMapsCallback", this.callbacks = [], this.done = !1, this.loading = !1, this.errors = [], this.version = s, this.apiKey = t, this.channel = a, this.client = r, this.id = n || Ye, this.libraries = i, this.language = o, this.region = u, this.mapIds = d, this.nonce = l, this.retries = m, this.url = g, X.instance) {
+      if (!El(this.options, X.instance.options))
+        throw new Error(`Loader must not be called again with different options. ${JSON.stringify(this.options)} !== ${JSON.stringify(X.instance.options)}`);
+      return X.instance;
     }
-    V.instance = this;
+    X.instance = this;
   }
   get options() {
     return {
@@ -5665,7 +5665,7 @@ function jl(e = {
 }) {
   const { pushEvent: t } = nt();
   let a = null, r = null;
-  const n = new V({
+  const n = new X({
     apiKey: e.apiKey,
     version: "weekly"
   }), i = O([]), o = O(null), u = O(null), s = () => new Promise(async (c) => {
@@ -5688,22 +5688,22 @@ function jl(e = {
     c.forEach((S) => {
       if (!S || typeof S.visible < "u" && !S.visible)
         return;
-      let k = { ...S }, R = null;
-      k.pinImg ? R = {
+      let k = { ...S }, V = null;
+      k.pinImg ? V = {
         url: k.pinImg,
         scaledSize: new google.maps.Size(e.markerSize, e.markerSize),
         labelOrigin: new google.maps.Point(
           e.markerSize / 2,
           e.markerSize + 4
         )
-      } : k.category && k.category.pinImg ? R = {
+      } : k.category && k.category.pinImg ? V = {
         url: k.category.pinImg,
         scaledSize: new google.maps.Size(e.markerSize, e.markerSize),
         labelOrigin: new google.maps.Point(
           e.markerSize / 2,
           e.markerSize + 4
         )
-      } : e.defaultPinImg && (R = {
+      } : e.defaultPinImg && (V = {
         url: e.defaultPinImg,
         scaledSize: new google.maps.Size(e.markerSize, e.markerSize),
         labelOrigin: new google.maps.Point(
@@ -5723,7 +5723,7 @@ function jl(e = {
           parseFloat(k.longitude)
         ), Se = new google.maps.Marker({
           position: it,
-          icon: R,
+          icon: V,
           title: `${k.showName}`,
           optimized: !1,
           map: a,
@@ -5785,7 +5785,7 @@ function jl(e = {
       return;
     const x = c.info.showName ? c.info.showName.split('"').join("") : "", S = c.info.showThumbnail ? c.info.showThumbnail : c.info.showImage, k = c.info.showPageUrl ? JSON.stringify(
       `[{ "event": "userAction", "eventAction": "Buy Tickets", "eventCategory": "Interactive Map", "eventLabel": "${x} - ${c.info.city}"}]`
-    ) : null, R = JSON.stringify(
+    ) : null, V = JSON.stringify(
       `[{ "event": "userAction", "eventAction": "View on Google Maps", "eventCategory": "Interactive Map", "eventLabel": "${x} - ${c.info.city}"}]`
     ), fe = {
       pixelOffset: c ? null : new google.maps.Size(0, -50),
@@ -5806,7 +5806,7 @@ function jl(e = {
               </div>
             </div>
             <div class="marker__buttons">
-              <a class="marker__cta marker__cta--small cta-btn cta-btn--ghost cta-btn--full-width" href="https://www.google.com/maps/dir/?api=1&destination=${c.info.latitude},${c.info.longitude}&travelmode=driving" onclick='window.mapPushToDataLayer(${R})'>
+              <a class="marker__cta marker__cta--small cta-btn cta-btn--ghost cta-btn--full-width" href="https://www.google.com/maps/dir/?api=1&destination=${c.info.latitude},${c.info.longitude}&travelmode=driving" onclick='window.mapPushToDataLayer(${V})'>
       ${e.labelDirectionButton.value}
                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M8.12498 1.875L10.1831 3.93313L5.80811 8.30812L6.69186 9.19187L11.0669 4.81687L13.125 6.875V1.875H8.12498Z" fill="white"/>
@@ -5814,12 +5814,8 @@ function jl(e = {
                 </svg>
               </a>
               ${c.info.showPageUrl ? `<a class="marker__cta cta-btn cta-btn--grey cta-btn--full-width" href="${c.info.showPageUrl}" onclick='window.mapPushToDataLayer(${k})'>
-                  ${e.labelBuyButton.value}
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8.12498 1.875L10.1831 3.93313L5.80811 8.30812L6.69186 9.19187L11.0669 4.81687L13.125 6.875V1.875H8.12498Z" fill="white"/>
-                  <path d="M11.875 11.875H3.125V3.125H7.5L6.25 1.875H3.125C2.43562 1.875 1.875 2.43562 1.875 3.125V11.875C1.875 12.5644 2.43562 13.125 3.125 13.125H11.875C12.5644 13.125 13.125 12.5644 13.125 11.875V8.75L11.875 7.5V11.875Z" fill="white"/>
-                </svg>
-              </a>` : ""}
+                      ${e.labelBuyButton.value}
+                    </a>` : ""}
 
             </div>
             </div>`
@@ -5832,7 +5828,7 @@ function jl(e = {
     });
   }, L = () => {
     r.close();
-  }, X = () => {
+  }, R = () => {
     const c = document.createElement("button");
     c.ariaLabel = e.ariaLocateButton, c.innerHTML = `
     <svg width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -5866,7 +5862,7 @@ function jl(e = {
   return De(() => {
     window.mapPushToDataLayer = (c) => t(c), dt(async () => {
       try {
-        await s(), X(), e.markersData.value.length > 0 && (l(), e.hasCluster && g(), re()), we(e.markersData, () => {
+        await s(), R(), e.markersData.value.length > 0 && (l(), e.hasCluster && g(), re()), we(e.markersData, () => {
           l(), e.hasCluster && g(), re();
         }), we(e.center, () => {
           re();
@@ -5890,7 +5886,7 @@ function jl(e = {
   };
 }
 function zl(e) {
-  const { pushEvent: t } = nt(), a = O(null), r = O(null), n = Xe({
+  const { pushEvent: t } = nt(), a = O(null), r = O(null), n = Re({
     start: null,
     end: null
   }), i = _(() => {
@@ -6073,7 +6069,7 @@ const Al = ce({
 }, Hl = {
   key: 1,
   class: "interactive-map__description"
-}, Gl = { class: "interactive-map__slots" }, Yl = { class: "filters" }, Vl = { class: "interactive-map__wrapper" }, Xl = { class: "interactive-map" }, Rl = ["id"], Bl = {
+}, Gl = { class: "interactive-map__slots" }, Yl = { class: "filters" }, Xl = { class: "interactive-map__wrapper" }, Rl = { class: "interactive-map" }, Vl = ["id"], Bl = {
   key: 0,
   class: "loading"
 }, Ul = /* @__PURE__ */ b("div", { class: "spinner" }, null, -1), Jl = [
@@ -6087,7 +6083,7 @@ function Ql(e, t, a, r, n, i) {
         e.mapTitle ? (T(), N("h2", ql, z(e.mapTitle), 1)) : F("", !0),
         e.mapDescription ? (T(), N("p", Hl, z(e.mapDescription), 1)) : F("", !0),
         b("div", Gl, [
-          Re(e.$slots, "default")
+          Ve(e.$slots, "default")
         ]),
         b("div", Yl, [
           e.hideFilters ? F("", !0) : (T(), We(o, {
@@ -6117,12 +6113,12 @@ function Ql(e, t, a, r, n, i) {
           }, null, 8, ["filters", "label-default", "placeholder", "onOnfilterchange", "gtm"]))
         ])
       ])) : F("", !0),
-      b("div", Vl, [
-        b("div", Xl, [
+      b("div", Xl, [
+        b("div", Rl, [
           b("div", {
             id: e.mapId,
             class: "map"
-          }, null, 8, Rl),
+          }, null, 8, Vl),
           Be(mt, { name: "spinner-fade" }, {
             default: Ue(() => [
               e.isLoading ? (T(), N("div", Bl, Jl)) : F("", !0)
@@ -6193,7 +6189,7 @@ function ad(e, t, a, r, n, i) {
         "is-loading": e.isLoading
       }), {
         default: Ue(() => [
-          Re(e.$slots, "default")
+          Ve(e.$slots, "default")
         ]),
         _: 3
       }, 16, ["markers-data", "is-loading"])
