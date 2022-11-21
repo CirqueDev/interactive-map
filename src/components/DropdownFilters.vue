@@ -8,7 +8,7 @@
         v-model="currentFilter"
         :data-gtm="gtm"
       >
-        <option selected="selected" value="" disabled>
+        <option v-if="placeholder" value="" selected disabled>
           {{ placeholder }}
         </option>
         <option value="all">
@@ -47,14 +47,14 @@ export default defineComponent({
   name: "DropdownFilters",
   emits: ["onfilterchange"],
   props: {
-    placeholder: { type: String, required: false, default: "Select a show" },
+    placeholder: { type: String, required: false, default: "" },
     filters: { type: Array, required: false, default: () => [] },
     labelDefault: { type: String, required: false, default: "All shows" },
     gtm: { type: String, required: false, default: undefined },
   },
   setup(props, { emit }) {
     const filters = toRef(props, "filters");
-    const currentFilter = ref("");
+    const currentFilter = ref(props.placeholder ? "" : "all");
 
     const filter = (f) => {
       currentFilter.value = f;
