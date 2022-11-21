@@ -99,14 +99,14 @@ const _sfc_main$3 = defineComponent({
   name: "DropdownFilters",
   emits: ["onfilterchange"],
   props: {
-    placeholder: { type: String, required: false, default: "Select a show" },
+    placeholder: { type: String, required: false, default: "" },
     filters: { type: Array, required: false, default: () => [] },
     labelDefault: { type: String, required: false, default: "All shows" },
     gtm: { type: String, required: false, default: undefined },
   },
   setup(props, { emit }) {
     const filters = toRef(props, "filters");
-    const currentFilter = ref("");
+    const currentFilter = ref(props.placeholder ? "" : "all");
 
     const filter = (f) => {
       currentFilter.value = f;
@@ -130,7 +130,7 @@ const _sfc_main$3 = defineComponent({
   },
 });
 
-var _sfc_render$3 = function render(){var _vm=this,_c=_vm._self._c;_vm._self._setupProxy;return _c('div',{staticClass:"dropdown-filters"},[_c('div',{staticClass:"dropdown-filters__input"},[_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.currentFilter),expression:"currentFilter"}],staticClass:"dropdown-filters__select",attrs:{"name":"dropdown-filters__select","data-gtm":_vm.gtm},on:{"change":[function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.currentFilter=$event.target.multiple ? $$selectedVal : $$selectedVal[0];},function($event){return _vm.filter($event.target.value)}]}},[_c('option',{attrs:{"selected":"selected","value":"","disabled":""}},[_vm._v(" "+_vm._s(_vm.placeholder)+" ")]),_c('option',{attrs:{"value":"all"}},[_vm._v(" "+_vm._s(_vm.labelDefault)+" ")]),_vm._l((_vm.filtersWithoutEmptyValue),function(f,idx){return _c('option',{key:idx,domProps:{"value":f.value}},[_vm._v(" "+_vm._s(f.label || f.value)+" ")])})],2),_c('svg',{staticClass:"dropdown-filters__arrow-down",attrs:{"width":"14","height":"9","viewBox":"0 0 14 9","fill":"none","xmlns":"http://www.w3.org/2000/svg"}},[_c('path',{attrs:{"d":"M1 1L7.10049 7.10049L13.201 1","stroke":"black","stroke-width":"2"}})])])])
+var _sfc_render$3 = function render(){var _vm=this,_c=_vm._self._c;_vm._self._setupProxy;return _c('div',{staticClass:"dropdown-filters"},[_c('div',{staticClass:"dropdown-filters__input"},[_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.currentFilter),expression:"currentFilter"}],staticClass:"dropdown-filters__select",attrs:{"name":"dropdown-filters__select","data-gtm":_vm.gtm},on:{"change":[function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.currentFilter=$event.target.multiple ? $$selectedVal : $$selectedVal[0];},function($event){return _vm.filter($event.target.value)}]}},[(_vm.placeholder)?_c('option',{attrs:{"value":"","selected":"","disabled":""}},[_vm._v(" "+_vm._s(_vm.placeholder)+" ")]):_vm._e(),_c('option',{attrs:{"value":"all"}},[_vm._v(" "+_vm._s(_vm.labelDefault)+" ")]),_vm._l((_vm.filtersWithoutEmptyValue),function(f,idx){return _c('option',{key:idx,domProps:{"value":f.value}},[_vm._v(" "+_vm._s(f.label || f.value)+" ")])})],2),_c('svg',{staticClass:"dropdown-filters__arrow-down",attrs:{"width":"14","height":"9","viewBox":"0 0 14 9","fill":"none","xmlns":"http://www.w3.org/2000/svg"}},[_c('path',{attrs:{"d":"M1 1L7.10049 7.10049L13.201 1","stroke":"black","stroke-width":"2"}})])])])
 };
 var _sfc_staticRenderFns$3 = [];
 var __component__$3 = /*#__PURE__*/normalizeComponent(
@@ -9471,7 +9471,7 @@ const _sfc_main$1 = defineComponent({
     placeholderShowNameFilter: {
       type: String,
       required: false,
-      default: "Select a show",
+      default: "",
     },
     labelDatesFilter: {
       type: String,

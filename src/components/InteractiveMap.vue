@@ -109,7 +109,7 @@ export default defineComponent({
     placeholderShowNameFilter: {
       type: String,
       required: false,
-      default: "Select a show",
+      default: "",
     },
     labelDatesFilter: {
       type: String,
