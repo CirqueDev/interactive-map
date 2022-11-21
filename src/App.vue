@@ -29,7 +29,7 @@
       default-pin-img="/cds-pin-ticket.png"
       aria-locate-button="Your Location"
       label-dates-filter="Label For Date Filter"
-      placeholder-show-name-filter="Placeholder for Show Name"
+      placeholder-show-name-filter=""
       label-show-name-filter-default="Default Label For 'All Shows'"
       :cluster-options="[
         {

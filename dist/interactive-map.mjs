@@ -1,4 +1,4 @@
-import { defineComponent as ce, toRef as I, ref as O, computed as _, openBlock as T, createElementBlock as N, createElementVNode as b, withDirectives as Xe, toDisplayString as z, Fragment as J, renderList as pe, vModelSelect as ot, reactive as Re, onMounted as De, onBeforeUnmount as st, createTextVNode as ge, createCommentVNode as F, normalizeClass as ut, vShow as lt, nextTick as dt, watch as we, resolveComponent as be, renderSlot as Ve, createBlock as We, createVNode as Be, Transition as mt, withCtx as Ue, mergeProps as ct } from "vue";
+import { defineComponent as ce, toRef as I, ref as O, computed as _, openBlock as W, createElementBlock as N, createElementVNode as y, withDirectives as Xe, toDisplayString as z, createCommentVNode as F, Fragment as J, renderList as pe, vModelSelect as ot, reactive as Re, onMounted as De, onBeforeUnmount as st, createTextVNode as ge, normalizeClass as ut, vShow as lt, nextTick as dt, watch as we, resolveComponent as be, renderSlot as Ve, createBlock as We, createVNode as Be, Transition as mt, withCtx as Ue, mergeProps as ct } from "vue";
 const he = (e, t) => {
   const a = e.__vccOpts || e;
   for (const [r, n] of t)
@@ -8,13 +8,13 @@ const he = (e, t) => {
   name: "DropdownFilters",
   emits: ["onfilterchange"],
   props: {
-    placeholder: { type: String, required: !1, default: "Select a show" },
+    placeholder: { type: String, required: !1, default: "" },
     filters: { type: Array, required: !1, default: () => [] },
     labelDefault: { type: String, required: !1, default: "All shows" },
     gtm: { type: String, required: !1, default: void 0 }
   },
   setup(e, { emit: t }) {
-    const a = I(e, "filters"), r = O(""), n = (u) => {
+    const a = I(e, "filters"), r = O(e.placeholder ? "" : "all"), n = (u) => {
       r.value = u, t("onfilterchange", r.value);
     }, i = () => {
       r.value = "", t("onfilterchange", r.value);
@@ -29,10 +29,11 @@ const he = (e, t) => {
     };
   }
 }), ft = { class: "dropdown-filters" }, gt = { class: "dropdown-filters__input" }, vt = ["data-gtm"], pt = {
-  selected: "selected",
+  key: 0,
   value: "",
+  selected: "",
   disabled: ""
-}, wt = { value: "all" }, bt = ["value"], yt = /* @__PURE__ */ b("svg", {
+}, wt = { value: "all" }, bt = ["value"], yt = /* @__PURE__ */ y("svg", {
   class: "dropdown-filters__arrow-down",
   width: "14",
   height: "9",
@@ -40,25 +41,25 @@ const he = (e, t) => {
   fill: "none",
   xmlns: "http://www.w3.org/2000/svg"
 }, [
-  /* @__PURE__ */ b("path", {
+  /* @__PURE__ */ y("path", {
     d: "M1 1L7.10049 7.10049L13.201 1",
     stroke: "black",
     "stroke-width": "2"
   })
 ], -1);
 function Mt(e, t, a, r, n, i) {
-  return T(), N("div", ft, [
-    b("div", gt, [
-      Xe(b("select", {
+  return W(), N("div", ft, [
+    y("div", gt, [
+      Xe(y("select", {
         name: "dropdown-filters__select",
         class: "dropdown-filters__select",
         onChange: t[0] || (t[0] = (o) => e.filter(o.target.value)),
         "onUpdate:modelValue": t[1] || (t[1] = (o) => e.currentFilter = o),
         "data-gtm": e.gtm
       }, [
-        b("option", pt, z(e.placeholder), 1),
-        b("option", wt, z(e.labelDefault), 1),
-        (T(!0), N(J, null, pe(e.filtersWithoutEmptyValue, (o, u) => (T(), N("option", {
+        e.placeholder ? (W(), N("option", pt, z(e.placeholder), 1)) : F("", !0),
+        y("option", wt, z(e.labelDefault), 1),
+        (W(!0), N(J, null, pe(e.filtersWithoutEmptyValue, (o, u) => (W(), N("option", {
           key: u,
           value: o.value
         }, z(o.label || o.value), 9, bt))), 128))
@@ -80,19 +81,19 @@ function $(e, t) {
   if (t.length < e)
     throw new TypeError(e + " argument" + (e > 1 ? "s" : "") + " required, but only " + t.length + " present");
 }
-function W(e) {
+function T(e) {
   $(1, arguments);
   var t = Object.prototype.toString.call(e);
   return e instanceof Date || typeof e == "object" && t === "[object Date]" ? new Date(e.getTime()) : typeof e == "number" || t === "[object Number]" ? new Date(e) : ((typeof e == "string" || t === "[object String]") && typeof console < "u" && (console.warn("Starting with v2.0.0-beta.1 date-fns doesn't accept strings as date arguments. Please use `parseISO` to parse strings. See: https://git.io/fjule"), console.warn(new Error().stack)), new Date(NaN));
 }
 function Dt(e, t) {
   $(2, arguments);
-  var a = W(e), r = E(t);
+  var a = T(e), r = E(t);
   return isNaN(r) ? new Date(NaN) : (r && a.setDate(a.getDate() + r), a);
 }
 function Te(e, t) {
   $(2, arguments);
-  var a = W(e), r = E(t);
+  var a = T(e), r = E(t);
   if (isNaN(r))
     return new Date(NaN);
   if (!r)
@@ -104,7 +105,7 @@ function Te(e, t) {
 }
 function kt(e, t) {
   $(2, arguments);
-  var a = W(e).getTime(), r = E(t);
+  var a = T(e).getTime(), r = E(t);
   return new Date(a + r);
 }
 function $t(e, t) {
@@ -112,7 +113,7 @@ function $t(e, t) {
   var a = t || {}, r = a.locale, n = r && r.options && r.options.weekStartsOn, i = n == null ? 0 : E(n), o = a.weekStartsOn == null ? i : E(a.weekStartsOn);
   if (!(o >= 0 && o <= 6))
     throw new RangeError("weekStartsOn must be between 0 and 6 inclusively");
-  var u = W(e), s = u.getDay(), d = (s < o ? 7 : 0) + s - o;
+  var u = T(e), s = u.getDay(), d = (s < o ? 7 : 0) + s - o;
   return u.setDate(u.getDate() - d), u.setHours(0, 0, 0, 0), u;
 }
 function Ct(e) {
@@ -124,7 +125,7 @@ function St(e, t) {
     inclusive: !1
   };
   $(2, arguments);
-  var r = e || {}, n = t || {}, i = W(r.start).getTime(), o = W(r.end).getTime(), u = W(n.start).getTime(), s = W(n.end).getTime();
+  var r = e || {}, n = t || {}, i = T(r.start).getTime(), o = T(r.end).getTime(), u = T(n.start).getTime(), s = T(n.end).getTime();
   if (!(i <= o && u <= s))
     throw new RangeError("Invalid interval");
   return a.inclusive ? i <= s && u <= o : i < s && u < o;
@@ -135,17 +136,17 @@ function Wt(e) {
 function Tt(e) {
   if ($(1, arguments), !Wt(e) && typeof e != "number")
     return !1;
-  var t = W(e);
+  var t = T(e);
   return !isNaN(Number(t));
 }
 function Ot(e) {
   $(1, arguments);
-  var t = W(e), a = t.getMonth();
+  var t = T(e), a = t.getMonth();
   return t.setFullYear(t.getFullYear(), a + 1, 0), t.setHours(23, 59, 59, 999), t;
 }
 function Nt(e) {
   $(1, arguments);
-  var t = W(e);
+  var t = T(e);
   return t.setDate(1), t.setHours(0, 0, 0, 0), t;
 }
 var xt = {
@@ -546,19 +547,19 @@ function ha(e, t) {
 var fa = 864e5;
 function ga(e) {
   $(1, arguments);
-  var t = W(e), a = t.getTime();
+  var t = T(e), a = t.getTime();
   t.setUTCMonth(0, 1), t.setUTCHours(0, 0, 0, 0);
   var r = t.getTime(), n = a - r;
   return Math.floor(n / fa) + 1;
 }
 function ue(e) {
   $(1, arguments);
-  var t = 1, a = W(e), r = a.getUTCDay(), n = (r < t ? 7 : 0) + r - t;
+  var t = 1, a = T(e), r = a.getUTCDay(), n = (r < t ? 7 : 0) + r - t;
   return a.setUTCDate(a.getUTCDate() - n), a.setUTCHours(0, 0, 0, 0), a;
 }
 function Ke(e) {
   $(1, arguments);
-  var t = W(e), a = t.getUTCFullYear(), r = new Date(0);
+  var t = T(e), a = t.getUTCFullYear(), r = new Date(0);
   r.setUTCFullYear(a + 1, 0, 4), r.setUTCHours(0, 0, 0, 0);
   var n = ue(r), i = new Date(0);
   i.setUTCFullYear(a, 0, 4), i.setUTCHours(0, 0, 0, 0);
@@ -575,7 +576,7 @@ function va(e) {
 var pa = 6048e5;
 function wa(e) {
   $(1, arguments);
-  var t = W(e), a = ue(t).getTime() - va(t).getTime();
+  var t = T(e), a = ue(t).getTime() - va(t).getTime();
   return Math.round(a / pa) + 1;
 }
 function Z(e, t) {
@@ -583,12 +584,12 @@ function Z(e, t) {
   var a = t || {}, r = a.locale, n = r && r.options && r.options.weekStartsOn, i = n == null ? 0 : E(n), o = a.weekStartsOn == null ? i : E(a.weekStartsOn);
   if (!(o >= 0 && o <= 6))
     throw new RangeError("weekStartsOn must be between 0 and 6 inclusively");
-  var u = W(e), s = u.getUTCDay(), d = (s < o ? 7 : 0) + s - o;
+  var u = T(e), s = u.getUTCDay(), d = (s < o ? 7 : 0) + s - o;
   return u.setUTCDate(u.getUTCDate() - d), u.setUTCHours(0, 0, 0, 0), u;
 }
 function et(e, t) {
   $(1, arguments);
-  var a = W(e), r = a.getUTCFullYear(), n = t || {}, i = n.locale, o = i && i.options && i.options.firstWeekContainsDate, u = o == null ? 1 : E(o), s = n.firstWeekContainsDate == null ? u : E(n.firstWeekContainsDate);
+  var a = T(e), r = a.getUTCFullYear(), n = t || {}, i = n.locale, o = i && i.options && i.options.firstWeekContainsDate, u = o == null ? 1 : E(o), s = n.firstWeekContainsDate == null ? u : E(n.firstWeekContainsDate);
   if (!(s >= 1 && s <= 7))
     throw new RangeError("firstWeekContainsDate must be between 1 and 7 inclusively");
   var d = new Date(0);
@@ -608,7 +609,7 @@ function ba(e, t) {
 var ya = 6048e5;
 function Ma(e, t) {
   $(1, arguments);
-  var a = W(e), r = Z(a, t).getTime() - ba(a, t).getTime();
+  var a = T(e), r = Z(a, t).getTime() - ba(a, t).getTime();
   return Math.round(r / ya) + 1;
 }
 function P(e, t) {
@@ -1291,10 +1292,10 @@ function H(e, t, a) {
     throw new RangeError("locale must contain localize property");
   if (!i.formatLong)
     throw new RangeError("locale must contain formatLong property");
-  var g = W(e);
+  var g = T(e);
   if (!Tt(g))
     throw new RangeError("Invalid time value");
-  var y = Ct(g), p = ha(g, y), v = {
+  var b = Ct(g), p = ha(g, b), v = {
     firstWeekContainsDate: s,
     weekStartsOn: m,
     locale: i,
@@ -1326,12 +1327,12 @@ function Aa(e) {
 }
 function Le(e) {
   $(1, arguments);
-  var t = W(e), a = t.getDay();
+  var t = T(e), a = t.getDay();
   return a;
 }
 function _a(e) {
   $(1, arguments);
-  var t = W(e), a = t.getFullYear(), r = t.getMonth(), n = new Date(0);
+  var t = T(e), a = t.getFullYear(), r = t.getMonth(), n = new Date(0);
   return n.setFullYear(a, r + 1, 0), n.setHours(0, 0, 0, 0), n.getDate();
 }
 function le(e, t, a) {
@@ -4742,7 +4743,7 @@ const Ru = ce({
       readableSelectedDates: l,
       clearSelectedDate: m,
       changeSelectedDate: g,
-      weekdays: y,
+      weekdays: b,
       shownMonthName: p,
       showNextMonth: v,
       showPreviousMonth: w,
@@ -4757,7 +4758,7 @@ const Ru = ce({
       readableEndDate: o,
       clearSelectedDate: m,
       changeSelectedDate: g,
-      weekdays: y,
+      weekdays: b,
       shownMonthName: p,
       showNextMonth: v,
       showPreviousMonth: w,
@@ -4777,7 +4778,7 @@ const Ru = ce({
 }), Vu = {
   class: "date-range-picker__wrapper",
   ref: "dateRangePickerElement"
-}, Bu = ["aria-label", "aria-expanded", "aria-controls", "data-gtm"], Uu = /* @__PURE__ */ b("svg", {
+}, Bu = ["aria-label", "aria-expanded", "aria-controls", "data-gtm"], Uu = /* @__PURE__ */ y("svg", {
   class: "dropdown-filters__arrow-down",
   width: "14",
   height: "9",
@@ -4785,33 +4786,33 @@ const Ru = ce({
   fill: "none",
   xmlns: "http://www.w3.org/2000/svg"
 }, [
-  /* @__PURE__ */ b("path", {
+  /* @__PURE__ */ y("path", {
     d: "M1 1L7.10049 7.10049L13.201 1",
     stroke: "black",
     "stroke-width": "2"
   })
-], -1), Ju = ["id"], Qu = { class: "months" }, Zu = { class: "month" }, Ku = { class: "month__name" }, el = ["aria-label"], tl = /* @__PURE__ */ b("svg", {
+], -1), Ju = ["id"], Qu = { class: "months" }, Zu = { class: "month" }, Ku = { class: "month__name" }, el = ["aria-label"], tl = /* @__PURE__ */ y("svg", {
   width: "9",
   height: "14",
   viewBox: "0 0 9 14",
   fill: "none",
   xmlns: "http://www.w3.org/2000/svg"
 }, [
-  /* @__PURE__ */ b("path", {
+  /* @__PURE__ */ y("path", {
     d: "M8.10049 1L2 7.10049L8.10049 13.201",
     stroke: "#1B1B1B",
     "stroke-width": "2"
   })
 ], -1), al = [
   tl
-], rl = ["aria-label"], nl = /* @__PURE__ */ b("svg", {
+], rl = ["aria-label"], nl = /* @__PURE__ */ y("svg", {
   width: "9",
   height: "14",
   viewBox: "0 0 9 14",
   fill: "none",
   xmlns: "http://www.w3.org/2000/svg"
 }, [
-  /* @__PURE__ */ b("path", {
+  /* @__PURE__ */ y("path", {
     d: "M0.899536 13L7.00003 6.89951L0.899537 0.799012",
     stroke: "#1B1B1B",
     "stroke-width": "2"
@@ -4823,8 +4824,8 @@ const Ru = ce({
   class: "day__number"
 }, ll = { class: "date-range-picker__buttons" }, dl = ["disabled"], ml = { class: "week" };
 function cl(e, t, a, r, n, i) {
-  return T(), N("div", Vu, [
-    b("button", {
+  return W(), N("div", Vu, [
+    y("button", {
       class: "date-range-picker__toggle",
       onClick: t[0] || (t[0] = (o) => e.showDateRange = !e.showDateRange),
       "aria-label": e.ariaToggleCalendar,
@@ -4832,38 +4833,38 @@ function cl(e, t, a, r, n, i) {
       "aria-controls": e.pickerId,
       "data-gtm": e.gtm
     }, [
-      !e.readableStartDate && !e.readableEndDate ? (T(), N(J, { key: 0 }, [
+      !e.readableStartDate && !e.readableEndDate ? (W(), N(J, { key: 0 }, [
         ge(z(e.labelDatesFilter), 1)
       ], 64)) : F("", !0),
-      e.readableStartDate ? (T(), N(J, { key: 1 }, [
+      e.readableStartDate ? (W(), N(J, { key: 1 }, [
         ge(z(e.readableStartDate), 1)
       ], 64)) : F("", !0),
-      e.readableEndDate && e.readableStartDate !== e.readableEndDate ? (T(), N(J, { key: 2 }, [
+      e.readableEndDate && e.readableStartDate !== e.readableEndDate ? (W(), N(J, { key: 2 }, [
         ge(" - " + z(e.readableEndDate), 1)
       ], 64)) : F("", !0),
       Uu
     ], 8, Bu),
-    Xe(b("div", {
+    Xe(y("div", {
       id: e.pickerId,
       class: "date-range-picker"
     }, [
-      b("div", Qu, [
-        b("div", Zu, [
-          b("div", Ku, [
-            b("button", {
+      y("div", Qu, [
+        y("div", Zu, [
+          y("div", Ku, [
+            y("button", {
               class: "month-selector month-selector--previous",
               "aria-label": e.ariaPreviousMonth,
               onClick: t[1] || (t[1] = (...o) => e.showPreviousMonth && e.showPreviousMonth(...o))
             }, al, 8, el),
-            b("span", null, z(e.shownMonthName), 1),
-            b("button", {
+            y("span", null, z(e.shownMonthName), 1),
+            y("button", {
               class: "month-selector month-selector--next",
               "aria-label": e.ariaNextMonth,
               onClick: t[2] || (t[2] = (...o) => e.showNextMonth && e.showNextMonth(...o))
             }, il, 8, rl)
           ]),
-          b("div", ol, [
-            (T(!0), N(J, null, pe(e.daysInMonth, (o, u) => (T(), N("button", {
+          y("div", ol, [
+            (W(!0), N(J, null, pe(e.daysInMonth, (o, u) => (W(), N("button", {
               key: u,
               onClick: (s) => e.changeSelectedDate(o),
               class: ut(["day", [
@@ -4876,15 +4877,15 @@ function cl(e, t, a, r, n, i) {
               disabled: !o,
               "aria-label": o ? e.ariaSelectDate + o.date + " " + e.shownMonthName : ""
             }, [
-              o ? (T(), N("span", ul, z(o.date), 1)) : F("", !0)
+              o ? (W(), N("span", ul, z(o.date), 1)) : F("", !0)
             ], 10, sl))), 128))
           ]),
-          b("div", ll, [
-            b("button", {
+          y("div", ll, [
+            y("button", {
               class: "date-range-picker__reset",
               onClick: t[3] || (t[3] = (...o) => e.clear && e.clear(...o))
             }, z(e.labelClearButton), 1),
-            b("button", {
+            y("button", {
               class: "date-range-picker__save",
               onClick: t[4] || (t[4] = (...o) => e.save && e.save(...o)),
               disabled: !e.selectedDates || !e.selectedDates.start && !e.selectedDates.end
@@ -4892,9 +4893,9 @@ function cl(e, t, a, r, n, i) {
           ])
         ])
       ]),
-      b("table", ml, [
-        b("tr", null, [
-          (T(!0), N(J, null, pe(e.weekdays, (o) => (T(), N("td", {
+      y("table", ml, [
+        y("tr", null, [
+          (W(!0), N(J, null, pe(e.weekdays, (o) => (W(), N("td", {
             class: "weekday",
             key: o
           }, z(o), 1))), 128))
@@ -4915,7 +4916,7 @@ function Me(e, t, a, r, n, i) {
 function at(e, t, a, r, n, i) {
   for (; n > r; ) {
     if (n - r > 600) {
-      const d = n - r + 1, l = a - r + 1, m = Math.log(d), g = 0.5 * Math.exp(2 * m / 3), y = 0.5 * Math.sqrt(m * g * (d - g) / d) * (l - d / 2 < 0 ? -1 : 1), p = Math.max(r, Math.floor(a - l * g / d + y)), v = Math.min(n, Math.floor(a + (d - l) * g / d + y));
+      const d = n - r + 1, l = a - r + 1, m = Math.log(d), g = 0.5 * Math.exp(2 * m / 3), b = 0.5 * Math.sqrt(m * g * (d - g) / d) * (l - d / 2 < 0 ? -1 : 1), p = Math.max(r, Math.floor(a - l * g / d + b)), v = Math.min(n, Math.floor(a + (d - l) * g / d + b));
       at(e, t, a, p, v, i);
     }
     const o = t[2 * a + i];
@@ -4940,16 +4941,16 @@ function fl(e, t, a, r, n, i, o) {
   const u = [0, e.length - 1, 0], s = [];
   let d, l;
   for (; u.length; ) {
-    const m = u.pop(), g = u.pop(), y = u.pop();
-    if (g - y <= o) {
-      for (let w = y; w <= g; w++)
+    const m = u.pop(), g = u.pop(), b = u.pop();
+    if (g - b <= o) {
+      for (let w = b; w <= g; w++)
         d = t[2 * w], l = t[2 * w + 1], d >= a && d <= n && l >= r && l <= i && s.push(e[w]);
       continue;
     }
-    const p = Math.floor((y + g) / 2);
+    const p = Math.floor((b + g) / 2);
     d = t[2 * p], l = t[2 * p + 1], d >= a && d <= n && l >= r && l <= i && s.push(e[p]);
     const v = (m + 1) % 2;
-    (m === 0 ? a <= d : r <= l) && (u.push(y), u.push(p - 1), u.push(v)), (m === 0 ? n >= d : i >= l) && (u.push(p + 1), u.push(g), u.push(v));
+    (m === 0 ? a <= d : r <= l) && (u.push(b), u.push(p - 1), u.push(v)), (m === 0 ? n >= d : i >= l) && (u.push(p + 1), u.push(g), u.push(v));
   }
   return s;
 }
@@ -4962,10 +4963,10 @@ function gl(e, t, a, r, n, i) {
         _e(t[2 * w], t[2 * w + 1], a, r) <= s && u.push(e[w]);
       continue;
     }
-    const g = Math.floor((m + l) / 2), y = t[2 * g], p = t[2 * g + 1];
-    _e(y, p, a, r) <= s && u.push(e[g]);
+    const g = Math.floor((m + l) / 2), b = t[2 * g], p = t[2 * g + 1];
+    _e(b, p, a, r) <= s && u.push(e[g]);
     const v = (d + 1) % 2;
-    (d === 0 ? a - n <= y : r - n <= p) && (o.push(m), o.push(g - 1), o.push(v)), (d === 0 ? a + n >= y : r + n >= p) && (o.push(g + 1), o.push(l), o.push(v));
+    (d === 0 ? a - n <= b : r - n <= p) && (o.push(m), o.push(g - 1), o.push(v)), (d === 0 ? a + n >= b : r + n >= p) && (o.push(g + 1), o.push(l), o.push(v));
   }
   return u;
 }
@@ -5115,7 +5116,7 @@ class bl {
         const v = this.points[s.index];
         l = v.properties, m = oe(v.geometry.coordinates[0]), g = se(v.geometry.coordinates[1]);
       }
-      const y = {
+      const b = {
         type: 1,
         geometry: [[
           Math.round(this.options.extent * (m * i - r)),
@@ -5124,7 +5125,7 @@ class bl {
         tags: l
       };
       let p;
-      d ? p = s.id : this.options.generateId ? p = s.index : this.points[s.index].id && (p = this.points[s.index].id), p !== void 0 && (y.id = p), o.features.push(y);
+      d ? p = s.id : this.options.generateId ? p = s.index : this.points[s.index].id && (p = this.points[s.index].id), p !== void 0 && (b.id = p), o.features.push(b);
     }
   }
   _limitZoom(t) {
@@ -5137,14 +5138,14 @@ class bl {
       if (l.zoom <= a)
         continue;
       l.zoom = a;
-      const m = this.trees[a + 1], g = m.within(l.x, l.y, s), y = l.numPoints || 1;
-      let p = y;
+      const m = this.trees[a + 1], g = m.within(l.x, l.y, s), b = l.numPoints || 1;
+      let p = b;
       for (const v of g) {
         const w = m.points[v];
         w.zoom > a && (p += w.numPoints || 1);
       }
-      if (p > y && p >= u) {
-        let v = l.x * y, w = l.y * y, D = o && y > 1 ? this._map(l, !0) : null;
+      if (p > b && p >= u) {
+        let v = l.x * b, w = l.y * b, D = o && b > 1 ? this._map(l, !0) : null;
         const C = (d << 5) + (a + 1) + this.points.length;
         for (const A of g) {
           const L = m.points[A];
@@ -5765,7 +5766,7 @@ function jl(e = {
       markers: i.value,
       renderer: c
     });
-  }, y = () => {
+  }, b = () => {
     if (!(!a || !u.value)) {
       a.fitBounds(u.value);
       var c = D();
@@ -5857,7 +5858,7 @@ function jl(e = {
       ) : console.warn("Error: Your browser doesn't support geolocation.");
     });
   }, re = () => {
-    e.fitMarkers ? i.value && i.value.length > 0 ? y() : (w(2), v(40.866667, 34.566667)) : e.center.value && e.zoom && (w(e.zoom), v(e.center.value.lat, e.center.value.lng));
+    e.fitMarkers ? i.value && i.value.length > 0 ? b() : (w(2), v(40.866667, 34.566667)) : e.center.value && e.zoom && (w(e.zoom), v(e.center.value.lat, e.center.value.lng));
   };
   return De(() => {
     window.mapPushToDataLayer = (c) => t(c), dt(async () => {
@@ -5909,10 +5910,10 @@ function zl(e) {
       l.showName === r.value,
       m
     )), e.value && n.end) {
-      const g = new Date(n.start), y = new Date(n.end), p = new Date(l.startDate), v = new Date(l.endDate);
+      const g = new Date(n.start), b = new Date(n.end), p = new Date(l.startDate), v = new Date(l.endDate);
       m = Math.min(
         St(
-          { start: g, end: y },
+          { start: g, end: b },
           { start: p, end: v }
         ),
         m
@@ -5982,7 +5983,7 @@ const Al = ce({
     placeholderShowNameFilter: {
       type: String,
       required: !1,
-      default: "Select a show"
+      default: ""
     },
     labelDatesFilter: {
       type: String,
@@ -6024,10 +6025,10 @@ const Al = ce({
       markersDataResults: s,
       changeCurrentDates: d,
       changeCurrentShowName: l
-    } = zl(a), m = (y) => {
-      l(y);
-    }, g = (y) => {
-      d(y);
+    } = zl(a), m = (b) => {
+      l(b);
+    }, g = (b) => {
+      d(b);
     };
     return jl({
       apiKey: e.googleMapApiKey,
@@ -6072,21 +6073,21 @@ const Al = ce({
 }, Gl = { class: "interactive-map__slots" }, Yl = { class: "filters" }, Xl = { class: "interactive-map__wrapper" }, Rl = { class: "interactive-map" }, Vl = ["id"], Bl = {
   key: 0,
   class: "loading"
-}, Ul = /* @__PURE__ */ b("div", { class: "spinner" }, null, -1), Jl = [
+}, Ul = /* @__PURE__ */ y("div", { class: "spinner" }, null, -1), Jl = [
   Ul
 ];
 function Ql(e, t, a, r, n, i) {
   const o = be("DateRangePicker"), u = be("DropdownFilters");
-  return T(), N("div", _l, [
-    b("div", Fl, [
-      e.mapTitle || !e.hideFilters ? (T(), N("div", Il, [
-        e.mapTitle ? (T(), N("h2", ql, z(e.mapTitle), 1)) : F("", !0),
-        e.mapDescription ? (T(), N("p", Hl, z(e.mapDescription), 1)) : F("", !0),
-        b("div", Gl, [
+  return W(), N("div", _l, [
+    y("div", Fl, [
+      e.mapTitle || !e.hideFilters ? (W(), N("div", Il, [
+        e.mapTitle ? (W(), N("h2", ql, z(e.mapTitle), 1)) : F("", !0),
+        e.mapDescription ? (W(), N("p", Hl, z(e.mapDescription), 1)) : F("", !0),
+        y("div", Gl, [
           Ve(e.$slots, "default")
         ]),
-        b("div", Yl, [
-          e.hideFilters ? F("", !0) : (T(), We(o, {
+        y("div", Yl, [
+          e.hideFilters ? F("", !0) : (W(), We(o, {
             key: 0,
             class: "filters__daterange",
             onDatechanged: e.onDateChanged,
@@ -6101,7 +6102,7 @@ function Ql(e, t, a, r, n, i) {
             gtm: e.gtmDate,
             "picker-id": e.mapId + "__picker"
           }, null, 8, ["onDatechanged", "date-locale", "label-clear-button", "label-save-button", "label-dates-filter", "aria-select-date", "aria-next-month", "aria-previous-month", "aria-toggle-calendar", "gtm", "picker-id"])),
-          e.hideFilters ? F("", !0) : (T(), We(u, {
+          e.hideFilters ? F("", !0) : (W(), We(u, {
             key: 1,
             class: "filters__shownames",
             ref: "filterDropdownElement",
@@ -6113,15 +6114,15 @@ function Ql(e, t, a, r, n, i) {
           }, null, 8, ["filters", "label-default", "placeholder", "onOnfilterchange", "gtm"]))
         ])
       ])) : F("", !0),
-      b("div", Xl, [
-        b("div", Rl, [
-          b("div", {
+      y("div", Xl, [
+        y("div", Rl, [
+          y("div", {
             id: e.mapId,
             class: "map"
           }, null, 8, Vl),
           Be(mt, { name: "spinner-fade" }, {
             default: Ue(() => [
-              e.isLoading ? (T(), N("div", Bl, Jl)) : F("", !0)
+              e.isLoading ? (W(), N("div", Bl, Jl)) : F("", !0)
             ]),
             _: 1
           })
@@ -6182,8 +6183,8 @@ const ed = ce({
 }), td = { class: "interactive-map-api" };
 function ad(e, t, a, r, n, i) {
   const o = be("InteractiveMap");
-  return T(), N("div", null, [
-    b("div", td, [
+  return W(), N("div", null, [
+    y("div", td, [
       Be(o, ct({ ...e.$props, ...e.$attrs }, {
         "markers-data": e.runs,
         "is-loading": e.isLoading
