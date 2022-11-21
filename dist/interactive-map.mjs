@@ -1,4 +1,4 @@
-import { defineComponent as ce, toRef as I, ref as O, computed as _, openBlock as W, createElementBlock as N, createElementVNode as y, withDirectives as Xe, toDisplayString as z, createCommentVNode as F, Fragment as J, renderList as pe, vModelSelect as ot, reactive as Re, onMounted as De, onBeforeUnmount as st, createTextVNode as ge, normalizeClass as ut, vShow as lt, nextTick as dt, watch as we, resolveComponent as be, renderSlot as Ve, createBlock as We, createVNode as Be, Transition as mt, withCtx as Ue, mergeProps as ct } from "vue";
+import { defineComponent as ce, toRef as I, ref as x, computed as _, openBlock as W, createElementBlock as O, createElementVNode as y, withDirectives as Xe, toDisplayString as z, createCommentVNode as F, Fragment as J, renderList as pe, vModelSelect as ot, reactive as Re, onMounted as De, onBeforeUnmount as st, createTextVNode as ge, normalizeClass as ut, vShow as lt, nextTick as dt, watch as we, resolveComponent as be, renderSlot as Ve, createBlock as We, createVNode as Be, Transition as mt, withCtx as Ue, mergeProps as ct } from "vue";
 const he = (e, t) => {
   const a = e.__vccOpts || e;
   for (const [r, n] of t)
@@ -14,7 +14,7 @@ const he = (e, t) => {
     gtm: { type: String, required: !1, default: void 0 }
   },
   setup(e, { emit: t }) {
-    const a = I(e, "filters"), r = O(e.placeholder ? "" : "all"), n = (u) => {
+    const a = I(e, "filters"), r = x(e.placeholder ? "" : "all"), n = (u) => {
       r.value = u, t("onfilterchange", r.value);
     }, i = () => {
       r.value = "", t("onfilterchange", r.value);
@@ -48,7 +48,7 @@ const he = (e, t) => {
   })
 ], -1);
 function Mt(e, t, a, r, n, i) {
-  return W(), N("div", ft, [
+  return W(), O("div", ft, [
     y("div", gt, [
       Xe(y("select", {
         name: "dropdown-filters__select",
@@ -57,9 +57,9 @@ function Mt(e, t, a, r, n, i) {
         "onUpdate:modelValue": t[1] || (t[1] = (o) => e.currentFilter = o),
         "data-gtm": e.gtm
       }, [
-        e.placeholder ? (W(), N("option", pt, z(e.placeholder), 1)) : F("", !0),
+        e.placeholder ? (W(), O("option", pt, z(e.placeholder), 1)) : F("", !0),
         y("option", wt, z(e.labelDefault), 1),
-        (W(!0), N(J, null, pe(e.filtersWithoutEmptyValue, (o, u) => (W(), N("option", {
+        (W(!0), O(J, null, pe(e.filtersWithoutEmptyValue, (o, u) => (W(), O("option", {
           key: u,
           value: o.value
         }, z(o.label || o.value), 9, bt))), 128))
@@ -4606,7 +4606,7 @@ var Gu = {
   }
 };
 const Yu = Gu, de = { en: Gn, fr: so, es: Ci, de: En, ca: wr, it: Ro, ru: Yu, pt: su, da: Qr, ko: Ws };
-function Xu(e = O(new Date()), t = O("en")) {
+function Xu(e = x(new Date()), t = x("en")) {
   const a = Re({
     start: null,
     end: null
@@ -4727,7 +4727,7 @@ const Ru = ce({
     gtm: { type: String, required: !1, default: void 0 }
   },
   setup(e, { emit: t }) {
-    const a = I(e, "dateLocale"), r = O(!1), n = O(null), i = O(null), o = O(null), u = (R) => R.stopPropagation(), s = () => {
+    const a = I(e, "dateLocale"), r = x(!1), n = x(null), i = x(null), o = x(null), u = (R) => R.stopPropagation(), s = () => {
       r.value && (r.value = !1);
     };
     De(() => {
@@ -4749,7 +4749,7 @@ const Ru = ce({
       showPreviousMonth: w,
       daysInMonth: D,
       selectedDates: C
-    } = Xu(O(e.defaultDate), a);
+    } = Xu(x(e.defaultDate), a);
     return {
       locale: a,
       isoSelectedDates: d,
@@ -4824,7 +4824,7 @@ const Ru = ce({
   class: "day__number"
 }, ll = { class: "date-range-picker__buttons" }, dl = ["disabled"], ml = { class: "week" };
 function cl(e, t, a, r, n, i) {
-  return W(), N("div", Vu, [
+  return W(), O("div", Vu, [
     y("button", {
       class: "date-range-picker__toggle",
       onClick: t[0] || (t[0] = (o) => e.showDateRange = !e.showDateRange),
@@ -4833,13 +4833,13 @@ function cl(e, t, a, r, n, i) {
       "aria-controls": e.pickerId,
       "data-gtm": e.gtm
     }, [
-      !e.readableStartDate && !e.readableEndDate ? (W(), N(J, { key: 0 }, [
+      !e.readableStartDate && !e.readableEndDate ? (W(), O(J, { key: 0 }, [
         ge(z(e.labelDatesFilter), 1)
       ], 64)) : F("", !0),
-      e.readableStartDate ? (W(), N(J, { key: 1 }, [
+      e.readableStartDate ? (W(), O(J, { key: 1 }, [
         ge(z(e.readableStartDate), 1)
       ], 64)) : F("", !0),
-      e.readableEndDate && e.readableStartDate !== e.readableEndDate ? (W(), N(J, { key: 2 }, [
+      e.readableEndDate && e.readableStartDate !== e.readableEndDate ? (W(), O(J, { key: 2 }, [
         ge(" - " + z(e.readableEndDate), 1)
       ], 64)) : F("", !0),
       Uu
@@ -4864,7 +4864,7 @@ function cl(e, t, a, r, n, i) {
             }, il, 8, rl)
           ]),
           y("div", ol, [
-            (W(!0), N(J, null, pe(e.daysInMonth, (o, u) => (W(), N("button", {
+            (W(!0), O(J, null, pe(e.daysInMonth, (o, u) => (W(), O("button", {
               key: u,
               onClick: (s) => e.changeSelectedDate(o),
               class: ut(["day", [
@@ -4877,7 +4877,7 @@ function cl(e, t, a, r, n, i) {
               disabled: !o,
               "aria-label": o ? e.ariaSelectDate + o.date + " " + e.shownMonthName : ""
             }, [
-              o ? (W(), N("span", ul, z(o.date), 1)) : F("", !0)
+              o ? (W(), O("span", ul, z(o.date), 1)) : F("", !0)
             ], 10, sl))), 128))
           ]),
           y("div", ll, [
@@ -4895,7 +4895,7 @@ function cl(e, t, a, r, n, i) {
       ]),
       y("table", ml, [
         y("tr", null, [
-          (W(!0), N(J, null, pe(e.weekdays, (o) => (W(), N("td", {
+          (W(!0), O(J, null, pe(e.weekdays, (o) => (W(), O("td", {
             class: "weekday",
             key: o
           }, z(o), 1))), 128))
@@ -5649,8 +5649,8 @@ const Ll = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADUAAAA1CAYAAADh5qNwAA
 function jl(e = {
   apiKey: null,
   mapId: null,
-  markersData: O([]),
-  center: O(null),
+  markersData: x([]),
+  center: x(null),
   defaultPinImg: null,
   defaultLocationImg: null,
   clusterOptions: null,
@@ -5659,33 +5659,33 @@ function jl(e = {
   fitMarkers: !1,
   zoom: 15,
   mapOptions: null,
-  dateLocale: O("en"),
-  labelBuyButton: O("Buy Tickets"),
-  labelDirectionButton: O("View on Google Maps"),
+  dateLocale: x("en"),
+  labelBuyButton: x("Buy Tickets"),
+  labelDirectionButton: x("View on Google Maps"),
   ariaLocateButton: "Your Location"
 }) {
   const { pushEvent: t } = nt();
-  let a = null, r = null;
-  const n = new X({
+  let a = null, r = null, n = [], i = null, o = null;
+  const u = new X({
     apiKey: e.apiKey,
     version: "weekly"
-  }), i = O([]), o = O(null), u = O(null), s = () => new Promise(async (c) => {
+  }), s = () => new Promise(async (c) => {
     if (!e.mapOptions)
       throw new Error("[useGoogleMap.js] no map options");
-    await n.load(), a = new google.maps.Map(
+    await u.load(), a = new google.maps.Map(
       document.getElementById(e.mapId),
       e.mapOptions
     ), r = new google.maps.InfoWindow(), google.maps.event.addListenerOnce(a, "idle", () => {
       c(!0);
     });
   }), d = () => {
-    i.value.forEach((c) => c.setMap(null)), i.value = [];
+    n.forEach((c) => c.setMap(null)), n = [];
   }, l = () => {
     d();
     const c = [...e.markersData.value];
     if (!c)
       return;
-    const x = [];
+    const N = [];
     c.forEach((S) => {
       if (!S || typeof S.visible < "u" && !S.visible)
         return;
@@ -5730,22 +5730,22 @@ function jl(e = {
           map: a,
           label: fe
         });
-        Se.info = k, x.push(Se);
+        Se.info = k, N.push(Se);
       }
-    }), u.value = new google.maps.LatLngBounds(), x.forEach((S) => {
-      u.value.extend(S.getPosition()), S.addListener("click", (k) => {
+    }), o = new google.maps.LatLngBounds(), N.forEach((S) => {
+      o.extend(S.getPosition()), S.addListener("click", (k) => {
         C(S), S && S.info && S.info.showName && t(
           `[{ "event": "userAction", "eventAction": "Click on Map", "eventCategory": "Interactive Map", "eventLabel": "${S.info.showName} - ${S.info.city}"}]`
         );
       });
-    }), i.value = x;
+    }), n = N;
   }, m = () => {
-    o.value && o.value.clearMarkers(), o.value = null;
+    i && i.clearMarkers(), i = null;
   }, g = () => {
     m();
     const c = {
-      render: ({ count: x, position: S }) => new google.maps.Marker({
-        label: { text: String(x), color: "white", fontSize: "14px" },
+      render: ({ count: N, position: S }) => new google.maps.Marker({
+        label: { text: String(N), color: "white", fontSize: "14px" },
         position: S,
         icon: {
           url: e.clusterOptions && e.clusterOptions[0] ? e.clusterOptions[0].url : "https://raw.githubusercontent.com/googlemaps/js-marker-clusterer/gh-pages/images/m1.png",
@@ -5758,24 +5758,24 @@ function jl(e = {
             e.clusterOptions[0].height / 2.5
           ) : new google.maps.Point(26, 21)
         },
-        zIndex: Number(google.maps.Marker.MAX_ZINDEX) + x
+        zIndex: Number(google.maps.Marker.MAX_ZINDEX) + N
       })
     };
-    o.value = new xl({
+    i = new xl({
       map: a,
-      markers: i.value,
+      markers: n,
       renderer: c
     });
   }, b = () => {
-    if (!(!a || !u.value)) {
-      a.fitBounds(u.value);
+    if (!(!a || !o)) {
+      a.fitBounds(o);
       var c = D();
       c > 12 && a.setZoom(12);
     }
   }, p = (c) => {
     !a || !c || a.panTo(c.getPosition());
-  }, v = (c, x) => {
-    !a || !c || !x || a.panTo({ lat: c, lng: x });
+  }, v = (c, N) => {
+    !a || !c || !N || a.panTo({ lat: c, lng: N });
   }, w = (c) => {
     !a || !c || a.setZoom(parseFloat(c));
   }, D = () => {
@@ -5784,10 +5784,10 @@ function jl(e = {
   }, C = (c) => {
     if (!c || !c.info)
       return;
-    const x = c.info.showName ? c.info.showName.split('"').join("") : "", S = c.info.showThumbnail ? c.info.showThumbnail : c.info.showImage, k = c.info.showPageUrl ? JSON.stringify(
-      `[{ "event": "userAction", "eventAction": "Buy Tickets", "eventCategory": "Interactive Map", "eventLabel": "${x} - ${c.info.city}"}]`
+    const N = c.info.showName ? c.info.showName.split('"').join("") : "", S = c.info.showThumbnail ? c.info.showThumbnail : c.info.showImage, k = c.info.showPageUrl ? JSON.stringify(
+      `[{ "event": "userAction", "eventAction": "Buy Tickets", "eventCategory": "Interactive Map", "eventLabel": "${N} - ${c.info.city}"}]`
     ) : null, V = JSON.stringify(
-      `[{ "event": "userAction", "eventAction": "View on Google Maps", "eventCategory": "Interactive Map", "eventLabel": "${x} - ${c.info.city}"}]`
+      `[{ "event": "userAction", "eventAction": "View on Google Maps", "eventCategory": "Interactive Map", "eventLabel": "${N} - ${c.info.city}"}]`
     ), fe = {
       pixelOffset: c ? null : new google.maps.Size(0, -50),
       content: `<div class="marker marker--${c.info.id}">
@@ -5822,8 +5822,8 @@ function jl(e = {
             </div>`
     };
     A(c, fe);
-  }, A = (c, x) => {
-    r.setOptions(x), r.open({
+  }, A = (c, N) => {
+    r.setOptions(N), r.open({
       map: a,
       anchor: c
     });
@@ -5837,10 +5837,10 @@ function jl(e = {
       <path d="M6.90737 3.43528C5.98644 3.43528 5.10322 3.80112 4.45203 4.45232C3.80083 5.10352 3.43499 5.98673 3.43499 6.90766C3.43499 7.82859 3.80083 8.71181 4.45203 9.363C5.10322 10.0142 5.98644 10.38 6.90737 10.38C7.8283 10.38 8.71151 10.0142 9.36271 9.363C10.0139 8.71181 10.3797 7.82859 10.3797 6.90766C10.3797 5.98673 10.0139 5.10352 9.36271 4.45232C8.71151 3.80112 7.8283 3.43528 6.90737 3.43528ZM6.90737 8.93347C6.5068 8.93347 6.11523 8.81469 5.78217 8.59214C5.44911 8.3696 5.18952 8.05329 5.03623 7.68322C4.88294 7.31314 4.84284 6.90592 4.92098 6.51305C4.99913 6.12018 5.19202 5.75931 5.47527 5.47606C5.75851 5.19282 6.11938 4.99993 6.51225 4.92178C6.90512 4.84364 7.31234 4.88374 7.68242 5.03703C8.05249 5.19032 8.3688 5.44991 8.59134 5.78297C8.81389 6.11603 8.93267 6.5076 8.93267 6.90817C8.93267 7.44531 8.71929 7.96045 8.33947 8.34027C7.95965 8.72009 7.44451 8.93347 6.90737 8.93347Z" fill="black"/>
     </svg>`, c.classList.add("location-button"), a.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(c), c.addEventListener("click", () => {
       navigator.geolocation ? navigator.geolocation.getCurrentPosition(
-        (x) => {
+        (N) => {
           const S = {
-            lat: x.coords.latitude,
-            lng: x.coords.longitude
+            lat: N.coords.latitude,
+            lng: N.coords.longitude
           }, k = {
             url: e.defaultLocationImg ? e.defaultLocationImg : Ll,
             scaledSize: new google.maps.Size(30, 30)
@@ -5858,7 +5858,7 @@ function jl(e = {
       ) : console.warn("Error: Your browser doesn't support geolocation.");
     });
   }, re = () => {
-    e.fitMarkers ? i.value && i.value.length > 0 ? b() : (w(2), v(40.866667, 34.566667)) : e.center.value && e.zoom && (w(e.zoom), v(e.center.value.lat, e.center.value.lng));
+    e.fitMarkers ? n && n.length > 0 ? b() : (w(2), v(40.866667, 34.566667)) : e.center.value && e.zoom && (w(e.zoom), v(e.center.value.lat, e.center.value.lng));
   };
   return De(() => {
     window.mapPushToDataLayer = (c) => t(c), dt(async () => {
@@ -5887,7 +5887,7 @@ function jl(e = {
   };
 }
 function zl(e) {
-  const { pushEvent: t } = nt(), a = O(null), r = O(null), n = Re({
+  const { pushEvent: t } = nt(), a = x(null), r = x(null), n = Re({
     start: null,
     end: null
   }), i = _(() => {
@@ -6078,11 +6078,11 @@ const Al = ce({
 ];
 function Ql(e, t, a, r, n, i) {
   const o = be("DateRangePicker"), u = be("DropdownFilters");
-  return W(), N("div", _l, [
+  return W(), O("div", _l, [
     y("div", Fl, [
-      e.mapTitle || !e.hideFilters ? (W(), N("div", Il, [
-        e.mapTitle ? (W(), N("h2", ql, z(e.mapTitle), 1)) : F("", !0),
-        e.mapDescription ? (W(), N("p", Hl, z(e.mapDescription), 1)) : F("", !0),
+      e.mapTitle || !e.hideFilters ? (W(), O("div", Il, [
+        e.mapTitle ? (W(), O("h2", ql, z(e.mapTitle), 1)) : F("", !0),
+        e.mapDescription ? (W(), O("p", Hl, z(e.mapDescription), 1)) : F("", !0),
         y("div", Gl, [
           Ve(e.$slots, "default")
         ]),
@@ -6122,7 +6122,7 @@ function Ql(e, t, a, r, n, i) {
           }, null, 8, Vl),
           Be(mt, { name: "spinner-fade" }, {
             default: Ue(() => [
-              e.isLoading ? (W(), N("div", Bl, Jl)) : F("", !0)
+              e.isLoading ? (W(), O("div", Bl, Jl)) : F("", !0)
             ]),
             _: 1
           })
@@ -6133,8 +6133,8 @@ function Ql(e, t, a, r, n, i) {
 }
 const Zl = /* @__PURE__ */ he(Al, [["render", Ql]]);
 function Kl(e, t, a) {
-  let r = O(!1);
-  const n = O([]), i = _(() => {
+  let r = x(!1);
+  const n = x([]), i = _(() => {
     let u = [];
     return n.value.forEach((s, d) => {
       if (a && a.value) {
@@ -6183,7 +6183,7 @@ const ed = ce({
 }), td = { class: "interactive-map-api" };
 function ad(e, t, a, r, n, i) {
   const o = be("InteractiveMap");
-  return W(), N("div", null, [
+  return W(), O("div", null, [
     y("div", td, [
       Be(o, ct({ ...e.$props, ...e.$attrs }, {
         "markers-data": e.runs,

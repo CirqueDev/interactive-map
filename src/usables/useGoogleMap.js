@@ -30,14 +30,14 @@ export default function useGoogleMap(
 
   let map = null;
   let infoWindow = null;
+  let markers = [];
+  let clusters = null;
+  let bounds = null;
+
   const loader = new Loader({
     apiKey: data.apiKey,
     version: "weekly",
   });
-
-  const markers = ref([]);
-  const clusters = ref(null);
-  const bounds = ref(null);
 
   const loadMap = () => {
     return new Promise(async (resolve) => {
@@ -55,8 +55,8 @@ export default function useGoogleMap(
   };
 
   const clearMarkers = () => {
-    markers.value.forEach((marker) => marker.setMap(null));
-    markers.value = [];
+    markers.forEach((marker) => marker.setMap(null));
+    markers = [];
   };
 
   const createMarkers = () => {
@@ -140,9 +140,9 @@ export default function useGoogleMap(
       }
     });
 
-    bounds.value = new google.maps.LatLngBounds();
+    bounds = new google.maps.LatLngBounds();
     tmpMarkers.forEach((marker) => {
-      bounds.value.extend(marker.getPosition());
+      bounds.extend(marker.getPosition());
       marker.addListener("click", (evt) => {
         openShowInfo(marker);
 
@@ -154,14 +154,14 @@ export default function useGoogleMap(
       });
     });
 
-    markers.value = tmpMarkers;
+    markers = tmpMarkers;
   };
 
   const clearClusters = () => {
-    if (clusters.value) {
-      clusters.value.clearMarkers();
+    if (clusters) {
+      clusters.clearMarkers();
     }
-    clusters.value = null;
+    clusters = null;
   };
 
   const createClusters = () => {
@@ -196,17 +196,17 @@ export default function useGoogleMap(
         }),
     };
 
-    clusters.value = new MarkerClusterer({
+    clusters = new MarkerClusterer({
       map,
-      markers: markers.value,
+      markers,
       renderer,
     });
   };
 
   const fitBounds = () => {
-    if (!map || !bounds.value) return;
+    if (!map || !bounds) return;
 
-    map.fitBounds(bounds.value);
+    map.fitBounds(bounds);
     var zoom = getZoom();
     if (zoom > 12) {
       map.setZoom(12);
@@ -385,7 +385,7 @@ export default function useGoogleMap(
   const resetMapPosition = () => {
     if (data.fitMarkers) {
       // TODO: Find a better way to make fitBounds consistent
-      if (markers.value && markers.value.length > 0) {
+      if (markers && markers.length > 0) {
         fitBounds();
       } else {
         setZoom(2);
