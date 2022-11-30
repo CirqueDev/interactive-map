@@ -22,19 +22,21 @@ export default function useShowsApi(
       }
 
       if (show && show.runs) {
-        show.runs.forEach((run) => {
-          const tmpRun = { ...show, ...run };
+        show.runs
+          .filter((run) => run !== null)
+          .forEach((run) => {
+            const tmpRun = { ...show, ...run };
 
-          if (categoriesOverwrite && categoriesOverwrite.value) {
-            tmpRun.category = categoriesOverwrite.value.find(
-              (c) => c.value == tmpRun.showType
-            );
-          }
+            if (categoriesOverwrite && categoriesOverwrite.value) {
+              tmpRun.category = categoriesOverwrite.value.find(
+                (c) => c.value == tmpRun.showType
+              );
+            }
 
-          delete tmpRun.runs;
+            delete tmpRun.runs;
 
-          tmpRuns.push(tmpRun);
-        });
+            tmpRuns.push(tmpRun);
+          });
       }
     });
     return tmpRuns;
