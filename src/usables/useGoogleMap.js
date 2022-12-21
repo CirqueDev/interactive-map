@@ -3,7 +3,7 @@ import { ref, onMounted, watch, nextTick } from "vue";
 import { Loader } from "@googlemaps/js-api-loader";
 import { format } from "date-fns";
 import { locales } from "../date-fns-locales";
-import useGtm from "./useGtm";
+import useTracking from "./useTracking";
 import locationImg from "../assets/location.png";
 
 export default function useGoogleMap(
@@ -18,6 +18,7 @@ export default function useGoogleMap(
     markerSize: 50,
     hasCluster: true,
     fitMarkers: false,
+    tracking: null,
     zoom: 15,
     mapOptions: null,
     dateLocale: ref("en"),
@@ -26,7 +27,7 @@ export default function useGoogleMap(
     ariaLocateButton: "Your Location",
   }
 ) {
-  const { pushEvent } = useGtm();
+  const { pushTracking } = useTracking();
 
   let map = null;
   let infoWindow = null;
@@ -147,9 +148,10 @@ export default function useGoogleMap(
         openShowInfo(marker);
 
         if (marker && marker.info && marker.info.showName) {
-          pushEvent(
-            `[{ "event": "userAction", "eventAction": "Click on Map", "eventCategory": "Interactive Map", "eventLabel": "${marker.info.showName} - ${marker.info.city}"}]`
-          );
+          pushTracking(data.tracking?.clickMarker, {
+            "<show_name>": marker.info.showName,
+            "<city_name>": marker.info.city,
+          });
         }
       });
     });
@@ -246,15 +248,6 @@ export default function useGoogleMap(
       ? marker.info.showThumbnail
       : marker.info.showImage;
 
-    const pageUrlGtm = marker.info.showPageUrl
-      ? JSON.stringify(
-          `[{ "event": "userAction", "eventAction": "Buy Tickets", "eventCategory": "Interactive Map", "eventLabel": "${nameNoQuote} - ${marker.info.city}"}]`
-        )
-      : null;
-    const directionGtm = JSON.stringify(
-      `[{ "event": "userAction", "eventAction": "View on Google Maps", "eventCategory": "Interactive Map", "eventLabel": "${nameNoQuote} - ${marker.info.city}"}]`
-    );
-
     // Create InfoWindow Content
     const options = {
       pixelOffset: marker ? null : new google.maps.Size(0, -50),
@@ -297,7 +290,9 @@ export default function useGoogleMap(
                 marker.info.latitude
               },${
         marker.info.longitude
-      }&travelmode=driving" onclick='window.mapPushToDataLayer(${directionGtm})'>
+      }&travelmode=driving" onclick='window.mapTrackingViewGmap("${nameNoQuote}", "${
+        marker.info.city
+      }")'>
       ${data.labelDirectionButton.value}
                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M8.12498 1.875L10.1831 3.93313L5.80811 8.30812L6.69186 9.19187L11.0669 4.81687L13.125 6.875V1.875H8.12498Z" fill="white"/>
@@ -306,7 +301,7 @@ export default function useGoogleMap(
               </a>
               ${
                 marker.info.showPageUrl
-                  ? `<a class="marker__cta cta-btn cta-btn--grey cta-btn--full-width" href="${marker.info.showPageUrl}" onclick='window.mapPushToDataLayer(${pageUrlGtm})'>
+                  ? `<a class="marker__cta cta-btn cta-btn--grey cta-btn--full-width" href="${marker.info.showPageUrl}" onclick='window.mapTrackingBuyTicket("${nameNoQuote}", "${marker.info.city}")'>
                       ${data.labelBuyButton.value}
                     </a>`
                   : ""
@@ -398,7 +393,19 @@ export default function useGoogleMap(
   };
 
   onMounted(() => {
-    window.mapPushToDataLayer = (gtmEvent) => pushEvent(gtmEvent);
+    window.mapTrackingBuyTicket = (showname, cityname) => {
+      pushTracking(data.tracking?.clickBuy, {
+        "<show_name>": showname,
+        "<city_name>": cityname,
+      });
+    };
+
+    window.mapTrackingViewGmap = (showname, cityname) => {
+      pushTracking(data.tracking?.clickViewGmap, {
+        "<show_name>": showname,
+        "<city_name>": cityname,
+      });
+    };
 
     nextTick(async () => {
       try {
