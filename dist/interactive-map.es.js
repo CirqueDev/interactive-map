@@ -1,5 +1,93 @@
 import { defineComponent, toRef, ref, computed, reactive, onMounted, onBeforeUnmount, nextTick, watch } from 'vue';
 
+function useTracking() {
+  function pushGua(guaEvents, replaceObj = null) {
+    if (!guaEvents) return;
+    try {
+      const replacedEvents = replacePlaceholder(guaEvents, replaceObj);
+      const parsedEvents = cleanJSON(replacedEvents);
+      pushDatalayer(parsedEvents);
+    } catch (e) {
+      console.warn("[useTracking] - ", e);
+    }
+  }
+
+  function pushGa4(ga4Events, replaceObj = null) {
+    if (!ga4Events) return;
+    try {
+      const replacedEvents = replacePlaceholder(ga4Events, replaceObj);
+      const parsedEvents = cleanJSON(replacedEvents);
+      pushDatalayer(parsedEvents);
+    } catch (e) {
+      console.warn("[useTracking] - ", e);
+    }
+  }
+
+  function pushDatalayer(datalayerEvent) {
+    if (!datalayerEvent) return;
+    if (!window.dataLayer) window.dataLayer = [];
+    if (Array.isArray(datalayerEvent)) {
+      for (let i = 0; i < datalayerEvent.length; i++) {
+        window.dataLayer.push(datalayerEvent[i]);
+      }
+    } else {
+      window.dataLayer.push(datalayerEvent);
+    }
+
+    console.log("push", JSON.stringify(datalayerEvent));
+  }
+
+  function pushTracking(events, replaceObj = null) {
+    if (!events) return;
+    const keys = Object.keys(events);
+
+    for (let i = 0; i < keys.length; ++i) {
+      const key = keys[i];
+      const event = events[key];
+
+      switch (key) {
+        case "ga4":
+          pushGa4(event, replaceObj);
+          break;
+        case "gua":
+          pushGua(event, replaceObj);
+          break;
+      }
+    }
+  }
+
+  function cleanJSON(strJSON) {
+    if (typeof strJSON !== "string") return strJSON;
+
+    let s = strJSON
+      .replace(/\\n/g, "\\n")
+      .replace(/\\'/g, "\\'")
+      .replace(/\\"/g, '\\"')
+      .replace(/\\&/g, "\\&")
+      .replace(/\\r/g, "\\r")
+      .replace(/\\t/g, "\\t")
+      .replace(/\\b/g, "\\b")
+      .replace(/\\f/g, "\\f");
+
+    // remove non-printable and other non-valid JSON chars
+    s = s.replace(/[\u0000-\u0019]+/g, "");
+    return JSON.parse(s);
+  }
+
+  function replacePlaceholder(str, obj = null) {
+    if (!obj) return str;
+    const keys = Object.keys(obj);
+    return keys.reduce((acc, key) => acc.replaceAll(key, obj[key]), str);
+  }
+
+  return {
+    pushDatalayer,
+    pushTracking,
+    pushGua,
+    pushGa4,
+  };
+}
+
 var DropdownFilters_vue_vue_type_style_index_0_lang = '';
 
 function normalizeComponent (
@@ -102,7 +190,7 @@ const _sfc_main$3 = defineComponent({
     placeholder: { type: String, required: false, default: "" },
     filters: { type: Array, required: false, default: () => [] },
     labelDefault: { type: String, required: false, default: "All shows" },
-    gtm: { type: String, required: false, default: undefined },
+    tracking: { type: Object, required: false, default: null },
   },
   setup(props, { emit }) {
     const filters = toRef(props, "filters");
@@ -121,16 +209,22 @@ const _sfc_main$3 = defineComponent({
       filters.value.filter((f) => !!f.value)
     );
 
+    const { pushTracking } = useTracking();
+    const trackClick = () => {
+      pushTracking(props.tracking?.clickShowToggle);
+    };
+
     return {
       filtersWithoutEmptyValue,
       currentFilter,
       resetFilter,
       filter,
+      trackClick,
     };
   },
 });
 
-var _sfc_render$3 = function render(){var _vm=this,_c=_vm._self._c;_vm._self._setupProxy;return _c('div',{staticClass:"dropdown-filters"},[_c('div',{staticClass:"dropdown-filters__input"},[_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.currentFilter),expression:"currentFilter"}],staticClass:"dropdown-filters__select",attrs:{"name":"dropdown-filters__select","data-gtm":_vm.gtm},on:{"change":[function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.currentFilter=$event.target.multiple ? $$selectedVal : $$selectedVal[0];},function($event){return _vm.filter($event.target.value)}]}},[(_vm.placeholder)?_c('option',{attrs:{"value":"","selected":"","disabled":""}},[_vm._v(" "+_vm._s(_vm.placeholder)+" ")]):_vm._e(),_c('option',{attrs:{"value":"all"}},[_vm._v(" "+_vm._s(_vm.labelDefault)+" ")]),_vm._l((_vm.filtersWithoutEmptyValue),function(f,idx){return _c('option',{key:idx,domProps:{"value":f.value}},[_vm._v(" "+_vm._s(f.label || f.value)+" ")])})],2),_c('svg',{staticClass:"dropdown-filters__arrow-down",attrs:{"width":"14","height":"9","viewBox":"0 0 14 9","fill":"none","xmlns":"http://www.w3.org/2000/svg"}},[_c('path',{attrs:{"d":"M1 1L7.10049 7.10049L13.201 1","stroke":"black","stroke-width":"2"}})])])])
+var _sfc_render$3 = function render(){var _vm=this,_c=_vm._self._c;_vm._self._setupProxy;return _c('div',{staticClass:"dropdown-filters"},[_c('div',{staticClass:"dropdown-filters__input"},[_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.currentFilter),expression:"currentFilter"}],staticClass:"dropdown-filters__select",attrs:{"name":"dropdown-filters__select"},on:{"change":[function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.currentFilter=$event.target.multiple ? $$selectedVal : $$selectedVal[0];},function($event){return _vm.filter($event.target.value)}],"click":function($event){return _vm.trackClick()}}},[(_vm.placeholder)?_c('option',{attrs:{"value":"","selected":"","disabled":""}},[_vm._v(" "+_vm._s(_vm.placeholder)+" ")]):_vm._e(),_c('option',{attrs:{"value":"all"}},[_vm._v(" "+_vm._s(_vm.labelDefault)+" ")]),_vm._l((_vm.filtersWithoutEmptyValue),function(f,idx){return _c('option',{key:idx,domProps:{"value":f.value}},[_vm._v(" "+_vm._s(f.label || f.value)+" ")])})],2),_c('svg',{staticClass:"dropdown-filters__arrow-down",attrs:{"width":"14","height":"9","viewBox":"0 0 14 9","fill":"none","xmlns":"http://www.w3.org/2000/svg"}},[_c('path',{attrs:{"d":"M1 1L7.10049 7.10049L13.201 1","stroke":"black","stroke-width":"2"}})])])])
 };
 var _sfc_staticRenderFns$3 = [];
 var __component__$3 = /*#__PURE__*/normalizeComponent(
@@ -7243,7 +7337,7 @@ const _sfc_main$2 = defineComponent({
       default: "Toggle the calendar",
     },
     defaultDate: { type: Date, required: false, default: () => new Date() },
-    gtm: { type: String, required: false, default: undefined },
+    tracking: { type: Object, required: false, default: null },
   },
   setup(props, { emit }) {
     const locale = toRef(props, "dateLocale");
@@ -7257,6 +7351,12 @@ const _sfc_main$2 = defineComponent({
       if (showDateRange.value) {
         showDateRange.value = false;
       }
+    };
+
+    const { pushTracking } = useTracking();
+    const toggleDatePicker = () => {
+      showDateRange.value = !showDateRange.value;
+      pushTracking(props.tracking?.clickDateToggle);
     };
 
     onMounted(() => {
@@ -7324,11 +7424,12 @@ const _sfc_main$2 = defineComponent({
       showDateRange,
       closeDatePicker,
       dateRangePickerElement,
+      toggleDatePicker,
     };
   },
 });
 
-var _sfc_render$2 = function render(){var _vm=this,_c=_vm._self._c;_vm._self._setupProxy;return _c('div',{ref:"dateRangePickerElement",staticClass:"date-range-picker__wrapper"},[_c('button',{staticClass:"date-range-picker__toggle",attrs:{"aria-label":_vm.ariaToggleCalendar,"aria-expanded":_vm.showDateRange + '',"aria-controls":_vm.pickerId,"data-gtm":_vm.gtm},on:{"click":function($event){_vm.showDateRange = !_vm.showDateRange;}}},[(!_vm.readableStartDate && !_vm.readableEndDate)?[_vm._v(" "+_vm._s(_vm.labelDatesFilter)+" ")]:_vm._e(),(_vm.readableStartDate)?[_vm._v(" "+_vm._s(_vm.readableStartDate)+" ")]:_vm._e(),(_vm.readableEndDate && _vm.readableStartDate !== _vm.readableEndDate)?[_vm._v(" - "+_vm._s(_vm.readableEndDate)+" ")]:_vm._e(),_c('svg',{staticClass:"dropdown-filters__arrow-down",attrs:{"width":"14","height":"9","viewBox":"0 0 14 9","fill":"none","xmlns":"http://www.w3.org/2000/svg"}},[_c('path',{attrs:{"d":"M1 1L7.10049 7.10049L13.201 1","stroke":"black","stroke-width":"2"}})])],2),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.showDateRange),expression:"showDateRange"}],staticClass:"date-range-picker",attrs:{"id":_vm.pickerId}},[_c('div',{staticClass:"months"},[_c('div',{staticClass:"month"},[_c('div',{staticClass:"month__name"},[_c('button',{staticClass:"month-selector month-selector--previous",attrs:{"aria-label":_vm.ariaPreviousMonth},on:{"click":_vm.showPreviousMonth}},[_c('svg',{attrs:{"width":"9","height":"14","viewBox":"0 0 9 14","fill":"none","xmlns":"http://www.w3.org/2000/svg"}},[_c('path',{attrs:{"d":"M8.10049 1L2 7.10049L8.10049 13.201","stroke":"#1B1B1B","stroke-width":"2"}})])]),_c('span',[_vm._v(" "+_vm._s(_vm.shownMonthName)+" ")]),_c('button',{staticClass:"month-selector month-selector--next",attrs:{"aria-label":_vm.ariaNextMonth},on:{"click":_vm.showNextMonth}},[_c('svg',{attrs:{"width":"9","height":"14","viewBox":"0 0 9 14","fill":"none","xmlns":"http://www.w3.org/2000/svg"}},[_c('path',{attrs:{"d":"M0.899536 13L7.00003 6.89951L0.899537 0.799012","stroke":"#1B1B1B","stroke-width":"2"}})])])]),_c('div',{staticClass:"days"},_vm._l((_vm.daysInMonth),function(date,index){return _c('button',{key:index,staticClass:"day",class:[
+var _sfc_render$2 = function render(){var _vm=this,_c=_vm._self._c;_vm._self._setupProxy;return _c('div',{ref:"dateRangePickerElement",staticClass:"date-range-picker__wrapper"},[_c('button',{staticClass:"date-range-picker__toggle",attrs:{"aria-label":_vm.ariaToggleCalendar,"aria-expanded":_vm.showDateRange + '',"aria-controls":_vm.pickerId},on:{"click":function($event){return _vm.toggleDatePicker()}}},[(!_vm.readableStartDate && !_vm.readableEndDate)?[_vm._v(" "+_vm._s(_vm.labelDatesFilter)+" ")]:_vm._e(),(_vm.readableStartDate)?[_vm._v(" "+_vm._s(_vm.readableStartDate)+" ")]:_vm._e(),(_vm.readableEndDate && _vm.readableStartDate !== _vm.readableEndDate)?[_vm._v(" - "+_vm._s(_vm.readableEndDate)+" ")]:_vm._e(),_c('svg',{staticClass:"dropdown-filters__arrow-down",attrs:{"width":"14","height":"9","viewBox":"0 0 14 9","fill":"none","xmlns":"http://www.w3.org/2000/svg"}},[_c('path',{attrs:{"d":"M1 1L7.10049 7.10049L13.201 1","stroke":"black","stroke-width":"2"}})])],2),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.showDateRange),expression:"showDateRange"}],staticClass:"date-range-picker",attrs:{"id":_vm.pickerId}},[_c('div',{staticClass:"months"},[_c('div',{staticClass:"month"},[_c('div',{staticClass:"month__name"},[_c('button',{staticClass:"month-selector month-selector--previous",attrs:{"aria-label":_vm.ariaPreviousMonth},on:{"click":_vm.showPreviousMonth}},[_c('svg',{attrs:{"width":"9","height":"14","viewBox":"0 0 9 14","fill":"none","xmlns":"http://www.w3.org/2000/svg"}},[_c('path',{attrs:{"d":"M8.10049 1L2 7.10049L8.10049 13.201","stroke":"#1B1B1B","stroke-width":"2"}})])]),_c('span',[_vm._v(" "+_vm._s(_vm.shownMonthName)+" ")]),_c('button',{staticClass:"month-selector month-selector--next",attrs:{"aria-label":_vm.ariaNextMonth},on:{"click":_vm.showNextMonth}},[_c('svg',{attrs:{"width":"9","height":"14","viewBox":"0 0 9 14","fill":"none","xmlns":"http://www.w3.org/2000/svg"}},[_c('path',{attrs:{"d":"M0.899536 13L7.00003 6.89951L0.899537 0.799012","stroke":"#1B1B1B","stroke-width":"2"}})])])]),_c('div',{staticClass:"days"},_vm._l((_vm.daysInMonth),function(date,index){return _c('button',{key:index,staticClass:"day",class:[
               date ? `day--${date.date}` : 'day--empty',
               date &&
               _vm.selectedDates &&
@@ -8838,45 +8939,6 @@ class Loader {
     }
 }
 
-function useGtm() {
-  const pushEvent = (gtmEvent) => {
-    if (!gtmEvent) return;
-    if (!window.dataLayer) window.dataLayer = [];
-
-    try {
-      const eventAttributes = cleanJson(gtmEvent);
-
-      if (eventAttributes) {
-        for (let i = 0; i < eventAttributes.length; i++) {
-          window.dataLayer.push(eventAttributes[i]);
-        }
-      }
-    } catch (e) {
-      console.warn("[useGtm.js] - ", e);
-    }
-  };
-
-  const cleanJson = (strJson) => {
-    let s = strJson
-      .replace(/\\n/g, "\\n")
-      .replace(/\\'/g, "\\'")
-      .replace(/\\"/g, '\\"')
-      .replace(/\\&/g, "\\&")
-      .replace(/\\r/g, "\\r")
-      .replace(/\\t/g, "\\t")
-      .replace(/\\b/g, "\\b")
-      .replace(/\\f/g, "\\f");
-
-    // remove non-printable and other non-valid JSON chars
-    s = s.replace(/[\u0000-\u0019]+/g, "");
-    return JSON.parse(s);
-  };
-
-  return {
-    pushEvent,
-  };
-}
-
 var locationImg = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADUAAAA1CAYAAADh5qNwAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMXSURBVHgB7ZnPbxJBFMcfajRBRTQYTdWKBw1JL403kh7w0niDgz+O/qLXCukfUHrzUtt4LUq96qF4q73YJo29UQ+ijcZASjWaElsw4u/gm2WHDhsg+2ZnGw7zSV52ZoHd+c6bX+8BoNFoNBqNRqNpgwdcoF6vB/ESRYugDaIFhY+Lpi2iLXk8nkXoZVBMBO1FnUYB7Qb0GswzEmLaiQuCAhwPP2xIDC8ZND+/V639hdfrNXi6XIaXa9+MerX2z/hsoN8LpwMH4PJFP9pR8Hn3WR85gUMyBQ5wJAoF3YSGoCYzC5/hfvZjU0Q3fN69EB8+CSPDJ6ziHAmTFmV6aI7XS+VfcOfBO8iv/wAqZwL74eHoBcOLAtLCpESZY38VzCGXx6F2GwVtlH+DE6bj5+Dq0HHx1iWZ1XEPyDEFpiDmIRWCGIl0AVZwDgpksAP9QIQsypxHMV6/cu+tEkGcZPqDsbCYBNHuAhEZTzX3lCfLm0oFMUr4vMnsJ/FWguotkihzLkV4fRJXOTdI4woqeIsJGqT8nuqpKC/M57aUe0lkZuGLWCWdOKiiIrzARLmJZcGIAAGqqCAvvMFl3E1W1qot76XMK6qo5tjOuyyKsYHbhcARsInsPtXTaFHQCO4M2EnbbSzvqIBNqKJe8UI4dBjcZKD/oFgt4hlwG2wiLcpyolZOOHSo7XvtQBW1xAvXhwJGPOQWIxhnCWSBAEmUGQYwM4K6OAZ3bnANO0yYT2zYPSP8XGr1e8wLrDdVLxiss8Zip8RbWcp8YpBF4QtmwRzjrAGPRs+DSsZifWJHFdEmgIjsPpXkBbZgTGHEqgLmoXjrXEphJxaBiJMcRQIaEbBBI6R/bz3a2KIx5PqsgqZRUBIkcJpNGsdLitdZaM9iLJYas0s45DNyE5a5OYuCboEkKvJ+LcIYTNx8bhue575aQwiDnbzfsXabuLSHlFJvpJsLnVKvpc2fTat8/9Ppa1to5HyE67BGdRPXRcy4TNZoV8EGRtEyaKsdhBTQ5sxOUC7Glb9yrGDDzwrVCnUz1Wg0Go1Go9l9/gNvkCMbp4Ut3AAAAABJRU5ErkJggg==";
 
 function useGoogleMap(
@@ -8899,7 +8961,7 @@ function useGoogleMap(
     ariaLocateButton: "Your Location",
   }
 ) {
-  const { pushEvent } = useGtm();
+  const { pushTracking } = useTracking();
 
   let map = null;
   let infoWindow = null;
@@ -9020,9 +9082,10 @@ function useGoogleMap(
         openShowInfo(marker);
 
         if (marker && marker.info && marker.info.showName) {
-          pushEvent(
-            `[{ "event": "userAction", "eventAction": "Click on Map", "eventCategory": "Interactive Map", "eventLabel": "${marker.info.showName} - ${marker.info.city}"}]`
-          );
+          pushTracking(data.tracking?.clickMarker, {
+            "<show_name>": marker.info.showName,
+            "<city_name>": marker.info.city,
+          });
         }
       });
     });
@@ -9119,15 +9182,6 @@ function useGoogleMap(
       ? marker.info.showThumbnail
       : marker.info.showImage;
 
-    const pageUrlGtm = marker.info.showPageUrl
-      ? JSON.stringify(
-          `[{ "event": "userAction", "eventAction": "Buy Tickets", "eventCategory": "Interactive Map", "eventLabel": "${nameNoQuote} - ${marker.info.city}"}]`
-        )
-      : null;
-    const directionGtm = JSON.stringify(
-      `[{ "event": "userAction", "eventAction": "View on Google Maps", "eventCategory": "Interactive Map", "eventLabel": "${nameNoQuote} - ${marker.info.city}"}]`
-    );
-
     // Create InfoWindow Content
     const options = {
       pixelOffset: marker ? null : new google.maps.Size(0, -50),
@@ -9170,7 +9224,9 @@ function useGoogleMap(
                 marker.info.latitude
               },${
         marker.info.longitude
-      }&travelmode=driving" onclick='window.mapPushToDataLayer(${directionGtm})'>
+      }&travelmode=driving" onclick='window.mapTrackingViewGmap("${nameNoQuote}", "${
+        marker.info.city
+      }")'>
       ${data.labelDirectionButton.value}
                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M8.12498 1.875L10.1831 3.93313L5.80811 8.30812L6.69186 9.19187L11.0669 4.81687L13.125 6.875V1.875H8.12498Z" fill="white"/>
@@ -9179,7 +9235,7 @@ function useGoogleMap(
               </a>
               ${
                 marker.info.showPageUrl
-                  ? `<a class="marker__cta cta-btn cta-btn--grey cta-btn--full-width" href="${marker.info.showPageUrl}" onclick='window.mapPushToDataLayer(${pageUrlGtm})'>
+                  ? `<a class="marker__cta cta-btn cta-btn--grey cta-btn--full-width" href="${marker.info.showPageUrl}" onclick='window.mapTrackingBuyTicket("${nameNoQuote}", "${marker.info.city}")'>
                   ${data.labelBuyButton.value}
               </a>`
                   : ""
@@ -9272,7 +9328,19 @@ function useGoogleMap(
   };
 
   onMounted(() => {
-    window.mapPushToDataLayer = (gtmEvent) => pushEvent(gtmEvent);
+    window.mapTrackingBuyTicket = (showname, cityname) => {
+      pushTracking(data.tracking?.clickBuy, {
+        "<show_name>": showname,
+        "<city_name>": cityname,
+      });
+    };
+
+    window.mapTrackingViewGmap = (showname, cityname) => {
+      pushTracking(data.tracking?.clickViewGmap, {
+        "<show_name>": showname,
+        "<city_name>": cityname,
+      });
+    };
 
     nextTick(async () => {
       try {
@@ -9320,8 +9388,8 @@ function useGoogleMap(
   };
 }
 
-function useShowFilters(markersData) {
-  const { pushEvent } = useGtm();
+function useShowFilters(markersData, tracking = null) {
+  const { pushTracking } = useTracking();
   const currentShowTypeFilter = ref(null);
   const currentShowNameFilter = ref(null);
   const currentDates = reactive({
@@ -9399,21 +9467,17 @@ function useShowFilters(markersData) {
   const changeCurrentDates = (dates) => {
     Object.assign(currentDates, dates);
     if (dates.start && dates.end) {
-      pushEvent(
-        `[{ "event": "userAction", "eventAction": "Click on Search", "eventCategory": "Interactive Map", "eventLabel": "Date Range Picker Search"}]` // ${currentDates.start} - ${currentDates.end}
-      );
+      pushTracking(tracking?.clickDateSearch);
     } else {
-      pushEvent(
-        `[{ "event": "userAction", "eventAction": "Click on Clear", "eventCategory": "Interactive Map", "eventLabel": "Date Range Picker Clear"}]`
-      );
+      pushTracking(tracking?.clickDateClear);
     }
   };
 
   const changeCurrentShowName = (showName) => {
     currentShowNameFilter.value = showName;
-    pushEvent(
-      `[{ "event": "userAction", "eventAction": "Select Show", "eventCategory": "Interactive Map", "eventLabel": "${showName}"}]`
-    );
+    pushTracking(tracking?.clickShow, {
+      "<show_name>": showName,
+    });
   };
 
   return {
@@ -9496,20 +9560,13 @@ const _sfc_main$1 = defineComponent({
       default: "Your Location",
     },
     isLoading: { type: Boolean, required: false, default: false },
-    gtmDate: {
-      type: String,
+    tracking: {
+      type: Object,
       required: false,
-      default:
-        '[{ "event": "userAction", "eventAction": "Click on Dates", "eventCategory": "Interactive Map", "eventLabel": "Date Range Picker Toggle"}]',
-    },
-    gtmShow: {
-      type: String,
-      required: false,
-      default:
-        '[{ "event": "userAction", "eventAction": "Click on All Shows", "eventCategory": "Interactive Map", "eventLabel": "Show Selector Toggle"}]',
+      default: null,
     },
   },
-  setup(props, { emit }) {
+  setup(props) {
     const markersData = toRef(props, "markersData");
     const locale = toRef(props, "dateLocale");
     const labelBuyButton = toRef(props, "labelBuyButton");
@@ -9522,7 +9579,7 @@ const _sfc_main$1 = defineComponent({
       markersDataResults,
       changeCurrentDates,
       changeCurrentShowName,
-    } = useShowFilters(markersData);
+    } = useShowFilters(markersData, props.tracking);
 
     const onShowNameFilterChange = (filter) => {
       changeCurrentShowName(filter);
@@ -9548,6 +9605,7 @@ const _sfc_main$1 = defineComponent({
       labelBuyButton,
       labelDirectionButton,
       ariaLocateButton: props.ariaLocateButton,
+      tracking: props.tracking,
       mapOptions: {
         streetViewControl: false,
         mapTypeControl: false,
@@ -9568,7 +9626,7 @@ const _sfc_main$1 = defineComponent({
   },
 });
 
-var _sfc_render$1 = function render(){var _vm=this,_c=_vm._self._c;_vm._self._setupProxy;return _c('div',{staticClass:"interactive-map__container"},[_c('div',{staticClass:"interactive-map__split"},[(_vm.mapTitle || !_vm.hideFilters)?_c('div',{staticClass:"filters-wrapper"},[(_vm.mapTitle)?_c('h2',{staticClass:"interactive-map__title"},[_vm._v(" "+_vm._s(_vm.mapTitle)+" ")]):_vm._e(),(_vm.mapDescription)?_c('p',{staticClass:"interactive-map__description"},[_vm._v(" "+_vm._s(_vm.mapDescription)+" ")]):_vm._e(),_c('div',{staticClass:"interactive-map__slots"},[_vm._t("default")],2),_c('div',{staticClass:"filters"},[(!_vm.hideFilters)?_c('DateRangePicker',{staticClass:"filters__daterange",attrs:{"date-locale":_vm.locale,"label-clear-button":_vm.labelClearButton,"label-save-button":_vm.labelSaveButton,"label-dates-filter":_vm.labelDatesFilter,"aria-select-date":_vm.ariaSelectDate,"aria-next-month":_vm.ariaNextMonth,"aria-previous-month":_vm.ariaPreviousMonth,"aria-toggle-calendar":_vm.ariaToggleCalendar,"gtm":_vm.gtmDate,"picker-id":_vm.mapId + '__picker'},on:{"datechanged":_vm.onDateChanged}}):_vm._e(),(!_vm.hideFilters)?_c('DropdownFilters',{ref:"filterDropdownElement",staticClass:"filters__shownames",attrs:{"filters":_vm.showNames,"label-default":_vm.labelShowNameFilterDefault,"placeholder":_vm.placeholderShowNameFilter,"gtm":_vm.gtmShow},on:{"onfilterchange":_vm.onShowNameFilterChange}}):_vm._e()],1)]):_vm._e(),_c('div',{staticClass:"interactive-map__wrapper"},[_c('div',{staticClass:"interactive-map"},[_c('div',{staticClass:"map",attrs:{"id":_vm.mapId}}),_c('transition',{attrs:{"name":"spinner-fade"}},[(_vm.isLoading)?_c('div',{staticClass:"loading"},[_c('div',{staticClass:"spinner"})]):_vm._e()])],1)])])])
+var _sfc_render$1 = function render(){var _vm=this,_c=_vm._self._c;_vm._self._setupProxy;return _c('div',{staticClass:"interactive-map__container"},[_c('div',{staticClass:"interactive-map__split"},[(_vm.mapTitle || !_vm.hideFilters)?_c('div',{staticClass:"filters-wrapper"},[(_vm.mapTitle)?_c('h2',{staticClass:"interactive-map__title"},[_vm._v(" "+_vm._s(_vm.mapTitle)+" ")]):_vm._e(),(_vm.mapDescription)?_c('p',{staticClass:"interactive-map__description"},[_vm._v(" "+_vm._s(_vm.mapDescription)+" ")]):_vm._e(),_c('div',{staticClass:"interactive-map__slots"},[_vm._t("default")],2),_c('div',{staticClass:"filters"},[(!_vm.hideFilters)?_c('DateRangePicker',{staticClass:"filters__daterange",attrs:{"date-locale":_vm.locale,"label-clear-button":_vm.labelClearButton,"label-save-button":_vm.labelSaveButton,"label-dates-filter":_vm.labelDatesFilter,"aria-select-date":_vm.ariaSelectDate,"aria-next-month":_vm.ariaNextMonth,"aria-previous-month":_vm.ariaPreviousMonth,"aria-toggle-calendar":_vm.ariaToggleCalendar,"tracking":_vm.tracking,"picker-id":_vm.mapId + '__picker'},on:{"datechanged":_vm.onDateChanged}}):_vm._e(),(!_vm.hideFilters)?_c('DropdownFilters',{ref:"filterDropdownElement",staticClass:"filters__shownames",attrs:{"filters":_vm.showNames,"label-default":_vm.labelShowNameFilterDefault,"placeholder":_vm.placeholderShowNameFilter,"tracking":_vm.tracking},on:{"onfilterchange":_vm.onShowNameFilterChange}}):_vm._e()],1)]):_vm._e(),_c('div',{staticClass:"interactive-map__wrapper"},[_c('div',{staticClass:"interactive-map"},[_c('div',{staticClass:"map",attrs:{"id":_vm.mapId}}),_c('transition',{attrs:{"name":"spinner-fade"}},[(_vm.isLoading)?_c('div',{staticClass:"loading"},[_c('div',{staticClass:"spinner"})]):_vm._e()])],1)])])])
 };
 var _sfc_staticRenderFns$1 = [];
 var __component__$1 = /*#__PURE__*/normalizeComponent(

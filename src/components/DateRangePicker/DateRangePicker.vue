@@ -2,11 +2,10 @@
   <div class="date-range-picker__wrapper" ref="dateRangePickerElement">
     <button
       class="date-range-picker__toggle"
-      @click="showDateRange = !showDateRange"
+      @click="toggleDatePicker()"
       :aria-label="ariaToggleCalendar"
       :aria-expanded="showDateRange + ''"
       :aria-controls="pickerId"
-      :data-gtm="gtm"
     >
       <template v-if="!readableStartDate && !readableEndDate">
         {{ labelDatesFilter }}
@@ -149,6 +148,7 @@
 <script>
 import { toRef, defineComponent, onMounted, ref, onBeforeUnmount } from "vue";
 import useDateRange from "../../usables/useDateRange";
+import useTracking from "../../usables/useTracking";
 
 export default defineComponent({
   name: "DateRangePicker",
@@ -172,7 +172,7 @@ export default defineComponent({
       default: "Toggle the calendar",
     },
     defaultDate: { type: Date, required: false, default: () => new Date() },
-    gtm: { type: String, required: false, default: undefined },
+    tracking: { type: Object, required: false, default: null },
   },
   setup(props, { emit }) {
     const locale = toRef(props, "dateLocale");
@@ -186,6 +186,12 @@ export default defineComponent({
       if (showDateRange.value) {
         showDateRange.value = false;
       }
+    };
+
+    const { pushTracking } = useTracking();
+    const toggleDatePicker = () => {
+      showDateRange.value = !showDateRange.value;
+      pushTracking(props.tracking?.clickDateToggle);
     };
 
     onMounted(() => {
@@ -253,6 +259,7 @@ export default defineComponent({
       showDateRange,
       closeDatePicker,
       dateRangePickerElement,
+      toggleDatePicker,
     };
   },
 });

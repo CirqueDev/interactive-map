@@ -5,8 +5,8 @@
         name="dropdown-filters__select"
         class="dropdown-filters__select"
         @change="filter($event.target.value)"
+        @click="trackClick()"
         v-model="currentFilter"
-        :data-gtm="gtm"
       >
         <option v-if="placeholder" value="" selected disabled>
           {{ placeholder }}
@@ -42,6 +42,7 @@
 
 <script>
 import { ref, toRef, computed, defineComponent } from "vue";
+import useTracking from "../usables/useTracking";
 
 export default defineComponent({
   name: "DropdownFilters",
@@ -50,7 +51,7 @@ export default defineComponent({
     placeholder: { type: String, required: false, default: "" },
     filters: { type: Array, required: false, default: () => [] },
     labelDefault: { type: String, required: false, default: "All shows" },
-    gtm: { type: String, required: false, default: undefined },
+    tracking: { type: Object, required: false, default: null },
   },
   setup(props, { emit }) {
     const filters = toRef(props, "filters");
@@ -69,11 +70,17 @@ export default defineComponent({
       filters.value.filter((f) => !!f.value)
     );
 
+    const { pushTracking } = useTracking();
+    const trackClick = () => {
+      pushTracking(props.tracking?.clickShowToggle);
+    };
+
     return {
       filtersWithoutEmptyValue,
       currentFilter,
       resetFilter,
       filter,
+      trackClick,
     };
   },
 });
