@@ -31,8 +31,6 @@ export default function useTracking() {
     } else {
       window.dataLayer.push(datalayerEvent);
     }
-
-    console.log("push", JSON.stringify(datalayerEvent));
   }
 
   function pushTracking(events, replaceObj = null) {
