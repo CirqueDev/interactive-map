@@ -1,5 +1,64 @@
-import { defineComponent as ce, toRef as I, ref as x, computed as _, openBlock as W, createElementBlock as O, createElementVNode as y, withDirectives as Xe, toDisplayString as z, createCommentVNode as F, Fragment as J, renderList as pe, vModelSelect as ot, reactive as Re, onMounted as De, onBeforeUnmount as st, createTextVNode as ge, normalizeClass as ut, vShow as lt, nextTick as dt, watch as we, resolveComponent as be, renderSlot as Ve, createBlock as We, createVNode as Be, Transition as mt, withCtx as Ue, mergeProps as ct } from "vue";
-const he = (e, t) => {
+import { defineComponent as ce, toRef as I, ref as x, computed as A, openBlock as T, createElementBlock as N, createElementVNode as b, withDirectives as Xe, toDisplayString as _, createCommentVNode as F, Fragment as U, renderList as pe, vModelSelect as ot, reactive as Ve, onMounted as ke, onBeforeUnmount as st, createTextVNode as ge, normalizeClass as ut, vShow as lt, nextTick as dt, watch as we, resolveComponent as be, renderSlot as Be, createBlock as Se, createVNode as Re, Transition as mt, withCtx as Ue, mergeProps as ct } from "vue";
+function he() {
+  function e(o, u = null) {
+    if (!!o)
+      try {
+        const s = i(o, u), l = n(s);
+        a(l);
+      } catch (s) {
+        console.warn("[useTracking] - ", s);
+      }
+  }
+  function t(o, u = null) {
+    if (!!o)
+      try {
+        const s = i(o, u), l = n(s);
+        a(l);
+      } catch (s) {
+        console.warn("[useTracking] - ", s);
+      }
+  }
+  function a(o) {
+    if (!!o)
+      if (window.dataLayer || (window.dataLayer = []), Array.isArray(o))
+        for (let u = 0; u < o.length; u++)
+          window.dataLayer.push(o[u]);
+      else
+        window.dataLayer.push(o);
+  }
+  function r(o, u = null) {
+    if (!o)
+      return;
+    const s = Object.keys(o);
+    for (let l = 0; l < s.length; ++l) {
+      const m = s[l], d = o[m];
+      switch (m) {
+        case "ga4":
+          t(d, u);
+          break;
+        case "gua":
+          e(d, u);
+          break;
+      }
+    }
+  }
+  function n(o) {
+    if (typeof o != "string")
+      return o;
+    let u = o.replace(/\\n/g, "\\n").replace(/\\'/g, "\\'").replace(/\\"/g, '\\"').replace(/\\&/g, "\\&").replace(/\\r/g, "\\r").replace(/\\t/g, "\\t").replace(/\\b/g, "\\b").replace(/\\f/g, "\\f");
+    return u = u.replace(/[\u0000-\u0019]+/g, ""), JSON.parse(u);
+  }
+  function i(o, u = null) {
+    return u ? Object.keys(u).reduce((l, m) => l.replaceAll(m, u[m]), o) : o;
+  }
+  return {
+    pushDatalayer: a,
+    pushTracking: r,
+    pushGua: e,
+    pushGa4: t
+  };
+}
+const fe = (e, t) => {
   const a = e.__vccOpts || e;
   for (const [r, n] of t)
     a[r] = n;
@@ -11,29 +70,32 @@ const he = (e, t) => {
     placeholder: { type: String, required: !1, default: "" },
     filters: { type: Array, required: !1, default: () => [] },
     labelDefault: { type: String, required: !1, default: "All shows" },
-    gtm: { type: String, required: !1, default: void 0 }
+    tracking: { type: Object, required: !1, default: null }
   },
   setup(e, { emit: t }) {
-    const a = I(e, "filters"), r = x(e.placeholder ? "" : "all"), n = (u) => {
-      r.value = u, t("onfilterchange", r.value);
+    const a = I(e, "filters"), r = x(e.placeholder ? "" : "all"), n = (l) => {
+      r.value = l, t("onfilterchange", r.value);
     }, i = () => {
       r.value = "", t("onfilterchange", r.value);
-    };
+    }, o = A(
+      () => a.value.filter((l) => !!l.value)
+    ), { pushTracking: u } = he();
     return {
-      filtersWithoutEmptyValue: _(
-        () => a.value.filter((u) => !!u.value)
-      ),
+      filtersWithoutEmptyValue: o,
       currentFilter: r,
       resetFilter: i,
-      filter: n
+      filter: n,
+      trackClick: () => {
+        u(e.tracking?.clickShowToggle);
+      }
     };
   }
-}), ft = { class: "dropdown-filters" }, gt = { class: "dropdown-filters__input" }, vt = ["data-gtm"], pt = {
+}), ft = { class: "dropdown-filters" }, gt = { class: "dropdown-filters__input" }, vt = {
   key: 0,
   value: "",
   selected: "",
   disabled: ""
-}, wt = { value: "all" }, bt = ["value"], yt = /* @__PURE__ */ y("svg", {
+}, pt = { value: "all" }, wt = ["value"], bt = /* @__PURE__ */ b("svg", {
   class: "dropdown-filters__arrow-down",
   width: "14",
   height: "9",
@@ -41,37 +103,37 @@ const he = (e, t) => {
   fill: "none",
   xmlns: "http://www.w3.org/2000/svg"
 }, [
-  /* @__PURE__ */ y("path", {
+  /* @__PURE__ */ b("path", {
     d: "M1 1L7.10049 7.10049L13.201 1",
     stroke: "black",
     "stroke-width": "2"
   })
 ], -1);
-function Mt(e, t, a, r, n, i) {
-  return W(), O("div", ft, [
-    y("div", gt, [
-      Xe(y("select", {
+function yt(e, t, a, r, n, i) {
+  return T(), N("div", ft, [
+    b("div", gt, [
+      Xe(b("select", {
         name: "dropdown-filters__select",
         class: "dropdown-filters__select",
         onChange: t[0] || (t[0] = (o) => e.filter(o.target.value)),
-        "onUpdate:modelValue": t[1] || (t[1] = (o) => e.currentFilter = o),
-        "data-gtm": e.gtm
+        onClick: t[1] || (t[1] = (o) => e.trackClick()),
+        "onUpdate:modelValue": t[2] || (t[2] = (o) => e.currentFilter = o)
       }, [
-        e.placeholder ? (W(), O("option", pt, z(e.placeholder), 1)) : F("", !0),
-        y("option", wt, z(e.labelDefault), 1),
-        (W(!0), O(J, null, pe(e.filtersWithoutEmptyValue, (o, u) => (W(), O("option", {
+        e.placeholder ? (T(), N("option", vt, _(e.placeholder), 1)) : F("", !0),
+        b("option", pt, _(e.labelDefault), 1),
+        (T(!0), N(U, null, pe(e.filtersWithoutEmptyValue, (o, u) => (T(), N("option", {
           key: u,
           value: o.value
-        }, z(o.label || o.value), 9, bt))), 128))
-      ], 40, vt), [
+        }, _(o.label || o.value), 9, wt))), 128))
+      ], 544), [
         [ot, e.currentFilter]
       ]),
-      yt
+      bt
     ])
   ]);
 }
-const Pt = /* @__PURE__ */ he(ht, [["render", Mt]]);
-function E(e) {
+const Mt = /* @__PURE__ */ fe(ht, [["render", yt]]);
+function j(e) {
   if (e === null || e === !0 || e === !1)
     return NaN;
   var t = Number(e);
@@ -81,19 +143,19 @@ function $(e, t) {
   if (t.length < e)
     throw new TypeError(e + " argument" + (e > 1 ? "s" : "") + " required, but only " + t.length + " present");
 }
-function T(e) {
+function O(e) {
   $(1, arguments);
   var t = Object.prototype.toString.call(e);
   return e instanceof Date || typeof e == "object" && t === "[object Date]" ? new Date(e.getTime()) : typeof e == "number" || t === "[object Number]" ? new Date(e) : ((typeof e == "string" || t === "[object String]") && typeof console < "u" && (console.warn("Starting with v2.0.0-beta.1 date-fns doesn't accept strings as date arguments. Please use `parseISO` to parse strings. See: https://git.io/fjule"), console.warn(new Error().stack)), new Date(NaN));
 }
-function Dt(e, t) {
+function Pt(e, t) {
   $(2, arguments);
-  var a = T(e), r = E(t);
+  var a = O(e), r = j(t);
   return isNaN(r) ? new Date(NaN) : (r && a.setDate(a.getDate() + r), a);
 }
 function Te(e, t) {
   $(2, arguments);
-  var a = T(e), r = E(t);
+  var a = O(e), r = j(t);
   if (isNaN(r))
     return new Date(NaN);
   if (!r)
@@ -105,27 +167,27 @@ function Te(e, t) {
 }
 function kt(e, t) {
   $(2, arguments);
-  var a = T(e).getTime(), r = E(t);
+  var a = O(e).getTime(), r = j(t);
   return new Date(a + r);
 }
-function $t(e, t) {
+function Dt(e, t) {
   $(1, arguments);
-  var a = t || {}, r = a.locale, n = r && r.options && r.options.weekStartsOn, i = n == null ? 0 : E(n), o = a.weekStartsOn == null ? i : E(a.weekStartsOn);
+  var a = t || {}, r = a.locale, n = r && r.options && r.options.weekStartsOn, i = n == null ? 0 : j(n), o = a.weekStartsOn == null ? i : j(a.weekStartsOn);
   if (!(o >= 0 && o <= 6))
     throw new RangeError("weekStartsOn must be between 0 and 6 inclusively");
-  var u = T(e), s = u.getDay(), d = (s < o ? 7 : 0) + s - o;
-  return u.setDate(u.getDate() - d), u.setHours(0, 0, 0, 0), u;
+  var u = O(e), s = u.getDay(), l = (s < o ? 7 : 0) + s - o;
+  return u.setDate(u.getDate() - l), u.setHours(0, 0, 0, 0), u;
 }
-function Ct(e) {
+function $t(e) {
   var t = new Date(Date.UTC(e.getFullYear(), e.getMonth(), e.getDate(), e.getHours(), e.getMinutes(), e.getSeconds(), e.getMilliseconds()));
   return t.setUTCFullYear(e.getFullYear()), e.getTime() - t.getTime();
 }
-function St(e, t) {
+function Ct(e, t) {
   var a = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {
     inclusive: !1
   };
   $(2, arguments);
-  var r = e || {}, n = t || {}, i = T(r.start).getTime(), o = T(r.end).getTime(), u = T(n.start).getTime(), s = T(n.end).getTime();
+  var r = e || {}, n = t || {}, i = O(r.start).getTime(), o = O(r.end).getTime(), u = O(n.start).getTime(), s = O(n.end).getTime();
   if (!(i <= o && u <= s))
     throw new RangeError("Invalid interval");
   return a.inclusive ? i <= s && u <= o : i < s && u < o;
@@ -133,23 +195,23 @@ function St(e, t) {
 function Wt(e) {
   return $(1, arguments), e instanceof Date || typeof e == "object" && Object.prototype.toString.call(e) === "[object Date]";
 }
-function Tt(e) {
+function St(e) {
   if ($(1, arguments), !Wt(e) && typeof e != "number")
     return !1;
-  var t = T(e);
+  var t = O(e);
   return !isNaN(Number(t));
+}
+function Tt(e) {
+  $(1, arguments);
+  var t = O(e), a = t.getMonth();
+  return t.setFullYear(t.getFullYear(), a + 1, 0), t.setHours(23, 59, 59, 999), t;
 }
 function Ot(e) {
   $(1, arguments);
-  var t = T(e), a = t.getMonth();
-  return t.setFullYear(t.getFullYear(), a + 1, 0), t.setHours(23, 59, 59, 999), t;
-}
-function Nt(e) {
-  $(1, arguments);
-  var t = T(e);
+  var t = O(e);
   return t.setDate(1), t.setHours(0, 0, 0, 0), t;
 }
-var xt = {
+var Nt = {
   lessThanXSeconds: {
     one: "less than a second",
     other: "less than {{count}} seconds"
@@ -211,12 +273,12 @@ var xt = {
     one: "almost 1 year",
     other: "almost {{count}} years"
   }
-}, Et = function(e, t, a) {
-  var r, n = xt[e];
+}, xt = function(e, t, a) {
+  var r, n = Nt[e];
   return typeof n == "string" ? r = n : t === 1 ? r = n.one : r = n.other.replace("{{count}}", t.toString()), a != null && a.addSuffix ? a.comparison && a.comparison > 0 ? "in " + r : r + " ago" : r;
 };
-const Lt = Et;
-function M(e) {
+const Et = xt;
+function y(e) {
   return function() {
     var t = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {}, a = t.width ? String(t.width) : e.defaultWidth, r = e.formats[a] || e.formats[e.defaultWidth];
     return r;
@@ -227,74 +289,74 @@ var jt = {
   long: "MMMM do, y",
   medium: "MMM d, y",
   short: "MM/dd/yyyy"
-}, zt = {
+}, Lt = {
   full: "h:mm:ss a zzzz",
   long: "h:mm:ss a z",
   medium: "h:mm:ss a",
   short: "h:mm a"
-}, At = {
+}, zt = {
   full: "{{date}} 'at' {{time}}",
   long: "{{date}} 'at' {{time}}",
   medium: "{{date}}, {{time}}",
   short: "{{date}}, {{time}}"
 }, _t = {
-  date: M({
+  date: y({
     formats: jt,
     defaultWidth: "full"
   }),
-  time: M({
-    formats: zt,
+  time: y({
+    formats: Lt,
     defaultWidth: "full"
   }),
-  dateTime: M({
-    formats: At,
+  dateTime: y({
+    formats: zt,
     defaultWidth: "full"
   })
 };
-const Ft = _t;
-var It = {
+const At = _t;
+var Ft = {
   lastWeek: "'last' eeee 'at' p",
   yesterday: "'yesterday at' p",
   today: "'today at' p",
   tomorrow: "'tomorrow at' p",
   nextWeek: "eeee 'at' p",
   other: "P"
-}, qt = function(e, t, a, r) {
-  return It[e];
+}, It = function(e, t, a, r) {
+  return Ft[e];
 };
-const Je = qt;
-function h(e) {
+const Je = It;
+function f(e) {
   return function(t, a) {
     var r = a || {}, n = r.context ? String(r.context) : "standalone", i;
     if (n === "formatting" && e.formattingValues) {
       var o = e.defaultFormattingWidth || e.defaultWidth, u = r.width ? String(r.width) : o;
       i = e.formattingValues[u] || e.formattingValues[o];
     } else {
-      var s = e.defaultWidth, d = r.width ? String(r.width) : e.defaultWidth;
-      i = e.values[d] || e.values[s];
+      var s = e.defaultWidth, l = r.width ? String(r.width) : e.defaultWidth;
+      i = e.values[l] || e.values[s];
     }
-    var l = e.argumentCallback ? e.argumentCallback(t) : t;
-    return i[l];
+    var m = e.argumentCallback ? e.argumentCallback(t) : t;
+    return i[m];
   };
 }
-var Ht = {
+var qt = {
   narrow: ["B", "A"],
   abbreviated: ["BC", "AD"],
   wide: ["Before Christ", "Anno Domini"]
-}, Gt = {
+}, Ht = {
   narrow: ["1", "2", "3", "4"],
   abbreviated: ["Q1", "Q2", "Q3", "Q4"],
   wide: ["1st quarter", "2nd quarter", "3rd quarter", "4th quarter"]
-}, Yt = {
+}, Gt = {
   narrow: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
   abbreviated: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
   wide: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-}, Xt = {
+}, Yt = {
   narrow: ["S", "M", "T", "W", "T", "F", "S"],
   short: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
   abbreviated: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
   wide: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-}, Rt = {
+}, Xt = {
   narrow: {
     am: "a",
     pm: "p",
@@ -368,59 +430,59 @@ var Ht = {
         return a + "rd";
     }
   return a + "th";
-}, Ut = {
+}, Rt = {
   ordinalNumber: Bt,
-  era: h({
-    values: Ht,
+  era: f({
+    values: qt,
     defaultWidth: "wide"
   }),
-  quarter: h({
-    values: Gt,
+  quarter: f({
+    values: Ht,
     defaultWidth: "wide",
     argumentCallback: function(e) {
       return e - 1;
     }
   }),
-  month: h({
+  month: f({
+    values: Gt,
+    defaultWidth: "wide"
+  }),
+  day: f({
     values: Yt,
     defaultWidth: "wide"
   }),
-  day: h({
+  dayPeriod: f({
     values: Xt,
-    defaultWidth: "wide"
-  }),
-  dayPeriod: h({
-    values: Rt,
     defaultWidth: "wide",
     formattingValues: Vt,
     defaultFormattingWidth: "wide"
   })
 };
-const Qe = Ut;
-function f(e) {
+const Qe = Rt;
+function g(e) {
   return function(t) {
     var a = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, r = a.width, n = r && e.matchPatterns[r] || e.matchPatterns[e.defaultMatchWidth], i = t.match(n);
     if (!i)
       return null;
-    var o = i[0], u = r && e.parsePatterns[r] || e.parsePatterns[e.defaultParseWidth], s = Array.isArray(u) ? Qt(u, function(m) {
-      return m.test(o);
-    }) : Jt(u, function(m) {
-      return m.test(o);
-    }), d;
-    d = e.valueCallback ? e.valueCallback(s) : s, d = a.valueCallback ? a.valueCallback(d) : d;
-    var l = t.slice(o.length);
+    var o = i[0], u = r && e.parsePatterns[r] || e.parsePatterns[e.defaultParseWidth], s = Array.isArray(u) ? Jt(u, function(d) {
+      return d.test(o);
+    }) : Ut(u, function(d) {
+      return d.test(o);
+    }), l;
+    l = e.valueCallback ? e.valueCallback(s) : s, l = a.valueCallback ? a.valueCallback(l) : l;
+    var m = t.slice(o.length);
     return {
-      value: d,
-      rest: l
+      value: l,
+      rest: m
     };
   };
 }
-function Jt(e, t) {
+function Ut(e, t) {
   for (var a in e)
     if (e.hasOwnProperty(a) && t(e[a]))
       return a;
 }
-function Qt(e, t) {
+function Jt(e, t) {
   for (var a = 0; a < e.length; a++)
     if (t(e[a]))
       return a;
@@ -442,37 +504,37 @@ function q(e) {
     };
   };
 }
-var Zt = /^(\d+)(th|st|nd|rd)?/i, Kt = /\d+/i, ea = {
+var Qt = /^(\d+)(th|st|nd|rd)?/i, Zt = /\d+/i, Kt = {
   narrow: /^(b|a)/i,
   abbreviated: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
   wide: /^(before christ|before common era|anno domini|common era)/i
-}, ta = {
+}, ea = {
   any: [/^b/i, /^(a|c)/i]
-}, aa = {
+}, ta = {
   narrow: /^[1234]/i,
   abbreviated: /^q[1234]/i,
   wide: /^[1234](th|st|nd|rd)? quarter/i
-}, ra = {
+}, aa = {
   any: [/1/i, /2/i, /3/i, /4/i]
-}, na = {
+}, ra = {
   narrow: /^[jfmasond]/i,
   abbreviated: /^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i,
   wide: /^(january|february|march|april|may|june|july|august|september|october|november|december)/i
-}, ia = {
+}, na = {
   narrow: [/^j/i, /^f/i, /^m/i, /^a/i, /^m/i, /^j/i, /^j/i, /^a/i, /^s/i, /^o/i, /^n/i, /^d/i],
   any: [/^ja/i, /^f/i, /^mar/i, /^ap/i, /^may/i, /^jun/i, /^jul/i, /^au/i, /^s/i, /^o/i, /^n/i, /^d/i]
-}, oa = {
+}, ia = {
   narrow: /^[smtwf]/i,
   short: /^(su|mo|tu|we|th|fr|sa)/i,
   abbreviated: /^(sun|mon|tue|wed|thu|fri|sat)/i,
   wide: /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)/i
-}, sa = {
+}, oa = {
   narrow: [/^s/i, /^m/i, /^t/i, /^w/i, /^t/i, /^f/i, /^s/i],
   any: [/^su/i, /^m/i, /^tu/i, /^w/i, /^th/i, /^f/i, /^sa/i]
-}, ua = {
+}, sa = {
   narrow: /^(a|p|mi|n|(in the|at) (morning|afternoon|evening|night))/i,
   any: /^([ap]\.?\s?m\.?|midnight|noon|(in the|at) (morning|afternoon|evening|night))/i
-}, la = {
+}, ua = {
   any: {
     am: /^a/i,
     pm: /^p/i,
@@ -483,53 +545,53 @@ var Zt = /^(\d+)(th|st|nd|rd)?/i, Kt = /\d+/i, ea = {
     evening: /evening/i,
     night: /night/i
   }
-}, da = {
+}, la = {
   ordinalNumber: q({
-    matchPattern: Zt,
-    parsePattern: Kt,
+    matchPattern: Qt,
+    parsePattern: Zt,
     valueCallback: function(e) {
       return parseInt(e, 10);
     }
   }),
-  era: f({
-    matchPatterns: ea,
+  era: g({
+    matchPatterns: Kt,
     defaultMatchWidth: "wide",
-    parsePatterns: ta,
+    parsePatterns: ea,
     defaultParseWidth: "any"
   }),
-  quarter: f({
-    matchPatterns: aa,
+  quarter: g({
+    matchPatterns: ta,
     defaultMatchWidth: "wide",
-    parsePatterns: ra,
+    parsePatterns: aa,
     defaultParseWidth: "any",
     valueCallback: function(e) {
       return e + 1;
     }
   }),
-  month: f({
-    matchPatterns: na,
+  month: g({
+    matchPatterns: ra,
     defaultMatchWidth: "wide",
-    parsePatterns: ia,
+    parsePatterns: na,
     defaultParseWidth: "any"
   }),
-  day: f({
-    matchPatterns: oa,
+  day: g({
+    matchPatterns: ia,
     defaultMatchWidth: "wide",
-    parsePatterns: sa,
+    parsePatterns: oa,
     defaultParseWidth: "any"
   }),
-  dayPeriod: f({
-    matchPatterns: ua,
+  dayPeriod: g({
+    matchPatterns: sa,
     defaultMatchWidth: "any",
-    parsePatterns: la,
+    parsePatterns: ua,
     defaultParseWidth: "any"
   })
 };
-const Ze = da;
-var ma = {
+const Ze = la;
+var da = {
   code: "en-US",
-  formatDistance: Lt,
-  formatLong: Ft,
+  formatDistance: Et,
+  formatLong: At,
   formatRelative: Je,
   localize: Qe,
   match: Ze,
@@ -538,86 +600,86 @@ var ma = {
     firstWeekContainsDate: 1
   }
 };
-const ca = ma;
-function ha(e, t) {
+const ma = da;
+function ca(e, t) {
   $(2, arguments);
-  var a = E(t);
+  var a = j(t);
   return kt(e, -a);
 }
-var fa = 864e5;
-function ga(e) {
+var ha = 864e5;
+function fa(e) {
   $(1, arguments);
-  var t = T(e), a = t.getTime();
+  var t = O(e), a = t.getTime();
   t.setUTCMonth(0, 1), t.setUTCHours(0, 0, 0, 0);
   var r = t.getTime(), n = a - r;
-  return Math.floor(n / fa) + 1;
+  return Math.floor(n / ha) + 1;
 }
 function ue(e) {
   $(1, arguments);
-  var t = 1, a = T(e), r = a.getUTCDay(), n = (r < t ? 7 : 0) + r - t;
+  var t = 1, a = O(e), r = a.getUTCDay(), n = (r < t ? 7 : 0) + r - t;
   return a.setUTCDate(a.getUTCDate() - n), a.setUTCHours(0, 0, 0, 0), a;
 }
 function Ke(e) {
   $(1, arguments);
-  var t = T(e), a = t.getUTCFullYear(), r = new Date(0);
+  var t = O(e), a = t.getUTCFullYear(), r = new Date(0);
   r.setUTCFullYear(a + 1, 0, 4), r.setUTCHours(0, 0, 0, 0);
   var n = ue(r), i = new Date(0);
   i.setUTCFullYear(a, 0, 4), i.setUTCHours(0, 0, 0, 0);
   var o = ue(i);
   return t.getTime() >= n.getTime() ? a + 1 : t.getTime() >= o.getTime() ? a : a - 1;
 }
-function va(e) {
+function ga(e) {
   $(1, arguments);
   var t = Ke(e), a = new Date(0);
   a.setUTCFullYear(t, 0, 4), a.setUTCHours(0, 0, 0, 0);
   var r = ue(a);
   return r;
 }
-var pa = 6048e5;
-function wa(e) {
+var va = 6048e5;
+function pa(e) {
   $(1, arguments);
-  var t = T(e), a = ue(t).getTime() - va(t).getTime();
-  return Math.round(a / pa) + 1;
+  var t = O(e), a = ue(t).getTime() - ga(t).getTime();
+  return Math.round(a / va) + 1;
 }
-function Z(e, t) {
+function Q(e, t) {
   $(1, arguments);
-  var a = t || {}, r = a.locale, n = r && r.options && r.options.weekStartsOn, i = n == null ? 0 : E(n), o = a.weekStartsOn == null ? i : E(a.weekStartsOn);
+  var a = t || {}, r = a.locale, n = r && r.options && r.options.weekStartsOn, i = n == null ? 0 : j(n), o = a.weekStartsOn == null ? i : j(a.weekStartsOn);
   if (!(o >= 0 && o <= 6))
     throw new RangeError("weekStartsOn must be between 0 and 6 inclusively");
-  var u = T(e), s = u.getUTCDay(), d = (s < o ? 7 : 0) + s - o;
-  return u.setUTCDate(u.getUTCDate() - d), u.setUTCHours(0, 0, 0, 0), u;
+  var u = O(e), s = u.getUTCDay(), l = (s < o ? 7 : 0) + s - o;
+  return u.setUTCDate(u.getUTCDate() - l), u.setUTCHours(0, 0, 0, 0), u;
 }
 function et(e, t) {
   $(1, arguments);
-  var a = T(e), r = a.getUTCFullYear(), n = t || {}, i = n.locale, o = i && i.options && i.options.firstWeekContainsDate, u = o == null ? 1 : E(o), s = n.firstWeekContainsDate == null ? u : E(n.firstWeekContainsDate);
+  var a = O(e), r = a.getUTCFullYear(), n = t || {}, i = n.locale, o = i && i.options && i.options.firstWeekContainsDate, u = o == null ? 1 : j(o), s = n.firstWeekContainsDate == null ? u : j(n.firstWeekContainsDate);
   if (!(s >= 1 && s <= 7))
     throw new RangeError("firstWeekContainsDate must be between 1 and 7 inclusively");
-  var d = new Date(0);
-  d.setUTCFullYear(r + 1, 0, s), d.setUTCHours(0, 0, 0, 0);
-  var l = Z(d, t), m = new Date(0);
-  m.setUTCFullYear(r, 0, s), m.setUTCHours(0, 0, 0, 0);
-  var g = Z(m, t);
-  return a.getTime() >= l.getTime() ? r + 1 : a.getTime() >= g.getTime() ? r : r - 1;
+  var l = new Date(0);
+  l.setUTCFullYear(r + 1, 0, s), l.setUTCHours(0, 0, 0, 0);
+  var m = Q(l, t), d = new Date(0);
+  d.setUTCFullYear(r, 0, s), d.setUTCHours(0, 0, 0, 0);
+  var h = Q(d, t);
+  return a.getTime() >= m.getTime() ? r + 1 : a.getTime() >= h.getTime() ? r : r - 1;
 }
-function ba(e, t) {
+function wa(e, t) {
   $(1, arguments);
-  var a = t || {}, r = a.locale, n = r && r.options && r.options.firstWeekContainsDate, i = n == null ? 1 : E(n), o = a.firstWeekContainsDate == null ? i : E(a.firstWeekContainsDate), u = et(e, t), s = new Date(0);
+  var a = t || {}, r = a.locale, n = r && r.options && r.options.firstWeekContainsDate, i = n == null ? 1 : j(n), o = a.firstWeekContainsDate == null ? i : j(a.firstWeekContainsDate), u = et(e, t), s = new Date(0);
   s.setUTCFullYear(u, 0, o), s.setUTCHours(0, 0, 0, 0);
-  var d = Z(s, t);
-  return d;
+  var l = Q(s, t);
+  return l;
 }
-var ya = 6048e5;
-function Ma(e, t) {
+var ba = 6048e5;
+function ya(e, t) {
   $(1, arguments);
-  var a = T(e), r = Z(a, t).getTime() - ba(a, t).getTime();
-  return Math.round(r / ya) + 1;
+  var a = O(e), r = Q(a, t).getTime() - wa(a, t).getTime();
+  return Math.round(r / ba) + 1;
 }
 function P(e, t) {
   for (var a = e < 0 ? "-" : "", r = Math.abs(e).toString(); r.length < t; )
     r = "0" + r;
   return a + r;
 }
-var Pa = {
+var Ma = {
   y: function(e, t) {
     var a = e.getUTCFullYear(), r = a > 0 ? a : 1 - a;
     return P(t === "yy" ? r % 100 : r, t.length);
@@ -661,7 +723,7 @@ var Pa = {
     return P(n, t.length);
   }
 };
-const G = Pa;
+const G = Ma;
 var B = {
   am: "am",
   pm: "pm",
@@ -671,7 +733,7 @@ var B = {
   afternoon: "afternoon",
   evening: "evening",
   night: "night"
-}, Da = {
+}, Pa = {
   G: function(e, t, a) {
     var r = e.getUTCFullYear() > 0 ? 1 : 0;
     switch (t) {
@@ -835,13 +897,13 @@ var B = {
     }
   },
   w: function(e, t, a, r) {
-    var n = Ma(e, r);
+    var n = ya(e, r);
     return t === "wo" ? a.ordinalNumber(n, {
       unit: "week"
     }) : P(n, t.length);
   },
   I: function(e, t, a) {
-    var r = wa(e);
+    var r = pa(e);
     return t === "Io" ? a.ordinalNumber(r, {
       unit: "week"
     }) : P(r, t.length);
@@ -852,7 +914,7 @@ var B = {
     }) : G.d(e, t);
   },
   D: function(e, t, a) {
-    var r = ga(e);
+    var r = fa(e);
     return t === "Do" ? a.ordinalNumber(r, {
       unit: "dayOfYear"
     }) : P(r, t.length);
@@ -1184,7 +1246,7 @@ function Y(e, t) {
   var a = t || "", r = e > 0 ? "-" : "+", n = Math.abs(e), i = P(Math.floor(n / 60), 2), o = P(n % 60, 2);
   return r + i + a + o;
 }
-const ka = Da;
+const ka = Pa;
 function xe(e, t) {
   switch (e) {
     case "P":
@@ -1227,7 +1289,7 @@ function tt(e, t) {
       });
   }
 }
-function $a(e, t) {
+function Da(e, t) {
   var a = e.match(/(P+)(p+)?/) || [], r = a[1], n = a[2];
   if (!n)
     return xe(e, t);
@@ -1257,17 +1319,17 @@ function $a(e, t) {
   }
   return i.replace("{{date}}", xe(r, t)).replace("{{time}}", tt(n, t));
 }
-var Ca = {
+var $a = {
   p: tt,
-  P: $a
+  P: Da
 };
-const Sa = Ca;
-var Wa = ["D", "DD"], Ta = ["YY", "YYYY"];
-function Oa(e) {
+const Ca = $a;
+var Wa = ["D", "DD"], Sa = ["YY", "YYYY"];
+function Ta(e) {
   return Wa.indexOf(e) !== -1;
 }
-function Na(e) {
-  return Ta.indexOf(e) !== -1;
+function Oa(e) {
+  return Sa.indexOf(e) !== -1;
 }
 function Ee(e, t, a) {
   if (e === "YYYY")
@@ -1279,68 +1341,68 @@ function Ee(e, t, a) {
   if (e === "DD")
     throw new RangeError("Use `dd` instead of `DD` (in `".concat(t, "`) for formatting days of the month to the input `").concat(a, "`; see: https://git.io/fxCyr"));
 }
-var xa = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g, Ea = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g, La = /^'([^]*?)'?$/, ja = /''/g, za = /[a-zA-Z]/;
+var Na = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g, xa = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g, Ea = /^'([^]*?)'?$/, ja = /''/g, La = /[a-zA-Z]/;
 function H(e, t, a) {
   $(2, arguments);
-  var r = String(t), n = a || {}, i = n.locale || ca, o = i.options && i.options.firstWeekContainsDate, u = o == null ? 1 : E(o), s = n.firstWeekContainsDate == null ? u : E(n.firstWeekContainsDate);
+  var r = String(t), n = a || {}, i = n.locale || ma, o = i.options && i.options.firstWeekContainsDate, u = o == null ? 1 : j(o), s = n.firstWeekContainsDate == null ? u : j(n.firstWeekContainsDate);
   if (!(s >= 1 && s <= 7))
     throw new RangeError("firstWeekContainsDate must be between 1 and 7 inclusively");
-  var d = i.options && i.options.weekStartsOn, l = d == null ? 0 : E(d), m = n.weekStartsOn == null ? l : E(n.weekStartsOn);
-  if (!(m >= 0 && m <= 6))
+  var l = i.options && i.options.weekStartsOn, m = l == null ? 0 : j(l), d = n.weekStartsOn == null ? m : j(n.weekStartsOn);
+  if (!(d >= 0 && d <= 6))
     throw new RangeError("weekStartsOn must be between 0 and 6 inclusively");
   if (!i.localize)
     throw new RangeError("locale must contain localize property");
   if (!i.formatLong)
     throw new RangeError("locale must contain formatLong property");
-  var g = T(e);
-  if (!Tt(g))
+  var h = O(e);
+  if (!St(h))
     throw new RangeError("Invalid time value");
-  var b = Ct(g), p = ha(g, b), v = {
+  var M = $t(h), w = ca(h, M), v = {
     firstWeekContainsDate: s,
-    weekStartsOn: m,
+    weekStartsOn: d,
     locale: i,
-    _originalDate: g
-  }, w = r.match(Ea).map(function(D) {
-    var C = D[0];
+    _originalDate: h
+  }, p = r.match(xa).map(function(k) {
+    var C = k[0];
     if (C === "p" || C === "P") {
-      var A = Sa[C];
-      return A(D, i.formatLong, v);
+      var z = Ca[C];
+      return z(k, i.formatLong, v);
     }
-    return D;
-  }).join("").match(xa).map(function(D) {
-    if (D === "''")
+    return k;
+  }).join("").match(Na).map(function(k) {
+    if (k === "''")
       return "'";
-    var C = D[0];
+    var C = k[0];
     if (C === "'")
-      return Aa(D);
-    var A = ka[C];
-    if (A)
-      return !n.useAdditionalWeekYearTokens && Na(D) && Ee(D, t, e), !n.useAdditionalDayOfYearTokens && Oa(D) && Ee(D, t, e), A(p, D, i.localize, v);
-    if (C.match(za))
+      return za(k);
+    var z = ka[C];
+    if (z)
+      return !n.useAdditionalWeekYearTokens && Oa(k) && Ee(k, t, e), !n.useAdditionalDayOfYearTokens && Ta(k) && Ee(k, t, e), z(w, k, i.localize, v);
+    if (C.match(La))
       throw new RangeError("Format string contains an unescaped latin alphabet character `" + C + "`");
-    return D;
+    return k;
   }).join("");
-  return w;
+  return p;
 }
-function Aa(e) {
-  return e.match(La)[1].replace(ja, "'");
+function za(e) {
+  return e.match(Ea)[1].replace(ja, "'");
 }
-function Le(e) {
+function je(e) {
   $(1, arguments);
-  var t = T(e), a = t.getDay();
+  var t = O(e), a = t.getDay();
   return a;
 }
 function _a(e) {
   $(1, arguments);
-  var t = T(e), a = t.getFullYear(), r = t.getMonth(), n = new Date(0);
+  var t = O(e), a = t.getFullYear(), r = t.getMonth(), n = new Date(0);
   return n.setFullYear(a, r + 1, 0), n.setHours(0, 0, 0, 0), n.getDate();
 }
 function le(e, t, a) {
   $(2, arguments);
-  var r = Z(e, a), n = Z(t, a);
+  var r = Q(e, a), n = Q(t, a);
   return r.getTime() === n.getTime();
 }
-var U = {
+var R = {
   lessThanXSeconds: {
     one: "menys d'un segon",
     eleven: "menys d'onze segons",
@@ -1406,49 +1468,49 @@ var U = {
     other: "gaireb\xE9 {{count}} anys"
   }
 };
-function Fa(e, t, a) {
+function Aa(e, t, a) {
   a = a || {};
   var r;
-  return typeof U[e] == "string" ? r = U[e] : t === 1 ? r = U[e].one : t === 11 && U[e].eleven ? r = U[e].eleven : r = U[e].other.replace("{{count}}", t), a.addSuffix ? a.comparison > 0 ? "en " + r : "fa " + r : r;
+  return typeof R[e] == "string" ? r = R[e] : t === 1 ? r = R[e].one : t === 11 && R[e].eleven ? r = R[e].eleven : r = R[e].other.replace("{{count}}", t), a.addSuffix ? a.comparison > 0 ? "en " + r : "fa " + r : r;
 }
-var Ia = {
+var Fa = {
   full: "EEEE, d 'de' MMMM y",
   long: "d 'de' MMMM y",
   medium: "d MMM y",
   short: "dd/MM/y"
-}, qa = {
+}, Ia = {
   full: "HH:mm:ss zzzz",
   long: "HH:mm:ss z",
   medium: "HH:mm:ss",
   short: "HH:mm"
-}, Ha = {
+}, qa = {
   full: "{{date}} 'a les' {{time}}",
   long: "{{date}} 'a les' {{time}}",
   medium: "{{date}}, {{time}}",
   short: "{{date}}, {{time}}"
-}, Ga = {
-  date: M({
+}, Ha = {
+  date: y({
+    formats: Fa,
+    defaultWidth: "full"
+  }),
+  time: y({
     formats: Ia,
     defaultWidth: "full"
   }),
-  time: M({
+  dateTime: y({
     formats: qa,
-    defaultWidth: "full"
-  }),
-  dateTime: M({
-    formats: Ha,
     defaultWidth: "full"
   })
 };
-const Ya = Ga;
-var Xa = {
+const Ga = Ha;
+var Ya = {
   lastWeek: "'el' eeee 'passat a la' LT",
   yesterday: "'ahir a la' p",
   today: "'avui a la' p",
   tomorrow: "'dem\xE0 a la' p",
   nextWeek: "eeee 'a la' p",
   other: "P"
-}, Ra = {
+}, Xa = {
   lastWeek: "'el' eeee 'passat a les' p",
   yesterday: "'ahir a les' p",
   today: "'avui a les' p",
@@ -1457,26 +1519,26 @@ var Xa = {
   other: "P"
 };
 function Va(e, t, a, r) {
-  return t.getUTCHours() !== 1 ? Ra[e] : Xa[e];
+  return t.getUTCHours() !== 1 ? Xa[e] : Ya[e];
 }
 var Ba = {
   narrow: ["aC", "dC"],
   abbreviated: ["a. de C.", "d. de C."],
   wide: ["abans de Crist", "despr\xE9s de Crist"]
-}, Ua = {
+}, Ra = {
   narrow: ["1", "2", "3", "4"],
   abbreviated: ["T1", "T2", "T3", "T4"],
   wide: ["1r trimestre", "2n trimestre", "3r trimestre", "4t trimestre"]
-}, Ja = {
+}, Ua = {
   narrow: ["GN", "FB", "M\xC7", "AB", "MG", "JN", "JL", "AG", "ST", "OC", "NV", "DS"],
   abbreviated: ["gen.", "febr.", "mar\xE7", "abr.", "maig", "juny", "jul.", "ag.", "set.", "oct.", "nov.", "des."],
   wide: ["gener", "febrer", "mar\xE7", "abril", "maig", "juny", "juliol", "agost", "setembre", "octubre", "novembre", "desembre"]
-}, Qa = {
+}, Ja = {
   narrow: ["dg.", "dl.", "dt.", "dm.", "dj.", "dv.", "ds."],
   short: ["dg.", "dl.", "dt.", "dm.", "dj.", "dv.", "ds."],
   abbreviated: ["dg.", "dl.", "dt.", "dm.", "dj.", "dv.", "ds."],
   wide: ["diumenge", "dilluns", "dimarts", "dimecres", "dijous", "divendres", "dissabte"]
-}, Za = {
+}, Qa = {
   narrow: {
     am: "am",
     pm: "pm",
@@ -1507,7 +1569,7 @@ var Ba = {
     evening: "vespre",
     night: "nit"
   }
-}, Ka = {
+}, Za = {
   narrow: {
     am: "am",
     pm: "pm",
@@ -1539,7 +1601,7 @@ var Ba = {
     night: "de la nit"
   }
 };
-function er(e, t) {
+function Ka(e, t) {
   var a = Number(e), r = a % 100;
   if (r > 20 || r < 10)
     switch (r % 10) {
@@ -1554,71 +1616,71 @@ function er(e, t) {
     }
   return a + "\xE8";
 }
-var tr = {
-  ordinalNumber: er,
-  era: h({
+var er = {
+  ordinalNumber: Ka,
+  era: f({
     values: Ba,
     defaultWidth: "wide"
   }),
-  quarter: h({
-    values: Ua,
+  quarter: f({
+    values: Ra,
     defaultWidth: "wide",
     argumentCallback: function(e) {
       return Number(e) - 1;
     }
   }),
-  month: h({
+  month: f({
+    values: Ua,
+    defaultWidth: "wide"
+  }),
+  day: f({
     values: Ja,
     defaultWidth: "wide"
   }),
-  day: h({
+  dayPeriod: f({
     values: Qa,
-    defaultWidth: "wide"
-  }),
-  dayPeriod: h({
-    values: Za,
     defaultWidth: "wide",
-    formattingValues: Ka,
+    formattingValues: Za,
     defaultFormattingWidth: "wide"
   })
 };
-const ar = tr;
-var rr = /^(\d+)(è|r|n|r|t)?/i, nr = /\d+/i, ir = {
+const tr = er;
+var ar = /^(\d+)(è|r|n|r|t)?/i, rr = /\d+/i, nr = {
   narrow: /^(aC|dC)/i,
   abbreviated: /^(a. de C.|d. de C.)/i,
   wide: /^(abans de Crist|despr[eé]s de Crist)/i
-}, or = {
+}, ir = {
   narrow: [/^aC/i, /^dC/i],
   abbreviated: [/^(a. de C.)/i, /^(d. de C.)/i],
   wide: [/^(abans de Crist)/i, /^(despr[eé]s de Crist)/i]
-}, sr = {
+}, or = {
   narrow: /^[1234]/i,
   abbreviated: /^T[1234]/i,
   wide: /^[1234](è|r|n|r|t)? trimestre/i
-}, ur = {
+}, sr = {
   any: [/1/i, /2/i, /3/i, /4/i]
-}, lr = {
+}, ur = {
   narrow: /^(GN|FB|MÇ|AB|MG|JN|JL|AG|ST|OC|NV|DS)/i,
   abbreviated: /^(gen.|febr.|març|abr.|maig|juny|jul.|ag.|set.|oct.|nov.|des.)/i,
   wide: /^(gener|febrer|març|abril|maig|juny|juliol|agost|setembre|octubre|novembre|desembre)/i
-}, dr = {
+}, lr = {
   narrow: [/^GN/i, /^FB/i, /^MÇ/i, /^AB/i, /^MG/i, /^JN/i, /^JL/i, /^AG/i, /^ST/i, /^OC/i, /^NV/i, /^DS/i],
   abbreviated: [/^gen./i, /^febr./i, /^març/i, /^abr./i, /^maig/i, /^juny/i, /^jul./i, /^ag./i, /^set./i, /^oct./i, /^nov./i, /^des./i],
   wide: [/^gener/i, /^febrer/i, /^març/i, /^abril/i, /^maig/i, /^juny/i, /^juliol/i, /^agost/i, /^setembre/i, /^octubre/i, /^novembre/i, /^desembre/i]
-}, mr = {
+}, dr = {
   narrow: /^(dg\.|dl\.|dt\.|dm\.|dj\.|dv\.|ds\.)/i,
   short: /^(dg\.|dl\.|dt\.|dm\.|dj\.|dv\.|ds\.)/i,
   abbreviated: /^(dg\.|dl\.|dt\.|dm\.|dj\.|dv\.|ds\.)/i,
   wide: /^(diumenge|dilluns|dimarts|dimecres|dijous|divendres|dissabte)/i
-}, cr = {
+}, mr = {
   narrow: [/^dg./i, /^dl./i, /^dt./i, /^dm./i, /^dj./i, /^dv./i, /^ds./i],
   abbreviated: [/^dg./i, /^dl./i, /^dt./i, /^dm./i, /^dj./i, /^dv./i, /^ds./i],
   wide: [/^diumenge/i, /^dilluns/i, /^dimarts/i, /^dimecres/i, /^dijous/i, /^divendres/i, /^disssabte/i]
-}, hr = {
+}, cr = {
   narrow: /^(a|p|mn|md|(del|de la) (matí|tarda|vespre|nit))/i,
   abbreviated: /^([ap]\.?\s?m\.?|mitjanit|migdia|(del|de la) (matí|tarda|vespre|nit))/i,
   wide: /^(ante meridiem|post meridiem|mitjanit|migdia|(del|de la) (matí|tarda|vespre|nit))/i
-}, fr = {
+}, hr = {
   any: {
     am: /^a/i,
     pm: /^p/i,
@@ -1629,62 +1691,62 @@ var rr = /^(\d+)(è|r|n|r|t)?/i, nr = /\d+/i, ir = {
     evening: /vespre/i,
     night: /nit/i
   }
-}, gr = {
+}, fr = {
   ordinalNumber: q({
-    matchPattern: rr,
-    parsePattern: nr,
+    matchPattern: ar,
+    parsePattern: rr,
     valueCallback: function(e) {
       return parseInt(e, 10);
     }
   }),
-  era: f({
-    matchPatterns: ir,
+  era: g({
+    matchPatterns: nr,
     defaultMatchWidth: "wide",
-    parsePatterns: or,
+    parsePatterns: ir,
     defaultParseWidth: "any"
   }),
-  quarter: f({
-    matchPatterns: sr,
+  quarter: g({
+    matchPatterns: or,
     defaultMatchWidth: "wide",
-    parsePatterns: ur,
+    parsePatterns: sr,
     defaultParseWidth: "any",
     valueCallback: function(e) {
       return e + 1;
     }
   }),
-  month: f({
-    matchPatterns: lr,
+  month: g({
+    matchPatterns: ur,
     defaultMatchWidth: "wide",
-    parsePatterns: dr,
+    parsePatterns: lr,
     defaultParseWidth: "any"
   }),
-  day: f({
-    matchPatterns: mr,
+  day: g({
+    matchPatterns: dr,
     defaultMatchWidth: "wide",
-    parsePatterns: cr,
+    parsePatterns: mr,
     defaultParseWidth: "any"
   }),
-  dayPeriod: f({
-    matchPatterns: hr,
+  dayPeriod: g({
+    matchPatterns: cr,
     defaultMatchWidth: "any",
-    parsePatterns: fr,
+    parsePatterns: hr,
     defaultParseWidth: "any"
   })
 };
-const vr = gr;
-var pr = {
+const gr = fr;
+var vr = {
   code: "ca",
-  formatDistance: Fa,
-  formatLong: Ya,
+  formatDistance: Aa,
+  formatLong: Ga,
   formatRelative: Va,
-  localize: ar,
-  match: vr,
+  localize: tr,
+  match: gr,
   options: {
     weekStartsOn: 1,
     firstWeekContainsDate: 4
   }
 };
-const wr = pr;
+const pr = vr;
 var ne = {
   lessThanXSeconds: {
     one: "mindre end \xE9t sekund",
@@ -1748,42 +1810,42 @@ var ne = {
     other: "n\xE6sten {{count}} \xE5r"
   }
 };
-function br(e, t, a) {
+function wr(e, t, a) {
   a = a || {};
   var r;
   return typeof ne[e] == "string" ? r = ne[e] : t === 1 ? r = ne[e].one : r = ne[e].other.replace("{{count}}", t), a.addSuffix ? a.comparison > 0 ? "om " + r : r + " siden" : r;
 }
-var yr = {
+var br = {
   full: "EEEE 'den' d. MMMM y",
   long: "d. MMMM y",
   medium: "d. MMM y",
   short: "dd/MM/y"
-}, Mr = {
+}, yr = {
   full: "HH:mm:ss zzzz",
   long: "HH:mm:ss z",
   medium: "HH:mm:ss",
   short: "HH:mm"
-}, Pr = {
+}, Mr = {
   full: "{{date}} 'kl'. {{time}}",
   long: "{{date}} 'kl'. {{time}}",
   medium: "{{date}} {{time}}",
   short: "{{date}} {{time}}"
-}, Dr = {
-  date: M({
+}, Pr = {
+  date: y({
+    formats: br,
+    defaultWidth: "full"
+  }),
+  time: y({
     formats: yr,
     defaultWidth: "full"
   }),
-  time: M({
+  dateTime: y({
     formats: Mr,
-    defaultWidth: "full"
-  }),
-  dateTime: M({
-    formats: Pr,
     defaultWidth: "full"
   })
 };
-const kr = Dr;
-var $r = {
+const kr = Pr;
+var Dr = {
   lastWeek: "'sidste' eeee 'kl.' p",
   yesterday: "'i g\xE5r kl.' p",
   today: "'i dag kl.' p",
@@ -1791,10 +1853,10 @@ var $r = {
   nextWeek: "'p\xE5' eeee 'kl.' p",
   other: "P"
 };
-function Cr(e, t, a, r) {
-  return $r[e];
+function $r(e, t, a, r) {
+  return Dr[e];
 }
-var Sr = {
+var Cr = {
   narrow: ["fvt", "vt"],
   abbreviated: ["f.v.t.", "v.t."],
   wide: ["f\xF8r vesterlandsk tidsregning", "vesterlandsk tidsregning"]
@@ -1802,52 +1864,52 @@ var Sr = {
   narrow: ["1", "2", "3", "4"],
   abbreviated: ["1. kvt.", "2. kvt.", "3. kvt.", "4. kvt."],
   wide: ["1. kvartal", "2. kvartal", "3. kvartal", "4. kvartal"]
-}, Tr = {
+}, Sr = {
   narrow: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
   abbreviated: ["jan.", "feb.", "mar.", "apr.", "maj", "jun.", "jul.", "aug.", "sep.", "okt.", "nov.", "dec."],
   wide: ["januar", "februar", "marts", "april", "maj", "juni", "juli", "august", "september", "oktober", "november", "december"]
-}, Or = {
+}, Tr = {
   narrow: ["S", "M", "T", "O", "T", "F", "L"],
   short: ["s\xF8", "ma", "ti", "on", "to", "fr", "l\xF8"],
   abbreviated: ["s\xF8n.", "man.", "tir.", "ons.", "tor.", "fre.", "l\xF8r."],
   wide: ["s\xF8ndag", "mandag", "tirsdag", "onsdag", "torsdag", "fredag", "l\xF8rdag"]
+}, Or = {
+  narrow: {
+    am: "a",
+    pm: "p",
+    midnight: "midnat",
+    noon: "middag",
+    morning: "morgen",
+    afternoon: "eftermiddag",
+    evening: "aften",
+    night: "nat"
+  },
+  abbreviated: {
+    am: "AM",
+    pm: "PM",
+    midnight: "midnat",
+    noon: "middag",
+    morning: "morgen",
+    afternoon: "eftermiddag",
+    evening: "aften",
+    night: "nat"
+  },
+  wide: {
+    am: "a.m.",
+    pm: "p.m.",
+    midnight: "midnat",
+    noon: "middag",
+    morning: "morgen",
+    afternoon: "eftermiddag",
+    evening: "aften",
+    night: "nat"
+  }
 }, Nr = {
   narrow: {
     am: "a",
     pm: "p",
     midnight: "midnat",
     noon: "middag",
-    morning: "morgen",
-    afternoon: "eftermiddag",
-    evening: "aften",
-    night: "nat"
-  },
-  abbreviated: {
-    am: "AM",
-    pm: "PM",
-    midnight: "midnat",
-    noon: "middag",
-    morning: "morgen",
-    afternoon: "eftermiddag",
-    evening: "aften",
-    night: "nat"
-  },
-  wide: {
-    am: "a.m.",
-    pm: "p.m.",
-    midnight: "midnat",
-    noon: "middag",
-    morning: "morgen",
-    afternoon: "eftermiddag",
-    evening: "aften",
-    night: "nat"
-  }
-}, xr = {
-  narrow: {
-    am: "a",
-    pm: "p",
-    midnight: "midnat",
-    noon: "middag",
     morning: "om morgenen",
     afternoon: "om eftermiddagen",
     evening: "om aftenen",
@@ -1874,67 +1936,67 @@ var Sr = {
     night: "om natten"
   }
 };
-function Er(e) {
+function xr(e) {
   var t = Number(e);
   return t + ".";
 }
-var Lr = {
-  ordinalNumber: Er,
-  era: h({
-    values: Sr,
+var Er = {
+  ordinalNumber: xr,
+  era: f({
+    values: Cr,
     defaultWidth: "wide"
   }),
-  quarter: h({
+  quarter: f({
     values: Wr,
     defaultWidth: "wide",
     argumentCallback: function(e) {
       return Number(e) - 1;
     }
   }),
-  month: h({
+  month: f({
+    values: Sr,
+    defaultWidth: "wide"
+  }),
+  day: f({
     values: Tr,
     defaultWidth: "wide"
   }),
-  day: h({
+  dayPeriod: f({
     values: Or,
-    defaultWidth: "wide"
-  }),
-  dayPeriod: h({
-    values: Nr,
     defaultWidth: "wide",
-    formattingValues: xr,
+    formattingValues: Nr,
     defaultFormattingWidth: "wide"
   })
 };
-const jr = Lr;
-var zr = /^(\d+)(\.)?/i, Ar = /\d+/i, _r = {
+const jr = Er;
+var Lr = /^(\d+)(\.)?/i, zr = /\d+/i, _r = {
   narrow: /^(fKr|fvt|eKr|vt)/i,
   abbreviated: /^(f\.Kr\.?|f\.v\.t\.?|e\.Kr\.?|v\.t\.)/i,
   wide: /^(f.Kr.|før vesterlandsk tidsregning|e.Kr.|vesterlandsk tidsregning)/i
-}, Fr = {
+}, Ar = {
   any: [/^f/i, /^(v|e)/i]
-}, Ir = {
+}, Fr = {
   narrow: /^[1234]/i,
   abbreviated: /^[1234]. kvt\./i,
   wide: /^[1234]\.? kvartal/i
-}, qr = {
+}, Ir = {
   any: [/1/i, /2/i, /3/i, /4/i]
-}, Hr = {
+}, qr = {
   narrow: /^[jfmasond]/i,
   abbreviated: /^(jan.|feb.|mar.|apr.|maj|jun.|jul.|aug.|sep.|okt.|nov.|dec.)/i,
   wide: /^(januar|februar|marts|april|maj|juni|juli|august|september|oktober|november|december)/i
-}, Gr = {
+}, Hr = {
   narrow: [/^j/i, /^f/i, /^m/i, /^a/i, /^m/i, /^j/i, /^j/i, /^a/i, /^s/i, /^o/i, /^n/i, /^d/i],
   any: [/^ja/i, /^f/i, /^mar/i, /^ap/i, /^maj/i, /^jun/i, /^jul/i, /^au/i, /^s/i, /^o/i, /^n/i, /^d/i]
-}, Yr = {
+}, Gr = {
   narrow: /^[smtofl]/i,
   short: /^(søn.|man.|tir.|ons.|tor.|fre.|lør.)/i,
   abbreviated: /^(søn|man|tir|ons|tor|fre|lør)/i,
   wide: /^(søndag|mandag|tirsdag|onsdag|torsdag|fredag|lørdag)/i
-}, Xr = {
+}, Yr = {
   narrow: [/^s/i, /^m/i, /^t/i, /^o/i, /^t/i, /^f/i, /^l/i],
   any: [/^s/i, /^m/i, /^ti/i, /^o/i, /^to/i, /^f/i, /^l/i]
-}, Rr = {
+}, Xr = {
   narrow: /^(a|p|midnat|middag|(om) (morgenen|eftermiddagen|aftenen|natten))/i,
   any: /^([ap]\.?\s?m\.?|midnat|middag|(om) (morgenen|eftermiddagen|aftenen|natten))/i
 }, Vr = {
@@ -1950,61 +2012,61 @@ var zr = /^(\d+)(\.)?/i, Ar = /\d+/i, _r = {
   }
 }, Br = {
   ordinalNumber: q({
-    matchPattern: zr,
-    parsePattern: Ar,
+    matchPattern: Lr,
+    parsePattern: zr,
     valueCallback: function(e) {
       return parseInt(e, 10);
     }
   }),
-  era: f({
+  era: g({
     matchPatterns: _r,
     defaultMatchWidth: "wide",
-    parsePatterns: Fr,
+    parsePatterns: Ar,
     defaultParseWidth: "any"
   }),
-  quarter: f({
-    matchPatterns: Ir,
+  quarter: g({
+    matchPatterns: Fr,
     defaultMatchWidth: "wide",
-    parsePatterns: qr,
+    parsePatterns: Ir,
     defaultParseWidth: "any",
     valueCallback: function(e) {
       return e + 1;
     }
   }),
-  month: f({
-    matchPatterns: Hr,
+  month: g({
+    matchPatterns: qr,
     defaultMatchWidth: "wide",
-    parsePatterns: Gr,
+    parsePatterns: Hr,
     defaultParseWidth: "any"
   }),
-  day: f({
-    matchPatterns: Yr,
+  day: g({
+    matchPatterns: Gr,
     defaultMatchWidth: "wide",
-    parsePatterns: Xr,
+    parsePatterns: Yr,
     defaultParseWidth: "any"
   }),
-  dayPeriod: f({
-    matchPatterns: Rr,
+  dayPeriod: g({
+    matchPatterns: Xr,
     defaultMatchWidth: "any",
     parsePatterns: Vr,
     defaultParseWidth: "any"
   })
 };
-const Ur = Br;
-var Jr = {
+const Rr = Br;
+var Ur = {
   code: "da",
-  formatDistance: br,
+  formatDistance: wr,
   formatLong: kr,
-  formatRelative: Cr,
+  formatRelative: $r,
   localize: jr,
-  match: Ur,
+  match: Rr,
   options: {
     weekStartsOn: 1,
     firstWeekContainsDate: 4
   }
 };
-const Qr = Jr;
-var je = {
+const Jr = Ur;
+var Le = {
   lessThanXSeconds: {
     standalone: {
       one: "weniger als 1 Sekunde",
@@ -2159,57 +2221,57 @@ var je = {
       other: "fast {{count}} Jahren"
     }
   }
-}, Zr = function(e, t, a) {
-  var r, n = a != null && a.addSuffix ? je[e].withPreposition : je[e].standalone;
+}, Qr = function(e, t, a) {
+  var r, n = a != null && a.addSuffix ? Le[e].withPreposition : Le[e].standalone;
   return typeof n == "string" ? r = n : t === 1 ? r = n.one : r = n.other.replace("{{count}}", String(t)), a != null && a.addSuffix ? a.comparison && a.comparison > 0 ? "in " + r : "vor " + r : r;
 };
-const Kr = Zr;
-var en = {
+const Zr = Qr;
+var Kr = {
   full: "EEEE, do MMMM y",
   long: "do MMMM y",
   medium: "do MMM y",
   short: "dd.MM.y"
-}, tn = {
+}, en = {
   full: "HH:mm:ss zzzz",
   long: "HH:mm:ss z",
   medium: "HH:mm:ss",
   short: "HH:mm"
-}, an = {
+}, tn = {
   full: "{{date}} 'um' {{time}}",
   long: "{{date}} 'um' {{time}}",
   medium: "{{date}} {{time}}",
   short: "{{date}} {{time}}"
-}, rn = {
-  date: M({
+}, an = {
+  date: y({
+    formats: Kr,
+    defaultWidth: "full"
+  }),
+  time: y({
     formats: en,
     defaultWidth: "full"
   }),
-  time: M({
+  dateTime: y({
     formats: tn,
-    defaultWidth: "full"
-  }),
-  dateTime: M({
-    formats: an,
     defaultWidth: "full"
   })
 };
-const nn = rn;
-var on = {
+const rn = an;
+var nn = {
   lastWeek: "'letzten' eeee 'um' p",
   yesterday: "'gestern um' p",
   today: "'heute um' p",
   tomorrow: "'morgen um' p",
   nextWeek: "eeee 'um' p",
   other: "P"
-}, sn = function(e, t, a, r) {
-  return on[e];
+}, on = function(e, t, a, r) {
+  return nn[e];
 };
-const un = sn;
-var ln = {
+const sn = on;
+var un = {
   narrow: ["v.Chr.", "n.Chr."],
   abbreviated: ["v.Chr.", "n.Chr."],
   wide: ["vor Christus", "nach Christus"]
-}, dn = {
+}, ln = {
   narrow: ["1", "2", "3", "4"],
   abbreviated: ["Q1", "Q2", "Q3", "Q4"],
   wide: ["1. Quartal", "2. Quartal", "3. Quartal", "4. Quartal"]
@@ -2217,16 +2279,16 @@ var ln = {
   narrow: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
   abbreviated: ["Jan", "Feb", "M\xE4r", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
   wide: ["Januar", "Februar", "M\xE4rz", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
-}, mn = {
+}, dn = {
   narrow: ye.narrow,
   abbreviated: ["Jan.", "Feb.", "M\xE4rz", "Apr.", "Mai", "Juni", "Juli", "Aug.", "Sep.", "Okt.", "Nov.", "Dez."],
   wide: ye.wide
-}, cn = {
+}, mn = {
   narrow: ["S", "M", "D", "M", "D", "F", "S"],
   short: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
   abbreviated: ["So.", "Mo.", "Di.", "Mi.", "Do.", "Fr.", "Sa."],
   wide: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"]
-}, hn = {
+}, cn = {
   narrow: {
     am: "vm.",
     pm: "nm.",
@@ -2257,7 +2319,7 @@ var ln = {
     evening: "Abend",
     night: "Nacht"
   }
-}, fn = {
+}, hn = {
   narrow: {
     am: "vm.",
     pm: "nm.",
@@ -2288,70 +2350,70 @@ var ln = {
     evening: "abends",
     night: "nachts"
   }
-}, gn = function(e) {
+}, fn = function(e) {
   var t = Number(e);
   return t + ".";
-}, vn = {
-  ordinalNumber: gn,
-  era: h({
-    values: ln,
+}, gn = {
+  ordinalNumber: fn,
+  era: f({
+    values: un,
     defaultWidth: "wide"
   }),
-  quarter: h({
-    values: dn,
+  quarter: f({
+    values: ln,
     defaultWidth: "wide",
     argumentCallback: function(e) {
       return e - 1;
     }
   }),
-  month: h({
+  month: f({
     values: ye,
-    formattingValues: mn,
+    formattingValues: dn,
     defaultWidth: "wide"
   }),
-  day: h({
+  day: f({
+    values: mn,
+    defaultWidth: "wide"
+  }),
+  dayPeriod: f({
     values: cn,
-    defaultWidth: "wide"
-  }),
-  dayPeriod: h({
-    values: hn,
     defaultWidth: "wide",
-    formattingValues: fn,
+    formattingValues: hn,
     defaultFormattingWidth: "wide"
   })
 };
-const pn = vn;
-var wn = /^(\d+)(\.)?/i, bn = /\d+/i, yn = {
+const vn = gn;
+var pn = /^(\d+)(\.)?/i, wn = /\d+/i, bn = {
   narrow: /^(v\.? ?Chr\.?|n\.? ?Chr\.?)/i,
   abbreviated: /^(v\.? ?Chr\.?|n\.? ?Chr\.?)/i,
   wide: /^(vor Christus|vor unserer Zeitrechnung|nach Christus|unserer Zeitrechnung)/i
-}, Mn = {
+}, yn = {
   any: [/^v/i, /^n/i]
-}, Pn = {
+}, Mn = {
   narrow: /^[1234]/i,
   abbreviated: /^q[1234]/i,
   wide: /^[1234](\.)? Quartal/i
-}, Dn = {
+}, Pn = {
   any: [/1/i, /2/i, /3/i, /4/i]
 }, kn = {
   narrow: /^[jfmasond]/i,
   abbreviated: /^(j[aä]n|feb|mär[z]?|apr|mai|jun[i]?|jul[i]?|aug|sep|okt|nov|dez)\.?/i,
   wide: /^(januar|februar|märz|april|mai|juni|juli|august|september|oktober|november|dezember)/i
-}, $n = {
+}, Dn = {
   narrow: [/^j/i, /^f/i, /^m/i, /^a/i, /^m/i, /^j/i, /^j/i, /^a/i, /^s/i, /^o/i, /^n/i, /^d/i],
   any: [/^j[aä]/i, /^f/i, /^mär/i, /^ap/i, /^mai/i, /^jun/i, /^jul/i, /^au/i, /^s/i, /^o/i, /^n/i, /^d/i]
-}, Cn = {
+}, $n = {
   narrow: /^[smdmf]/i,
   short: /^(so|mo|di|mi|do|fr|sa)/i,
   abbreviated: /^(son?|mon?|die?|mit?|don?|fre?|sam?)\.?/i,
   wide: /^(sonntag|montag|dienstag|mittwoch|donnerstag|freitag|samstag)/i
-}, Sn = {
+}, Cn = {
   any: [/^so/i, /^mo/i, /^di/i, /^mi/i, /^do/i, /^f/i, /^sa/i]
 }, Wn = {
   narrow: /^(vm\.?|nm\.?|Mitternacht|Mittag|morgens|nachm\.?|abends|nachts)/i,
   abbreviated: /^(vorm\.?|nachm\.?|Mitternacht|Mittag|morgens|nachm\.?|abends|nachts)/i,
   wide: /^(vormittags|nachmittags|Mitternacht|Mittag|morgens|nachmittags|abends|nachts)/i
-}, Tn = {
+}, Sn = {
   any: {
     am: /^v/i,
     pm: /^n/i,
@@ -2362,63 +2424,63 @@ var wn = /^(\d+)(\.)?/i, bn = /\d+/i, yn = {
     evening: /abends/i,
     night: /nachts/i
   }
-}, On = {
+}, Tn = {
   ordinalNumber: q({
-    matchPattern: wn,
-    parsePattern: bn,
+    matchPattern: pn,
+    parsePattern: wn,
     valueCallback: function(e) {
       return parseInt(e);
     }
   }),
-  era: f({
-    matchPatterns: yn,
+  era: g({
+    matchPatterns: bn,
     defaultMatchWidth: "wide",
-    parsePatterns: Mn,
+    parsePatterns: yn,
     defaultParseWidth: "any"
   }),
-  quarter: f({
-    matchPatterns: Pn,
+  quarter: g({
+    matchPatterns: Mn,
     defaultMatchWidth: "wide",
-    parsePatterns: Dn,
+    parsePatterns: Pn,
     defaultParseWidth: "any",
     valueCallback: function(e) {
       return e + 1;
     }
   }),
-  month: f({
+  month: g({
     matchPatterns: kn,
     defaultMatchWidth: "wide",
-    parsePatterns: $n,
+    parsePatterns: Dn,
     defaultParseWidth: "any"
   }),
-  day: f({
-    matchPatterns: Cn,
+  day: g({
+    matchPatterns: $n,
+    defaultMatchWidth: "wide",
+    parsePatterns: Cn,
+    defaultParseWidth: "any"
+  }),
+  dayPeriod: g({
+    matchPatterns: Wn,
     defaultMatchWidth: "wide",
     parsePatterns: Sn,
     defaultParseWidth: "any"
-  }),
-  dayPeriod: f({
-    matchPatterns: Wn,
-    defaultMatchWidth: "wide",
-    parsePatterns: Tn,
-    defaultParseWidth: "any"
   })
 };
-const Nn = On;
-var xn = {
+const On = Tn;
+var Nn = {
   code: "de",
-  formatDistance: Kr,
-  formatLong: nn,
-  formatRelative: un,
-  localize: pn,
-  match: Nn,
+  formatDistance: Zr,
+  formatLong: rn,
+  formatRelative: sn,
+  localize: vn,
+  match: On,
   options: {
     weekStartsOn: 1,
     firstWeekContainsDate: 4
   }
 };
-const En = xn;
-var Ln = {
+const xn = Nn;
+var En = {
   lessThanXSeconds: {
     one: "less than a second",
     other: "less than {{count}} seconds"
@@ -2481,11 +2543,11 @@ var Ln = {
     other: "almost {{count}} years"
   }
 }, jn = function(e, t, a) {
-  var r, n = Ln[e];
+  var r, n = En[e];
   return typeof n == "string" ? r = n : t === 1 ? r = n.one : r = n.other.replace("{{count}}", t.toString()), a != null && a.addSuffix ? a.comparison && a.comparison > 0 ? "in " + r : r + " ago" : r;
 };
-const zn = jn;
-var An = {
+const Ln = jn;
+var zn = {
   full: "EEEE, MMMM do, yyyy",
   long: "MMMM do, yyyy",
   medium: "MMM d, yyyy",
@@ -2495,30 +2557,30 @@ var An = {
   long: "h:mm:ss a z",
   medium: "h:mm:ss a",
   short: "h:mm a"
-}, Fn = {
+}, An = {
   full: "{{date}} 'at' {{time}}",
   long: "{{date}} 'at' {{time}}",
   medium: "{{date}}, {{time}}",
   short: "{{date}}, {{time}}"
-}, In = {
-  date: M({
-    formats: An,
+}, Fn = {
+  date: y({
+    formats: zn,
     defaultWidth: "full"
   }),
-  time: M({
+  time: y({
     formats: _n,
     defaultWidth: "full"
   }),
-  dateTime: M({
-    formats: Fn,
+  dateTime: y({
+    formats: An,
     defaultWidth: "full"
   })
 };
-const qn = In;
-var Hn = {
+const In = Fn;
+var qn = {
   code: "en-CA",
-  formatDistance: zn,
-  formatLong: qn,
+  formatDistance: Ln,
+  formatLong: In,
   formatRelative: Je,
   localize: Qe,
   match: Ze,
@@ -2527,8 +2589,8 @@ var Hn = {
     firstWeekContainsDate: 1
   }
 };
-const Gn = Hn;
-var Yn = {
+const Hn = qn;
+var Gn = {
   lessThanXSeconds: {
     one: "menos de un segundo",
     other: "menos de {{count}} segundos"
@@ -2590,11 +2652,11 @@ var Yn = {
     one: "casi 1 a\xF1o",
     other: "casi {{count}} a\xF1os"
   }
-}, Xn = function(e, t, a) {
-  var r, n = Yn[e];
+}, Yn = function(e, t, a) {
+  var r, n = Gn[e];
   return typeof n == "string" ? r = n : t === 1 ? r = n.one : r = n.other.replace("{{count}}", t.toString()), a != null && a.addSuffix ? a.comparison && a.comparison > 0 ? "en " + r : "hace " + r : r;
 };
-const Rn = Xn;
+const Xn = Yn;
 var Vn = {
   full: "EEEE, d 'de' MMMM 'de' y",
   long: "d 'de' MMMM 'de' y",
@@ -2605,98 +2667,98 @@ var Vn = {
   long: "HH:mm:ss z",
   medium: "HH:mm:ss",
   short: "HH:mm"
-}, Un = {
+}, Rn = {
   full: "{{date}} 'a las' {{time}}",
   long: "{{date}} 'a las' {{time}}",
   medium: "{{date}}, {{time}}",
   short: "{{date}}, {{time}}"
-}, Jn = {
-  date: M({
+}, Un = {
+  date: y({
     formats: Vn,
     defaultWidth: "full"
   }),
-  time: M({
+  time: y({
     formats: Bn,
     defaultWidth: "full"
   }),
-  dateTime: M({
-    formats: Un,
+  dateTime: y({
+    formats: Rn,
     defaultWidth: "full"
   })
 };
-const Qn = Jn;
-var Zn = {
+const Jn = Un;
+var Qn = {
   lastWeek: "'el' eeee 'pasado a la' p",
   yesterday: "'ayer a la' p",
   today: "'hoy a la' p",
   tomorrow: "'ma\xF1ana a la' p",
   nextWeek: "eeee 'a la' p",
   other: "P"
-}, Kn = {
+}, Zn = {
   lastWeek: "'el' eeee 'pasado a las' p",
   yesterday: "'ayer a las' p",
   today: "'hoy a las' p",
   tomorrow: "'ma\xF1ana a las' p",
   nextWeek: "eeee 'a las' p",
   other: "P"
-}, ei = function(e, t, a, r) {
-  return t.getUTCHours() !== 1 ? Kn[e] : Zn[e];
+}, Kn = function(e, t, a, r) {
+  return t.getUTCHours() !== 1 ? Zn[e] : Qn[e];
 };
-const ti = ei;
-var ai = {
+const ei = Kn;
+var ti = {
   narrow: ["AC", "DC"],
   abbreviated: ["AC", "DC"],
   wide: ["antes de cristo", "despu\xE9s de cristo"]
-}, ri = {
+}, ai = {
   narrow: ["1", "2", "3", "4"],
   abbreviated: ["T1", "T2", "T3", "T4"],
   wide: ["1\xBA trimestre", "2\xBA trimestre", "3\xBA trimestre", "4\xBA trimestre"]
-}, ni = {
+}, ri = {
   narrow: ["e", "f", "m", "a", "m", "j", "j", "a", "s", "o", "n", "d"],
   abbreviated: ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"],
   wide: ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
-}, ii = {
+}, ni = {
   narrow: ["d", "l", "m", "m", "j", "v", "s"],
   short: ["do", "lu", "ma", "mi", "ju", "vi", "s\xE1"],
   abbreviated: ["dom", "lun", "mar", "mi\xE9", "jue", "vie", "s\xE1b"],
   wide: ["domingo", "lunes", "martes", "mi\xE9rcoles", "jueves", "viernes", "s\xE1bado"]
+}, ii = {
+  narrow: {
+    am: "a",
+    pm: "p",
+    midnight: "mn",
+    noon: "md",
+    morning: "ma\xF1ana",
+    afternoon: "tarde",
+    evening: "tarde",
+    night: "noche"
+  },
+  abbreviated: {
+    am: "AM",
+    pm: "PM",
+    midnight: "medianoche",
+    noon: "mediodia",
+    morning: "ma\xF1ana",
+    afternoon: "tarde",
+    evening: "tarde",
+    night: "noche"
+  },
+  wide: {
+    am: "a.m.",
+    pm: "p.m.",
+    midnight: "medianoche",
+    noon: "mediodia",
+    morning: "ma\xF1ana",
+    afternoon: "tarde",
+    evening: "tarde",
+    night: "noche"
+  }
 }, oi = {
   narrow: {
     am: "a",
     pm: "p",
     midnight: "mn",
     noon: "md",
-    morning: "ma\xF1ana",
-    afternoon: "tarde",
-    evening: "tarde",
-    night: "noche"
-  },
-  abbreviated: {
-    am: "AM",
-    pm: "PM",
-    midnight: "medianoche",
-    noon: "mediodia",
-    morning: "ma\xF1ana",
-    afternoon: "tarde",
-    evening: "tarde",
-    night: "noche"
-  },
-  wide: {
-    am: "a.m.",
-    pm: "p.m.",
-    midnight: "medianoche",
-    noon: "mediodia",
-    morning: "ma\xF1ana",
-    afternoon: "tarde",
-    evening: "tarde",
-    night: "noche"
-  }
-}, si = {
-  narrow: {
-    am: "a",
-    pm: "p",
-    midnight: "mn",
-    noon: "md",
     morning: "de la ma\xF1ana",
     afternoon: "de la tarde",
     evening: "de la tarde",
@@ -2722,70 +2784,70 @@ var ai = {
     evening: "de la tarde",
     night: "de la noche"
   }
-}, ui = function(e, t) {
+}, si = function(e, t) {
   var a = Number(e);
   return a + "\xBA";
-}, li = {
-  ordinalNumber: ui,
-  era: h({
-    values: ai,
+}, ui = {
+  ordinalNumber: si,
+  era: f({
+    values: ti,
     defaultWidth: "wide"
   }),
-  quarter: h({
-    values: ri,
+  quarter: f({
+    values: ai,
     defaultWidth: "wide",
     argumentCallback: function(e) {
       return Number(e) - 1;
     }
   }),
-  month: h({
+  month: f({
+    values: ri,
+    defaultWidth: "wide"
+  }),
+  day: f({
     values: ni,
     defaultWidth: "wide"
   }),
-  day: h({
+  dayPeriod: f({
     values: ii,
-    defaultWidth: "wide"
-  }),
-  dayPeriod: h({
-    values: oi,
     defaultWidth: "wide",
-    formattingValues: si,
+    formattingValues: oi,
     defaultFormattingWidth: "wide"
   })
 };
-const di = li;
-var mi = /^(\d+)(º)?/i, ci = /\d+/i, hi = {
+const li = ui;
+var di = /^(\d+)(º)?/i, mi = /\d+/i, ci = {
   narrow: /^(ac|dc|a|d)/i,
   abbreviated: /^(a\.?\s?c\.?|a\.?\s?e\.?\s?c\.?|d\.?\s?c\.?|e\.?\s?c\.?)/i,
   wide: /^(antes de cristo|antes de la era com[uú]n|despu[eé]s de cristo|era com[uú]n)/i
-}, fi = {
+}, hi = {
   any: [/^ac/i, /^dc/i],
   wide: [/^(antes de cristo|antes de la era com[uú]n)/i, /^(despu[eé]s de cristo|era com[uú]n)/i]
-}, gi = {
+}, fi = {
   narrow: /^[1234]/i,
   abbreviated: /^T[1234]/i,
   wide: /^[1234](º)? trimestre/i
-}, vi = {
+}, gi = {
   any: [/1/i, /2/i, /3/i, /4/i]
-}, pi = {
+}, vi = {
   narrow: /^[efmajsond]/i,
   abbreviated: /^(ene|feb|mar|abr|may|jun|jul|ago|sep|oct|nov|dic)/i,
   wide: /^(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/i
-}, wi = {
+}, pi = {
   narrow: [/^e/i, /^f/i, /^m/i, /^a/i, /^m/i, /^j/i, /^j/i, /^a/i, /^s/i, /^o/i, /^n/i, /^d/i],
   any: [/^en/i, /^feb/i, /^mar/i, /^abr/i, /^may/i, /^jun/i, /^jul/i, /^ago/i, /^sep/i, /^oct/i, /^nov/i, /^dic/i]
-}, bi = {
+}, wi = {
   narrow: /^[dlmjvs]/i,
   short: /^(do|lu|ma|mi|ju|vi|s[áa])/i,
   abbreviated: /^(dom|lun|mar|mi[ée]|jue|vie|s[áa]b)/i,
   wide: /^(domingo|lunes|martes|mi[ée]rcoles|jueves|viernes|s[áa]bado)/i
-}, yi = {
+}, bi = {
   narrow: [/^d/i, /^l/i, /^m/i, /^m/i, /^j/i, /^v/i, /^s/i],
   any: [/^do/i, /^lu/i, /^ma/i, /^mi/i, /^ju/i, /^vi/i, /^sa/i]
-}, Mi = {
+}, yi = {
   narrow: /^(a|p|mn|md|(de la|a las) (mañana|tarde|noche))/i,
   any: /^([ap]\.?\s?m\.?|medianoche|mediodia|(de la|a las) (mañana|tarde|noche))/i
-}, Pi = {
+}, Mi = {
   any: {
     am: /^a/i,
     pm: /^p/i,
@@ -2796,63 +2858,63 @@ var mi = /^(\d+)(º)?/i, ci = /\d+/i, hi = {
     evening: /tarde/i,
     night: /noche/i
   }
-}, Di = {
+}, Pi = {
   ordinalNumber: q({
-    matchPattern: mi,
-    parsePattern: ci,
+    matchPattern: di,
+    parsePattern: mi,
     valueCallback: function(e) {
       return parseInt(e, 10);
     }
   }),
-  era: f({
-    matchPatterns: hi,
+  era: g({
+    matchPatterns: ci,
     defaultMatchWidth: "wide",
-    parsePatterns: fi,
+    parsePatterns: hi,
     defaultParseWidth: "any"
   }),
-  quarter: f({
-    matchPatterns: gi,
+  quarter: g({
+    matchPatterns: fi,
     defaultMatchWidth: "wide",
-    parsePatterns: vi,
+    parsePatterns: gi,
     defaultParseWidth: "any",
     valueCallback: function(e) {
       return e + 1;
     }
   }),
-  month: f({
-    matchPatterns: pi,
+  month: g({
+    matchPatterns: vi,
     defaultMatchWidth: "wide",
-    parsePatterns: wi,
+    parsePatterns: pi,
     defaultParseWidth: "any"
   }),
-  day: f({
-    matchPatterns: bi,
+  day: g({
+    matchPatterns: wi,
     defaultMatchWidth: "wide",
-    parsePatterns: yi,
+    parsePatterns: bi,
     defaultParseWidth: "any"
   }),
-  dayPeriod: f({
-    matchPatterns: Mi,
+  dayPeriod: g({
+    matchPatterns: yi,
     defaultMatchWidth: "any",
-    parsePatterns: Pi,
+    parsePatterns: Mi,
     defaultParseWidth: "any"
   })
 };
-const ki = Di;
-var $i = {
+const ki = Pi;
+var Di = {
   code: "es",
-  formatDistance: Rn,
-  formatLong: Qn,
-  formatRelative: ti,
-  localize: di,
+  formatDistance: Xn,
+  formatLong: Jn,
+  formatRelative: ei,
+  localize: li,
   match: ki,
   options: {
     weekStartsOn: 1,
     firstWeekContainsDate: 1
   }
 };
-const Ci = $i;
-var Si = {
+const $i = Di;
+var Ci = {
   lessThanXSeconds: {
     one: "moins d\u2019une seconde",
     other: "moins de {{count}} secondes"
@@ -2915,26 +2977,26 @@ var Si = {
     other: "presque {{count}} ans"
   }
 }, Wi = function(e, t, a) {
-  var r, n = Si[e];
+  var r, n = Ci[e];
   return typeof n == "string" ? r = n : t === 1 ? r = n.one : r = n.other.replace("{{count}}", String(t)), a != null && a.addSuffix ? a.comparison && a.comparison > 0 ? "dans " + r : "il y a " + r : r;
 };
-const Ti = Wi;
-var Oi = {
+const Si = Wi;
+var Ti = {
   lastWeek: "eeee 'dernier \xE0' p",
   yesterday: "'hier \xE0' p",
   today: "'aujourd\u2019hui \xE0' p",
   tomorrow: "'demain \xE0' p'",
   nextWeek: "eeee 'prochain \xE0' p",
   other: "P"
-}, Ni = function(e, t, a, r) {
-  return Oi[e];
+}, Oi = function(e, t, a, r) {
+  return Ti[e];
 };
-const xi = Ni;
-var Ei = {
+const Ni = Oi;
+var xi = {
   narrow: ["av. J.-C", "ap. J.-C"],
   abbreviated: ["av. J.-C", "ap. J.-C"],
   wide: ["avant J\xE9sus-Christ", "apr\xE8s J\xE9sus-Christ"]
-}, Li = {
+}, Ei = {
   narrow: ["T1", "T2", "T3", "T4"],
   abbreviated: ["1er trim.", "2\xE8me trim.", "3\xE8me trim.", "4\xE8me trim."],
   wide: ["1er trimestre", "2\xE8me trimestre", "3\xE8me trimestre", "4\xE8me trimestre"]
@@ -2942,12 +3004,12 @@ var Ei = {
   narrow: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
   abbreviated: ["janv.", "f\xE9vr.", "mars", "avr.", "mai", "juin", "juil.", "ao\xFBt", "sept.", "oct.", "nov.", "d\xE9c."],
   wide: ["janvier", "f\xE9vrier", "mars", "avril", "mai", "juin", "juillet", "ao\xFBt", "septembre", "octobre", "novembre", "d\xE9cembre"]
-}, zi = {
+}, Li = {
   narrow: ["D", "L", "M", "M", "J", "V", "S"],
   short: ["di", "lu", "ma", "me", "je", "ve", "sa"],
   abbreviated: ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."],
   wide: ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"]
-}, Ai = {
+}, zi = {
   narrow: {
     am: "AM",
     pm: "PM",
@@ -2984,44 +3046,44 @@ var Ei = {
     return "0";
   var n = ["year", "week", "hour", "minute", "second"], i;
   return a === 1 ? i = r && n.includes(r) ? "\xE8re" : "er" : i = "\xE8me", a + i;
-}, Fi = {
+}, Ai = {
   ordinalNumber: _i,
-  era: h({
-    values: Ei,
+  era: f({
+    values: xi,
     defaultWidth: "wide"
   }),
-  quarter: h({
-    values: Li,
+  quarter: f({
+    values: Ei,
     defaultWidth: "wide",
     argumentCallback: function(e) {
       return e - 1;
     }
   }),
-  month: h({
+  month: f({
     values: ji,
     defaultWidth: "wide"
   }),
-  day: h({
-    values: zi,
+  day: f({
+    values: Li,
     defaultWidth: "wide"
   }),
-  dayPeriod: h({
-    values: Ai,
+  dayPeriod: f({
+    values: zi,
     defaultWidth: "wide"
   })
 };
-const Ii = Fi;
-var qi = /^(\d+)(ième|ère|ème|er|e)?/i, Hi = /\d+/i, Gi = {
+const Fi = Ai;
+var Ii = /^(\d+)(ième|ère|ème|er|e)?/i, qi = /\d+/i, Hi = {
   narrow: /^(av\.J\.C|ap\.J\.C|ap\.J\.-C)/i,
   abbreviated: /^(av\.J\.-C|av\.J-C|apr\.J\.-C|apr\.J-C|ap\.J-C)/i,
   wide: /^(avant Jésus-Christ|après Jésus-Christ)/i
-}, Yi = {
+}, Gi = {
   any: [/^av/i, /^ap/i]
-}, Xi = {
+}, Yi = {
   narrow: /^T?[1234]/i,
   abbreviated: /^[1234](er|ème|e)? trim\.?/i,
   wide: /^[1234](er|ème|e)? trimestre/i
-}, Ri = {
+}, Xi = {
   any: [/1/i, /2/i, /3/i, /4/i]
 }, Vi = {
   narrow: /^[jfmasond]/i,
@@ -3030,18 +3092,18 @@ var qi = /^(\d+)(ième|ère|ème|er|e)?/i, Hi = /\d+/i, Gi = {
 }, Bi = {
   narrow: [/^j/i, /^f/i, /^m/i, /^a/i, /^m/i, /^j/i, /^j/i, /^a/i, /^s/i, /^o/i, /^n/i, /^d/i],
   any: [/^ja/i, /^f/i, /^mar/i, /^av/i, /^ma/i, /^juin/i, /^juil/i, /^ao/i, /^s/i, /^o/i, /^n/i, /^d/i]
-}, Ui = {
+}, Ri = {
   narrow: /^[lmjvsd]/i,
   short: /^(di|lu|ma|me|je|ve|sa)/i,
   abbreviated: /^(dim|lun|mar|mer|jeu|ven|sam)\.?/i,
   wide: /^(dimanche|lundi|mardi|mercredi|jeudi|vendredi|samedi)/i
-}, Ji = {
+}, Ui = {
   narrow: [/^d/i, /^l/i, /^m/i, /^m/i, /^j/i, /^v/i, /^s/i],
   any: [/^di/i, /^lu/i, /^ma/i, /^me/i, /^je/i, /^ve/i, /^sa/i]
-}, Qi = {
+}, Ji = {
   narrow: /^(a|p|minuit|midi|mat\.?|ap\.?m\.?|soir|nuit)/i,
   any: /^([ap]\.?\s?m\.?|du matin|de l'après[-\s]midi|du soir|de la nuit)/i
-}, Zi = {
+}, Qi = {
   any: {
     am: /^a/i,
     pm: /^p/i,
@@ -3052,93 +3114,93 @@ var qi = /^(\d+)(ième|ère|ème|er|e)?/i, Hi = /\d+/i, Gi = {
     evening: /soir/i,
     night: /nuit/i
   }
-}, Ki = {
+}, Zi = {
   ordinalNumber: q({
-    matchPattern: qi,
-    parsePattern: Hi,
+    matchPattern: Ii,
+    parsePattern: qi,
     valueCallback: function(e) {
       return parseInt(e);
     }
   }),
-  era: f({
-    matchPatterns: Gi,
+  era: g({
+    matchPatterns: Hi,
     defaultMatchWidth: "wide",
-    parsePatterns: Yi,
+    parsePatterns: Gi,
     defaultParseWidth: "any"
   }),
-  quarter: f({
-    matchPatterns: Xi,
+  quarter: g({
+    matchPatterns: Yi,
     defaultMatchWidth: "wide",
-    parsePatterns: Ri,
+    parsePatterns: Xi,
     defaultParseWidth: "any",
     valueCallback: function(e) {
       return e + 1;
     }
   }),
-  month: f({
+  month: g({
     matchPatterns: Vi,
     defaultMatchWidth: "wide",
     parsePatterns: Bi,
     defaultParseWidth: "any"
   }),
-  day: f({
-    matchPatterns: Ui,
+  day: g({
+    matchPatterns: Ri,
     defaultMatchWidth: "wide",
-    parsePatterns: Ji,
+    parsePatterns: Ui,
     defaultParseWidth: "any"
   }),
-  dayPeriod: f({
-    matchPatterns: Qi,
+  dayPeriod: g({
+    matchPatterns: Ji,
     defaultMatchWidth: "any",
-    parsePatterns: Zi,
+    parsePatterns: Qi,
     defaultParseWidth: "any"
   })
 };
-const eo = Ki;
-var to = {
+const Ki = Zi;
+var eo = {
   full: "EEEE d MMMM y",
   long: "d MMMM y",
   medium: "d MMM y",
   short: "yy-MM-dd"
-}, ao = {
+}, to = {
   full: "HH:mm:ss zzzz",
   long: "HH:mm:ss z",
   medium: "HH:mm:ss",
   short: "HH:mm"
-}, ro = {
+}, ao = {
   full: "{{date}} '\xE0' {{time}}",
   long: "{{date}} '\xE0' {{time}}",
   medium: "{{date}}, {{time}}",
   short: "{{date}}, {{time}}"
-}, no = {
-  date: M({
+}, ro = {
+  date: y({
+    formats: eo,
+    defaultWidth: "full"
+  }),
+  time: y({
     formats: to,
     defaultWidth: "full"
   }),
-  time: M({
+  dateTime: y({
     formats: ao,
-    defaultWidth: "full"
-  }),
-  dateTime: M({
-    formats: ro,
     defaultWidth: "full"
   })
 };
-const io = no;
-var oo = {
+const no = ro;
+var io = {
   code: "fr-CA",
-  formatDistance: Ti,
-  formatLong: io,
-  formatRelative: xi,
-  localize: Ii,
-  match: eo,
+  formatDistance: Si,
+  formatLong: no,
+  formatRelative: Ni,
+  localize: Fi,
+  match: Ki,
   options: {
     weekStartsOn: 0,
     firstWeekContainsDate: 1
   }
 };
-const so = oo;
-var uo = {
+const oo = io;
+var so = {
   lessThanXSeconds: {
     one: "meno di un secondo",
     other: "meno di {{count}} secondi"
@@ -3200,84 +3262,84 @@ var uo = {
     one: "quasi un anno",
     other: "quasi {{count}} anni"
   }
-}, lo = function(e, t, a) {
-  var r, n = uo[e];
+}, uo = function(e, t, a) {
+  var r, n = so[e];
   return typeof n == "string" ? r = n : t === 1 ? r = n.one : r = n.other.replace("{{count}}", t.toString()), a != null && a.addSuffix ? a.comparison && a.comparison > 0 ? "tra " + r : r + " fa" : r;
 };
-const mo = lo;
-var co = {
+const lo = uo;
+var mo = {
   full: "EEEE d MMMM y",
   long: "d MMMM y",
   medium: "d MMM y",
   short: "dd/MM/y"
-}, ho = {
+}, co = {
   full: "HH:mm:ss zzzz",
   long: "HH:mm:ss z",
   medium: "HH:mm:ss",
   short: "HH:mm"
-}, fo = {
+}, ho = {
   full: "{{date}} {{time}}",
   long: "{{date}} {{time}}",
   medium: "{{date}} {{time}}",
   short: "{{date}} {{time}}"
-}, go = {
-  date: M({
+}, fo = {
+  date: y({
+    formats: mo,
+    defaultWidth: "full"
+  }),
+  time: y({
     formats: co,
     defaultWidth: "full"
   }),
-  time: M({
+  dateTime: y({
     formats: ho,
-    defaultWidth: "full"
-  }),
-  dateTime: M({
-    formats: fo,
     defaultWidth: "full"
   })
 };
-const vo = go;
-var ke = ["domenica", "luned\xEC", "marted\xEC", "mercoled\xEC", "gioved\xEC", "venerd\xEC", "sabato"];
-function po(e) {
+const go = fo;
+var De = ["domenica", "luned\xEC", "marted\xEC", "mercoled\xEC", "gioved\xEC", "venerd\xEC", "sabato"];
+function vo(e) {
   switch (e) {
     case 0:
       return "'domenica scorsa alle' p";
     default:
-      return "'" + ke[e] + " scorso alle' p";
+      return "'" + De[e] + " scorso alle' p";
   }
 }
 function ze(e) {
-  return "'" + ke[e] + " alle' p";
+  return "'" + De[e] + " alle' p";
 }
-function wo(e) {
+function po(e) {
   switch (e) {
     case 0:
       return "'domenica prossima alle' p";
     default:
-      return "'" + ke[e] + " prossimo alle' p";
+      return "'" + De[e] + " prossimo alle' p";
   }
 }
-var bo = {
+var wo = {
   lastWeek: function(e, t, a) {
     var r = e.getUTCDay();
-    return le(e, t, a) ? ze(r) : po(r);
+    return le(e, t, a) ? ze(r) : vo(r);
   },
   yesterday: "'ieri alle' p",
   today: "'oggi alle' p",
   tomorrow: "'domani alle' p",
   nextWeek: function(e, t, a) {
     var r = e.getUTCDay();
-    return le(e, t, a) ? ze(r) : wo(r);
+    return le(e, t, a) ? ze(r) : po(r);
   },
   other: "P"
-}, yo = function(e, t, a, r) {
-  var n = bo[e];
+}, bo = function(e, t, a, r) {
+  var n = wo[e];
   return typeof n == "function" ? n(t, a, r) : n;
 };
-const Mo = yo;
-var Po = {
+const yo = bo;
+var Mo = {
   narrow: ["aC", "dC"],
   abbreviated: ["a.C.", "d.C."],
   wide: ["avanti Cristo", "dopo Cristo"]
-}, Do = {
+}, Po = {
   narrow: ["1", "2", "3", "4"],
   abbreviated: ["T1", "T2", "T3", "T4"],
   wide: ["1\xBA trimestre", "2\xBA trimestre", "3\xBA trimestre", "4\xBA trimestre"]
@@ -3285,12 +3347,12 @@ var Po = {
   narrow: ["G", "F", "M", "A", "M", "G", "L", "A", "S", "O", "N", "D"],
   abbreviated: ["gen", "feb", "mar", "apr", "mag", "giu", "lug", "ago", "set", "ott", "nov", "dic"],
   wide: ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
-}, $o = {
+}, Do = {
   narrow: ["D", "L", "M", "M", "G", "V", "S"],
   short: ["dom", "lun", "mar", "mer", "gio", "ven", "sab"],
   abbreviated: ["dom", "lun", "mar", "mer", "gio", "ven", "sab"],
   wide: ["domenica", "luned\xEC", "marted\xEC", "mercoled\xEC", "gioved\xEC", "venerd\xEC", "sabato"]
-}, Co = {
+}, $o = {
   narrow: {
     am: "m.",
     pm: "p.",
@@ -3321,7 +3383,7 @@ var Po = {
     evening: "sera",
     night: "notte"
   }
-}, So = {
+}, Co = {
   narrow: {
     am: "m.",
     pm: "p.",
@@ -3355,66 +3417,66 @@ var Po = {
 }, Wo = function(e, t) {
   var a = Number(e);
   return a + "\xBA";
-}, To = {
+}, So = {
   ordinalNumber: Wo,
-  era: h({
-    values: Po,
+  era: f({
+    values: Mo,
     defaultWidth: "wide"
   }),
-  quarter: h({
-    values: Do,
+  quarter: f({
+    values: Po,
     defaultWidth: "wide",
     argumentCallback: function(e) {
       return e - 1;
     }
   }),
-  month: h({
+  month: f({
     values: ko,
     defaultWidth: "wide"
   }),
-  day: h({
-    values: $o,
+  day: f({
+    values: Do,
     defaultWidth: "wide"
   }),
-  dayPeriod: h({
-    values: Co,
+  dayPeriod: f({
+    values: $o,
     defaultWidth: "wide",
-    formattingValues: So,
+    formattingValues: Co,
     defaultFormattingWidth: "wide"
   })
 };
-const Oo = To;
-var No = /^(\d+)(º)?/i, xo = /\d+/i, Eo = {
+const To = So;
+var Oo = /^(\d+)(º)?/i, No = /\d+/i, xo = {
   narrow: /^(aC|dC)/i,
   abbreviated: /^(a\.?\s?C\.?|a\.?\s?e\.?\s?v\.?|d\.?\s?C\.?|e\.?\s?v\.?)/i,
   wide: /^(avanti Cristo|avanti Era Volgare|dopo Cristo|Era Volgare)/i
-}, Lo = {
+}, Eo = {
   any: [/^a/i, /^(d|e)/i]
 }, jo = {
   narrow: /^[1234]/i,
   abbreviated: /^t[1234]/i,
   wide: /^[1234](º)? trimestre/i
-}, zo = {
+}, Lo = {
   any: [/1/i, /2/i, /3/i, /4/i]
-}, Ao = {
+}, zo = {
   narrow: /^[gfmalsond]/i,
   abbreviated: /^(gen|feb|mar|apr|mag|giu|lug|ago|set|ott|nov|dic)/i,
   wide: /^(gennaio|febbraio|marzo|aprile|maggio|giugno|luglio|agosto|settembre|ottobre|novembre|dicembre)/i
 }, _o = {
   narrow: [/^g/i, /^f/i, /^m/i, /^a/i, /^m/i, /^g/i, /^l/i, /^a/i, /^s/i, /^o/i, /^n/i, /^d/i],
   any: [/^ge/i, /^f/i, /^mar/i, /^ap/i, /^mag/i, /^gi/i, /^l/i, /^ag/i, /^s/i, /^o/i, /^n/i, /^d/i]
-}, Fo = {
+}, Ao = {
   narrow: /^[dlmgvs]/i,
   short: /^(do|lu|ma|me|gi|ve|sa)/i,
   abbreviated: /^(dom|lun|mar|mer|gio|ven|sab)/i,
   wide: /^(domenica|luned[i|ì]|marted[i|ì]|mercoled[i|ì]|gioved[i|ì]|venerd[i|ì]|sabato)/i
-}, Io = {
+}, Fo = {
   narrow: [/^d/i, /^l/i, /^m/i, /^m/i, /^g/i, /^v/i, /^s/i],
   any: [/^d/i, /^l/i, /^ma/i, /^me/i, /^g/i, /^v/i, /^s/i]
-}, qo = {
+}, Io = {
   narrow: /^(a|m\.|p|mezzanotte|mezzogiorno|(di|del) (mattina|pomeriggio|sera|notte))/i,
   any: /^([ap]\.?\s?m\.?|mezzanotte|mezzogiorno|(di|del) (mattina|pomeriggio|sera|notte))/i
-}, Ho = {
+}, qo = {
   any: {
     am: /^a/i,
     pm: /^p/i,
@@ -3425,62 +3487,62 @@ var No = /^(\d+)(º)?/i, xo = /\d+/i, Eo = {
     evening: /sera/i,
     night: /notte/i
   }
-}, Go = {
+}, Ho = {
   ordinalNumber: q({
-    matchPattern: No,
-    parsePattern: xo,
+    matchPattern: Oo,
+    parsePattern: No,
     valueCallback: function(e) {
       return parseInt(e, 10);
     }
   }),
-  era: f({
-    matchPatterns: Eo,
+  era: g({
+    matchPatterns: xo,
     defaultMatchWidth: "wide",
-    parsePatterns: Lo,
+    parsePatterns: Eo,
     defaultParseWidth: "any"
   }),
-  quarter: f({
+  quarter: g({
     matchPatterns: jo,
     defaultMatchWidth: "wide",
-    parsePatterns: zo,
+    parsePatterns: Lo,
     defaultParseWidth: "any",
     valueCallback: function(e) {
       return e + 1;
     }
   }),
-  month: f({
-    matchPatterns: Ao,
+  month: g({
+    matchPatterns: zo,
     defaultMatchWidth: "wide",
     parsePatterns: _o,
     defaultParseWidth: "any"
   }),
-  day: f({
-    matchPatterns: Fo,
+  day: g({
+    matchPatterns: Ao,
     defaultMatchWidth: "wide",
-    parsePatterns: Io,
+    parsePatterns: Fo,
     defaultParseWidth: "any"
   }),
-  dayPeriod: f({
-    matchPatterns: qo,
+  dayPeriod: g({
+    matchPatterns: Io,
     defaultMatchWidth: "any",
-    parsePatterns: Ho,
+    parsePatterns: qo,
     defaultParseWidth: "any"
   })
 };
-const Yo = Go;
-var Xo = {
+const Go = Ho;
+var Yo = {
   code: "it",
-  formatDistance: mo,
-  formatLong: vo,
-  formatRelative: Mo,
-  localize: Oo,
-  match: Yo,
+  formatDistance: lo,
+  formatLong: go,
+  formatRelative: yo,
+  localize: To,
+  match: Go,
   options: {
     weekStartsOn: 1,
     firstWeekContainsDate: 4
   }
 };
-const Ro = Xo;
+const Xo = Yo;
 var Vo = {
   lessThanXSeconds: {
     one: "1\uCD08 \uBBF8\uB9CC",
@@ -3547,65 +3609,96 @@ var Vo = {
   var r, n = Vo[e];
   return typeof n == "string" ? r = n : t === 1 ? r = n.one : r = n.other.replace("{{count}}", t.toString()), a != null && a.addSuffix ? a.comparison && a.comparison > 0 ? r + " \uD6C4" : r + " \uC804" : r;
 };
-const Uo = Bo;
-var Jo = {
+const Ro = Bo;
+var Uo = {
   full: "y\uB144 M\uC6D4 d\uC77C EEEE",
   long: "y\uB144 M\uC6D4 d\uC77C",
   medium: "y.MM.dd",
   short: "y.MM.dd"
-}, Qo = {
+}, Jo = {
   full: "a H\uC2DC mm\uBD84 ss\uCD08 zzzz",
   long: "a H:mm:ss z",
   medium: "HH:mm:ss",
   short: "HH:mm"
-}, Zo = {
+}, Qo = {
   full: "{{date}} {{time}}",
   long: "{{date}} {{time}}",
   medium: "{{date}} {{time}}",
   short: "{{date}} {{time}}"
-}, Ko = {
-  date: M({
+}, Zo = {
+  date: y({
+    formats: Uo,
+    defaultWidth: "full"
+  }),
+  time: y({
     formats: Jo,
     defaultWidth: "full"
   }),
-  time: M({
+  dateTime: y({
     formats: Qo,
-    defaultWidth: "full"
-  }),
-  dateTime: M({
-    formats: Zo,
     defaultWidth: "full"
   })
 };
-const es = Ko;
-var ts = {
+const Ko = Zo;
+var es = {
   lastWeek: "'\uC9C0\uB09C' eeee p",
   yesterday: "'\uC5B4\uC81C' p",
   today: "'\uC624\uB298' p",
   tomorrow: "'\uB0B4\uC77C' p",
   nextWeek: "'\uB2E4\uC74C' eeee p",
   other: "P"
-}, as = function(e, t, a, r) {
-  return ts[e];
+}, ts = function(e, t, a, r) {
+  return es[e];
 };
-const rs = as;
-var ns = {
+const as = ts;
+var rs = {
   narrow: ["BC", "AD"],
   abbreviated: ["BC", "AD"],
   wide: ["\uAE30\uC6D0\uC804", "\uC11C\uAE30"]
-}, is = {
+}, ns = {
   narrow: ["1", "2", "3", "4"],
   abbreviated: ["Q1", "Q2", "Q3", "Q4"],
   wide: ["1\uBD84\uAE30", "2\uBD84\uAE30", "3\uBD84\uAE30", "4\uBD84\uAE30"]
-}, os = {
+}, is = {
   narrow: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
   abbreviated: ["1\uC6D4", "2\uC6D4", "3\uC6D4", "4\uC6D4", "5\uC6D4", "6\uC6D4", "7\uC6D4", "8\uC6D4", "9\uC6D4", "10\uC6D4", "11\uC6D4", "12\uC6D4"],
   wide: ["1\uC6D4", "2\uC6D4", "3\uC6D4", "4\uC6D4", "5\uC6D4", "6\uC6D4", "7\uC6D4", "8\uC6D4", "9\uC6D4", "10\uC6D4", "11\uC6D4", "12\uC6D4"]
-}, ss = {
+}, os = {
   narrow: ["\uC77C", "\uC6D4", "\uD654", "\uC218", "\uBAA9", "\uAE08", "\uD1A0"],
   short: ["\uC77C", "\uC6D4", "\uD654", "\uC218", "\uBAA9", "\uAE08", "\uD1A0"],
   abbreviated: ["\uC77C", "\uC6D4", "\uD654", "\uC218", "\uBAA9", "\uAE08", "\uD1A0"],
   wide: ["\uC77C\uC694\uC77C", "\uC6D4\uC694\uC77C", "\uD654\uC694\uC77C", "\uC218\uC694\uC77C", "\uBAA9\uC694\uC77C", "\uAE08\uC694\uC77C", "\uD1A0\uC694\uC77C"]
+}, ss = {
+  narrow: {
+    am: "\uC624\uC804",
+    pm: "\uC624\uD6C4",
+    midnight: "\uC790\uC815",
+    noon: "\uC815\uC624",
+    morning: "\uC544\uCE68",
+    afternoon: "\uC624\uD6C4",
+    evening: "\uC800\uB141",
+    night: "\uBC24"
+  },
+  abbreviated: {
+    am: "\uC624\uC804",
+    pm: "\uC624\uD6C4",
+    midnight: "\uC790\uC815",
+    noon: "\uC815\uC624",
+    morning: "\uC544\uCE68",
+    afternoon: "\uC624\uD6C4",
+    evening: "\uC800\uB141",
+    night: "\uBC24"
+  },
+  wide: {
+    am: "\uC624\uC804",
+    pm: "\uC624\uD6C4",
+    midnight: "\uC790\uC815",
+    noon: "\uC815\uC624",
+    morning: "\uC544\uCE68",
+    afternoon: "\uC624\uD6C4",
+    evening: "\uC800\uB141",
+    night: "\uBC24"
+  }
 }, us = {
   narrow: {
     am: "\uC624\uC804",
@@ -3637,38 +3730,7 @@ var ns = {
     evening: "\uC800\uB141",
     night: "\uBC24"
   }
-}, ls = {
-  narrow: {
-    am: "\uC624\uC804",
-    pm: "\uC624\uD6C4",
-    midnight: "\uC790\uC815",
-    noon: "\uC815\uC624",
-    morning: "\uC544\uCE68",
-    afternoon: "\uC624\uD6C4",
-    evening: "\uC800\uB141",
-    night: "\uBC24"
-  },
-  abbreviated: {
-    am: "\uC624\uC804",
-    pm: "\uC624\uD6C4",
-    midnight: "\uC790\uC815",
-    noon: "\uC815\uC624",
-    morning: "\uC544\uCE68",
-    afternoon: "\uC624\uD6C4",
-    evening: "\uC800\uB141",
-    night: "\uBC24"
-  },
-  wide: {
-    am: "\uC624\uC804",
-    pm: "\uC624\uD6C4",
-    midnight: "\uC790\uC815",
-    noon: "\uC815\uC624",
-    morning: "\uC544\uCE68",
-    afternoon: "\uC624\uD6C4",
-    evening: "\uC800\uB141",
-    night: "\uBC24"
-  }
-}, ds = function(e, t) {
+}, ls = function(e, t) {
   var a = Number(e), r = t || {}, n = String(r.unit);
   switch (n) {
     case "minute":
@@ -3679,61 +3741,61 @@ var ns = {
     default:
       return a + "\uBC88\uC9F8";
   }
-}, ms = {
-  ordinalNumber: ds,
-  era: h({
-    values: ns,
+}, ds = {
+  ordinalNumber: ls,
+  era: f({
+    values: rs,
     defaultWidth: "wide"
   }),
-  quarter: h({
-    values: is,
+  quarter: f({
+    values: ns,
     defaultWidth: "wide",
     argumentCallback: function(e) {
       return e - 1;
     }
   }),
-  month: h({
+  month: f({
+    values: is,
+    defaultWidth: "wide"
+  }),
+  day: f({
     values: os,
     defaultWidth: "wide"
   }),
-  day: h({
+  dayPeriod: f({
     values: ss,
-    defaultWidth: "wide"
-  }),
-  dayPeriod: h({
-    values: us,
     defaultWidth: "wide",
-    formattingValues: ls,
+    formattingValues: us,
     defaultFormattingWidth: "wide"
   })
 };
-const cs = ms;
-var hs = /^(\d+)(일|번째)?/i, fs = /\d+/i, gs = {
+const ms = ds;
+var cs = /^(\d+)(일|번째)?/i, hs = /\d+/i, fs = {
   narrow: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
   abbreviated: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
   wide: /^(기원전|서기)/i
-}, vs = {
+}, gs = {
   any: [/^(bc|기원전)/i, /^(ad|서기)/i]
-}, ps = {
+}, vs = {
   narrow: /^[1234]/i,
   abbreviated: /^q[1234]/i,
   wide: /^[1234]사?분기/i
-}, ws = {
+}, ps = {
   any: [/1/i, /2/i, /3/i, /4/i]
-}, bs = {
+}, ws = {
   narrow: /^(1[012]|[123456789])/,
   abbreviated: /^(1[012]|[123456789])월/i,
   wide: /^(1[012]|[123456789])월/i
-}, ys = {
+}, bs = {
   any: [/^1월?$/, /^2/, /^3/, /^4/, /^5/, /^6/, /^7/, /^8/, /^9/, /^10/, /^11/, /^12/]
-}, Ms = {
+}, ys = {
   narrow: /^[일월화수목금토]/,
   short: /^[일월화수목금토]/,
   abbreviated: /^[일월화수목금토]/,
   wide: /^[일월화수목금토]요일/
-}, Ps = {
+}, Ms = {
   any: [/^일/, /^월/, /^화/, /^수/, /^목/, /^금/, /^토/]
-}, Ds = {
+}, Ps = {
   any: /^(am|pm|오전|오후|자정|정오|아침|저녁|밤)/i
 }, ks = {
   any: {
@@ -3746,62 +3808,62 @@ var hs = /^(\d+)(일|번째)?/i, fs = /\d+/i, gs = {
     evening: /^저녁/i,
     night: /^밤/i
   }
-}, $s = {
+}, Ds = {
   ordinalNumber: q({
-    matchPattern: hs,
-    parsePattern: fs,
+    matchPattern: cs,
+    parsePattern: hs,
     valueCallback: function(e) {
       return parseInt(e, 10);
     }
   }),
-  era: f({
-    matchPatterns: gs,
+  era: g({
+    matchPatterns: fs,
     defaultMatchWidth: "wide",
-    parsePatterns: vs,
+    parsePatterns: gs,
     defaultParseWidth: "any"
   }),
-  quarter: f({
-    matchPatterns: ps,
+  quarter: g({
+    matchPatterns: vs,
     defaultMatchWidth: "wide",
-    parsePatterns: ws,
+    parsePatterns: ps,
     defaultParseWidth: "any",
     valueCallback: function(e) {
       return e + 1;
     }
   }),
-  month: f({
-    matchPatterns: bs,
+  month: g({
+    matchPatterns: ws,
     defaultMatchWidth: "wide",
-    parsePatterns: ys,
+    parsePatterns: bs,
     defaultParseWidth: "any"
   }),
-  day: f({
-    matchPatterns: Ms,
+  day: g({
+    matchPatterns: ys,
     defaultMatchWidth: "wide",
-    parsePatterns: Ps,
+    parsePatterns: Ms,
     defaultParseWidth: "any"
   }),
-  dayPeriod: f({
-    matchPatterns: Ds,
+  dayPeriod: g({
+    matchPatterns: Ps,
     defaultMatchWidth: "any",
     parsePatterns: ks,
     defaultParseWidth: "any"
   })
 };
-const Cs = $s;
-var Ss = {
+const $s = Ds;
+var Cs = {
   code: "ko",
-  formatDistance: Uo,
-  formatLong: es,
-  formatRelative: rs,
-  localize: cs,
-  match: Cs,
+  formatDistance: Ro,
+  formatLong: Ko,
+  formatRelative: as,
+  localize: ms,
+  match: $s,
   options: {
     weekStartsOn: 0,
     firstWeekContainsDate: 1
   }
 };
-const Ws = Ss;
+const Ws = Cs;
 var ie = {
   lessThanXSeconds: {
     one: "menos de um segundo",
@@ -3865,41 +3927,41 @@ var ie = {
     other: "quase {{count}} anos"
   }
 };
-function Ts(e, t, a) {
+function Ss(e, t, a) {
   a = a || {};
   var r;
   return typeof ie[e] == "string" ? r = ie[e] : t === 1 ? r = ie[e].one : r = ie[e].other.replace("{{count}}", t), a.addSuffix ? a.comparison > 0 ? "daqui a " + r : "h\xE1 " + r : r;
 }
-var Os = {
+var Ts = {
   full: "EEEE, d 'de' MMMM 'de' y",
   long: "d 'de' MMMM 'de' y",
   medium: "d 'de' MMM 'de' y",
   short: "dd/MM/y"
-}, Ns = {
+}, Os = {
   full: "HH:mm:ss zzzz",
   long: "HH:mm:ss z",
   medium: "HH:mm:ss",
   short: "HH:mm"
-}, xs = {
+}, Ns = {
   full: "{{date}} '\xE0s' {{time}}",
   long: "{{date}} '\xE0s' {{time}}",
   medium: "{{date}}, {{time}}",
   short: "{{date}}, {{time}}"
-}, Es = {
-  date: M({
+}, xs = {
+  date: y({
+    formats: Ts,
+    defaultWidth: "full"
+  }),
+  time: y({
     formats: Os,
     defaultWidth: "full"
   }),
-  time: M({
+  dateTime: y({
     formats: Ns,
-    defaultWidth: "full"
-  }),
-  dateTime: M({
-    formats: xs,
     defaultWidth: "full"
   })
 };
-const Ls = Es;
+const Es = xs;
 var js = {
   lastWeek: "'na \xFAltima' eeee '\xE0s' p",
   yesterday: "'ontem \xE0s' p",
@@ -3908,10 +3970,10 @@ var js = {
   nextWeek: "eeee '\xE0s' p",
   other: "P"
 };
-function zs(e, t, a, r) {
+function Ls(e, t, a, r) {
   return js[e];
 }
-function As(e) {
+function zs(e) {
   var t = Number(e);
   return t + "\xBA";
 }
@@ -3919,142 +3981,142 @@ var _s = {
   narrow: ["aC", "dC"],
   abbreviated: ["a.C.", "d.C."],
   wide: ["antes de Cristo", "depois de Cristo"]
-}, Fs = {
+}, As = {
   narrow: ["1", "2", "3", "4"],
   abbreviated: ["T1", "T2", "T3", "T4"],
   wide: ["1\xBA trimestre", "2\xBA trimestre", "3\xBA trimestre", "4\xBA trimestre"]
-}, Is = {
+}, Fs = {
   narrow: ["j", "f", "m", "a", "m", "j", "j", "a", "s", "o", "n", "d"],
   abbreviated: ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
   wide: ["janeiro", "fevereiro", "mar\xE7o", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"]
-}, qs = {
+}, Is = {
   narrow: ["d", "s", "t", "q", "q", "s", "s"],
   short: ["dom", "seg", "ter", "qua", "qui", "sex", "s\xE1b"],
   abbreviated: ["dom", "seg", "ter", "qua", "qui", "sex", "s\xE1b"],
   wide: ["domingo", "segunda-feira", "ter\xE7a-feira", "quarta-feira", "quinta-feira", "sexta-feira", "s\xE1bado"]
+}, qs = {
+  narrow: {
+    am: "AM",
+    pm: "PM",
+    midnight: "meia-noite",
+    noon: "meio-dia",
+    morning: "manh\xE3",
+    afternoon: "tarde",
+    evening: "noite",
+    night: "madrugada"
+  },
+  abbreviated: {
+    am: "AM",
+    pm: "PM",
+    midnight: "meia-noite",
+    noon: "meio-dia",
+    morning: "manh\xE3",
+    afternoon: "tarde",
+    evening: "noite",
+    night: "madrugada"
+  },
+  wide: {
+    am: "AM",
+    pm: "PM",
+    midnight: "meia-noite",
+    noon: "meio-dia",
+    morning: "manh\xE3",
+    afternoon: "tarde",
+    evening: "noite",
+    night: "madrugada"
+  }
 }, Hs = {
   narrow: {
     am: "AM",
     pm: "PM",
     midnight: "meia-noite",
     noon: "meio-dia",
-    morning: "manh\xE3",
-    afternoon: "tarde",
-    evening: "noite",
-    night: "madrugada"
+    morning: "da manh\xE3",
+    afternoon: "da tarde",
+    evening: "da noite",
+    night: "da madrugada"
   },
   abbreviated: {
     am: "AM",
     pm: "PM",
     midnight: "meia-noite",
     noon: "meio-dia",
-    morning: "manh\xE3",
-    afternoon: "tarde",
-    evening: "noite",
-    night: "madrugada"
+    morning: "da manh\xE3",
+    afternoon: "da tarde",
+    evening: "da noite",
+    night: "da madrugada"
   },
   wide: {
     am: "AM",
     pm: "PM",
     midnight: "meia-noite",
     noon: "meio-dia",
-    morning: "manh\xE3",
-    afternoon: "tarde",
-    evening: "noite",
-    night: "madrugada"
+    morning: "da manh\xE3",
+    afternoon: "da tarde",
+    evening: "da noite",
+    night: "da madrugada"
   }
 }, Gs = {
-  narrow: {
-    am: "AM",
-    pm: "PM",
-    midnight: "meia-noite",
-    noon: "meio-dia",
-    morning: "da manh\xE3",
-    afternoon: "da tarde",
-    evening: "da noite",
-    night: "da madrugada"
-  },
-  abbreviated: {
-    am: "AM",
-    pm: "PM",
-    midnight: "meia-noite",
-    noon: "meio-dia",
-    morning: "da manh\xE3",
-    afternoon: "da tarde",
-    evening: "da noite",
-    night: "da madrugada"
-  },
-  wide: {
-    am: "AM",
-    pm: "PM",
-    midnight: "meia-noite",
-    noon: "meio-dia",
-    morning: "da manh\xE3",
-    afternoon: "da tarde",
-    evening: "da noite",
-    night: "da madrugada"
-  }
-}, Ys = {
-  ordinalNumber: As,
-  era: h({
+  ordinalNumber: zs,
+  era: f({
     values: _s,
     defaultWidth: "wide"
   }),
-  quarter: h({
-    values: Fs,
+  quarter: f({
+    values: As,
     defaultWidth: "wide",
     argumentCallback: function(e) {
       return Number(e) - 1;
     }
   }),
-  month: h({
+  month: f({
+    values: Fs,
+    defaultWidth: "wide"
+  }),
+  day: f({
     values: Is,
     defaultWidth: "wide"
   }),
-  day: h({
+  dayPeriod: f({
     values: qs,
-    defaultWidth: "wide"
-  }),
-  dayPeriod: h({
-    values: Hs,
     defaultWidth: "wide",
-    formattingValues: Gs,
+    formattingValues: Hs,
     defaultFormattingWidth: "wide"
   })
 };
-const Xs = Ys;
-var Rs = /^(\d+)(º|ª)?/i, Vs = /\d+/i, Bs = {
+const Ys = Gs;
+var Xs = /^(\d+)(º|ª)?/i, Vs = /\d+/i, Bs = {
   narrow: /^(ac|dc|a|d)/i,
   abbreviated: /^(a\.?\s?c\.?|a\.?\s?e\.?\s?c\.?|d\.?\s?c\.?|e\.?\s?c\.?)/i,
   wide: /^(antes de cristo|antes da era comum|depois de cristo|era comum)/i
-}, Us = {
+}, Rs = {
   any: [/^ac/i, /^dc/i],
   wide: [/^(antes de cristo|antes da era comum)/i, /^(depois de cristo|era comum)/i]
-}, Js = {
+}, Us = {
   narrow: /^[1234]/i,
   abbreviated: /^T[1234]/i,
   wide: /^[1234](º|ª)? trimestre/i
-}, Qs = {
+}, Js = {
   any: [/1/i, /2/i, /3/i, /4/i]
-}, Zs = {
+}, Qs = {
   narrow: /^[jfmasond]/i,
   abbreviated: /^(jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez)/i,
   wide: /^(janeiro|fevereiro|março|abril|maio|junho|julho|agosto|setembro|outubro|novembro|dezembro)/i
-}, Ks = {
+}, Zs = {
   narrow: [/^j/i, /^f/i, /^m/i, /^a/i, /^m/i, /^j/i, /^j/i, /^a/i, /^s/i, /^o/i, /^n/i, /^d/i],
   any: [/^ja/i, /^f/i, /^mar/i, /^ab/i, /^mai/i, /^jun/i, /^jul/i, /^ag/i, /^s/i, /^o/i, /^n/i, /^d/i]
-}, eu = {
+}, Ks = {
   narrow: /^[dstq]/i,
   short: /^(dom|seg|ter|qua|qui|sex|s[áa]b)/i,
   abbreviated: /^(dom|seg|ter|qua|qui|sex|s[áa]b)/i,
   wide: /^(domingo|segunda-?\s?feira|terça-?\s?feira|quarta-?\s?feira|quinta-?\s?feira|sexta-?\s?feira|s[áa]bado)/i
-}, tu = {
+}, eu = {
   narrow: [/^d/i, /^s/i, /^t/i, /^q/i, /^q/i, /^s/i, /^s/i],
   any: [/^d/i, /^seg/i, /^t/i, /^qua/i, /^qui/i, /^sex/i, /^s[áa]/i]
-}, au = {
+}, tu = {
   narrow: /^(a|p|meia-?\s?noite|meio-?\s?dia|(da) (manh[ãa]|tarde|noite|madrugada))/i,
   any: /^([ap]\.?\s?m\.?|meia-?\s?noite|meio-?\s?dia|(da) (manh[ãa]|tarde|noite|madrugada))/i
-}, ru = {
+}, au = {
   any: {
     am: /^a/i,
     pm: /^p/i,
@@ -4065,75 +4127,75 @@ var Rs = /^(\d+)(º|ª)?/i, Vs = /\d+/i, Bs = {
     evening: /noite/i,
     night: /madrugada/i
   }
-}, nu = {
+}, ru = {
   ordinalNumber: q({
-    matchPattern: Rs,
+    matchPattern: Xs,
     parsePattern: Vs,
     valueCallback: function(e) {
       return parseInt(e, 10);
     }
   }),
-  era: f({
+  era: g({
     matchPatterns: Bs,
     defaultMatchWidth: "wide",
-    parsePatterns: Us,
+    parsePatterns: Rs,
     defaultParseWidth: "any"
   }),
-  quarter: f({
-    matchPatterns: Js,
+  quarter: g({
+    matchPatterns: Us,
     defaultMatchWidth: "wide",
-    parsePatterns: Qs,
+    parsePatterns: Js,
     defaultParseWidth: "any",
     valueCallback: function(e) {
       return e + 1;
     }
   }),
-  month: f({
-    matchPatterns: Zs,
+  month: g({
+    matchPatterns: Qs,
     defaultMatchWidth: "wide",
-    parsePatterns: Ks,
+    parsePatterns: Zs,
     defaultParseWidth: "any"
   }),
-  day: f({
-    matchPatterns: eu,
+  day: g({
+    matchPatterns: Ks,
     defaultMatchWidth: "wide",
-    parsePatterns: tu,
+    parsePatterns: eu,
     defaultParseWidth: "any"
   }),
-  dayPeriod: f({
-    matchPatterns: au,
+  dayPeriod: g({
+    matchPatterns: tu,
     defaultMatchWidth: "any",
-    parsePatterns: ru,
+    parsePatterns: au,
     defaultParseWidth: "any"
   })
 };
-const iu = nu;
-var ou = {
+const nu = ru;
+var iu = {
   code: "pt",
-  formatDistance: Ts,
-  formatLong: Ls,
-  formatRelative: zs,
-  localize: Xs,
-  match: iu,
+  formatDistance: Ss,
+  formatLong: Es,
+  formatRelative: Ls,
+  localize: Ys,
+  match: nu,
   options: {
     weekStartsOn: 1,
     firstWeekContainsDate: 4
   }
 };
-const su = ou;
+const ou = iu;
 function K(e, t) {
   if (e.one !== void 0 && t === 1)
     return e.one;
   var a = t % 10, r = t % 100;
   return a === 1 && r !== 11 ? e.singularNominative.replace("{{count}}", t) : a >= 2 && a <= 4 && (r < 10 || r > 20) ? e.singularGenitive.replace("{{count}}", t) : e.pluralGenitive.replace("{{count}}", t);
 }
-function j(e) {
+function L(e) {
   return function(t, a) {
     return a.addSuffix ? a.comparison > 0 ? e.future ? K(e.future, t) : "\u0447\u0435\u0440\u0435\u0437 " + K(e.regular, t) : e.past ? K(e.past, t) : K(e.regular, t) + " \u043D\u0430\u0437\u0430\u0434" : K(e.regular, t);
   };
 }
-var uu = {
-  lessThanXSeconds: j({
+var su = {
+  lessThanXSeconds: L({
     regular: {
       one: "\u043C\u0435\u043D\u044C\u0448\u0435 \u0441\u0435\u043A\u0443\u043D\u0434\u044B",
       singularNominative: "\u043C\u0435\u043D\u044C\u0448\u0435 {{count}} \u0441\u0435\u043A\u0443\u043D\u0434\u044B",
@@ -4147,7 +4209,7 @@ var uu = {
       pluralGenitive: "\u043C\u0435\u043D\u044C\u0448\u0435, \u0447\u0435\u043C \u0447\u0435\u0440\u0435\u0437 {{count}} \u0441\u0435\u043A\u0443\u043D\u0434"
     }
   }),
-  xSeconds: j({
+  xSeconds: L({
     regular: {
       singularNominative: "{{count}} \u0441\u0435\u043A\u0443\u043D\u0434\u0430",
       singularGenitive: "{{count}} \u0441\u0435\u043A\u0443\u043D\u0434\u044B",
@@ -4167,7 +4229,7 @@ var uu = {
   halfAMinute: function(e, t) {
     return t.addSuffix ? t.comparison > 0 ? "\u0447\u0435\u0440\u0435\u0437 \u043F\u043E\u043B\u043C\u0438\u043D\u0443\u0442\u044B" : "\u043F\u043E\u043B\u043C\u0438\u043D\u0443\u0442\u044B \u043D\u0430\u0437\u0430\u0434" : "\u043F\u043E\u043B\u043C\u0438\u043D\u0443\u0442\u044B";
   },
-  lessThanXMinutes: j({
+  lessThanXMinutes: L({
     regular: {
       one: "\u043C\u0435\u043D\u044C\u0448\u0435 \u043C\u0438\u043D\u0443\u0442\u044B",
       singularNominative: "\u043C\u0435\u043D\u044C\u0448\u0435 {{count}} \u043C\u0438\u043D\u0443\u0442\u044B",
@@ -4181,7 +4243,7 @@ var uu = {
       pluralGenitive: "\u043C\u0435\u043D\u044C\u0448\u0435, \u0447\u0435\u043C \u0447\u0435\u0440\u0435\u0437 {{count}} \u043C\u0438\u043D\u0443\u0442"
     }
   }),
-  xMinutes: j({
+  xMinutes: L({
     regular: {
       singularNominative: "{{count}} \u043C\u0438\u043D\u0443\u0442\u0430",
       singularGenitive: "{{count}} \u043C\u0438\u043D\u0443\u0442\u044B",
@@ -4198,7 +4260,7 @@ var uu = {
       pluralGenitive: "\u0447\u0435\u0440\u0435\u0437 {{count}} \u043C\u0438\u043D\u0443\u0442"
     }
   }),
-  aboutXHours: j({
+  aboutXHours: L({
     regular: {
       singularNominative: "\u043E\u043A\u043E\u043B\u043E {{count}} \u0447\u0430\u0441\u0430",
       singularGenitive: "\u043E\u043A\u043E\u043B\u043E {{count}} \u0447\u0430\u0441\u043E\u0432",
@@ -4210,21 +4272,21 @@ var uu = {
       pluralGenitive: "\u043F\u0440\u0438\u0431\u043B\u0438\u0437\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u0447\u0435\u0440\u0435\u0437 {{count}} \u0447\u0430\u0441\u043E\u0432"
     }
   }),
-  xHours: j({
+  xHours: L({
     regular: {
       singularNominative: "{{count}} \u0447\u0430\u0441",
       singularGenitive: "{{count}} \u0447\u0430\u0441\u0430",
       pluralGenitive: "{{count}} \u0447\u0430\u0441\u043E\u0432"
     }
   }),
-  xDays: j({
+  xDays: L({
     regular: {
       singularNominative: "{{count}} \u0434\u0435\u043D\u044C",
       singularGenitive: "{{count}} \u0434\u043D\u044F",
       pluralGenitive: "{{count}} \u0434\u043D\u0435\u0439"
     }
   }),
-  aboutXWeeks: j({
+  aboutXWeeks: L({
     regular: {
       singularNominative: "\u043E\u043A\u043E\u043B\u043E {{count}} \u043D\u0435\u0434\u0435\u043B\u0438",
       singularGenitive: "\u043E\u043A\u043E\u043B\u043E {{count}} \u043D\u0435\u0434\u0435\u043B\u044C",
@@ -4236,14 +4298,14 @@ var uu = {
       pluralGenitive: "\u043F\u0440\u0438\u0431\u043B\u0438\u0437\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u0447\u0435\u0440\u0435\u0437 {{count}} \u043D\u0435\u0434\u0435\u043B\u044C"
     }
   }),
-  xWeeks: j({
+  xWeeks: L({
     regular: {
       singularNominative: "{{count}} \u043D\u0435\u0434\u0435\u043B\u044F",
       singularGenitive: "{{count}} \u043D\u0435\u0434\u0435\u043B\u0438",
       pluralGenitive: "{{count}} \u043D\u0435\u0434\u0435\u043B\u044C"
     }
   }),
-  aboutXMonths: j({
+  aboutXMonths: L({
     regular: {
       singularNominative: "\u043E\u043A\u043E\u043B\u043E {{count}} \u043C\u0435\u0441\u044F\u0446\u0430",
       singularGenitive: "\u043E\u043A\u043E\u043B\u043E {{count}} \u043C\u0435\u0441\u044F\u0446\u0435\u0432",
@@ -4255,14 +4317,14 @@ var uu = {
       pluralGenitive: "\u043F\u0440\u0438\u0431\u043B\u0438\u0437\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u0447\u0435\u0440\u0435\u0437 {{count}} \u043C\u0435\u0441\u044F\u0446\u0435\u0432"
     }
   }),
-  xMonths: j({
+  xMonths: L({
     regular: {
       singularNominative: "{{count}} \u043C\u0435\u0441\u044F\u0446",
       singularGenitive: "{{count}} \u043C\u0435\u0441\u044F\u0446\u0430",
       pluralGenitive: "{{count}} \u043C\u0435\u0441\u044F\u0446\u0435\u0432"
     }
   }),
-  aboutXYears: j({
+  aboutXYears: L({
     regular: {
       singularNominative: "\u043E\u043A\u043E\u043B\u043E {{count}} \u0433\u043E\u0434\u0430",
       singularGenitive: "\u043E\u043A\u043E\u043B\u043E {{count}} \u043B\u0435\u0442",
@@ -4274,14 +4336,14 @@ var uu = {
       pluralGenitive: "\u043F\u0440\u0438\u0431\u043B\u0438\u0437\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u0447\u0435\u0440\u0435\u0437 {{count}} \u043B\u0435\u0442"
     }
   }),
-  xYears: j({
+  xYears: L({
     regular: {
       singularNominative: "{{count}} \u0433\u043E\u0434",
       singularGenitive: "{{count}} \u0433\u043E\u0434\u0430",
       pluralGenitive: "{{count}} \u043B\u0435\u0442"
     }
   }),
-  overXYears: j({
+  overXYears: L({
     regular: {
       singularNominative: "\u0431\u043E\u043B\u044C\u0448\u0435 {{count}} \u0433\u043E\u0434\u0430",
       singularGenitive: "\u0431\u043E\u043B\u044C\u0448\u0435 {{count}} \u043B\u0435\u0442",
@@ -4293,7 +4355,7 @@ var uu = {
       pluralGenitive: "\u0431\u043E\u043B\u044C\u0448\u0435, \u0447\u0435\u043C \u0447\u0435\u0440\u0435\u0437 {{count}} \u043B\u0435\u0442"
     }
   }),
-  almostXYears: j({
+  almostXYears: L({
     regular: {
       singularNominative: "\u043F\u043E\u0447\u0442\u0438 {{count}} \u0433\u043E\u0434",
       singularGenitive: "\u043F\u043E\u0447\u0442\u0438 {{count}} \u0433\u043E\u0434\u0430",
@@ -4306,38 +4368,38 @@ var uu = {
     }
   })
 };
-function lu(e, t, a) {
-  return a = a || {}, uu[e](t, a);
+function uu(e, t, a) {
+  return a = a || {}, su[e](t, a);
 }
-var du = {
+var lu = {
   full: "EEEE, d MMMM y '\u0433.'",
   long: "d MMMM y '\u0433.'",
   medium: "d MMM y '\u0433.'",
   short: "dd.MM.y"
-}, mu = {
+}, du = {
   full: "H:mm:ss zzzz",
   long: "H:mm:ss z",
   medium: "H:mm:ss",
   short: "H:mm"
-}, cu = {
+}, mu = {
   any: "{{date}}, {{time}}"
-}, hu = {
-  date: M({
+}, cu = {
+  date: y({
+    formats: lu,
+    defaultWidth: "full"
+  }),
+  time: y({
     formats: du,
     defaultWidth: "full"
   }),
-  time: M({
+  dateTime: y({
     formats: mu,
-    defaultWidth: "full"
-  }),
-  dateTime: M({
-    formats: cu,
     defaultWidth: "any"
   })
 };
-const fu = hu;
+const hu = cu;
 var $e = ["\u0432\u043E\u0441\u043A\u0440\u0435\u0441\u0435\u043D\u044C\u0435", "\u043F\u043E\u043D\u0435\u0434\u0435\u043B\u044C\u043D\u0438\u043A", "\u0432\u0442\u043E\u0440\u043D\u0438\u043A", "\u0441\u0440\u0435\u0434\u0443", "\u0447\u0435\u0442\u0432\u0435\u0440\u0433", "\u043F\u044F\u0442\u043D\u0438\u0446\u0443", "\u0441\u0443\u0431\u0431\u043E\u0442\u0443"];
-function gu(e) {
+function fu(e) {
   var t = $e[e];
   switch (e) {
     case 0:
@@ -4352,11 +4414,11 @@ function gu(e) {
       return "'\u0432 \u043F\u0440\u043E\u0448\u043B\u0443\u044E " + t + " \u0432' p";
   }
 }
-function Ae(e) {
+function _e(e) {
   var t = $e[e];
   return e === 2 ? "'\u0432\u043E " + t + " \u0432' p" : "'\u0432 " + t + " \u0432' p";
 }
-function vu(e) {
+function gu(e) {
   var t = $e[e];
   switch (e) {
     case 0:
@@ -4371,41 +4433,41 @@ function vu(e) {
       return "'\u0432 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0443\u044E " + t + " \u0432' p";
   }
 }
-var pu = {
+var vu = {
   lastWeek: function(e, t, a) {
     var r = e.getUTCDay();
-    return le(e, t, a) ? Ae(r) : gu(r);
+    return le(e, t, a) ? _e(r) : fu(r);
   },
   yesterday: "'\u0432\u0447\u0435\u0440\u0430 \u0432' p",
   today: "'\u0441\u0435\u0433\u043E\u0434\u043D\u044F \u0432' p",
   tomorrow: "'\u0437\u0430\u0432\u0442\u0440\u0430 \u0432' p",
   nextWeek: function(e, t, a) {
     var r = e.getUTCDay();
-    return le(e, t, a) ? Ae(r) : vu(r);
+    return le(e, t, a) ? _e(r) : gu(r);
   },
   other: "P"
 };
-function wu(e, t, a, r) {
-  var n = pu[e];
+function pu(e, t, a, r) {
+  var n = vu[e];
   return typeof n == "function" ? n(t, a, r) : n;
 }
-var bu = {
+var wu = {
   narrow: ["\u0434\u043E \u043D.\u044D.", "\u043D.\u044D."],
   abbreviated: ["\u0434\u043E \u043D. \u044D.", "\u043D. \u044D."],
   wide: ["\u0434\u043E \u043D\u0430\u0448\u0435\u0439 \u044D\u0440\u044B", "\u043D\u0430\u0448\u0435\u0439 \u044D\u0440\u044B"]
-}, yu = {
+}, bu = {
   narrow: ["1", "2", "3", "4"],
   abbreviated: ["1-\u0439 \u043A\u0432.", "2-\u0439 \u043A\u0432.", "3-\u0439 \u043A\u0432.", "4-\u0439 \u043A\u0432."],
   wide: ["1-\u0439 \u043A\u0432\u0430\u0440\u0442\u0430\u043B", "2-\u0439 \u043A\u0432\u0430\u0440\u0442\u0430\u043B", "3-\u0439 \u043A\u0432\u0430\u0440\u0442\u0430\u043B", "4-\u0439 \u043A\u0432\u0430\u0440\u0442\u0430\u043B"]
-}, Mu = {
+}, yu = {
   narrow: ["\u042F", "\u0424", "\u041C", "\u0410", "\u041C", "\u0418", "\u0418", "\u0410", "\u0421", "\u041E", "\u041D", "\u0414"],
   abbreviated: ["\u044F\u043D\u0432.", "\u0444\u0435\u0432.", "\u043C\u0430\u0440\u0442", "\u0430\u043F\u0440.", "\u043C\u0430\u0439", "\u0438\u044E\u043D\u044C", "\u0438\u044E\u043B\u044C", "\u0430\u0432\u0433.", "\u0441\u0435\u043D\u0442.", "\u043E\u043A\u0442.", "\u043D\u043E\u044F\u0431.", "\u0434\u0435\u043A."],
   wide: ["\u044F\u043D\u0432\u0430\u0440\u044C", "\u0444\u0435\u0432\u0440\u0430\u043B\u044C", "\u043C\u0430\u0440\u0442", "\u0430\u043F\u0440\u0435\u043B\u044C", "\u043C\u0430\u0439", "\u0438\u044E\u043D\u044C", "\u0438\u044E\u043B\u044C", "\u0430\u0432\u0433\u0443\u0441\u0442", "\u0441\u0435\u043D\u0442\u044F\u0431\u0440\u044C", "\u043E\u043A\u0442\u044F\u0431\u0440\u044C", "\u043D\u043E\u044F\u0431\u0440\u044C", "\u0434\u0435\u043A\u0430\u0431\u0440\u044C"]
-}, Pu = {
+}, Mu = {
   narrow: ["\u042F", "\u0424", "\u041C", "\u0410", "\u041C", "\u0418", "\u0418", "\u0410", "\u0421", "\u041E", "\u041D", "\u0414"],
   abbreviated: ["\u044F\u043D\u0432.", "\u0444\u0435\u0432.", "\u043C\u0430\u0440.", "\u0430\u043F\u0440.", "\u043C\u0430\u044F", "\u0438\u044E\u043D.", "\u0438\u044E\u043B.", "\u0430\u0432\u0433.", "\u0441\u0435\u043D\u0442.", "\u043E\u043A\u0442.", "\u043D\u043E\u044F\u0431.", "\u0434\u0435\u043A."],
   wide: ["\u044F\u043D\u0432\u0430\u0440\u044F", "\u0444\u0435\u0432\u0440\u0430\u043B\u044F", "\u043C\u0430\u0440\u0442\u0430", "\u0430\u043F\u0440\u0435\u043B\u044F", "\u043C\u0430\u044F", "\u0438\u044E\u043D\u044F", "\u0438\u044E\u043B\u044F", "\u0430\u0432\u0433\u0443\u0441\u0442\u0430", "\u0441\u0435\u043D\u0442\u044F\u0431\u0440\u044F", "\u043E\u043A\u0442\u044F\u0431\u0440\u044F", "\u043D\u043E\u044F\u0431\u0440\u044F", "\u0434\u0435\u043A\u0430\u0431\u0440\u044F"]
-}, Du = {
+}, Pu = {
   narrow: ["\u0412", "\u041F", "\u0412", "\u0421", "\u0427", "\u041F", "\u0421"],
   short: ["\u0432\u0441", "\u043F\u043D", "\u0432\u0442", "\u0441\u0440", "\u0447\u0442", "\u043F\u0442", "\u0441\u0431"],
   abbreviated: ["\u0432\u0441\u043A", "\u043F\u043D\u0434", "\u0432\u0442\u0440", "\u0441\u0440\u0434", "\u0447\u0442\u0432", "\u043F\u0442\u043D", "\u0441\u0443\u0431"],
@@ -4441,7 +4503,7 @@ var bu = {
     evening: "\u0432\u0435\u0447\u0435\u0440",
     night: "\u043D\u043E\u0447\u044C"
   }
-}, $u = {
+}, Du = {
   narrow: {
     am: "\u0414\u041F",
     pm: "\u041F\u041F",
@@ -4473,61 +4535,61 @@ var bu = {
     night: "\u043D\u043E\u0447\u0438"
   }
 };
-function Cu(e, t) {
+function $u(e, t) {
   var a = t || {}, r = String(a.unit), n;
   return r === "date" ? n = "-\u0435" : r === "week" || r === "minute" || r === "second" ? n = "-\u044F" : n = "-\u0439", e + n;
 }
-var Su = {
-  ordinalNumber: Cu,
-  era: h({
-    values: bu,
+var Cu = {
+  ordinalNumber: $u,
+  era: f({
+    values: wu,
     defaultWidth: "wide"
   }),
-  quarter: h({
-    values: yu,
+  quarter: f({
+    values: bu,
     defaultWidth: "wide",
     argumentCallback: function(e) {
       return Number(e) - 1;
     }
   }),
-  month: h({
-    values: Mu,
+  month: f({
+    values: yu,
     defaultWidth: "wide",
-    formattingValues: Pu,
+    formattingValues: Mu,
     defaultFormattingWidth: "wide"
   }),
-  day: h({
-    values: Du,
+  day: f({
+    values: Pu,
     defaultWidth: "wide"
   }),
-  dayPeriod: h({
+  dayPeriod: f({
     values: ku,
     defaultWidth: "any",
-    formattingValues: $u,
+    formattingValues: Du,
     defaultFormattingWidth: "wide"
   })
 };
-const Wu = Su;
-var Tu = /^(\d+)(-?(е|я|й|ое|ье|ая|ья|ый|ой|ий|ый))?/i, Ou = /\d+/i, Nu = {
+const Wu = Cu;
+var Su = /^(\d+)(-?(е|я|й|ое|ье|ая|ья|ый|ой|ий|ый))?/i, Tu = /\d+/i, Ou = {
   narrow: /^((до )?н\.?\s?э\.?)/i,
   abbreviated: /^((до )?н\.?\s?э\.?)/i,
   wide: /^(до нашей эры|нашей эры|наша эра)/i
-}, xu = {
+}, Nu = {
   any: [/^д/i, /^н/i]
-}, Eu = {
+}, xu = {
   narrow: /^[1234]/i,
   abbreviated: /^[1234](-?[ыои]?й?)? кв.?/i,
   wide: /^[1234](-?[ыои]?й?)? квартал/i
-}, Lu = {
+}, Eu = {
   any: [/1/i, /2/i, /3/i, /4/i]
 }, ju = {
   narrow: /^[яфмаисонд]/i,
   abbreviated: /^(янв|фев|март?|апр|ма[йя]|июн[ья]?|июл[ья]?|авг|сент?|окт|нояб?|дек)\.?/i,
   wide: /^(январ[ья]|феврал[ья]|марта?|апрел[ья]|ма[йя]|июн[ья]|июл[ья]|августа?|сентябр[ья]|октябр[ья]|октябр[ья]|ноябр[ья]|декабр[ья])/i
-}, zu = {
+}, Lu = {
   narrow: [/^я/i, /^ф/i, /^м/i, /^а/i, /^м/i, /^и/i, /^и/i, /^а/i, /^с/i, /^о/i, /^н/i, /^я/i],
   any: [/^я/i, /^ф/i, /^мар/i, /^ап/i, /^ма[йя]/i, /^июн/i, /^июл/i, /^ав/i, /^с/i, /^о/i, /^н/i, /^д/i]
-}, Au = {
+}, zu = {
   narrow: /^[впсч]/i,
   short: /^(вс|во|пн|по|вт|ср|чт|че|пт|пя|сб|су)\.?/i,
   abbreviated: /^(вск|вос|пнд|пон|втр|вто|срд|сре|чтв|чет|птн|пят|суб).?/i,
@@ -4535,11 +4597,11 @@ var Tu = /^(\d+)(-?(е|я|й|ое|ье|ая|ья|ый|ой|ий|ый))?/i, Ou = 
 }, _u = {
   narrow: [/^в/i, /^п/i, /^в/i, /^с/i, /^ч/i, /^п/i, /^с/i],
   any: [/^в[ос]/i, /^п[он]/i, /^в/i, /^ср/i, /^ч/i, /^п[ят]/i, /^с[уб]/i]
-}, Fu = {
+}, Au = {
   narrow: /^([дп]п|полн\.?|полд\.?|утр[оа]|день|дня|веч\.?|ноч[ьи])/i,
   abbreviated: /^([дп]п|полн\.?|полд\.?|утр[оа]|день|дня|веч\.?|ноч[ьи])/i,
   wide: /^([дп]п|полночь|полдень|утр[оа]|день|дня|вечера?|ноч[ьи])/i
-}, Iu = {
+}, Fu = {
   any: {
     am: /^дп/i,
     pm: /^пп/i,
@@ -4550,67 +4612,67 @@ var Tu = /^(\d+)(-?(е|я|й|ое|ье|ая|ья|ый|ой|ий|ый))?/i, Ou = 
     evening: /^в/i,
     night: /^н/i
   }
-}, qu = {
+}, Iu = {
   ordinalNumber: q({
-    matchPattern: Tu,
-    parsePattern: Ou,
+    matchPattern: Su,
+    parsePattern: Tu,
     valueCallback: function(e) {
       return parseInt(e, 10);
     }
   }),
-  era: f({
-    matchPatterns: Nu,
+  era: g({
+    matchPatterns: Ou,
     defaultMatchWidth: "wide",
-    parsePatterns: xu,
+    parsePatterns: Nu,
     defaultParseWidth: "any"
   }),
-  quarter: f({
-    matchPatterns: Eu,
+  quarter: g({
+    matchPatterns: xu,
     defaultMatchWidth: "wide",
-    parsePatterns: Lu,
+    parsePatterns: Eu,
     defaultParseWidth: "any",
     valueCallback: function(e) {
       return e + 1;
     }
   }),
-  month: f({
+  month: g({
     matchPatterns: ju,
     defaultMatchWidth: "wide",
-    parsePatterns: zu,
+    parsePatterns: Lu,
     defaultParseWidth: "any"
   }),
-  day: f({
-    matchPatterns: Au,
+  day: g({
+    matchPatterns: zu,
     defaultMatchWidth: "wide",
     parsePatterns: _u,
     defaultParseWidth: "any"
   }),
-  dayPeriod: f({
-    matchPatterns: Fu,
+  dayPeriod: g({
+    matchPatterns: Au,
     defaultMatchWidth: "wide",
-    parsePatterns: Iu,
+    parsePatterns: Fu,
     defaultParseWidth: "any"
   })
 };
-const Hu = qu;
-var Gu = {
+const qu = Iu;
+var Hu = {
   code: "ru",
-  formatDistance: lu,
-  formatLong: fu,
-  formatRelative: wu,
+  formatDistance: uu,
+  formatLong: hu,
+  formatRelative: pu,
   localize: Wu,
-  match: Hu,
+  match: qu,
   options: {
     weekStartsOn: 1,
     firstWeekContainsDate: 1
   }
 };
-const Yu = Gu, de = { en: Gn, fr: so, es: Ci, de: En, ca: wr, it: Ro, ru: Yu, pt: su, da: Qr, ko: Ws };
-function Xu(e = x(new Date()), t = x("en")) {
-  const a = Re({
+const Gu = Hu, de = { en: Hn, fr: oo, es: $i, de: xn, ca: pr, it: Xo, ru: Gu, pt: ou, da: Jr, ko: Ws };
+function Yu(e = x(new Date()), t = x("en")) {
+  const a = Ve({
     start: null,
     end: null
-  }), r = _(() => ({
+  }), r = A(() => ({
     start: a && a.start ? H(
       new Date(
         a.start.year,
@@ -4627,7 +4689,7 @@ function Xu(e = x(new Date()), t = x("en")) {
       ),
       "yyyy-MM-dd"
     ) : null
-  })), n = _(() => ({
+  })), n = A(() => ({
     start: a && a.start ? H(
       new Date(
         a.start.year,
@@ -4649,23 +4711,23 @@ function Xu(e = x(new Date()), t = x("en")) {
       ),
       "yyyy-MM-dd'T'HH:mm:ss"
     ) : null
-  })), i = _(() => {
-    const v = new Array(o.value), w = _a(e.value), D = e.value.getMonth(), C = e.value.getFullYear();
-    for (let L = 1; L <= w; L++)
+  })), i = A(() => {
+    const v = new Array(o.value), p = _a(e.value), k = e.value.getMonth(), C = e.value.getFullYear();
+    for (let E = 1; E <= p; E++)
       v.push({
         year: C,
-        month: D,
-        date: L,
-        formatted: H(new Date(C, D, L), "yyyy-MM-dd")
+        month: k,
+        date: E,
+        formatted: H(new Date(C, k, E), "yyyy-MM-dd")
       });
-    const A = new Array(6 - u.value);
-    return v.concat(A);
-  }), o = _(() => Le(Nt(e.value))), u = _(() => Le(Ot(e.value))), s = _(() => H(e.value, "MMMM yyyy", {
+    const z = new Array(6 - u.value);
+    return v.concat(z);
+  }), o = A(() => je(Ot(e.value))), u = A(() => je(Tt(e.value))), s = A(() => H(e.value, "MMMM yyyy", {
     locale: de[t.value]
-  })), d = _(() => {
-    const v = $t(new Date());
+  })), l = A(() => {
+    const v = Dt(new Date());
     return [...Array(7).keys()].map(
-      (D) => H(Dt(v, D), "EEEEEE", {
+      (k) => H(Pt(v, k), "EEEEEE", {
         locale: de[t.value]
       })
     );
@@ -4678,14 +4740,14 @@ function Xu(e = x(new Date()), t = x("en")) {
     firstDayOfMonth: o,
     lastDayOfMonth: u,
     shownMonthName: s,
-    weekdays: d,
+    weekdays: l,
     changeShownMonth: (v = new Date()) => {
       e.value = v;
     },
     changeSelectedDate: (v) => {
       if (v && (a.start == null || a.end != null ? (a.start = v, a.end != null && (a.end = null)) : a.end == null && (a.end = v), a && a.end && a.start && a.end.formatted < a.start.formatted)) {
-        const w = a.start;
-        a.start = a.end, a.end = w;
+        const p = a.start;
+        a.start = a.end, a.end = p;
       }
     },
     clearSelectedDate: () => {
@@ -4702,7 +4764,7 @@ function Xu(e = x(new Date()), t = x("en")) {
     }
   };
 }
-const Ru = ce({
+const Xu = ce({
   name: "DateRangePicker",
   emits: ["datechanged", "close"],
   props: {
@@ -4724,13 +4786,13 @@ const Ru = ce({
       default: "Toggle the calendar"
     },
     defaultDate: { type: Date, required: !1, default: () => new Date() },
-    gtm: { type: String, required: !1, default: void 0 }
+    tracking: { type: Object, required: !1, default: null }
   },
   setup(e, { emit: t }) {
-    const a = I(e, "dateLocale"), r = x(!1), n = x(null), i = x(null), o = x(null), u = (R) => R.stopPropagation(), s = () => {
+    const a = I(e, "dateLocale"), r = x(!1), n = x(null), i = x(null), o = x(null), u = (c) => c.stopPropagation(), s = () => {
       r.value && (r.value = !1);
     };
-    De(() => {
+    ke(() => {
       document.addEventListener("click", s), n.value && n.value.addEventListener("click", u);
     }), st(() => {
       document.removeEventListener("click", s), n.value && n.value.removeEventListener(
@@ -4739,46 +4801,49 @@ const Ru = ce({
       );
     });
     const {
-      isoSelectedDates: d,
-      readableSelectedDates: l,
-      clearSelectedDate: m,
-      changeSelectedDate: g,
-      weekdays: b,
-      shownMonthName: p,
+      isoSelectedDates: l,
+      readableSelectedDates: m,
+      clearSelectedDate: d,
+      changeSelectedDate: h,
+      weekdays: M,
+      shownMonthName: w,
       showNextMonth: v,
-      showPreviousMonth: w,
-      daysInMonth: D,
+      showPreviousMonth: p,
+      daysInMonth: k,
       selectedDates: C
-    } = Xu(x(e.defaultDate), a);
+    } = Yu(x(e.defaultDate), a), z = () => {
+      d(), t("datechanged", l.value), i.value = m.value.start, o.value = m.value.end, s();
+    }, E = () => {
+      C && !l.value.end && h(C.start), t("datechanged", l.value), i.value = m.value.start, o.value = m.value.end, s();
+    }, { pushTracking: V } = he();
     return {
       locale: a,
-      isoSelectedDates: d,
-      readableSelectedDates: l,
+      isoSelectedDates: l,
+      readableSelectedDates: m,
       readableStartDate: i,
       readableEndDate: o,
-      clearSelectedDate: m,
-      changeSelectedDate: g,
-      weekdays: b,
-      shownMonthName: p,
+      clearSelectedDate: d,
+      changeSelectedDate: h,
+      weekdays: M,
+      shownMonthName: w,
       showNextMonth: v,
-      showPreviousMonth: w,
-      daysInMonth: D,
+      showPreviousMonth: p,
+      daysInMonth: k,
       selectedDates: C,
-      clear: () => {
-        m(), t("datechanged", d.value), i.value = l.value.start, o.value = l.value.end, s();
-      },
-      save: () => {
-        C && !d.value.end && g(C.start), t("datechanged", d.value), i.value = l.value.start, o.value = l.value.end, s();
-      },
+      clear: z,
+      save: E,
       showDateRange: r,
       closeDatePicker: s,
-      dateRangePickerElement: n
+      dateRangePickerElement: n,
+      toggleDatePicker: () => {
+        r.value = !r.value, V(e.tracking?.clickDateToggle);
+      }
     };
   }
 }), Vu = {
   class: "date-range-picker__wrapper",
   ref: "dateRangePickerElement"
-}, Bu = ["aria-label", "aria-expanded", "aria-controls", "data-gtm"], Uu = /* @__PURE__ */ y("svg", {
+}, Bu = ["aria-label", "aria-expanded", "aria-controls"], Ru = /* @__PURE__ */ b("svg", {
   class: "dropdown-filters__arrow-down",
   width: "14",
   height: "9",
@@ -4786,85 +4851,84 @@ const Ru = ce({
   fill: "none",
   xmlns: "http://www.w3.org/2000/svg"
 }, [
-  /* @__PURE__ */ y("path", {
+  /* @__PURE__ */ b("path", {
     d: "M1 1L7.10049 7.10049L13.201 1",
     stroke: "black",
     "stroke-width": "2"
   })
-], -1), Ju = ["id"], Qu = { class: "months" }, Zu = { class: "month" }, Ku = { class: "month__name" }, el = ["aria-label"], tl = /* @__PURE__ */ y("svg", {
+], -1), Uu = ["id"], Ju = { class: "months" }, Qu = { class: "month" }, Zu = { class: "month__name" }, Ku = ["aria-label"], el = /* @__PURE__ */ b("svg", {
   width: "9",
   height: "14",
   viewBox: "0 0 9 14",
   fill: "none",
   xmlns: "http://www.w3.org/2000/svg"
 }, [
-  /* @__PURE__ */ y("path", {
+  /* @__PURE__ */ b("path", {
     d: "M8.10049 1L2 7.10049L8.10049 13.201",
     stroke: "#1B1B1B",
     "stroke-width": "2"
   })
-], -1), al = [
-  tl
-], rl = ["aria-label"], nl = /* @__PURE__ */ y("svg", {
+], -1), tl = [
+  el
+], al = ["aria-label"], rl = /* @__PURE__ */ b("svg", {
   width: "9",
   height: "14",
   viewBox: "0 0 9 14",
   fill: "none",
   xmlns: "http://www.w3.org/2000/svg"
 }, [
-  /* @__PURE__ */ y("path", {
+  /* @__PURE__ */ b("path", {
     d: "M0.899536 13L7.00003 6.89951L0.899537 0.799012",
     stroke: "#1B1B1B",
     "stroke-width": "2"
   })
-], -1), il = [
-  nl
-], ol = { class: "days" }, sl = ["onClick", "aria-hidden", "disabled", "aria-label"], ul = {
+], -1), nl = [
+  rl
+], il = { class: "days" }, ol = ["onClick", "aria-hidden", "disabled", "aria-label"], sl = {
   key: 0,
   class: "day__number"
-}, ll = { class: "date-range-picker__buttons" }, dl = ["disabled"], ml = { class: "week" };
-function cl(e, t, a, r, n, i) {
-  return W(), O("div", Vu, [
-    y("button", {
+}, ul = { class: "date-range-picker__buttons" }, ll = ["disabled"], dl = { class: "week" };
+function ml(e, t, a, r, n, i) {
+  return T(), N("div", Vu, [
+    b("button", {
       class: "date-range-picker__toggle",
-      onClick: t[0] || (t[0] = (o) => e.showDateRange = !e.showDateRange),
+      onClick: t[0] || (t[0] = (o) => e.toggleDatePicker()),
       "aria-label": e.ariaToggleCalendar,
       "aria-expanded": e.showDateRange + "",
-      "aria-controls": e.pickerId,
-      "data-gtm": e.gtm
+      "aria-controls": e.pickerId
     }, [
-      !e.readableStartDate && !e.readableEndDate ? (W(), O(J, { key: 0 }, [
-        ge(z(e.labelDatesFilter), 1)
+      !e.readableStartDate && !e.readableEndDate ? (T(), N(U, { key: 0 }, [
+        ge(_(e.labelDatesFilter), 1)
       ], 64)) : F("", !0),
-      e.readableStartDate ? (W(), O(J, { key: 1 }, [
-        ge(z(e.readableStartDate), 1)
+      e.readableStartDate ? (T(), N(U, { key: 1 }, [
+        ge(_(e.readableStartDate), 1)
       ], 64)) : F("", !0),
-      e.readableEndDate && e.readableStartDate !== e.readableEndDate ? (W(), O(J, { key: 2 }, [
-        ge(" - " + z(e.readableEndDate), 1)
+      e.readableEndDate && e.readableStartDate !== e.readableEndDate ? (T(), N(U, { key: 2 }, [
+        ge(" - " + _(e.readableEndDate), 1)
       ], 64)) : F("", !0),
-      Uu
+      Ru
     ], 8, Bu),
-    Xe(y("div", {
+    Xe(b("div", {
       id: e.pickerId,
       class: "date-range-picker"
     }, [
-      y("div", Qu, [
-        y("div", Zu, [
-          y("div", Ku, [
-            y("button", {
+      b("div", Ju, [
+        b("div", Qu, [
+          b("div", Zu, [
+            b("button", {
               class: "month-selector month-selector--previous",
               "aria-label": e.ariaPreviousMonth,
               onClick: t[1] || (t[1] = (...o) => e.showPreviousMonth && e.showPreviousMonth(...o))
-            }, al, 8, el),
-            y("span", null, z(e.shownMonthName), 1),
-            y("button", {
+            }, tl, 8, Ku),
+            b("span", null, _(e.shownMonthName), 1),
+            b("button", {
               class: "month-selector month-selector--next",
               "aria-label": e.ariaNextMonth,
               onClick: t[2] || (t[2] = (...o) => e.showNextMonth && e.showNextMonth(...o))
-            }, il, 8, rl)
+            }, nl, 8, al)
           ]),
-          y("div", ol, [
-            (W(!0), O(J, null, pe(e.daysInMonth, (o, u) => (W(), O("button", {
+          b("div", il, [
+            (T(!0), N(U, null, pe(e.daysInMonth, (o, u) => (T(), N("button", {
               key: u,
               onClick: (s) => e.changeSelectedDate(o),
               class: ut(["day", [
@@ -4877,36 +4941,36 @@ function cl(e, t, a, r, n, i) {
               disabled: !o,
               "aria-label": o ? e.ariaSelectDate + o.date + " " + e.shownMonthName : ""
             }, [
-              o ? (W(), O("span", ul, z(o.date), 1)) : F("", !0)
-            ], 10, sl))), 128))
+              o ? (T(), N("span", sl, _(o.date), 1)) : F("", !0)
+            ], 10, ol))), 128))
           ]),
-          y("div", ll, [
-            y("button", {
+          b("div", ul, [
+            b("button", {
               class: "date-range-picker__reset",
               onClick: t[3] || (t[3] = (...o) => e.clear && e.clear(...o))
-            }, z(e.labelClearButton), 1),
-            y("button", {
+            }, _(e.labelClearButton), 1),
+            b("button", {
               class: "date-range-picker__save",
               onClick: t[4] || (t[4] = (...o) => e.save && e.save(...o)),
               disabled: !e.selectedDates || !e.selectedDates.start && !e.selectedDates.end
-            }, z(e.labelSaveButton), 9, dl)
+            }, _(e.labelSaveButton), 9, ll)
           ])
         ])
       ]),
-      y("table", ml, [
-        y("tr", null, [
-          (W(!0), O(J, null, pe(e.weekdays, (o) => (W(), O("td", {
+      b("table", dl, [
+        b("tr", null, [
+          (T(!0), N(U, null, pe(e.weekdays, (o) => (T(), N("td", {
             class: "weekday",
             key: o
-          }, z(o), 1))), 128))
+          }, _(o), 1))), 128))
         ])
       ])
-    ], 8, Ju), [
+    ], 8, Uu), [
       [lt, e.showDateRange]
     ])
   ], 512);
 }
-const hl = /* @__PURE__ */ he(Ru, [["render", cl]]);
+const cl = /* @__PURE__ */ fe(Xu, [["render", ml]]);
 function Me(e, t, a, r, n, i) {
   if (n - r <= a)
     return;
@@ -4916,8 +4980,8 @@ function Me(e, t, a, r, n, i) {
 function at(e, t, a, r, n, i) {
   for (; n > r; ) {
     if (n - r > 600) {
-      const d = n - r + 1, l = a - r + 1, m = Math.log(d), g = 0.5 * Math.exp(2 * m / 3), b = 0.5 * Math.sqrt(m * g * (d - g) / d) * (l - d / 2 < 0 ? -1 : 1), p = Math.max(r, Math.floor(a - l * g / d + b)), v = Math.min(n, Math.floor(a + (d - l) * g / d + b));
-      at(e, t, a, p, v, i);
+      const l = n - r + 1, m = a - r + 1, d = Math.log(l), h = 0.5 * Math.exp(2 * d / 3), M = 0.5 * Math.sqrt(d * h * (l - h) / l) * (m - l / 2 < 0 ? -1 : 1), w = Math.max(r, Math.floor(a - m * h / l + M)), v = Math.min(n, Math.floor(a + (l - m) * h / l + M));
+      at(e, t, a, w, v, i);
     }
     const o = t[2 * a + i];
     let u = r, s = n;
@@ -4937,60 +5001,60 @@ function ve(e, t, a) {
   const r = e[t];
   e[t] = e[a], e[a] = r;
 }
-function fl(e, t, a, r, n, i, o) {
+function hl(e, t, a, r, n, i, o) {
   const u = [0, e.length - 1, 0], s = [];
-  let d, l;
+  let l, m;
   for (; u.length; ) {
-    const m = u.pop(), g = u.pop(), b = u.pop();
-    if (g - b <= o) {
-      for (let w = b; w <= g; w++)
-        d = t[2 * w], l = t[2 * w + 1], d >= a && d <= n && l >= r && l <= i && s.push(e[w]);
+    const d = u.pop(), h = u.pop(), M = u.pop();
+    if (h - M <= o) {
+      for (let p = M; p <= h; p++)
+        l = t[2 * p], m = t[2 * p + 1], l >= a && l <= n && m >= r && m <= i && s.push(e[p]);
       continue;
     }
-    const p = Math.floor((b + g) / 2);
-    d = t[2 * p], l = t[2 * p + 1], d >= a && d <= n && l >= r && l <= i && s.push(e[p]);
-    const v = (m + 1) % 2;
-    (m === 0 ? a <= d : r <= l) && (u.push(b), u.push(p - 1), u.push(v)), (m === 0 ? n >= d : i >= l) && (u.push(p + 1), u.push(g), u.push(v));
+    const w = Math.floor((M + h) / 2);
+    l = t[2 * w], m = t[2 * w + 1], l >= a && l <= n && m >= r && m <= i && s.push(e[w]);
+    const v = (d + 1) % 2;
+    (d === 0 ? a <= l : r <= m) && (u.push(M), u.push(w - 1), u.push(v)), (d === 0 ? n >= l : i >= m) && (u.push(w + 1), u.push(h), u.push(v));
   }
   return s;
 }
-function gl(e, t, a, r, n, i) {
+function fl(e, t, a, r, n, i) {
   const o = [0, e.length - 1, 0], u = [], s = n * n;
   for (; o.length; ) {
-    const d = o.pop(), l = o.pop(), m = o.pop();
-    if (l - m <= i) {
-      for (let w = m; w <= l; w++)
-        _e(t[2 * w], t[2 * w + 1], a, r) <= s && u.push(e[w]);
+    const l = o.pop(), m = o.pop(), d = o.pop();
+    if (m - d <= i) {
+      for (let p = d; p <= m; p++)
+        Ae(t[2 * p], t[2 * p + 1], a, r) <= s && u.push(e[p]);
       continue;
     }
-    const g = Math.floor((m + l) / 2), b = t[2 * g], p = t[2 * g + 1];
-    _e(b, p, a, r) <= s && u.push(e[g]);
-    const v = (d + 1) % 2;
-    (d === 0 ? a - n <= b : r - n <= p) && (o.push(m), o.push(g - 1), o.push(v)), (d === 0 ? a + n >= b : r + n >= p) && (o.push(g + 1), o.push(l), o.push(v));
+    const h = Math.floor((d + m) / 2), M = t[2 * h], w = t[2 * h + 1];
+    Ae(M, w, a, r) <= s && u.push(e[h]);
+    const v = (l + 1) % 2;
+    (l === 0 ? a - n <= M : r - n <= w) && (o.push(d), o.push(h - 1), o.push(v)), (l === 0 ? a + n >= M : r + n >= w) && (o.push(h + 1), o.push(m), o.push(v));
   }
   return u;
 }
-function _e(e, t, a, r) {
+function Ae(e, t, a, r) {
   const n = e - a, i = t - r;
   return n * n + i * i;
 }
-const vl = (e) => e[0], pl = (e) => e[1];
+const gl = (e) => e[0], vl = (e) => e[1];
 class Fe {
-  constructor(t, a = vl, r = pl, n = 64, i = Float64Array) {
+  constructor(t, a = gl, r = vl, n = 64, i = Float64Array) {
     this.nodeSize = n, this.points = t;
     const o = t.length < 65536 ? Uint16Array : Uint32Array, u = this.ids = new o(t.length), s = this.coords = new i(t.length * 2);
-    for (let d = 0; d < t.length; d++)
-      u[d] = d, s[2 * d] = a(t[d]), s[2 * d + 1] = r(t[d]);
+    for (let l = 0; l < t.length; l++)
+      u[l] = l, s[2 * l] = a(t[l]), s[2 * l + 1] = r(t[l]);
     Me(u, s, n, 0, u.length - 1, 0);
   }
   range(t, a, r, n) {
-    return fl(this.ids, this.coords, t, a, r, n, this.nodeSize);
+    return hl(this.ids, this.coords, t, a, r, n, this.nodeSize);
   }
   within(t, a, r) {
-    return gl(this.ids, this.coords, t, a, r, this.nodeSize);
+    return fl(this.ids, this.coords, t, a, r, this.nodeSize);
   }
 }
-const wl = {
+const pl = {
   minZoom: 0,
   maxZoom: 16,
   minPoints: 2,
@@ -5002,9 +5066,9 @@ const wl = {
   reduce: null,
   map: (e) => e
 }, me = Math.fround || ((e) => (t) => (e[0] = +t, e[0]))(new Float32Array(1));
-class bl {
+class wl {
   constructor(t) {
-    this.options = te(Object.create(wl), t), this.trees = new Array(this.options.maxZoom + 1);
+    this.options = te(Object.create(pl), t), this.trees = new Array(this.options.maxZoom + 1);
   }
   load(t) {
     const { log: a, minZoom: r, maxZoom: n, nodeSize: i } = this.options;
@@ -5013,11 +5077,11 @@ class bl {
     a && console.time(o), this.points = t;
     let u = [];
     for (let s = 0; s < t.length; s++)
-      !t[s].geometry || u.push(Ml(t[s], s));
+      !t[s].geometry || u.push(yl(t[s], s));
     this.trees[n + 1] = new Fe(u, qe, He, i, Float32Array), a && console.timeEnd(o);
     for (let s = n; s >= r; s--) {
-      const d = +Date.now();
-      u = this._cluster(u, s), this.trees[s] = new Fe(u, qe, He, i, Float32Array), a && console.log("z%d: %d clusters in %dms", s, u.length, +Date.now() - d);
+      const l = +Date.now();
+      u = this._cluster(u, s), this.trees[s] = new Fe(u, qe, He, i, Float32Array), a && console.log("z%d: %d clusters in %dms", s, u.length, +Date.now() - l);
     }
     return a && console.timeEnd("total time"), this;
   }
@@ -5029,15 +5093,15 @@ class bl {
     if (t[2] - t[0] >= 360)
       r = -180, i = 180;
     else if (r > i) {
-      const l = this.getClusters([r, n, 180, o], a), m = this.getClusters([-180, n, i, o], a);
-      return l.concat(m);
+      const m = this.getClusters([r, n, 180, o], a), d = this.getClusters([-180, n, i, o], a);
+      return m.concat(d);
     }
-    const u = this.trees[this._limitZoom(a)], s = u.range(oe(r), se(o), oe(i), se(n)), d = [];
-    for (const l of s) {
-      const m = u.points[l];
-      d.push(m.numPoints ? Ie(m) : this.points[m.index]);
+    const u = this.trees[this._limitZoom(a)], s = u.range(oe(r), se(o), oe(i), se(n)), l = [];
+    for (const m of s) {
+      const d = u.points[m];
+      l.push(d.numPoints ? Ie(d) : this.points[d.index]);
     }
-    return d;
+    return l;
   }
   getChildren(t) {
     const a = this._getOriginId(t), r = this._getOriginZoom(t), n = "No cluster with the specified id.", i = this.trees[r];
@@ -5046,14 +5110,14 @@ class bl {
     const o = i.points[a];
     if (!o)
       throw new Error(n);
-    const u = this.options.radius / (this.options.extent * Math.pow(2, r - 1)), s = i.within(o.x, o.y, u), d = [];
-    for (const l of s) {
-      const m = i.points[l];
-      m.parentId === t && d.push(m.numPoints ? Ie(m) : this.points[m.index]);
+    const u = this.options.radius / (this.options.extent * Math.pow(2, r - 1)), s = i.within(o.x, o.y, u), l = [];
+    for (const m of s) {
+      const d = i.points[m];
+      d.parentId === t && l.push(d.numPoints ? Ie(d) : this.points[d.index]);
     }
-    if (d.length === 0)
+    if (l.length === 0)
       throw new Error(n);
-    return d;
+    return l;
   }
   getLeaves(t, a, r) {
     a = a || 10, r = r || 0;
@@ -5061,31 +5125,31 @@ class bl {
     return this._appendLeaves(n, t, a, r, 0), n;
   }
   getTile(t, a, r) {
-    const n = this.trees[this._limitZoom(t)], i = Math.pow(2, t), { extent: o, radius: u } = this.options, s = u / o, d = (r - s) / i, l = (r + 1 + s) / i, m = {
+    const n = this.trees[this._limitZoom(t)], i = Math.pow(2, t), { extent: o, radius: u } = this.options, s = u / o, l = (r - s) / i, m = (r + 1 + s) / i, d = {
       features: []
     };
     return this._addTileFeatures(
-      n.range((a - s) / i, d, (a + 1 + s) / i, l),
+      n.range((a - s) / i, l, (a + 1 + s) / i, m),
       n.points,
       a,
       r,
       i,
-      m
+      d
     ), a === 0 && this._addTileFeatures(
-      n.range(1 - s / i, d, 1, l),
+      n.range(1 - s / i, l, 1, m),
       n.points,
       i,
       r,
       i,
-      m
+      d
     ), a === i - 1 && this._addTileFeatures(
-      n.range(0, d, s / i, l),
+      n.range(0, l, s / i, m),
       n.points,
       -1,
       r,
       i,
-      m
-    ), m.features.length ? m : null;
+      d
+    ), d.features.length ? d : null;
   }
   getClusterExpansionZoom(t) {
     let a = this._getOriginZoom(t) - 1;
@@ -5108,24 +5172,24 @@ class bl {
   }
   _addTileFeatures(t, a, r, n, i, o) {
     for (const u of t) {
-      const s = a[u], d = s.numPoints;
-      let l, m, g;
-      if (d)
-        l = rt(s), m = s.x, g = s.y;
+      const s = a[u], l = s.numPoints;
+      let m, d, h;
+      if (l)
+        m = rt(s), d = s.x, h = s.y;
       else {
         const v = this.points[s.index];
-        l = v.properties, m = oe(v.geometry.coordinates[0]), g = se(v.geometry.coordinates[1]);
+        m = v.properties, d = oe(v.geometry.coordinates[0]), h = se(v.geometry.coordinates[1]);
       }
-      const b = {
+      const M = {
         type: 1,
         geometry: [[
-          Math.round(this.options.extent * (m * i - r)),
-          Math.round(this.options.extent * (g * i - n))
+          Math.round(this.options.extent * (d * i - r)),
+          Math.round(this.options.extent * (h * i - n))
         ]],
-        tags: l
+        tags: m
       };
-      let p;
-      d ? p = s.id : this.options.generateId ? p = s.index : this.points[s.index].id && (p = this.points[s.index].id), p !== void 0 && (b.id = p), o.features.push(b);
+      let w;
+      l ? w = s.id : this.options.generateId ? w = s.index : this.points[s.index].id && (w = this.points[s.index].id), w !== void 0 && (M.id = w), o.features.push(M);
     }
   }
   _limitZoom(t) {
@@ -5133,33 +5197,33 @@ class bl {
   }
   _cluster(t, a) {
     const r = [], { radius: n, extent: i, reduce: o, minPoints: u } = this.options, s = n / (i * Math.pow(2, a));
-    for (let d = 0; d < t.length; d++) {
-      const l = t[d];
-      if (l.zoom <= a)
+    for (let l = 0; l < t.length; l++) {
+      const m = t[l];
+      if (m.zoom <= a)
         continue;
-      l.zoom = a;
-      const m = this.trees[a + 1], g = m.within(l.x, l.y, s), b = l.numPoints || 1;
-      let p = b;
-      for (const v of g) {
-        const w = m.points[v];
-        w.zoom > a && (p += w.numPoints || 1);
+      m.zoom = a;
+      const d = this.trees[a + 1], h = d.within(m.x, m.y, s), M = m.numPoints || 1;
+      let w = M;
+      for (const v of h) {
+        const p = d.points[v];
+        p.zoom > a && (w += p.numPoints || 1);
       }
-      if (p > b && p >= u) {
-        let v = l.x * b, w = l.y * b, D = o && b > 1 ? this._map(l, !0) : null;
-        const C = (d << 5) + (a + 1) + this.points.length;
-        for (const A of g) {
-          const L = m.points[A];
-          if (L.zoom <= a)
+      if (w > M && w >= u) {
+        let v = m.x * M, p = m.y * M, k = o && M > 1 ? this._map(m, !0) : null;
+        const C = (l << 5) + (a + 1) + this.points.length;
+        for (const z of h) {
+          const E = d.points[z];
+          if (E.zoom <= a)
             continue;
-          L.zoom = a;
-          const R = L.numPoints || 1;
-          v += L.x * R, w += L.y * R, L.parentId = C, o && (D || (D = this._map(l, !0)), o(D, this._map(L)));
+          E.zoom = a;
+          const V = E.numPoints || 1;
+          v += E.x * V, p += E.y * V, E.parentId = C, o && (k || (k = this._map(m, !0)), o(k, this._map(E)));
         }
-        l.parentId = C, r.push(yl(v / p, w / p, C, p, D));
-      } else if (r.push(l), p > 1)
-        for (const v of g) {
-          const w = m.points[v];
-          w.zoom <= a || (w.zoom = a, r.push(w));
+        m.parentId = C, r.push(bl(v / w, p / w, C, w, k));
+      } else if (r.push(m), w > 1)
+        for (const v of h) {
+          const p = d.points[v];
+          p.zoom <= a || (p.zoom = a, r.push(p));
         }
     }
     return r;
@@ -5177,7 +5241,7 @@ class bl {
     return a && n === r ? te({}, n) : n;
   }
 }
-function yl(e, t, a, r, n) {
+function bl(e, t, a, r, n) {
   return {
     x: me(e),
     y: me(t),
@@ -5188,7 +5252,7 @@ function yl(e, t, a, r, n) {
     properties: n
   };
 }
-function Ml(e, t) {
+function yl(e, t) {
   const [a, r] = e.geometry.coordinates;
   return {
     x: me(oe(a)),
@@ -5205,7 +5269,7 @@ function Ie(e) {
     properties: rt(e),
     geometry: {
       type: "Point",
-      coordinates: [Pl(e.x), Dl(e.y)]
+      coordinates: [Ml(e.x), Pl(e.y)]
     }
   };
 }
@@ -5225,10 +5289,10 @@ function se(e) {
   const t = Math.sin(e * Math.PI / 180), a = 0.5 - 0.25 * Math.log((1 + t) / (1 - t)) / Math.PI;
   return a < 0 ? 0 : a > 1 ? 1 : a;
 }
-function Pl(e) {
+function Ml(e) {
   return (e - 0.5) * 360;
 }
-function Dl(e) {
+function Pl(e) {
   const t = (180 - e * 360) * Math.PI / 180;
   return 360 * Math.atan(Math.exp(t)) / Math.PI - 90;
 }
@@ -5322,22 +5386,22 @@ class Pe {
     this.marker && (this.marker.setMap(null), delete this.marker), this.markers.length = 0;
   }
 }
-class $l {
+class Dl {
   constructor({ maxZoom: t = 16 }) {
     this.maxZoom = t;
   }
   noop({ markers: t }) {
-    return Cl(t);
+    return $l(t);
   }
 }
-const Cl = (e) => e.map((a) => new Pe({
+const $l = (e) => e.map((a) => new Pe({
   position: a.getPosition(),
   markers: [a]
 }));
-class Sl extends $l {
+class Cl extends Dl {
   constructor(t) {
     var { maxZoom: a, radius: r = 60 } = t, n = kl(t, ["maxZoom", "radius"]);
-    super({ maxZoom: a }), this.superCluster = new bl(Object.assign({ maxZoom: this.maxZoom, radius: r }, n)), this.state = { zoom: null };
+    super({ maxZoom: a }), this.superCluster = new wl(Object.assign({ maxZoom: this.maxZoom, radius: r }, n)), this.state = { zoom: null };
   }
   calculate(t) {
     let a = !1;
@@ -5392,7 +5456,7 @@ class Wl {
     };
   }
 }
-class Tl {
+class Sl {
   render({ count: t, position: a }, r) {
     const n = t > Math.max(10, r.clusters.markers.mean) ? "#ff0000" : "#0000ff", i = window.btoa(`
   <svg fill="${n}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
@@ -5416,24 +5480,24 @@ class Tl {
     });
   }
 }
-function Ol(e, t) {
+function Tl(e, t) {
   for (let a in t.prototype)
     e.prototype[a] = t.prototype[a];
 }
 class Ce {
   constructor() {
-    Ol(Ce, google.maps.OverlayView);
+    Tl(Ce, google.maps.OverlayView);
   }
 }
 var ae;
 (function(e) {
   e.CLUSTERING_BEGIN = "clusteringbegin", e.CLUSTERING_END = "clusteringend", e.CLUSTER_CLICK = "click";
 })(ae || (ae = {}));
-const Nl = (e, t, a) => {
+const Ol = (e, t, a) => {
   a.fitBounds(t.bounds);
 };
-class xl extends Ce {
-  constructor({ map: t, markers: a = [], algorithm: r = new Sl({}), renderer: n = new Tl(), onClusterClick: i = Nl }) {
+class Nl extends Ce {
+  constructor({ map: t, markers: a = [], algorithm: r = new Cl({}), renderer: n = new Sl(), onClusterClick: i = Ol }) {
     super(), this.markers = [...a], this.clusters = [], this.algorithm = r, this.renderer = n, this.onClusterClick = i, t && this.setMap(t);
   }
   addMarker(t, a) {
@@ -5490,7 +5554,7 @@ class xl extends Ce {
     });
   }
 }
-var El = function e(t, a) {
+var xl = function e(t, a) {
   if (t === a)
     return !0;
   if (t && a && typeof t == "object" && typeof a == "object") {
@@ -5526,14 +5590,14 @@ var El = function e(t, a) {
   return t !== t && a !== a;
 };
 const Ye = "__googleMapsScriptId";
-var Q;
+var J;
 (function(e) {
   e[e.INITIALIZED = 0] = "INITIALIZED", e[e.LOADING = 1] = "LOADING", e[e.SUCCESS = 2] = "SUCCESS", e[e.FAILURE = 3] = "FAILURE";
-})(Q || (Q = {}));
+})(J || (J = {}));
 class X {
-  constructor({ apiKey: t, channel: a, client: r, id: n = Ye, libraries: i = [], language: o, region: u, version: s, mapIds: d, nonce: l, retries: m = 3, url: g = "https://maps.googleapis.com/maps/api/js" }) {
-    if (this.CALLBACK = "__googleMapsCallback", this.callbacks = [], this.done = !1, this.loading = !1, this.errors = [], this.version = s, this.apiKey = t, this.channel = a, this.client = r, this.id = n || Ye, this.libraries = i, this.language = o, this.region = u, this.mapIds = d, this.nonce = l, this.retries = m, this.url = g, X.instance) {
-      if (!El(this.options, X.instance.options))
+  constructor({ apiKey: t, channel: a, client: r, id: n = Ye, libraries: i = [], language: o, region: u, version: s, mapIds: l, nonce: m, retries: d = 3, url: h = "https://maps.googleapis.com/maps/api/js" }) {
+    if (this.CALLBACK = "__googleMapsCallback", this.callbacks = [], this.done = !1, this.loading = !1, this.errors = [], this.version = s, this.apiKey = t, this.channel = a, this.client = r, this.id = n || Ye, this.libraries = i, this.language = o, this.region = u, this.mapIds = l, this.nonce = m, this.retries = d, this.url = h, X.instance) {
+      if (!xl(this.options, X.instance.options))
         throw new Error(`Loader must not be called again with different options. ${JSON.stringify(this.options)} !== ${JSON.stringify(X.instance.options)}`);
       return X.instance;
     }
@@ -5555,7 +5619,7 @@ class X {
     };
   }
   get status() {
-    return this.errors.length ? Q.FAILURE : this.done ? Q.SUCCESS : this.loading ? Q.LOADING : Q.INITIALIZED;
+    return this.errors.length ? J.FAILURE : this.done ? J.SUCCESS : this.loading ? J.LOADING : J.INITIALIZED;
   }
   get failed() {
     return this.done && !this.loading && this.errors.length >= this.retries + 1;
@@ -5624,28 +5688,7 @@ class X {
     }
   }
 }
-function nt() {
-  const e = (a) => {
-    if (!!a) {
-      window.dataLayer || (window.dataLayer = []);
-      try {
-        const r = t(a);
-        if (r)
-          for (let n = 0; n < r.length; n++)
-            window.dataLayer.push(r[n]);
-      } catch (r) {
-        console.warn("[useGtm.js] - ", r);
-      }
-    }
-  }, t = (a) => {
-    let r = a.replace(/\\n/g, "\\n").replace(/\\'/g, "\\'").replace(/\\"/g, '\\"').replace(/\\&/g, "\\&").replace(/\\r/g, "\\r").replace(/\\t/g, "\\t").replace(/\\b/g, "\\b").replace(/\\f/g, "\\f");
-    return r = r.replace(/[\u0000-\u0019]+/g, ""), JSON.parse(r);
-  };
-  return {
-    pushEvent: e
-  };
-}
-const Ll = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADUAAAA1CAYAAADh5qNwAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMXSURBVHgB7ZnPbxJBFMcfajRBRTQYTdWKBw1JL403kh7w0niDgz+O/qLXCukfUHrzUtt4LUq96qF4q73YJo29UQ+ijcZASjWaElsw4u/gm2WHDhsg+2ZnGw7zSV52ZoHd+c6bX+8BoNFoNBqNRqNpgwdcoF6vB/ESRYugDaIFhY+Lpi2iLXk8nkXoZVBMBO1FnUYB7Qb0GswzEmLaiQuCAhwPP2xIDC8ZND+/V639hdfrNXi6XIaXa9+MerX2z/hsoN8LpwMH4PJFP9pR8Hn3WR85gUMyBQ5wJAoF3YSGoCYzC5/hfvZjU0Q3fN69EB8+CSPDJ6ziHAmTFmV6aI7XS+VfcOfBO8iv/wAqZwL74eHoBcOLAtLCpESZY38VzCGXx6F2GwVtlH+DE6bj5+Dq0HHx1iWZ1XEPyDEFpiDmIRWCGIl0AVZwDgpksAP9QIQsypxHMV6/cu+tEkGcZPqDsbCYBNHuAhEZTzX3lCfLm0oFMUr4vMnsJ/FWguotkihzLkV4fRJXOTdI4woqeIsJGqT8nuqpKC/M57aUe0lkZuGLWCWdOKiiIrzARLmJZcGIAAGqqCAvvMFl3E1W1qot76XMK6qo5tjOuyyKsYHbhcARsInsPtXTaFHQCO4M2EnbbSzvqIBNqKJe8UI4dBjcZKD/oFgt4hlwG2wiLcpyolZOOHSo7XvtQBW1xAvXhwJGPOQWIxhnCWSBAEmUGQYwM4K6OAZ3bnANO0yYT2zYPSP8XGr1e8wLrDdVLxiss8Zip8RbWcp8YpBF4QtmwRzjrAGPRs+DSsZifWJHFdEmgIjsPpXkBbZgTGHEqgLmoXjrXEphJxaBiJMcRQIaEbBBI6R/bz3a2KIx5PqsgqZRUBIkcJpNGsdLitdZaM9iLJYas0s45DNyE5a5OYuCboEkKvJ+LcIYTNx8bhue575aQwiDnbzfsXabuLSHlFJvpJsLnVKvpc2fTat8/9Ppa1to5HyE67BGdRPXRcy4TNZoV8EGRtEyaKsdhBTQ5sxOUC7Glb9yrGDDzwrVCnUz1Wg0Go1Go9l9/gNvkCMbp4Ut3AAAAABJRU5ErkJggg==";
+const El = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADUAAAA1CAYAAADh5qNwAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMXSURBVHgB7ZnPbxJBFMcfajRBRTQYTdWKBw1JL403kh7w0niDgz+O/qLXCukfUHrzUtt4LUq96qF4q73YJo29UQ+ijcZASjWaElsw4u/gm2WHDhsg+2ZnGw7zSV52ZoHd+c6bX+8BoNFoNBqNRqNpgwdcoF6vB/ESRYugDaIFhY+Lpi2iLXk8nkXoZVBMBO1FnUYB7Qb0GswzEmLaiQuCAhwPP2xIDC8ZND+/V639hdfrNXi6XIaXa9+MerX2z/hsoN8LpwMH4PJFP9pR8Hn3WR85gUMyBQ5wJAoF3YSGoCYzC5/hfvZjU0Q3fN69EB8+CSPDJ6ziHAmTFmV6aI7XS+VfcOfBO8iv/wAqZwL74eHoBcOLAtLCpESZY38VzCGXx6F2GwVtlH+DE6bj5+Dq0HHx1iWZ1XEPyDEFpiDmIRWCGIl0AVZwDgpksAP9QIQsypxHMV6/cu+tEkGcZPqDsbCYBNHuAhEZTzX3lCfLm0oFMUr4vMnsJ/FWguotkihzLkV4fRJXOTdI4woqeIsJGqT8nuqpKC/M57aUe0lkZuGLWCWdOKiiIrzARLmJZcGIAAGqqCAvvMFl3E1W1qot76XMK6qo5tjOuyyKsYHbhcARsInsPtXTaFHQCO4M2EnbbSzvqIBNqKJe8UI4dBjcZKD/oFgt4hlwG2wiLcpyolZOOHSo7XvtQBW1xAvXhwJGPOQWIxhnCWSBAEmUGQYwM4K6OAZ3bnANO0yYT2zYPSP8XGr1e8wLrDdVLxiss8Zip8RbWcp8YpBF4QtmwRzjrAGPRs+DSsZifWJHFdEmgIjsPpXkBbZgTGHEqgLmoXjrXEphJxaBiJMcRQIaEbBBI6R/bz3a2KIx5PqsgqZRUBIkcJpNGsdLitdZaM9iLJYas0s45DNyE5a5OYuCboEkKvJ+LcIYTNx8bhue575aQwiDnbzfsXabuLSHlFJvpJsLnVKvpc2fTat8/9Ppa1to5HyE67BGdRPXRcy4TNZoV8EGRtEyaKsdhBTQ5sxOUC7Glb9yrGDDzwrVCnUz1Wg0Go1Go9l9/gNvkCMbp4Ut3AAAAABJRU5ErkJggg==";
 function jl(e = {
   apiKey: null,
   mapId: null,
@@ -5657,6 +5700,7 @@ function jl(e = {
   markerSize: 50,
   hasCluster: !0,
   fitMarkers: !1,
+  tracking: null,
   zoom: 15,
   mapOptions: null,
   dateLocale: x("en"),
@@ -5664,7 +5708,7 @@ function jl(e = {
   labelDirectionButton: x("View on Google Maps"),
   ariaLocateButton: "Your Location"
 }) {
-  const { pushEvent: t } = nt();
+  const { pushTracking: t } = he();
   let a = null, r = null, n = [], i = null, o = null;
   const u = new X({
     apiKey: e.apiKey,
@@ -5678,33 +5722,33 @@ function jl(e = {
     ), r = new google.maps.InfoWindow(), google.maps.event.addListenerOnce(a, "idle", () => {
       c(!0);
     });
-  }), d = () => {
+  }), l = () => {
     n.forEach((c) => c.setMap(null)), n = [];
-  }, l = () => {
-    d();
+  }, m = () => {
+    l();
     const c = [...e.markersData.value];
     if (!c)
       return;
-    const N = [];
+    const W = [];
     c.forEach((S) => {
       if (!S || typeof S.visible < "u" && !S.visible)
         return;
-      let k = { ...S }, V = null;
-      k.pinImg ? V = {
-        url: k.pinImg,
+      let D = { ...S }, re = null;
+      D.pinImg ? re = {
+        url: D.pinImg,
         scaledSize: new google.maps.Size(e.markerSize, e.markerSize),
         labelOrigin: new google.maps.Point(
           e.markerSize / 2,
           e.markerSize + 4
         )
-      } : k.category && k.category.pinImg ? V = {
-        url: k.category.pinImg,
+      } : D.category && D.category.pinImg ? re = {
+        url: D.category.pinImg,
         scaledSize: new google.maps.Size(e.markerSize, e.markerSize),
         labelOrigin: new google.maps.Point(
           e.markerSize / 2,
           e.markerSize + 4
         )
-      } : e.defaultPinImg && (V = {
+      } : e.defaultPinImg && (re = {
         url: e.defaultPinImg,
         scaledSize: new google.maps.Size(e.markerSize, e.markerSize),
         labelOrigin: new google.maps.Point(
@@ -5712,40 +5756,41 @@ function jl(e = {
           e.markerSize + 4
         )
       });
-      const fe = k.pinLabel ? {
-        text: k.pinLabel,
+      const nt = D.pinLabel ? {
+        text: D.pinLabel,
         color: "#000",
         fontSize: "14px",
         fontWeight: "bold"
       } : void 0;
-      if (k.showName && k.latitude && k.longitude && parseFloat(k.latitude) != NaN && parseFloat(k.longitude) != NaN && parseFloat(k.latitude) >= -90 && parseFloat(k.latitude) <= 90 && parseFloat(k.longitude) >= -180 && parseFloat(k.longitude) <= 180) {
+      if (D.showName && D.latitude && D.longitude && parseFloat(D.latitude) != NaN && parseFloat(D.longitude) != NaN && parseFloat(D.latitude) >= -90 && parseFloat(D.latitude) <= 90 && parseFloat(D.longitude) >= -180 && parseFloat(D.longitude) <= 180) {
         const it = new google.maps.LatLng(
-          parseFloat(k.latitude),
-          parseFloat(k.longitude)
-        ), Se = new google.maps.Marker({
+          parseFloat(D.latitude),
+          parseFloat(D.longitude)
+        ), We = new google.maps.Marker({
           position: it,
-          icon: V,
-          title: `${k.showName}`,
+          icon: re,
+          title: `${D.showName}`,
           optimized: !1,
           map: a,
-          label: fe
+          label: nt
         });
-        Se.info = k, N.push(Se);
+        We.info = D, W.push(We);
       }
-    }), o = new google.maps.LatLngBounds(), N.forEach((S) => {
-      o.extend(S.getPosition()), S.addListener("click", (k) => {
-        C(S), S && S.info && S.info.showName && t(
-          `[{ "event": "userAction", "eventAction": "Click on Map", "eventCategory": "Interactive Map", "eventLabel": "${S.info.showName} - ${S.info.city}"}]`
-        );
+    }), o = new google.maps.LatLngBounds(), W.forEach((S) => {
+      o.extend(S.getPosition()), S.addListener("click", (D) => {
+        C(S), S && S.info && S.info.showName && t(e.tracking?.clickMarker, {
+          "<show_name>": S.info.showName,
+          "<city_name>": S.info.city
+        });
       });
-    }), n = N;
-  }, m = () => {
+    }), n = W;
+  }, d = () => {
     i && i.clearMarkers(), i = null;
-  }, g = () => {
-    m();
+  }, h = () => {
+    d();
     const c = {
-      render: ({ count: N, position: S }) => new google.maps.Marker({
-        label: { text: String(N), color: "white", fontSize: "14px" },
+      render: ({ count: W, position: S }) => new google.maps.Marker({
+        label: { text: String(W), color: "white", fontSize: "14px" },
         position: S,
         icon: {
           url: e.clusterOptions && e.clusterOptions[0] ? e.clusterOptions[0].url : "https://raw.githubusercontent.com/googlemaps/js-marker-clusterer/gh-pages/images/m1.png",
@@ -5758,37 +5803,33 @@ function jl(e = {
             e.clusterOptions[0].height / 2.5
           ) : new google.maps.Point(26, 21)
         },
-        zIndex: Number(google.maps.Marker.MAX_ZINDEX) + N
+        zIndex: Number(google.maps.Marker.MAX_ZINDEX) + W
       })
     };
-    i = new xl({
+    i = new Nl({
       map: a,
       markers: n,
       renderer: c
     });
-  }, b = () => {
+  }, M = () => {
     if (!(!a || !o)) {
       a.fitBounds(o);
-      var c = D();
+      var c = k();
       c > 12 && a.setZoom(12);
     }
-  }, p = (c) => {
-    !a || !c || a.panTo(c.getPosition());
-  }, v = (c, N) => {
-    !a || !c || !N || a.panTo({ lat: c, lng: N });
   }, w = (c) => {
+    !a || !c || a.panTo(c.getPosition());
+  }, v = (c, W) => {
+    !a || !c || !W || a.panTo({ lat: c, lng: W });
+  }, p = (c) => {
     !a || !c || a.setZoom(parseFloat(c));
-  }, D = () => {
+  }, k = () => {
     if (!!a)
       return a.getZoom();
   }, C = (c) => {
     if (!c || !c.info)
       return;
-    const N = c.info.showName ? c.info.showName.split('"').join("") : "", S = c.info.showThumbnail ? c.info.showThumbnail : c.info.showImage, k = c.info.showPageUrl ? JSON.stringify(
-      `[{ "event": "userAction", "eventAction": "Buy Tickets", "eventCategory": "Interactive Map", "eventLabel": "${N} - ${c.info.city}"}]`
-    ) : null, V = JSON.stringify(
-      `[{ "event": "userAction", "eventAction": "View on Google Maps", "eventCategory": "Interactive Map", "eventLabel": "${N} - ${c.info.city}"}]`
-    ), fe = {
+    const W = c.info.showName ? c.info.showName.split('"').join("") : "", S = c.info.showThumbnail ? c.info.showThumbnail : c.info.showImage, D = {
       pixelOffset: c ? null : new google.maps.Size(0, -50),
       content: `<div class="marker marker--${c.info.id}">
             <div class="marker__image-wrapper">
@@ -5807,29 +5848,29 @@ function jl(e = {
               </div>
             </div>
             <div class="marker__buttons">
-              <a class="marker__cta marker__cta--small cta-btn cta-btn--ghost cta-btn--full-width" href="https://www.google.com/maps/dir/?api=1&destination=${c.info.latitude},${c.info.longitude}&travelmode=driving" onclick='window.mapPushToDataLayer(${V})'>
+              <a class="marker__cta marker__cta--small cta-btn cta-btn--ghost cta-btn--full-width" href="https://www.google.com/maps/dir/?api=1&destination=${c.info.latitude},${c.info.longitude}&travelmode=driving" onclick='window.mapTrackingViewGmap("${W}", "${c.info.city}")'>
       ${e.labelDirectionButton.value}
                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M8.12498 1.875L10.1831 3.93313L5.80811 8.30812L6.69186 9.19187L11.0669 4.81687L13.125 6.875V1.875H8.12498Z" fill="white"/>
                   <path d="M11.875 11.875H3.125V3.125H7.5L6.25 1.875H3.125C2.43562 1.875 1.875 2.43562 1.875 3.125V11.875C1.875 12.5644 2.43562 13.125 3.125 13.125H11.875C12.5644 13.125 13.125 12.5644 13.125 11.875V8.75L11.875 7.5V11.875Z" fill="white"/>
                 </svg>
               </a>
-              ${c.info.showPageUrl ? `<a class="marker__cta cta-btn cta-btn--grey cta-btn--full-width" href="${c.info.showPageUrl}" onclick='window.mapPushToDataLayer(${k})'>
+              ${c.info.showPageUrl ? `<a class="marker__cta cta-btn cta-btn--grey cta-btn--full-width" href="${c.info.showPageUrl}" onclick='window.mapTrackingBuyTicket("${W}", "${c.info.city}")'>
                       ${e.labelBuyButton.value}
                     </a>` : ""}
 
             </div>
             </div>`
     };
-    A(c, fe);
-  }, A = (c, N) => {
-    r.setOptions(N), r.open({
+    z(c, D);
+  }, z = (c, W) => {
+    r.setOptions(W), r.open({
       map: a,
       anchor: c
     });
-  }, L = () => {
+  }, E = () => {
     r.close();
-  }, R = () => {
+  }, V = () => {
     const c = document.createElement("button");
     c.ariaLabel = e.ariaLocateButton, c.innerHTML = `
     <svg width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -5837,19 +5878,19 @@ function jl(e = {
       <path d="M6.90737 3.43528C5.98644 3.43528 5.10322 3.80112 4.45203 4.45232C3.80083 5.10352 3.43499 5.98673 3.43499 6.90766C3.43499 7.82859 3.80083 8.71181 4.45203 9.363C5.10322 10.0142 5.98644 10.38 6.90737 10.38C7.8283 10.38 8.71151 10.0142 9.36271 9.363C10.0139 8.71181 10.3797 7.82859 10.3797 6.90766C10.3797 5.98673 10.0139 5.10352 9.36271 4.45232C8.71151 3.80112 7.8283 3.43528 6.90737 3.43528ZM6.90737 8.93347C6.5068 8.93347 6.11523 8.81469 5.78217 8.59214C5.44911 8.3696 5.18952 8.05329 5.03623 7.68322C4.88294 7.31314 4.84284 6.90592 4.92098 6.51305C4.99913 6.12018 5.19202 5.75931 5.47527 5.47606C5.75851 5.19282 6.11938 4.99993 6.51225 4.92178C6.90512 4.84364 7.31234 4.88374 7.68242 5.03703C8.05249 5.19032 8.3688 5.44991 8.59134 5.78297C8.81389 6.11603 8.93267 6.5076 8.93267 6.90817C8.93267 7.44531 8.71929 7.96045 8.33947 8.34027C7.95965 8.72009 7.44451 8.93347 6.90737 8.93347Z" fill="black"/>
     </svg>`, c.classList.add("location-button"), a.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(c), c.addEventListener("click", () => {
       navigator.geolocation ? navigator.geolocation.getCurrentPosition(
-        (N) => {
+        (W) => {
           const S = {
-            lat: N.coords.latitude,
-            lng: N.coords.longitude
-          }, k = {
-            url: e.defaultLocationImg ? e.defaultLocationImg : Ll,
+            lat: W.coords.latitude,
+            lng: W.coords.longitude
+          }, D = {
+            url: e.defaultLocationImg ? e.defaultLocationImg : El,
             scaledSize: new google.maps.Size(30, 30)
           };
           new google.maps.Marker({
             position: S,
             optimized: !1,
             map: a,
-            icon: k
+            icon: D
           }), a.setCenter(S), a.setZoom(8);
         },
         () => {
@@ -5857,16 +5898,26 @@ function jl(e = {
         }
       ) : console.warn("Error: Your browser doesn't support geolocation.");
     });
-  }, re = () => {
-    e.fitMarkers ? n && n.length > 0 ? b() : (w(2), v(40.866667, 34.566667)) : e.center.value && e.zoom && (w(e.zoom), v(e.center.value.lat, e.center.value.lng));
+  }, Z = () => {
+    e.fitMarkers ? n && n.length > 0 ? M() : (p(2), v(40.866667, 34.566667)) : e.center.value && e.zoom && (p(e.zoom), v(e.center.value.lat, e.center.value.lng));
   };
-  return De(() => {
-    window.mapPushToDataLayer = (c) => t(c), dt(async () => {
+  return ke(() => {
+    window.mapTrackingBuyTicket = (c, W) => {
+      t(e.tracking?.clickBuy, {
+        "<show_name>": c,
+        "<city_name>": W
+      });
+    }, window.mapTrackingViewGmap = (c, W) => {
+      t(e.tracking?.clickViewGmap, {
+        "<show_name>": c,
+        "<city_name>": W
+      });
+    }, dt(async () => {
       try {
-        await s(), R(), e.markersData.value.length > 0 && (l(), e.hasCluster && g(), re()), we(e.markersData, () => {
-          l(), e.hasCluster && g(), re();
+        await s(), V(), e.markersData.value.length > 0 && (m(), e.hasCluster && h(), Z()), we(e.markersData, () => {
+          m(), e.hasCluster && h(), Z();
         }), we(e.center, () => {
-          re();
+          Z();
         });
       } catch (c) {
         console.warn("[useGoogleMap.js] error loading the sdk", c);
@@ -5874,76 +5925,72 @@ function jl(e = {
     });
   }), {
     loadMap: s,
-    closeInfoWindow: L,
-    openInfoWindow: A,
+    closeInfoWindow: E,
+    openInfoWindow: z,
     openShowInfo: C,
-    setZoom: w,
-    getZoom: D,
-    centerOnMarker: p,
-    createMarkers: l,
-    clearMarkers: d,
-    createClusters: g,
-    resetMapPosition: re
+    setZoom: p,
+    getZoom: k,
+    centerOnMarker: w,
+    createMarkers: m,
+    clearMarkers: l,
+    createClusters: h,
+    resetMapPosition: Z
   };
 }
-function zl(e) {
-  const { pushEvent: t } = nt(), a = x(null), r = x(null), n = Re({
+function Ll(e, t = null) {
+  const { pushTracking: a } = he(), r = x(null), n = x(null), i = Ve({
     start: null,
     end: null
-  }), i = _(() => {
-    let l = [];
-    return e.value.forEach((m) => {
-      l.findIndex((g) => g.value === m.category.value) < 0 && l.push(m.category);
-    }), l;
-  }), o = _(
-    () => [...new Set(e.value.map((l) => l.showName))].map(
-      (l) => ({ label: l, value: l })
+  }), o = A(() => {
+    let d = [];
+    return e.value.forEach((h) => {
+      d.findIndex((M) => M.value === h.category.value) < 0 && d.push(h.category);
+    }), d;
+  }), u = A(
+    () => [...new Set(e.value.map((d) => d.showName))].map(
+      (d) => ({ label: d, value: d })
     )
-  ), u = _(() => e.value.filter((l) => {
-    let m = !0;
-    if (typeof l.visible < "u" && !l.visible)
+  ), s = A(() => e.value.filter((d) => {
+    let h = !0;
+    if (typeof d.visible < "u" && !d.visible)
       return !1;
-    if (a.value && (m = Math.min(
-      l.showType === a.value,
-      m
-    )), r.value && r.value !== "all" && (m = Math.min(
-      l.showName === r.value,
-      m
-    )), e.value && n.end) {
-      const g = new Date(n.start), b = new Date(n.end), p = new Date(l.startDate), v = new Date(l.endDate);
-      m = Math.min(
-        St(
-          { start: g, end: b },
-          { start: p, end: v }
+    if (r.value && (h = Math.min(
+      d.showType === r.value,
+      h
+    )), n.value && n.value !== "all" && (h = Math.min(
+      d.showName === n.value,
+      h
+    )), e.value && i.end) {
+      const M = new Date(i.start), w = new Date(i.end), v = new Date(d.startDate), p = new Date(d.endDate);
+      h = Math.min(
+        Ct(
+          { start: M, end: w },
+          { start: v, end: p }
         ),
-        m
+        h
       );
     }
-    return m;
+    return h;
   }) || []);
   return {
-    showTypes: i,
-    showNames: o,
-    markersDataResults: u,
-    changeCurrentDates: (l) => {
-      Object.assign(n, l), l.start && l.end ? t(
-        '[{ "event": "userAction", "eventAction": "Click on Search", "eventCategory": "Interactive Map", "eventLabel": "Date Range Picker Search"}]'
-      ) : t(
-        '[{ "event": "userAction", "eventAction": "Click on Clear", "eventCategory": "Interactive Map", "eventLabel": "Date Range Picker Clear"}]'
-      );
+    showTypes: o,
+    showNames: u,
+    markersDataResults: s,
+    changeCurrentDates: (d) => {
+      Object.assign(i, d), d.start && d.end ? a(t?.clickDateSearch) : a(t?.clickDateClear);
     },
-    changeCurrentShowName: (l) => {
-      r.value = l, t(
-        `[{ "event": "userAction", "eventAction": "Select Show", "eventCategory": "Interactive Map", "eventLabel": "${l}"}]`
-      );
+    changeCurrentShowName: (d) => {
+      n.value = d, a(t?.clickShow, {
+        "<show_name>": d
+      });
     }
   };
 }
-const Al = ce({
+const zl = ce({
   name: "InteractiveMap",
   components: {
-    DropdownFilters: Pt,
-    DateRangePicker: hl
+    DropdownFilters: Mt,
+    DateRangePicker: cl
   },
   props: {
     mapTitle: { type: String, required: !1, default: "" },
@@ -6008,43 +6055,39 @@ const Al = ce({
       default: "Your Location"
     },
     isLoading: { type: Boolean, required: !1, default: !1 },
-    gtmDate: {
-      type: String,
+    tracking: {
+      type: Object,
       required: !1,
-      default: '[{ "event": "userAction", "eventAction": "Click on Dates", "eventCategory": "Interactive Map", "eventLabel": "Date Range Picker Toggle"}]'
-    },
-    gtmShow: {
-      type: String,
-      required: !1,
-      default: '[{ "event": "userAction", "eventAction": "Click on All Shows", "eventCategory": "Interactive Map", "eventLabel": "Show Selector Toggle"}]'
+      default: null
     }
   },
-  setup(e, { emit: t }) {
-    const a = I(e, "markersData"), r = I(e, "dateLocale"), n = I(e, "labelBuyButton"), i = I(e, "labelDirectionButton"), o = I(e, "center"), {
-      showNames: u,
-      markersDataResults: s,
-      changeCurrentDates: d,
+  setup(e) {
+    const t = I(e, "markersData"), a = I(e, "dateLocale"), r = I(e, "labelBuyButton"), n = I(e, "labelDirectionButton"), i = I(e, "center"), {
+      showNames: o,
+      markersDataResults: u,
+      changeCurrentDates: s,
       changeCurrentShowName: l
-    } = zl(a), m = (b) => {
-      l(b);
-    }, g = (b) => {
-      d(b);
+    } = Ll(t, e.tracking), m = (h) => {
+      l(h);
+    }, d = (h) => {
+      s(h);
     };
     return jl({
       apiKey: e.googleMapApiKey,
       mapId: e.mapId,
-      markersData: s,
-      center: o,
+      markersData: u,
+      center: i,
       zoom: e.zoom,
       defaultPinImg: e.defaultPinImg,
       hasCluster: e.hasCluster,
       markerSize: e.markerSize ? parseInt(e.markerSize) : 50,
       fitMarkers: e.fitMarkers,
       clusterOptions: e.clusterOptions,
-      dateLocale: r,
-      labelBuyButton: n,
-      labelDirectionButton: i,
+      dateLocale: a,
+      labelBuyButton: r,
+      labelDirectionButton: n,
       ariaLocateButton: e.ariaLocateButton,
+      tracking: e.tracking,
       mapOptions: {
         streetViewControl: !1,
         mapTypeControl: !1,
@@ -6055,39 +6098,39 @@ const Al = ce({
         backgroundColor: e.backgroundColor
       }
     }), {
-      showNames: u,
+      showNames: o,
       onShowNameFilterChange: m,
-      onDateChanged: g,
-      locale: r
+      onDateChanged: d,
+      locale: a
     };
   }
-}), _l = { class: "interactive-map__container" }, Fl = { class: "interactive-map__split" }, Il = {
+}), _l = { class: "interactive-map__container" }, Al = { class: "interactive-map__split" }, Fl = {
   key: 0,
   class: "filters-wrapper"
-}, ql = {
+}, Il = {
   key: 0,
   class: "interactive-map__title"
-}, Hl = {
+}, ql = {
   key: 1,
   class: "interactive-map__description"
-}, Gl = { class: "interactive-map__slots" }, Yl = { class: "filters" }, Xl = { class: "interactive-map__wrapper" }, Rl = { class: "interactive-map" }, Vl = ["id"], Bl = {
+}, Hl = { class: "interactive-map__slots" }, Gl = { class: "filters" }, Yl = { class: "interactive-map__wrapper" }, Xl = { class: "interactive-map" }, Vl = ["id"], Bl = {
   key: 0,
   class: "loading"
-}, Ul = /* @__PURE__ */ y("div", { class: "spinner" }, null, -1), Jl = [
-  Ul
+}, Rl = /* @__PURE__ */ b("div", { class: "spinner" }, null, -1), Ul = [
+  Rl
 ];
-function Ql(e, t, a, r, n, i) {
+function Jl(e, t, a, r, n, i) {
   const o = be("DateRangePicker"), u = be("DropdownFilters");
-  return W(), O("div", _l, [
-    y("div", Fl, [
-      e.mapTitle || !e.hideFilters ? (W(), O("div", Il, [
-        e.mapTitle ? (W(), O("h2", ql, z(e.mapTitle), 1)) : F("", !0),
-        e.mapDescription ? (W(), O("p", Hl, z(e.mapDescription), 1)) : F("", !0),
-        y("div", Gl, [
-          Ve(e.$slots, "default")
+  return T(), N("div", _l, [
+    b("div", Al, [
+      e.mapTitle || !e.hideFilters ? (T(), N("div", Fl, [
+        e.mapTitle ? (T(), N("h2", Il, _(e.mapTitle), 1)) : F("", !0),
+        e.mapDescription ? (T(), N("p", ql, _(e.mapDescription), 1)) : F("", !0),
+        b("div", Hl, [
+          Be(e.$slots, "default")
         ]),
-        y("div", Yl, [
-          e.hideFilters ? F("", !0) : (W(), We(o, {
+        b("div", Gl, [
+          e.hideFilters ? F("", !0) : (T(), Se(o, {
             key: 0,
             class: "filters__daterange",
             onDatechanged: e.onDateChanged,
@@ -6099,10 +6142,10 @@ function Ql(e, t, a, r, n, i) {
             "aria-next-month": e.ariaNextMonth,
             "aria-previous-month": e.ariaPreviousMonth,
             "aria-toggle-calendar": e.ariaToggleCalendar,
-            gtm: e.gtmDate,
-            "picker-id": e.mapId + "__picker"
-          }, null, 8, ["onDatechanged", "date-locale", "label-clear-button", "label-save-button", "label-dates-filter", "aria-select-date", "aria-next-month", "aria-previous-month", "aria-toggle-calendar", "gtm", "picker-id"])),
-          e.hideFilters ? F("", !0) : (W(), We(u, {
+            "picker-id": e.mapId + "__picker",
+            tracking: e.tracking
+          }, null, 8, ["onDatechanged", "date-locale", "label-clear-button", "label-save-button", "label-dates-filter", "aria-select-date", "aria-next-month", "aria-previous-month", "aria-toggle-calendar", "picker-id", "tracking"])),
+          e.hideFilters ? F("", !0) : (T(), Se(u, {
             key: 1,
             class: "filters__shownames",
             ref: "filterDropdownElement",
@@ -6110,19 +6153,19 @@ function Ql(e, t, a, r, n, i) {
             "label-default": e.labelShowNameFilterDefault,
             placeholder: e.placeholderShowNameFilter,
             onOnfilterchange: e.onShowNameFilterChange,
-            gtm: e.gtmShow
-          }, null, 8, ["filters", "label-default", "placeholder", "onOnfilterchange", "gtm"]))
+            tracking: e.tracking
+          }, null, 8, ["filters", "label-default", "placeholder", "onOnfilterchange", "tracking"]))
         ])
       ])) : F("", !0),
-      y("div", Xl, [
-        y("div", Rl, [
-          y("div", {
+      b("div", Yl, [
+        b("div", Xl, [
+          b("div", {
             id: e.mapId,
             class: "map"
           }, null, 8, Vl),
-          Be(mt, { name: "spinner-fade" }, {
+          Re(mt, { name: "spinner-fade" }, {
             default: Ue(() => [
-              e.isLoading ? (W(), O("div", Bl, Jl)) : F("", !0)
+              e.isLoading ? (T(), N("div", Bl, Ul)) : F("", !0)
             ]),
             _: 1
           })
@@ -6131,23 +6174,23 @@ function Ql(e, t, a, r, n, i) {
     ])
   ]);
 }
-const Zl = /* @__PURE__ */ he(Al, [["render", Ql]]);
-function Kl(e, t, a) {
+const Ql = /* @__PURE__ */ fe(zl, [["render", Jl]]);
+function Zl(e, t, a) {
   let r = x(!1);
-  const n = x([]), i = _(() => {
+  const n = x([]), i = A(() => {
     let u = [];
-    return n.value.forEach((s, d) => {
+    return n.value.forEach((s, l) => {
       if (a && a.value) {
-        const l = a.value.find(
-          (m) => m.value == s.showName
+        const m = a.value.find(
+          (d) => d.value == s.showName
         );
-        l && (s = { ...s, ...l });
+        m && (s = { ...s, ...m });
       }
-      s && s.runs && s.runs.forEach((l) => {
-        const m = { ...s, ...l };
-        t && t.value && (m.category = t.value.find(
-          (g) => g.value == m.showType
-        )), delete m.runs, u.push(m);
+      s && s.runs && s.runs.filter((m) => m !== null).forEach((m) => {
+        const d = { ...s, ...m };
+        t && t.value && (d.category = t.value.find(
+          (h) => h.value == d.showType
+        )), delete d.runs, u.push(d);
       });
     }), u;
   }), o = async () => {
@@ -6157,12 +6200,12 @@ function Kl(e, t, a) {
     const u = fetch(e.value).then((s) => s.json()).catch((s) => (console.warn("[InteractiveMapApi] Failed silently because of: ", s), []));
     return n.value = await u.then((s) => (r.value = !1, s && s.content && s.content.Result && s.content.Result.shows ? s.content.Result.shows : [])).catch(() => r.value = !1), Promise.resolve(!0);
   };
-  return De(o), we(e, o), { shows: n, runs: i, isLoading: r, fetchShows: o };
+  return ke(o), we(e, o), { shows: n, runs: i, isLoading: r, fetchShows: o };
 }
-const ed = ce({
+const Kl = ce({
   name: "InteractiveMapApi",
   components: {
-    InteractiveMap: Zl
+    InteractiveMap: Ql
   },
   props: {
     apiUrl: { type: String, required: !0 },
@@ -6170,7 +6213,7 @@ const ed = ce({
     showsOverwrite: { type: Array, default: () => [] }
   },
   setup(e) {
-    const t = I(e, "apiUrl"), a = I(e, "categoriesOverwrite"), r = I(e, "showsOverwrite"), { runs: n, isLoading: i } = Kl(
+    const t = I(e, "apiUrl"), a = I(e, "categoriesOverwrite"), r = I(e, "showsOverwrite"), { runs: n, isLoading: i } = Zl(
       t,
       a,
       r
@@ -6180,28 +6223,28 @@ const ed = ce({
       isLoading: i
     };
   }
-}), td = { class: "interactive-map-api" };
-function ad(e, t, a, r, n, i) {
+}), ed = { class: "interactive-map-api" };
+function td(e, t, a, r, n, i) {
   const o = be("InteractiveMap");
-  return W(), O("div", null, [
-    y("div", td, [
-      Be(o, ct({ ...e.$props, ...e.$attrs }, {
+  return T(), N("div", null, [
+    b("div", ed, [
+      Re(o, ct({ ...e.$props, ...e.$attrs }, {
         "markers-data": e.runs,
         "is-loading": e.isLoading
       }), {
         default: Ue(() => [
-          Ve(e.$slots, "default")
+          Be(e.$slots, "default")
         ]),
         _: 3
       }, 16, ["markers-data", "is-loading"])
     ])
   ]);
 }
-const nd = /* @__PURE__ */ he(ed, [["render", ad]]);
+const rd = /* @__PURE__ */ fe(Kl, [["render", td]]);
 export {
-  hl as DateRangePicker,
-  Pt as DropdownFilters,
-  Zl as InteractiveMap,
-  nd as InteractiveMapApi,
-  Kl as useShowsApi
+  cl as DateRangePicker,
+  Mt as DropdownFilters,
+  Ql as InteractiveMap,
+  rd as InteractiveMapApi,
+  Zl as useShowsApi
 };
