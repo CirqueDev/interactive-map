@@ -1,6 +1,6 @@
 {
   "name": "@cirquedev/interactive-map",
-  "version": "2.0.0-beta.4",
+  "version": "2.0.0-beta.6",
   "description": "A map component to visualise our touring shows",
   "files": [
     "dist"
