@@ -1,9 +1,9 @@
 import { computed, ref, reactive } from "vue";
 import { areIntervalsOverlapping } from "date-fns";
-import useGtm from "./useGtm";
+import useTracking from "./useTracking";
 
-export default function useShowFilters(markersData) {
-  const { pushEvent } = useGtm();
+export default function useShowFilters(markersData, tracking = null) {
+  const { pushTracking } = useTracking();
   const currentShowTypeFilter = ref(null);
   const currentShowNameFilter = ref(null);
   const currentDates = reactive({
@@ -81,21 +81,17 @@ export default function useShowFilters(markersData) {
   const changeCurrentDates = (dates) => {
     Object.assign(currentDates, dates);
     if (dates.start && dates.end) {
-      pushEvent(
-        `[{ "event": "userAction", "eventAction": "Click on Search", "eventCategory": "Interactive Map", "eventLabel": "Date Range Picker Search"}]` // ${currentDates.start} - ${currentDates.end}
-      );
+      pushTracking(tracking?.clickDateSearch);
     } else {
-      pushEvent(
-        `[{ "event": "userAction", "eventAction": "Click on Clear", "eventCategory": "Interactive Map", "eventLabel": "Date Range Picker Clear"}]`
-      );
+      pushTracking(tracking?.clickDateClear);
     }
   };
 
   const changeCurrentShowName = (showName) => {
     currentShowNameFilter.value = showName;
-    pushEvent(
-      `[{ "event": "userAction", "eventAction": "Select Show", "eventCategory": "Interactive Map", "eventLabel": "${showName}"}]`
-    );
+    pushTracking(tracking?.clickShow, {
+      "<show_name>": showName,
+    });
   };
 
   return {

@@ -48,6 +48,40 @@
           east: 179,
         },
       }"
+      :tracking="{
+        clickMarker: {
+          gua: `[{ &quot;event&quot;: &quot;userAction&quot;, &quot;eventAction&quot;: &quot;Click on Map&quot;, &quot;eventCategory&quot;: &quot;Interactive Map&quot;, &quot;eventLabel&quot;: &quot;<show_name> - <city_name>&quot;}]`,
+          ga4: ``,
+        },
+        clickBuy: {
+          gua: `[{ &quot;event&quot;: &quot;userAction&quot;, &quot;eventAction&quot;: &quot;Buy Tickets&quot;, &quot;eventCategory&quot;: &quot;Interactive Map&quot;, &quot;eventLabel&quot;: &quot;<show_name> - <city_name>&quot;}]`,
+          ga4: ``,
+        },
+        clickViewGmap: {
+          gua: `[{ &quot;event&quot;: &quot;userAction&quot;, &quot;eventAction&quot;: &quot;View on Google Maps&quot;, &quot;eventCategory&quot;: &quot;Interactive Map&quot;, &quot;eventLabel&quot;: &quot;<show_name> - <city_name>&quot;}]`,
+          ga4: ``,
+        },
+        clickDateToggle: {
+          gua: `[{ &quot;event&quot;: &quot;userAction&quot;, &quot;eventAction&quot;: &quot;Click on Dates&quot;, &quot;eventCategory&quot;: &quot;Interactive Map&quot;, &quot;eventLabel&quot;: &quot;Date Range Picker Toggle&quot;}]`,
+          ga4: ``,
+        },
+        clickDateSearch: {
+          gua: `[{ &quot;event&quot;: &quot;userAction&quot;, &quot;eventAction&quot;: &quot;Click on Search&quot;, &quot;eventCategory&quot;: &quot;Interactive Map&quot;, &quot;eventLabel&quot;: &quot;Date Range Picker Search&quot;}]`,
+          ga4: ``,
+        },
+        clickDateClear: {
+          gua: `[{ &quot;event&quot;: &quot;userAction&quot;, &quot;eventAction&quot;: &quot;Click on Clear&quot;, &quot;eventCategory&quot;: &quot;Interactive Map&quot;, &quot;eventLabel&quot;: &quot;Date Range Picker Clear&quot;}]`,
+          ga4: ``,
+        },
+        clickShowToggle: {
+          gua: `[{ &quot;event&quot;: &quot;userAction&quot;, &quot;eventAction&quot;: &quot;Click on All Shows&quot;, &quot;eventCategory&quot;: &quot;Interactive Map&quot;, &quot;eventLabel&quot;: &quot;Show Selector Toggle&quot;}]`,
+          ga4: ``,
+        },
+        clickShow: {
+          gua: `[{ &quot;event&quot;: &quot;userAction&quot;, &quot;eventAction&quot;: &quot;Select Show&quot;, &quot;eventCategory&quot;: &quot;Interactive Map&quot;, &quot;eventLabel&quot;: &quot;<show_name>&quot;}]`,
+          ga4: ``,
+        },
+      }"
     >
     </InteractiveMapApi>
   </div>

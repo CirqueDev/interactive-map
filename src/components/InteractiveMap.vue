@@ -27,7 +27,7 @@
             :aria-next-month="ariaNextMonth"
             :aria-previous-month="ariaPreviousMonth"
             :aria-toggle-calendar="ariaToggleCalendar"
-            :gtm="gtmDate"
+            :tracking="tracking"
             :picker-id="mapId + '__picker'"
           />
 
@@ -39,7 +39,7 @@
             :label-default="labelShowNameFilterDefault"
             :placeholder="placeholderShowNameFilter"
             @onfilterchange="onShowNameFilterChange"
-            :gtm="gtmShow"
+            :tracking="tracking"
           />
         </div>
       </div>
@@ -134,20 +134,13 @@ export default defineComponent({
       default: "Your Location",
     },
     isLoading: { type: Boolean, required: false, default: false },
-    gtmDate: {
-      type: String,
+    tracking: {
+      type: Object,
       required: false,
-      default:
-        '[{ "event": "userAction", "eventAction": "Click on Dates", "eventCategory": "Interactive Map", "eventLabel": "Date Range Picker Toggle"}]',
-    },
-    gtmShow: {
-      type: String,
-      required: false,
-      default:
-        '[{ "event": "userAction", "eventAction": "Click on All Shows", "eventCategory": "Interactive Map", "eventLabel": "Show Selector Toggle"}]',
+      default: null,
     },
   },
-  setup(props, { emit }) {
+  setup(props) {
     const markersData = toRef(props, "markersData");
     const locale = toRef(props, "dateLocale");
     const labelBuyButton = toRef(props, "labelBuyButton");
@@ -160,7 +153,7 @@ export default defineComponent({
       markersDataResults,
       changeCurrentDates,
       changeCurrentShowName,
-    } = useShowFilters(markersData);
+    } = useShowFilters(markersData, props.tracking);
 
     const onShowNameFilterChange = (filter) => {
       changeCurrentShowName(filter);
@@ -186,6 +179,7 @@ export default defineComponent({
       labelBuyButton,
       labelDirectionButton,
       ariaLocateButton: props.ariaLocateButton,
+      tracking: props.tracking,
       mapOptions: {
         streetViewControl: false,
         mapTypeControl: false,
