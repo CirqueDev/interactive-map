@@ -147,7 +147,7 @@ export default function useGoogleMap(
         openShowInfo(marker);
 
         if (marker && marker.info && marker.info.showName) {
-          pushTracking(data.tracking?.clickMarker, {
+          pushTracking(data.tracking ? data.tracking.clickMarker : null, {
             "<show_name>": marker.info.showName,
             "<city_name>": marker.info.city,
           });
@@ -394,14 +394,14 @@ export default function useGoogleMap(
 
   onMounted(() => {
     window.mapTrackingBuyTicket = (showname, cityname) => {
-      pushTracking(data.tracking?.clickBuy, {
+      pushTracking(data.tracking ? data.tracking.clickBuy : null, {
         "<show_name>": showname,
         "<city_name>": cityname,
       });
     };
 
     window.mapTrackingViewGmap = (showname, cityname) => {
-      pushTracking(data.tracking?.clickViewGmap, {
+      pushTracking(data.tracking ? data.tracking.clickViewGmap : null, {
         "<show_name>": showname,
         "<city_name>": cityname,
       });

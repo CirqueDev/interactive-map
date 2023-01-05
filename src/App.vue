@@ -62,7 +62,7 @@
           ga4: ``,
         },
         clickDateToggle: {
-          gua: `[{ &quot;event&quot;: &quot;userAction&quot;, &quot;eventAction&quot;: &quot;Click on Dates&quot;, &quot;eventCategory&quot;: &quot;Interactive Map&quot;, &quot;eventLabel&quot;: &quot;Date Range Picker Toggle&quot;}]`,
+          gua: `[{ &quot;event&quot;: &quot;userAction&quot;, &quot;eventAction&quot;: &quot;Click on Dates test&quot;, &quot;eventCategory&quot;: &quot;Interactive Map&quot;, &quot;eventLabel&quot;: &quot;Date Range Picker Toggle&quot;}]`,
           ga4: ``,
         },
         clickDateSearch: {

@@ -81,15 +81,15 @@ export default function useShowFilters(markersData, tracking = null) {
   const changeCurrentDates = (dates) => {
     Object.assign(currentDates, dates);
     if (dates.start && dates.end) {
-      pushTracking(tracking?.clickDateSearch);
+      pushTracking(tracking ? tracking.clickDateSearch : null);
     } else {
-      pushTracking(tracking?.clickDateClear);
+      pushTracking(tracking ? tracking.clickDateClear : null);
     }
   };
 
   const changeCurrentShowName = (showName) => {
     currentShowNameFilter.value = showName;
-    pushTracking(tracking?.clickShow, {
+    pushTracking(tracking ? tracking.clickShow : null, {
       "<show_name>": showName,
     });
   };

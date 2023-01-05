@@ -209,7 +209,7 @@ const _sfc_main$3 = defineComponent({
 
     const { pushTracking } = useTracking();
     const trackClick = () => {
-      pushTracking(props.tracking?.clickShowToggle);
+      pushTracking(props.tracking ? props.tracking.clickShowToggle : null);
     };
 
     return {
@@ -7354,7 +7354,7 @@ const _sfc_main$2 = defineComponent({
     const { pushTracking } = useTracking();
     const toggleDatePicker = () => {
       showDateRange.value = !showDateRange.value;
-      pushTracking(props.tracking?.clickDateToggle);
+      pushTracking(props.tracking ? props.tracking.clickDateToggle : null);
     };
 
     onMounted(() => {
@@ -9080,7 +9080,7 @@ function useGoogleMap(
         openShowInfo(marker);
 
         if (marker && marker.info && marker.info.showName) {
-          pushTracking(data.tracking?.clickMarker, {
+          pushTracking(data.tracking ? data.tracking.clickMarker : null, {
             "<show_name>": marker.info.showName,
             "<city_name>": marker.info.city,
           });
@@ -9327,14 +9327,14 @@ function useGoogleMap(
 
   onMounted(() => {
     window.mapTrackingBuyTicket = (showname, cityname) => {
-      pushTracking(data.tracking?.clickBuy, {
+      pushTracking(data.tracking ? data.tracking.clickBuy : null, {
         "<show_name>": showname,
         "<city_name>": cityname,
       });
     };
 
     window.mapTrackingViewGmap = (showname, cityname) => {
-      pushTracking(data.tracking?.clickViewGmap, {
+      pushTracking(data.tracking ? data.tracking.clickViewGmap : null, {
         "<show_name>": showname,
         "<city_name>": cityname,
       });
@@ -9465,15 +9465,15 @@ function useShowFilters(markersData, tracking = null) {
   const changeCurrentDates = (dates) => {
     Object.assign(currentDates, dates);
     if (dates.start && dates.end) {
-      pushTracking(tracking?.clickDateSearch);
+      pushTracking(tracking ? tracking.clickDateSearch : null);
     } else {
-      pushTracking(tracking?.clickDateClear);
+      pushTracking(tracking ? tracking.clickDateClear : null);
     }
   };
 
   const changeCurrentShowName = (showName) => {
     currentShowNameFilter.value = showName;
-    pushTracking(tracking?.clickShow, {
+    pushTracking(tracking ? tracking.clickShow : null, {
       "<show_name>": showName,
     });
   };
