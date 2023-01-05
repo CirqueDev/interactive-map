@@ -72,7 +72,7 @@ export default defineComponent({
 
     const { pushTracking } = useTracking();
     const trackClick = () => {
-      pushTracking(props.tracking?.clickShowToggle);
+      pushTracking(props.tracking ? props.tracking.clickShowToggle : null);
     };
 
     return {

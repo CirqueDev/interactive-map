@@ -191,7 +191,7 @@ export default defineComponent({
     const { pushTracking } = useTracking();
     const toggleDatePicker = () => {
       showDateRange.value = !showDateRange.value;
-      pushTracking(props.tracking?.clickDateToggle);
+      pushTracking(props.tracking ? props.tracking.clickDateToggle : null);
     };
 
     onMounted(() => {
