@@ -9232,8 +9232,12 @@ function useGoogleMap(
                 </svg>
               </a>
               ${
-                marker.info.showPageUrl
-                  ? `<a class="marker__cta cta-btn cta-btn--grey cta-btn--full-width" href="${marker.info.showPageUrl}" onclick='window.mapTrackingBuyTicket("${nameNoQuote}", "${marker.info.city}")'>
+                marker.info.ticketPageUrl || marker.info.showPageUrl
+                  ? `<a class="marker__cta cta-btn cta-btn--grey cta-btn--full-width" href="${
+                      marker.info.ticketPageUrl || marker.info.showPageUrl
+                    }" onclick='window.mapTrackingBuyTicket("${nameNoQuote}", "${
+                      marker.info.city
+                    }")'>
                   ${data.labelBuyButton.value}
               </a>`
                   : ""
