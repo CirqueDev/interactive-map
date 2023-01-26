@@ -5855,7 +5855,7 @@ function jl(e = {
                   <path d="M11.875 11.875H3.125V3.125H7.5L6.25 1.875H3.125C2.43562 1.875 1.875 2.43562 1.875 3.125V11.875C1.875 12.5644 2.43562 13.125 3.125 13.125H11.875C12.5644 13.125 13.125 12.5644 13.125 11.875V8.75L11.875 7.5V11.875Z" fill="white"/>
                 </svg>
               </a>
-              ${c.info.showPageUrl ? `<a class="marker__cta cta-btn cta-btn--grey cta-btn--full-width" href="${c.info.showPageUrl}" onclick='window.mapTrackingBuyTicket("${W}", "${c.info.city}")'>
+              ${c.info.ticketPageUrl || c.info.showPageUrl ? `<a class="marker__cta cta-btn cta-btn--grey cta-btn--full-width" href="${c.info.ticketPageUrl || c.info.showPageUrl}" onclick='window.mapTrackingBuyTicket("${W}", "${c.info.city}")'>
                       ${e.labelBuyButton.value}
                     </a>` : ""}
 
