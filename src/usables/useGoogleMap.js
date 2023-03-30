@@ -304,6 +304,8 @@ export default function useGoogleMap(
                       marker.info.ticketPageUrl || marker.info.showPageUrl
                     }" onclick='window.mapTrackingBuyTicket("${nameNoQuote}", "${
                       marker.info.city
+                    }", "${data.labelBuyButton.value}", "${
+                      marker.info.ticketPageUrl || marker.info.showPageUrl
                     }")'>
                   ${data.labelBuyButton.value}
               </a>`
@@ -397,10 +399,12 @@ export default function useGoogleMap(
   };
 
   onMounted(() => {
-    window.mapTrackingBuyTicket = (showname, cityname) => {
+    window.mapTrackingBuyTicket = (showname, cityname, label, url) => {
       pushTracking(data.tracking ? data.tracking.clickBuy : null, {
         "<show_name>": showname,
         "<city_name>": cityname,
+        "<link_text>": label,
+        "<link_url>": url,
       });
     };
 
