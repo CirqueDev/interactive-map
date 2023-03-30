@@ -54,8 +54,8 @@
           ga4: ``,
         },
         clickBuy: {
-          gua: `[{ &quot;event&quot;: &quot;userAction&quot;, &quot;eventAction&quot;: &quot;Buy Tickets&quot;, &quot;eventCategory&quot;: &quot;Interactive Map&quot;, &quot;eventLabel&quot;: &quot;<show_name> - <city_name>&quot;}]`,
-          ga4: ``,
+          gua: `[{ &quot;event&quot;: &quot;userAction&quot;, &quot;eventAction&quot;: &quot;Buy Tickets&quot;, &quot;eventCategory&quot;: &quot;Interactive Map&quot;, &quot;eventLabel&quot;: &quot;<show_name> - <city_name> - <link_text> - <link_url>&quot;}]`,
+          ga4: `[{ &quot;event&quot;: &quot;userAction&quot;, &quot;eventAction&quot;: &quot;Buy Tickets&quot;, &quot;eventCategory&quot;: &quot;Interactive Map&quot;, &quot;eventLabel&quot;: &quot;<show_name> - <city_name> - <link_text> - <link_url>&quot;}]`,
         },
         clickViewGmap: {
           gua: `[{ &quot;event&quot;: &quot;userAction&quot;, &quot;eventAction&quot;: &quot;View on Google Maps&quot;, &quot;eventCategory&quot;: &quot;Interactive Map&quot;, &quot;eventLabel&quot;: &quot;<show_name> - <city_name>&quot;}]`,
