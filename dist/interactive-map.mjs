@@ -1,4 +1,4 @@
-import { defineComponent as ce, toRef as I, ref as x, computed as A, openBlock as T, createElementBlock as N, createElementVNode as b, withDirectives as Xe, toDisplayString as _, createCommentVNode as F, Fragment as U, renderList as pe, vModelSelect as ot, reactive as Ve, onMounted as ke, onBeforeUnmount as st, createTextVNode as ge, normalizeClass as ut, vShow as lt, nextTick as dt, watch as we, resolveComponent as be, renderSlot as Be, createBlock as Se, createVNode as Re, Transition as mt, withCtx as Ue, mergeProps as ct } from "vue";
+import { defineComponent as ce, toRef as I, ref as x, computed as A, openBlock as T, createElementBlock as N, createElementVNode as b, withDirectives as Xe, toDisplayString as _, createCommentVNode as F, Fragment as R, renderList as pe, vModelSelect as ot, reactive as Be, onMounted as ke, onBeforeUnmount as st, createTextVNode as ge, normalizeClass as ut, vShow as lt, nextTick as dt, watch as we, resolveComponent as be, renderSlot as Ve, createBlock as Se, createVNode as Ue, Transition as mt, withCtx as Re, mergeProps as ct } from "vue";
 function he() {
   function e(o, u = null) {
     if (!!o)
@@ -121,7 +121,7 @@ function yt(e, t, a, r, n, i) {
       }, [
         e.placeholder ? (T(), N("option", vt, _(e.placeholder), 1)) : F("", !0),
         b("option", pt, _(e.labelDefault), 1),
-        (T(!0), N(U, null, pe(e.filtersWithoutEmptyValue, (o, u) => (T(), N("option", {
+        (T(!0), N(R, null, pe(e.filtersWithoutEmptyValue, (o, u) => (T(), N("option", {
           key: u,
           value: o.value
         }, _(o.label || o.value), 9, wt))), 128))
@@ -387,7 +387,7 @@ var qt = {
     evening: "evening",
     night: "night"
   }
-}, Vt = {
+}, Bt = {
   narrow: {
     am: "a",
     pm: "p",
@@ -418,7 +418,7 @@ var qt = {
     evening: "in the evening",
     night: "at night"
   }
-}, Bt = function(e, t) {
+}, Vt = function(e, t) {
   var a = Number(e), r = a % 100;
   if (r > 20 || r < 10)
     switch (r % 10) {
@@ -430,8 +430,8 @@ var qt = {
         return a + "rd";
     }
   return a + "th";
-}, Rt = {
-  ordinalNumber: Bt,
+}, Ut = {
+  ordinalNumber: Vt,
   era: f({
     values: qt,
     defaultWidth: "wide"
@@ -454,11 +454,11 @@ var qt = {
   dayPeriod: f({
     values: Xt,
     defaultWidth: "wide",
-    formattingValues: Vt,
+    formattingValues: Bt,
     defaultFormattingWidth: "wide"
   })
 };
-const Qe = Rt;
+const Qe = Ut;
 function g(e) {
   return function(t) {
     var a = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, r = a.width, n = r && e.matchPatterns[r] || e.matchPatterns[e.defaultMatchWidth], i = t.match(n);
@@ -466,7 +466,7 @@ function g(e) {
       return null;
     var o = i[0], u = r && e.parsePatterns[r] || e.parsePatterns[e.defaultParseWidth], s = Array.isArray(u) ? Jt(u, function(d) {
       return d.test(o);
-    }) : Ut(u, function(d) {
+    }) : Rt(u, function(d) {
       return d.test(o);
     }), l;
     l = e.valueCallback ? e.valueCallback(s) : s, l = a.valueCallback ? a.valueCallback(l) : l;
@@ -477,7 +477,7 @@ function g(e) {
     };
   };
 }
-function Ut(e, t) {
+function Rt(e, t) {
   for (var a in e)
     if (e.hasOwnProperty(a) && t(e[a]))
       return a;
@@ -724,7 +724,7 @@ var Ma = {
   }
 };
 const G = Ma;
-var B = {
+var V = {
   am: "am",
   pm: "pm",
   midnight: "midnight",
@@ -1078,7 +1078,7 @@ var B = {
   },
   b: function(e, t, a) {
     var r = e.getUTCHours(), n;
-    switch (r === 12 ? n = B.noon : r === 0 ? n = B.midnight : n = r / 12 >= 1 ? "pm" : "am", t) {
+    switch (r === 12 ? n = V.noon : r === 0 ? n = V.midnight : n = r / 12 >= 1 ? "pm" : "am", t) {
       case "b":
       case "bb":
         return a.dayPeriod(n, {
@@ -1105,7 +1105,7 @@ var B = {
   },
   B: function(e, t, a) {
     var r = e.getUTCHours(), n;
-    switch (r >= 17 ? n = B.evening : r >= 12 ? n = B.afternoon : r >= 4 ? n = B.morning : n = B.night, t) {
+    switch (r >= 17 ? n = V.evening : r >= 12 ? n = V.afternoon : r >= 4 ? n = V.morning : n = V.night, t) {
       case "B":
       case "BB":
       case "BBB":
@@ -1363,23 +1363,23 @@ function H(e, t, a) {
     locale: i,
     _originalDate: h
   }, p = r.match(xa).map(function(k) {
-    var C = k[0];
-    if (C === "p" || C === "P") {
-      var z = Ca[C];
+    var W = k[0];
+    if (W === "p" || W === "P") {
+      var z = Ca[W];
       return z(k, i.formatLong, v);
     }
     return k;
   }).join("").match(Na).map(function(k) {
     if (k === "''")
       return "'";
-    var C = k[0];
-    if (C === "'")
+    var W = k[0];
+    if (W === "'")
       return za(k);
-    var z = ka[C];
+    var z = ka[W];
     if (z)
       return !n.useAdditionalWeekYearTokens && Oa(k) && Ee(k, t, e), !n.useAdditionalDayOfYearTokens && Ta(k) && Ee(k, t, e), z(w, k, i.localize, v);
-    if (C.match(La))
-      throw new RangeError("Format string contains an unescaped latin alphabet character `" + C + "`");
+    if (W.match(La))
+      throw new RangeError("Format string contains an unescaped latin alphabet character `" + W + "`");
     return k;
   }).join("");
   return p;
@@ -1402,7 +1402,7 @@ function le(e, t, a) {
   var r = Q(e, a), n = Q(t, a);
   return r.getTime() === n.getTime();
 }
-var R = {
+var U = {
   lessThanXSeconds: {
     one: "menys d'un segon",
     eleven: "menys d'onze segons",
@@ -1471,7 +1471,7 @@ var R = {
 function Aa(e, t, a) {
   a = a || {};
   var r;
-  return typeof R[e] == "string" ? r = R[e] : t === 1 ? r = R[e].one : t === 11 && R[e].eleven ? r = R[e].eleven : r = R[e].other.replace("{{count}}", t), a.addSuffix ? a.comparison > 0 ? "en " + r : "fa " + r : r;
+  return typeof U[e] == "string" ? r = U[e] : t === 1 ? r = U[e].one : t === 11 && U[e].eleven ? r = U[e].eleven : r = U[e].other.replace("{{count}}", t), a.addSuffix ? a.comparison > 0 ? "en " + r : "fa " + r : r;
 }
 var Fa = {
   full: "EEEE, d 'de' MMMM y",
@@ -1518,18 +1518,18 @@ var Ya = {
   nextWeek: "eeee 'a les' p",
   other: "P"
 };
-function Va(e, t, a, r) {
+function Ba(e, t, a, r) {
   return t.getUTCHours() !== 1 ? Xa[e] : Ya[e];
 }
-var Ba = {
+var Va = {
   narrow: ["aC", "dC"],
   abbreviated: ["a. de C.", "d. de C."],
   wide: ["abans de Crist", "despr\xE9s de Crist"]
-}, Ra = {
+}, Ua = {
   narrow: ["1", "2", "3", "4"],
   abbreviated: ["T1", "T2", "T3", "T4"],
   wide: ["1r trimestre", "2n trimestre", "3r trimestre", "4t trimestre"]
-}, Ua = {
+}, Ra = {
   narrow: ["GN", "FB", "M\xC7", "AB", "MG", "JN", "JL", "AG", "ST", "OC", "NV", "DS"],
   abbreviated: ["gen.", "febr.", "mar\xE7", "abr.", "maig", "juny", "jul.", "ag.", "set.", "oct.", "nov.", "des."],
   wide: ["gener", "febrer", "mar\xE7", "abril", "maig", "juny", "juliol", "agost", "setembre", "octubre", "novembre", "desembre"]
@@ -1619,18 +1619,18 @@ function Ka(e, t) {
 var er = {
   ordinalNumber: Ka,
   era: f({
-    values: Ba,
+    values: Va,
     defaultWidth: "wide"
   }),
   quarter: f({
-    values: Ra,
+    values: Ua,
     defaultWidth: "wide",
     argumentCallback: function(e) {
       return Number(e) - 1;
     }
   }),
   month: f({
-    values: Ua,
+    values: Ra,
     defaultWidth: "wide"
   }),
   day: f({
@@ -1738,7 +1738,7 @@ var vr = {
   code: "ca",
   formatDistance: Aa,
   formatLong: Ga,
-  formatRelative: Va,
+  formatRelative: Ba,
   localize: tr,
   match: gr,
   options: {
@@ -1999,7 +1999,7 @@ var Lr = /^(\d+)(\.)?/i, zr = /\d+/i, _r = {
 }, Xr = {
   narrow: /^(a|p|midnat|middag|(om) (morgenen|eftermiddagen|aftenen|natten))/i,
   any: /^([ap]\.?\s?m\.?|midnat|middag|(om) (morgenen|eftermiddagen|aftenen|natten))/i
-}, Vr = {
+}, Br = {
   any: {
     am: /^a/i,
     pm: /^p/i,
@@ -2010,7 +2010,7 @@ var Lr = /^(\d+)(\.)?/i, zr = /\d+/i, _r = {
     evening: /aften/i,
     night: /nat/i
   }
-}, Br = {
+}, Vr = {
   ordinalNumber: q({
     matchPattern: Lr,
     parsePattern: zr,
@@ -2048,24 +2048,24 @@ var Lr = /^(\d+)(\.)?/i, zr = /\d+/i, _r = {
   dayPeriod: g({
     matchPatterns: Xr,
     defaultMatchWidth: "any",
-    parsePatterns: Vr,
+    parsePatterns: Br,
     defaultParseWidth: "any"
   })
 };
-const Rr = Br;
-var Ur = {
+const Ur = Vr;
+var Rr = {
   code: "da",
   formatDistance: wr,
   formatLong: kr,
   formatRelative: $r,
   localize: jr,
-  match: Rr,
+  match: Ur,
   options: {
     weekStartsOn: 1,
     firstWeekContainsDate: 4
   }
 };
-const Jr = Ur;
+const Jr = Rr;
 var Le = {
   lessThanXSeconds: {
     standalone: {
@@ -2657,36 +2657,36 @@ var Gn = {
   return typeof n == "string" ? r = n : t === 1 ? r = n.one : r = n.other.replace("{{count}}", t.toString()), a != null && a.addSuffix ? a.comparison && a.comparison > 0 ? "en " + r : "hace " + r : r;
 };
 const Xn = Yn;
-var Vn = {
+var Bn = {
   full: "EEEE, d 'de' MMMM 'de' y",
   long: "d 'de' MMMM 'de' y",
   medium: "d MMM y",
   short: "dd/MM/y"
-}, Bn = {
+}, Vn = {
   full: "HH:mm:ss zzzz",
   long: "HH:mm:ss z",
   medium: "HH:mm:ss",
   short: "HH:mm"
-}, Rn = {
+}, Un = {
   full: "{{date}} 'a las' {{time}}",
   long: "{{date}} 'a las' {{time}}",
   medium: "{{date}}, {{time}}",
   short: "{{date}}, {{time}}"
-}, Un = {
+}, Rn = {
   date: y({
-    formats: Vn,
-    defaultWidth: "full"
-  }),
-  time: y({
     formats: Bn,
     defaultWidth: "full"
   }),
+  time: y({
+    formats: Vn,
+    defaultWidth: "full"
+  }),
   dateTime: y({
-    formats: Rn,
+    formats: Un,
     defaultWidth: "full"
   })
 };
-const Jn = Un;
+const Jn = Rn;
 var Qn = {
   lastWeek: "'el' eeee 'pasado a la' p",
   yesterday: "'ayer a la' p",
@@ -3085,19 +3085,19 @@ var Ii = /^(\d+)(ième|ère|ème|er|e)?/i, qi = /\d+/i, Hi = {
   wide: /^[1234](er|ème|e)? trimestre/i
 }, Xi = {
   any: [/1/i, /2/i, /3/i, /4/i]
-}, Vi = {
+}, Bi = {
   narrow: /^[jfmasond]/i,
   abbreviated: /^(janv|févr|mars|avr|mai|juin|juill|juil|août|sept|oct|nov|déc)\.?/i,
   wide: /^(janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)/i
-}, Bi = {
+}, Vi = {
   narrow: [/^j/i, /^f/i, /^m/i, /^a/i, /^m/i, /^j/i, /^j/i, /^a/i, /^s/i, /^o/i, /^n/i, /^d/i],
   any: [/^ja/i, /^f/i, /^mar/i, /^av/i, /^ma/i, /^juin/i, /^juil/i, /^ao/i, /^s/i, /^o/i, /^n/i, /^d/i]
-}, Ri = {
+}, Ui = {
   narrow: /^[lmjvsd]/i,
   short: /^(di|lu|ma|me|je|ve|sa)/i,
   abbreviated: /^(dim|lun|mar|mer|jeu|ven|sam)\.?/i,
   wide: /^(dimanche|lundi|mardi|mercredi|jeudi|vendredi|samedi)/i
-}, Ui = {
+}, Ri = {
   narrow: [/^d/i, /^l/i, /^m/i, /^m/i, /^j/i, /^v/i, /^s/i],
   any: [/^di/i, /^lu/i, /^ma/i, /^me/i, /^je/i, /^ve/i, /^sa/i]
 }, Ji = {
@@ -3138,15 +3138,15 @@ var Ii = /^(\d+)(ième|ère|ème|er|e)?/i, qi = /\d+/i, Hi = {
     }
   }),
   month: g({
-    matchPatterns: Vi,
+    matchPatterns: Bi,
     defaultMatchWidth: "wide",
-    parsePatterns: Bi,
+    parsePatterns: Vi,
     defaultParseWidth: "any"
   }),
   day: g({
-    matchPatterns: Ri,
+    matchPatterns: Ui,
     defaultMatchWidth: "wide",
-    parsePatterns: Ui,
+    parsePatterns: Ri,
     defaultParseWidth: "any"
   }),
   dayPeriod: g({
@@ -3543,7 +3543,7 @@ var Yo = {
   }
 };
 const Xo = Yo;
-var Vo = {
+var Bo = {
   lessThanXSeconds: {
     one: "1\uCD08 \uBBF8\uB9CC",
     other: "{{count}}\uCD08 \uBBF8\uB9CC"
@@ -3605,12 +3605,12 @@ var Vo = {
     one: "\uAC70\uC758 1\uB144",
     other: "\uAC70\uC758 {{count}}\uB144"
   }
-}, Bo = function(e, t, a) {
-  var r, n = Vo[e];
+}, Vo = function(e, t, a) {
+  var r, n = Bo[e];
   return typeof n == "string" ? r = n : t === 1 ? r = n.one : r = n.other.replace("{{count}}", t.toString()), a != null && a.addSuffix ? a.comparison && a.comparison > 0 ? r + " \uD6C4" : r + " \uC804" : r;
 };
-const Ro = Bo;
-var Uo = {
+const Uo = Vo;
+var Ro = {
   full: "y\uB144 M\uC6D4 d\uC77C EEEE",
   long: "y\uB144 M\uC6D4 d\uC77C",
   medium: "y.MM.dd",
@@ -3627,7 +3627,7 @@ var Uo = {
   short: "{{date}} {{time}}"
 }, Zo = {
   date: y({
-    formats: Uo,
+    formats: Ro,
     defaultWidth: "full"
   }),
   time: y({
@@ -3853,7 +3853,7 @@ var cs = /^(\d+)(일|번째)?/i, hs = /\d+/i, fs = {
 const $s = Ds;
 var Cs = {
   code: "ko",
-  formatDistance: Ro,
+  formatDistance: Uo,
   formatLong: Ko,
   formatRelative: as,
   localize: ms,
@@ -4085,14 +4085,14 @@ var _s = {
   })
 };
 const Ys = Gs;
-var Xs = /^(\d+)(º|ª)?/i, Vs = /\d+/i, Bs = {
+var Xs = /^(\d+)(º|ª)?/i, Bs = /\d+/i, Vs = {
   narrow: /^(ac|dc|a|d)/i,
   abbreviated: /^(a\.?\s?c\.?|a\.?\s?e\.?\s?c\.?|d\.?\s?c\.?|e\.?\s?c\.?)/i,
   wide: /^(antes de cristo|antes da era comum|depois de cristo|era comum)/i
-}, Rs = {
+}, Us = {
   any: [/^ac/i, /^dc/i],
   wide: [/^(antes de cristo|antes da era comum)/i, /^(depois de cristo|era comum)/i]
-}, Us = {
+}, Rs = {
   narrow: /^[1234]/i,
   abbreviated: /^T[1234]/i,
   wide: /^[1234](º|ª)? trimestre/i
@@ -4130,19 +4130,19 @@ var Xs = /^(\d+)(º|ª)?/i, Vs = /\d+/i, Bs = {
 }, ru = {
   ordinalNumber: q({
     matchPattern: Xs,
-    parsePattern: Vs,
+    parsePattern: Bs,
     valueCallback: function(e) {
       return parseInt(e, 10);
     }
   }),
   era: g({
-    matchPatterns: Bs,
+    matchPatterns: Vs,
     defaultMatchWidth: "wide",
-    parsePatterns: Rs,
+    parsePatterns: Us,
     defaultParseWidth: "any"
   }),
   quarter: g({
-    matchPatterns: Us,
+    matchPatterns: Rs,
     defaultMatchWidth: "wide",
     parsePatterns: Js,
     defaultParseWidth: "any",
@@ -4669,7 +4669,7 @@ var Hu = {
 };
 const Gu = Hu, de = { en: Hn, fr: oo, es: $i, de: xn, ca: pr, it: Xo, ru: Gu, pt: ou, da: Jr, ko: Ws };
 function Yu(e = x(new Date()), t = x("en")) {
-  const a = Ve({
+  const a = Be({
     start: null,
     end: null
   }), r = A(() => ({
@@ -4712,13 +4712,13 @@ function Yu(e = x(new Date()), t = x("en")) {
       "yyyy-MM-dd'T'HH:mm:ss"
     ) : null
   })), i = A(() => {
-    const v = new Array(o.value), p = _a(e.value), k = e.value.getMonth(), C = e.value.getFullYear();
+    const v = new Array(o.value), p = _a(e.value), k = e.value.getMonth(), W = e.value.getFullYear();
     for (let E = 1; E <= p; E++)
       v.push({
-        year: C,
+        year: W,
         month: k,
         date: E,
-        formatted: H(new Date(C, k, E), "yyyy-MM-dd")
+        formatted: H(new Date(W, k, E), "yyyy-MM-dd")
       });
     const z = new Array(6 - u.value);
     return v.concat(z);
@@ -4810,12 +4810,12 @@ const Xu = ce({
       showNextMonth: v,
       showPreviousMonth: p,
       daysInMonth: k,
-      selectedDates: C
+      selectedDates: W
     } = Yu(x(e.defaultDate), a), z = () => {
       d(), t("datechanged", l.value), i.value = m.value.start, o.value = m.value.end, s();
     }, E = () => {
-      C && !l.value.end && h(C.start), t("datechanged", l.value), i.value = m.value.start, o.value = m.value.end, s();
-    }, { pushTracking: V } = he();
+      W && !l.value.end && h(W.start), t("datechanged", l.value), i.value = m.value.start, o.value = m.value.end, s();
+    }, { pushTracking: B } = he();
     return {
       locale: a,
       isoSelectedDates: l,
@@ -4829,21 +4829,21 @@ const Xu = ce({
       showNextMonth: v,
       showPreviousMonth: p,
       daysInMonth: k,
-      selectedDates: C,
+      selectedDates: W,
       clear: z,
       save: E,
       showDateRange: r,
       closeDatePicker: s,
       dateRangePickerElement: n,
       toggleDatePicker: () => {
-        r.value = !r.value, V(e.tracking?.clickDateToggle);
+        r.value = !r.value, B(e.tracking?.clickDateToggle);
       }
     };
   }
-}), Vu = {
+}), Bu = {
   class: "date-range-picker__wrapper",
   ref: "dateRangePickerElement"
-}, Bu = ["aria-label", "aria-expanded", "aria-controls"], Ru = /* @__PURE__ */ b("svg", {
+}, Vu = ["aria-label", "aria-expanded", "aria-controls"], Uu = /* @__PURE__ */ b("svg", {
   class: "dropdown-filters__arrow-down",
   width: "14",
   height: "9",
@@ -4856,7 +4856,7 @@ const Xu = ce({
     stroke: "black",
     "stroke-width": "2"
   })
-], -1), Uu = ["id"], Ju = { class: "months" }, Qu = { class: "month" }, Zu = { class: "month__name" }, Ku = ["aria-label"], el = /* @__PURE__ */ b("svg", {
+], -1), Ru = ["id"], Ju = { class: "months" }, Qu = { class: "month" }, Zu = { class: "month__name" }, Ku = ["aria-label"], el = /* @__PURE__ */ b("svg", {
   width: "9",
   height: "14",
   viewBox: "0 0 9 14",
@@ -4889,7 +4889,7 @@ const Xu = ce({
   class: "day__number"
 }, ul = { class: "date-range-picker__buttons" }, ll = ["disabled"], dl = { class: "week" };
 function ml(e, t, a, r, n, i) {
-  return T(), N("div", Vu, [
+  return T(), N("div", Bu, [
     b("button", {
       class: "date-range-picker__toggle",
       onClick: t[0] || (t[0] = (o) => e.toggleDatePicker()),
@@ -4897,17 +4897,17 @@ function ml(e, t, a, r, n, i) {
       "aria-expanded": e.showDateRange + "",
       "aria-controls": e.pickerId
     }, [
-      !e.readableStartDate && !e.readableEndDate ? (T(), N(U, { key: 0 }, [
+      !e.readableStartDate && !e.readableEndDate ? (T(), N(R, { key: 0 }, [
         ge(_(e.labelDatesFilter), 1)
       ], 64)) : F("", !0),
-      e.readableStartDate ? (T(), N(U, { key: 1 }, [
+      e.readableStartDate ? (T(), N(R, { key: 1 }, [
         ge(_(e.readableStartDate), 1)
       ], 64)) : F("", !0),
-      e.readableEndDate && e.readableStartDate !== e.readableEndDate ? (T(), N(U, { key: 2 }, [
+      e.readableEndDate && e.readableStartDate !== e.readableEndDate ? (T(), N(R, { key: 2 }, [
         ge(" - " + _(e.readableEndDate), 1)
       ], 64)) : F("", !0),
-      Ru
-    ], 8, Bu),
+      Uu
+    ], 8, Vu),
     Xe(b("div", {
       id: e.pickerId,
       class: "date-range-picker"
@@ -4928,7 +4928,7 @@ function ml(e, t, a, r, n, i) {
             }, nl, 8, al)
           ]),
           b("div", il, [
-            (T(!0), N(U, null, pe(e.daysInMonth, (o, u) => (T(), N("button", {
+            (T(!0), N(R, null, pe(e.daysInMonth, (o, u) => (T(), N("button", {
               key: u,
               onClick: (s) => e.changeSelectedDate(o),
               class: ut(["day", [
@@ -4959,13 +4959,13 @@ function ml(e, t, a, r, n, i) {
       ]),
       b("table", dl, [
         b("tr", null, [
-          (T(!0), N(U, null, pe(e.weekdays, (o) => (T(), N("td", {
+          (T(!0), N(R, null, pe(e.weekdays, (o) => (T(), N("td", {
             class: "weekday",
             key: o
           }, _(o), 1))), 128))
         ])
       ])
-    ], 8, Uu), [
+    ], 8, Ru), [
       [lt, e.showDateRange]
     ])
   ], 512);
@@ -5210,16 +5210,16 @@ class wl {
       }
       if (w > M && w >= u) {
         let v = m.x * M, p = m.y * M, k = o && M > 1 ? this._map(m, !0) : null;
-        const C = (l << 5) + (a + 1) + this.points.length;
+        const W = (l << 5) + (a + 1) + this.points.length;
         for (const z of h) {
           const E = d.points[z];
           if (E.zoom <= a)
             continue;
           E.zoom = a;
-          const V = E.numPoints || 1;
-          v += E.x * V, p += E.y * V, E.parentId = C, o && (k || (k = this._map(m, !0)), o(k, this._map(E)));
+          const B = E.numPoints || 1;
+          v += E.x * B, p += E.y * B, E.parentId = W, o && (k || (k = this._map(m, !0)), o(k, this._map(E)));
         }
-        m.parentId = C, r.push(bl(v / w, p / w, C, w, k));
+        m.parentId = W, r.push(bl(v / w, p / w, W, w, k));
       } else if (r.push(m), w > 1)
         for (const v of h) {
           const p = d.points[v];
@@ -5729,11 +5729,11 @@ function jl(e = {
     const c = [...e.markersData.value];
     if (!c)
       return;
-    const W = [];
-    c.forEach((S) => {
-      if (!S || typeof S.visible < "u" && !S.visible)
+    const S = [];
+    c.forEach((C) => {
+      if (!C || typeof C.visible < "u" && !C.visible)
         return;
-      let D = { ...S }, re = null;
+      let D = { ...C }, re = null;
       D.pinImg ? re = {
         url: D.pinImg,
         scaledSize: new google.maps.Size(e.markerSize, e.markerSize),
@@ -5774,24 +5774,24 @@ function jl(e = {
           map: a,
           label: nt
         });
-        We.info = D, W.push(We);
+        We.info = D, S.push(We);
       }
-    }), o = new google.maps.LatLngBounds(), W.forEach((S) => {
-      o.extend(S.getPosition()), S.addListener("click", (D) => {
-        C(S), S && S.info && S.info.showName && t(e.tracking?.clickMarker, {
-          "<show_name>": S.info.showName,
-          "<city_name>": S.info.city
+    }), o = new google.maps.LatLngBounds(), S.forEach((C) => {
+      o.extend(C.getPosition()), C.addListener("click", (D) => {
+        W(C), C && C.info && C.info.showName && t(e.tracking?.clickMarker, {
+          "<show_name>": C.info.showName,
+          "<city_name>": C.info.city
         });
       });
-    }), n = W;
+    }), n = S;
   }, d = () => {
     i && i.clearMarkers(), i = null;
   }, h = () => {
     d();
     const c = {
-      render: ({ count: W, position: S }) => new google.maps.Marker({
-        label: { text: String(W), color: "white", fontSize: "14px" },
-        position: S,
+      render: ({ count: S, position: C }) => new google.maps.Marker({
+        label: { text: String(S), color: "white", fontSize: "14px" },
+        position: C,
         icon: {
           url: e.clusterOptions && e.clusterOptions[0] ? e.clusterOptions[0].url : "https://raw.githubusercontent.com/googlemaps/js-marker-clusterer/gh-pages/images/m1.png",
           scaledSize: e.clusterOptions && e.clusterOptions[0] ? new google.maps.Size(
@@ -5803,7 +5803,7 @@ function jl(e = {
             e.clusterOptions[0].height / 2.5
           ) : new google.maps.Point(26, 21)
         },
-        zIndex: Number(google.maps.Marker.MAX_ZINDEX) + W
+        zIndex: Number(google.maps.Marker.MAX_ZINDEX) + S
       })
     };
     i = new Nl({
@@ -5819,21 +5819,21 @@ function jl(e = {
     }
   }, w = (c) => {
     !a || !c || a.panTo(c.getPosition());
-  }, v = (c, W) => {
-    !a || !c || !W || a.panTo({ lat: c, lng: W });
+  }, v = (c, S) => {
+    !a || !c || !S || a.panTo({ lat: c, lng: S });
   }, p = (c) => {
     !a || !c || a.setZoom(parseFloat(c));
   }, k = () => {
     if (!!a)
       return a.getZoom();
-  }, C = (c) => {
+  }, W = (c) => {
     if (!c || !c.info)
       return;
-    const W = c.info.showName ? c.info.showName.split('"').join("") : "", S = c.info.showThumbnail ? c.info.showThumbnail : c.info.showImage, D = {
+    const S = c.info.showName ? c.info.showName.split('"').join("") : "", C = c.info.showThumbnail ? c.info.showThumbnail : c.info.showImage, D = {
       pixelOffset: c ? null : new google.maps.Size(0, -50),
       content: `<div class="marker marker--${c.info.id}">
             <div class="marker__image-wrapper">
-              ${S ? ` <img class="marker__image" width="590" height="590" src="${S}" />` : ""}
+              ${C ? ` <img class="marker__image" width="590" height="590" src="${C}" />` : ""}
               <div class="marker__content">
                 <h2 class="marker__title">${c.info.showName}</h2>
                 ${c.info.city ? `<p class="marker__city">${c.info.city}</p>` : ""}
@@ -5848,14 +5848,14 @@ function jl(e = {
               </div>
             </div>
             <div class="marker__buttons">
-              <a class="marker__cta marker__cta--small cta-btn cta-btn--ghost cta-btn--full-width" href="https://www.google.com/maps/dir/?api=1&destination=${c.info.latitude},${c.info.longitude}&travelmode=driving" onclick='window.mapTrackingViewGmap("${W}", "${c.info.city}")'>
+              <a class="marker__cta marker__cta--small cta-btn cta-btn--ghost cta-btn--full-width" href="https://www.google.com/maps/dir/?api=1&destination=${c.info.latitude},${c.info.longitude}&travelmode=driving" onclick='window.mapTrackingViewGmap("${S}", "${c.info.city}")'>
       ${e.labelDirectionButton.value}
                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M8.12498 1.875L10.1831 3.93313L5.80811 8.30812L6.69186 9.19187L11.0669 4.81687L13.125 6.875V1.875H8.12498Z" fill="white"/>
                   <path d="M11.875 11.875H3.125V3.125H7.5L6.25 1.875H3.125C2.43562 1.875 1.875 2.43562 1.875 3.125V11.875C1.875 12.5644 2.43562 13.125 3.125 13.125H11.875C12.5644 13.125 13.125 12.5644 13.125 11.875V8.75L11.875 7.5V11.875Z" fill="white"/>
                 </svg>
               </a>
-              ${c.info.ticketPageUrl || c.info.showPageUrl ? `<a class="marker__cta cta-btn cta-btn--grey cta-btn--full-width" href="${c.info.ticketPageUrl || c.info.showPageUrl}" onclick='window.mapTrackingBuyTicket("${W}", "${c.info.city}")'>
+              ${c.info.ticketPageUrl || c.info.showPageUrl ? `<a class="marker__cta cta-btn cta-btn--grey cta-btn--full-width" href="${c.info.ticketPageUrl || c.info.showPageUrl}" onclick='window.mapTrackingBuyTicket("${S}", "${c.info.city}", "${e.labelBuyButton.value}", "${c.info.ticketPageUrl || c.info.showPageUrl}")'>
                       ${e.labelBuyButton.value}
                     </a>` : ""}
 
@@ -5863,14 +5863,14 @@ function jl(e = {
             </div>`
     };
     z(c, D);
-  }, z = (c, W) => {
-    r.setOptions(W), r.open({
+  }, z = (c, S) => {
+    r.setOptions(S), r.open({
       map: a,
       anchor: c
     });
   }, E = () => {
     r.close();
-  }, V = () => {
+  }, B = () => {
     const c = document.createElement("button");
     c.ariaLabel = e.ariaLocateButton, c.innerHTML = `
     <svg width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -5878,20 +5878,20 @@ function jl(e = {
       <path d="M6.90737 3.43528C5.98644 3.43528 5.10322 3.80112 4.45203 4.45232C3.80083 5.10352 3.43499 5.98673 3.43499 6.90766C3.43499 7.82859 3.80083 8.71181 4.45203 9.363C5.10322 10.0142 5.98644 10.38 6.90737 10.38C7.8283 10.38 8.71151 10.0142 9.36271 9.363C10.0139 8.71181 10.3797 7.82859 10.3797 6.90766C10.3797 5.98673 10.0139 5.10352 9.36271 4.45232C8.71151 3.80112 7.8283 3.43528 6.90737 3.43528ZM6.90737 8.93347C6.5068 8.93347 6.11523 8.81469 5.78217 8.59214C5.44911 8.3696 5.18952 8.05329 5.03623 7.68322C4.88294 7.31314 4.84284 6.90592 4.92098 6.51305C4.99913 6.12018 5.19202 5.75931 5.47527 5.47606C5.75851 5.19282 6.11938 4.99993 6.51225 4.92178C6.90512 4.84364 7.31234 4.88374 7.68242 5.03703C8.05249 5.19032 8.3688 5.44991 8.59134 5.78297C8.81389 6.11603 8.93267 6.5076 8.93267 6.90817C8.93267 7.44531 8.71929 7.96045 8.33947 8.34027C7.95965 8.72009 7.44451 8.93347 6.90737 8.93347Z" fill="black"/>
     </svg>`, c.classList.add("location-button"), a.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(c), c.addEventListener("click", () => {
       navigator.geolocation ? navigator.geolocation.getCurrentPosition(
-        (W) => {
-          const S = {
-            lat: W.coords.latitude,
-            lng: W.coords.longitude
+        (S) => {
+          const C = {
+            lat: S.coords.latitude,
+            lng: S.coords.longitude
           }, D = {
             url: e.defaultLocationImg ? e.defaultLocationImg : El,
             scaledSize: new google.maps.Size(30, 30)
           };
           new google.maps.Marker({
-            position: S,
+            position: C,
             optimized: !1,
             map: a,
             icon: D
-          }), a.setCenter(S), a.setZoom(8);
+          }), a.setCenter(C), a.setZoom(8);
         },
         () => {
           console.warn("Error: The Geolocation service failed.");
@@ -5902,19 +5902,21 @@ function jl(e = {
     e.fitMarkers ? n && n.length > 0 ? M() : (p(2), v(40.866667, 34.566667)) : e.center.value && e.zoom && (p(e.zoom), v(e.center.value.lat, e.center.value.lng));
   };
   return ke(() => {
-    window.mapTrackingBuyTicket = (c, W) => {
+    window.mapTrackingBuyTicket = (c, S, C, D) => {
       t(e.tracking?.clickBuy, {
         "<show_name>": c,
-        "<city_name>": W
+        "<city_name>": S,
+        "<link_text>": C,
+        "<link_url>": D
       });
-    }, window.mapTrackingViewGmap = (c, W) => {
+    }, window.mapTrackingViewGmap = (c, S) => {
       t(e.tracking?.clickViewGmap, {
         "<show_name>": c,
-        "<city_name>": W
+        "<city_name>": S
       });
     }, dt(async () => {
       try {
-        await s(), V(), e.markersData.value.length > 0 && (m(), e.hasCluster && h(), Z()), we(e.markersData, () => {
+        await s(), B(), e.markersData.value.length > 0 && (m(), e.hasCluster && h(), Z()), we(e.markersData, () => {
           m(), e.hasCluster && h(), Z();
         }), we(e.center, () => {
           Z();
@@ -5927,7 +5929,7 @@ function jl(e = {
     loadMap: s,
     closeInfoWindow: E,
     openInfoWindow: z,
-    openShowInfo: C,
+    openShowInfo: W,
     setZoom: p,
     getZoom: k,
     centerOnMarker: w,
@@ -5938,7 +5940,7 @@ function jl(e = {
   };
 }
 function Ll(e, t = null) {
-  const { pushTracking: a } = he(), r = x(null), n = x(null), i = Ve({
+  const { pushTracking: a } = he(), r = x(null), n = x(null), i = Be({
     start: null,
     end: null
   }), o = A(() => {
@@ -6113,11 +6115,11 @@ const zl = ce({
 }, ql = {
   key: 1,
   class: "interactive-map__description"
-}, Hl = { class: "interactive-map__slots" }, Gl = { class: "filters" }, Yl = { class: "interactive-map__wrapper" }, Xl = { class: "interactive-map" }, Vl = ["id"], Bl = {
+}, Hl = { class: "interactive-map__slots" }, Gl = { class: "filters" }, Yl = { class: "interactive-map__wrapper" }, Xl = { class: "interactive-map" }, Bl = ["id"], Vl = {
   key: 0,
   class: "loading"
-}, Rl = /* @__PURE__ */ b("div", { class: "spinner" }, null, -1), Ul = [
-  Rl
+}, Ul = /* @__PURE__ */ b("div", { class: "spinner" }, null, -1), Rl = [
+  Ul
 ];
 function Jl(e, t, a, r, n, i) {
   const o = be("DateRangePicker"), u = be("DropdownFilters");
@@ -6127,7 +6129,7 @@ function Jl(e, t, a, r, n, i) {
         e.mapTitle ? (T(), N("h2", Il, _(e.mapTitle), 1)) : F("", !0),
         e.mapDescription ? (T(), N("p", ql, _(e.mapDescription), 1)) : F("", !0),
         b("div", Hl, [
-          Be(e.$slots, "default")
+          Ve(e.$slots, "default")
         ]),
         b("div", Gl, [
           e.hideFilters ? F("", !0) : (T(), Se(o, {
@@ -6162,10 +6164,10 @@ function Jl(e, t, a, r, n, i) {
           b("div", {
             id: e.mapId,
             class: "map"
-          }, null, 8, Vl),
-          Re(mt, { name: "spinner-fade" }, {
-            default: Ue(() => [
-              e.isLoading ? (T(), N("div", Bl, Ul)) : F("", !0)
+          }, null, 8, Bl),
+          Ue(mt, { name: "spinner-fade" }, {
+            default: Re(() => [
+              e.isLoading ? (T(), N("div", Vl, Rl)) : F("", !0)
             ]),
             _: 1
           })
@@ -6228,12 +6230,12 @@ function td(e, t, a, r, n, i) {
   const o = be("InteractiveMap");
   return T(), N("div", null, [
     b("div", ed, [
-      Re(o, ct({ ...e.$props, ...e.$attrs }, {
+      Ue(o, ct({ ...e.$props, ...e.$attrs }, {
         "markers-data": e.runs,
         "is-loading": e.isLoading
       }), {
-        default: Ue(() => [
-          Be(e.$slots, "default")
+        default: Re(() => [
+          Ve(e.$slots, "default")
         ]),
         _: 3
       }, 16, ["markers-data", "is-loading"])
