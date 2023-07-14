@@ -73,20 +73,20 @@ const fe = (e, t) => {
     tracking: { type: Object, required: !1, default: null }
   },
   setup(e, { emit: t }) {
-    const a = I(e, "filters"), r = x(e.placeholder ? "" : "all"), n = (l) => {
-      r.value = l, t("onfilterchange", r.value);
-    }, i = () => {
+    const a = I(e, "filters"), r = x(e.placeholder ? "" : "all"), n = x(!1), i = (m) => {
+      r.value = m, t("onfilterchange", r.value), requestAnimationFrame(() => n.value = !1);
+    }, o = () => {
       r.value = "", t("onfilterchange", r.value);
-    }, o = A(
-      () => a.value.filter((l) => !!l.value)
-    ), { pushTracking: u } = he();
+    }, u = A(
+      () => a.value.filter((m) => !!m.value)
+    ), { pushTracking: s } = he();
     return {
-      filtersWithoutEmptyValue: o,
+      filtersWithoutEmptyValue: u,
       currentFilter: r,
-      resetFilter: i,
-      filter: n,
+      resetFilter: o,
+      filter: i,
       trackClick: () => {
-        u(e.tracking?.clickShowToggle);
+        n.value || s(e.tracking?.clickShowToggle), n.value = !0;
       }
     };
   }

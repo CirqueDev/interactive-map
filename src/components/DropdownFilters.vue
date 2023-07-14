@@ -56,11 +56,15 @@ export default defineComponent({
   setup(props, { emit }) {
     const filters = toRef(props, "filters");
     const currentFilter = ref(props.placeholder ? "" : "all");
+    const isOpenForTrackingPurpose = ref(false);
 
     const filter = (f) => {
       currentFilter.value = f;
       emit("onfilterchange", currentFilter.value);
+
+      requestAnimationFrame(() => (isOpenForTrackingPurpose.value = false));
     };
+
     const resetFilter = () => {
       currentFilter.value = "";
       emit("onfilterchange", currentFilter.value);
@@ -72,7 +76,10 @@ export default defineComponent({
 
     const { pushTracking } = useTracking();
     const trackClick = () => {
-      pushTracking(props.tracking?.clickShowToggle);
+      if (!isOpenForTrackingPurpose.value) {
+        pushTracking(props.tracking?.clickShowToggle);
+      }
+      isOpenForTrackingPurpose.value = true;
     };
 
     return {
