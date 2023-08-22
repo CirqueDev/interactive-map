@@ -27,7 +27,7 @@
               </div>
             </div>
             <div class="marker__buttons">
-              <a class="marker__cta marker__cta--small cta-btn cta-btn--ghost cta-btn--full-width" href="https://www.google.com/maps/dir/?api=1&destination=${h.info.latitude},${h.info.longitude}&travelmode=driving" onclick='window.mapTrackingViewGmap("${T}", "${h.info.city}")'>
+              <a class="marker__cta marker__cta--small cta-btn cta-btn--ghost cta-btn--full-width" href="https://www.google.com/maps/search/?api=1&query=${h.info.latitude},${h.info.longitude}" onclick='window.mapTrackingViewGmap("${T}", "${h.info.city}")'>
       ${e.labelDirectionButton.value}
                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M8.12498 1.875L10.1831 3.93313L5.80811 8.30812L6.69186 9.19187L11.0669 4.81687L13.125 6.875V1.875H8.12498Z" fill="white"/>
