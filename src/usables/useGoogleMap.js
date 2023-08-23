@@ -292,6 +292,8 @@ export default function useGoogleMap(
         marker.info.longitude
       }" onclick='window.mapTrackingViewGmap("${nameNoQuote}", "${
         marker.info.city
+      }")' onauxclick='window.mapTrackingViewGmap("${nameNoQuote}", "${
+        marker.info.city
       }")'>
       ${data.labelDirectionButton.value}
                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -304,6 +306,10 @@ export default function useGoogleMap(
                   ? `<a class="marker__cta cta-btn cta-btn--grey cta-btn--full-width" href="${
                       marker.info.ticketPageUrl || marker.info.showPageUrl
                     }" onclick='window.mapTrackingBuyTicket("${nameNoQuote}", "${
+                      marker.info.city
+                    }", "${data.labelBuyButton.value}", "${
+                      marker.info.ticketPageUrl || marker.info.showPageUrl
+                    }")' onauxclick='window.mapTrackingBuyTicket("${nameNoQuote}", "${
                       marker.info.city
                     }", "${data.labelBuyButton.value}", "${
                       marker.info.ticketPageUrl || marker.info.showPageUrl
