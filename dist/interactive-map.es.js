@@ -9218,11 +9218,13 @@ function useGoogleMap(
               </div>
             </div>
             <div class="marker__buttons">
-              <a class="marker__cta marker__cta--small cta-btn cta-btn--ghost cta-btn--full-width" href="https://www.google.com/maps/dir/?api=1&destination=${
-                marker.info.latitude
-              },${
+            <a class="marker__cta marker__cta--small cta-btn cta-btn--ghost cta-btn--full-width" href="https://www.google.com/maps/search/?api=1&query=${
+              marker.info.latitude
+            },${
         marker.info.longitude
-      }&travelmode=driving" onclick='window.mapTrackingViewGmap("${nameNoQuote}", "${
+      }" onclick='window.mapTrackingViewGmap("${nameNoQuote}", "${
+        marker.info.city
+      }")' onauxclick='window.mapTrackingViewGmap("${nameNoQuote}", "${
         marker.info.city
       }")'>
       ${data.labelDirectionButton.value}
@@ -9237,6 +9239,8 @@ function useGoogleMap(
                       marker.info.ticketPageUrl || marker.info.showPageUrl
                     }" onclick='window.mapTrackingBuyTicket("${nameNoQuote}", "${
                       marker.info.city
+                    }", "${data.labelBuyButton.value}", "${
+                      marker.info.ticketPageUrl || marker.info.showPageUrl
                     }")'>
                   ${data.labelBuyButton.value}
               </a>`
@@ -9330,10 +9334,12 @@ function useGoogleMap(
   };
 
   onMounted(() => {
-    window.mapTrackingBuyTicket = (showname, cityname) => {
+    window.mapTrackingBuyTicket = (showname, cityname, label, url) => {
       pushTracking(data.tracking ? data.tracking.clickBuy : null, {
         "<show_name>": showname,
         "<city_name>": cityname,
+        "<link_text>": label,
+        "<link_url>": url,
       });
     };
 

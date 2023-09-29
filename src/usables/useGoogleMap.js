@@ -285,11 +285,13 @@ export default function useGoogleMap(
               </div>
             </div>
             <div class="marker__buttons">
-              <a class="marker__cta marker__cta--small cta-btn cta-btn--ghost cta-btn--full-width" href="https://www.google.com/maps/dir/?api=1&destination=${
-                marker.info.latitude
-              },${
+            <a class="marker__cta marker__cta--small cta-btn cta-btn--ghost cta-btn--full-width" href="https://www.google.com/maps/search/?api=1&query=${
+              marker.info.latitude
+            },${
         marker.info.longitude
-      }&travelmode=driving" onclick='window.mapTrackingViewGmap("${nameNoQuote}", "${
+      }" onclick='window.mapTrackingViewGmap("${nameNoQuote}", "${
+        marker.info.city
+      }")' onauxclick='window.mapTrackingViewGmap("${nameNoQuote}", "${
         marker.info.city
       }")'>
       ${data.labelDirectionButton.value}
