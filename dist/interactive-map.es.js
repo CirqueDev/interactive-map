@@ -9452,7 +9452,7 @@ function useShowFilters(markersData, tracking = null) {
           );
         }
 
-        if (markersData.value && currentDates.end) {
+        if (markersData.value && currentDates.end && m.startDate && m.endDate) {
           const selectedStartDate = new Date(currentDates.start);
           const selectedEndDate = new Date(currentDates.end);
           const startDate = new Date(m.startDate);
@@ -9465,6 +9465,14 @@ function useShowFilters(markersData, tracking = null) {
             ),
             filterFound
           );
+        }
+
+        if (
+          markersData.value &&
+          currentDates.end &&
+          (!m.startDate || !m.endDate)
+        ) {
+          filterFound = false;
         }
 
         return filterFound;

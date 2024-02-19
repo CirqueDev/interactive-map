@@ -1,0 +1,4150 @@
+{
+  "content": {
+    "Result": {
+      "shows": [
+        {
+          "showId": 6,
+          "showName": "Alegría",
+          "showPageUrl": "https://test.cirquedusoleil.com/alegria",
+          "showLogo": "https://test.cirquedusoleil.com/-/media/cds/images/shows/alegria/logos/alegria_logo.png?db=web&vs=3&sc_lang=en&hash=61CD2717AA5AAF56B32E4D8591E08D43",
+          "showThumbnail": "https://test.cirquedusoleil.com/-/media/cds/images/shows/alegria/2022/alegria_thumb_454x454.jpg?db=web&vs=1&sc_lang=en&hash=AD8115383D6240FF3D2D2214056817DD",
+          "showImage": "https://test.cirquedusoleil.com/-/media/cds/images/shows/alegria/alegria_hero_1920x710.jpg?db=web&vs=1&hash=44E801EE5ADB3A01B19C80BCF99AA85E",
+          "showType": "BIG TOP",
+          "runs": [
+            {
+              "id": 13887,
+              "city": "London",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United Kingdom",
+              "region": null,
+              "countryCode": "UK",
+              "facility": "Royal Albert Hall",
+              "latitude": "51.50094200000000000000",
+              "longitude": "-0.17749800000000000000",
+              "startDate": "2024-01-11T00:00:00",
+              "endDate": "2024-02-11T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/united-kingdom/london/alegria/group/standard-group-offer"
+                    }
+                  ]
+                },
+                {
+                  "offerTypeCode": "PremiumOffersVIPExperience",
+                  "title": "Group VIP Experience",
+                  "descriptions": "Plan a turnkey event and enjoy exclusive perks with your group of 10+.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/united-kingdom/london/alegria/group/premium-offers-vip-experience"
+                    }
+                  ]
+                },
+                {
+                  "offerTypeCode": "FULL BOX",
+                  "title": "Private boxes",
+                  "descriptions": "Experience the show from the comfort of a private box seating 4, 8 or 12.  ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/united-kingdom/london/alegria/group/premium-offers-private-boxes "
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/791cf9b1-1e9a-44a7-91a4-4c8f95d34408/shop/select?locale=en&skin=alegria_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "BOXES",
+                  "title": "Loggia and Grand Tier Box Seats ",
+                  "descriptions": "Enjoy one of the best views from a Royal Albert Hall Box",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/53e818aa-1a24-4344-b9e1-9a6d3b59e680/shop/select?locale=en&skin=alegria_v2"
+                    },
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/53e818aa-1a24-4344-b9e1-9a6d3b59e680/shop/select?locale=en&skin=alegria_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "VIP GALLERY",
+                  "title": "VIP in the Gallery",
+                  "descriptions": "Enjoy a drink in the iconic Gallery & enjoy the show from premium seats.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/7d535146-c668-4ff4-8e35-54523a4300df/shop/select?locale=en&skin=alegria_v2"
+                    },
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/united-kingdom/london/alegria/premium-experience/vip-in-the-gallery"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "FINEDINING",
+                  "title": "Fine Dining",
+                  "descriptions": "Tempt your senses at CODA before viewing the show from Premium Stalls seats.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/a81c8127-e6d2-4686-9a4c-0b718f5300d9/shop/select?locale=en&skin=alegria_v2"
+                    },
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/united-kingdom/london/alegria/premium-experience/fine-dining"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/1120c911-3bcf-4310-b43f-055be9e7a03d/shop/select?locale=en&skin=alegria_v2"
+                    },
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/1120c911-3bcf-4310-b43f-055be9e7a03d/shop/select?locale=en&skin=alegria_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "WCP",
+                  "title": "Wheelchair accessible seating",
+                  "descriptions": "You need a place for a wheelchair? Please call 020 7070 4410",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    { "code": "Mobile", "value": "" },
+                    { "code": "Select", "value": "" }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "credit",
+                  "title": "How to use an account credit !",
+                  "descriptions": "",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/faq/account-credit"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "united-kingdom": "london" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/united-kingdom/london/alegria/buy-tickets"
+            },
+            {
+              "id": 13775,
+              "city": "Malaga",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "Spain",
+              "region": null,
+              "countryCode": "ES",
+              "facility": "Under the Big Top, Aparcamiento Feria de Málaga, Cortijo Torres",
+              "latitude": "36.70132840505520000000",
+              "longitude": "-4.45841799076841000000",
+              "startDate": "2024-05-31T00:00:00",
+              "endDate": "2024-06-23T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/spain/malaga/alegria/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/4abd1f43-6fc7-4115-8281-d2882687fab5/shop/select?locale=en-CA&skin=alegria_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/52931b56-e9a5-40d1-afa4-29cd9f4b8c6a/shop/select?locale=fr-CA&skin=alegria_v2"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "spain": "malaga" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/spain/malaga/alegria/buy-tickets"
+            },
+            {
+              "id": 13868,
+              "city": "Madrid",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "Spain",
+              "region": null,
+              "countryCode": "ES",
+              "facility": "Under the Big Top, Escenario Puerta del Angel",
+              "latitude": "40.41694400000000000000",
+              "longitude": "-3.72802800000000000000",
+              "startDate": "2024-12-04T00:00:00",
+              "endDate": "2025-01-06T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/spain/madrid/alegria/group/standard-group-offer"
+                    }
+                  ]
+                },
+                {
+                  "offerTypeCode": "PremiumOffersVIPExperience",
+                  "title": "Group VIP Experience",
+                  "descriptions": "Plan a turnkey event and enjoy exclusive perks with your group of 10+.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/spain/madrid/alegria/group/premium-offers-vip-experience"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/25ec5c49-fe46-4450-857e-22dceb1438eb/shop/select?locale=en&skin=alegria_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "VIPExperienceTicketType",
+                  "title": "VIP Experience Package",
+                  "descriptions": "Enjoy exclusive perks in our VIP Suite and watch the show from Premium seats.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/spain/madrid/alegria/premium-experience/vip-premium-experience"
+                    },
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/1edc6caf-18e4-4dbb-b3ae-00ae9eec3ccd/shop/select?locale=en&skin=alegria_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/c04417fd-1bfe-45c7-bab7-d75a74857750/shop/select?locale=en&skin=alegria_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "BehindTheSceneTicketType",
+                  "title": "Premium Backstage Tour Package",
+                  "descriptions": "Go behind the scenes for the very best of Cirque du Soleil. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/7058b79c-8c10-4598-8288-8e6817c69684/shop/select?locale=en&skin=alegria_v2"
+                    },
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/spain/madrid/alegria/premium-experience/behind-the-scenes"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Wheel",
+                  "title": "Accessible Seating Tickets",
+                  "descriptions": "If you need to purchase accessible seating tickets, click here. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "Please contact us to purchase tickets for an individual with reduced mobility and it will be a pleasure for us to assist you in finding the best seats available. /  Customer service: +34 913 754 768 / contact@cirquedusoleil.com"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "credit",
+                  "title": "How to use an account credit !",
+                  "descriptions": "",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/faq/account-credit"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "spain": "madrid" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/spain/madrid/alegria/buy-tickets"
+            },
+            {
+              "id": 13776,
+              "city": "Alicante",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "Spain",
+              "region": null,
+              "countryCode": "ES",
+              "facility": "Under the Big Top, Playa San Juan",
+              "latitude": "38.37675498482120000000",
+              "longitude": "-0.41292473234353300000",
+              "startDate": "2024-07-16T00:00:00",
+              "endDate": "2024-08-04T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/spain/alicante/alegria/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/5e44909d-ae7f-4d4c-8c13-f33b910be4a1/shop/select?locale=en&skin=alegria_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/2a874f3d-f4e6-408e-a87b-cf18af5f69d0/shop/select?locale=en&skin=alegria_v2"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "spain": "alicante" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/spain/alicante/alegria/buy-tickets"
+            },
+            {
+              "id": 13875,
+              "city": "Barcelona",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "Spain",
+              "region": null,
+              "countryCode": "ES",
+              "facility": "Under the Big Top, L’Hospitalet de Llobregat",
+              "latitude": "41.34827620180310000000",
+              "longitude": "2.10108430000000000000",
+              "startDate": "2024-03-20T00:00:00",
+              "endDate": "2024-04-14T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/spain/barcelona/alegria/group/standard-group-offer"
+                    }
+                  ]
+                },
+                {
+                  "offerTypeCode": "PremiumOffersVIPExperience",
+                  "title": "Group VIP Experience",
+                  "descriptions": "Plan a turnkey event and enjoy exclusive perks with your group of 10+.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/spain/barcelona/alegria/group/premium-offers-vip-experience"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/b35706a5-6e9d-453b-bb30-5e52d8210bda/shop/select?locale=en&skin=alegria_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "VIPExperienceTicketType",
+                  "title": "VIP Experience Package",
+                  "descriptions": "Enjoy exclusive perks in our VIP Suite and watch the show from Premium seats.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/spain/barcelona/alegria/premium-experience/vip-premium-experience"
+                    },
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/703daf23-eaa2-4e8b-9142-fa13a2a994c6/shop/select?locale=en&skin=alegria_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/81eed3f2-ce35-4beb-82f3-dcbd4b22b596/shop/select?locale=en&skin=alegria_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "BehindTheSceneTicketType",
+                  "title": "Premium Backstage Tour Package",
+                  "descriptions": "Go behind the scenes for the very best of Cirque du Soleil. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/45c49779-b135-4113-ab29-38d31481078e/shop/select?locale=en&skin=alegria_v2"
+                    },
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/spain/barcelona/alegria/premium-experience/behind-the-scenes"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Wheel",
+                  "title": "Accessible Seating Tickets",
+                  "descriptions": "If you need to purchase accessible seating tickets, click here. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "Please contact us to purchase tickets for an individual with reduced mobility and it will be a pleasure for us to assist you in finding the best seats available. /  Customer service: +34 913 754 768 / contact@cirquedusoleil.com"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "credit",
+                  "title": "How to use an account credit !",
+                  "descriptions": "",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/faq/account-credit"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "MEET_BIG TOP",
+                  "title": "Meet & greet",
+                  "descriptions": "Elevate your experience with an exclusive meet & greet",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "Meet & Greet opportunity after the show for 20 minutes. Interact with artists and a tour member. Capture the moment with photos. (Meet & Greet is done in English) "
+                    },
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/5997e12d-79fb-4fe5-897a-819ac8ed6c43/shop/select?locale=en&skin=alegria_v2"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "spain": "barcelona" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/spain/barcelona/alegria/buy-tickets"
+            },
+            {
+              "id": 13777,
+              "city": "Seville",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "Spain",
+              "region": null,
+              "countryCode": "ES",
+              "facility": "Under the Big Top, Charco de la Pava",
+              "latitude": "37.38682174194800000000",
+              "longitude": "-6.01549049783094000000",
+              "startDate": "2024-09-28T00:00:00",
+              "endDate": "2024-10-27T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/spain/seville/alegria/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/f702a3bd-70a2-4bd7-abcf-9560133e98e5/shop/select?locale=en&skin=alegria_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/42c0e5b6-c098-4adc-b037-f7b22a9be257/shop/select?locale=en&skin=alegria_v2"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "spain": "seville" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/spain/seville/alegria/buy-tickets"
+            }
+          ]
+        },
+        {
+          "showId": 236,
+          "showName": "Cirque du Soleil BAZZAR",
+          "showPageUrl": "https://test.cirquedusoleil.com/bazzar",
+          "showLogo": "https://test.cirquedusoleil.com/-/media/cds/images/shows/bazzar/logo/bazzar_logo_725x260.png?db=web&vs=1&hash=D56AB90A9F5269DC58AB9B2DE91161A9",
+          "showThumbnail": "https://test.cirquedusoleil.com/-/media/cds/images/shows/bazzar/thumbnail/cirque-du-soleil-bazzar-orange-desk-thumb-454x454.jpg?db=web&vs=1&hash=6239D92BB2BA28FE1DCC5C522A1B4EA9",
+          "showImage": "https://test.cirquedusoleil.com/-/media/cds/images/shows/bazzar/new_violet/hero/bazzar_hero_1920x450.jpg?db=web&vs=1&hash=D3B0F2DD69B053E551A5E8E7E3008393",
+          "showType": "BIG TOP",
+          "runs": [
+            {
+              "id": 13870,
+              "city": "Hartford",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United States",
+              "region": null,
+              "countryCode": "US",
+              "facility": "Under the Big Top, On Market Street",
+              "latitude": "41.77416700000000000000",
+              "longitude": "-72.66988900000000000000",
+              "startDate": "2024-04-06T00:00:00",
+              "endDate": "2024-05-05T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/usa/hartford/bazzar/group/standard-group-offer"
+                    }
+                  ]
+                },
+                {
+                  "offerTypeCode": "AdvancedOffer",
+                  "title": "Purchase Group Tickets online",
+                  "descriptions": "Book your group of 10-19 and save up to 25% off tickets. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/270cefd3-f00f-452b-a2ad-9e50bb8f9b2e/shop/select?locale=en&skin=BAZZAR_V2"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Entradas a precio normal",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/bb3b4a80-d24e-450e-aec9-b70a3e34e2c1/shop/select?locale=es-US&skin=BAZZAR_V2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/a3826b37-c6d9-44e7-8fed-34b525272552/shop/select?locale=en&skin=BAZZAR_V2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Wheel",
+                  "title": "Accessible Seating Tickets",
+                  "descriptions": "If you need to purchase accessible seating tickets, click here. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/54a23401-8163-4ce7-a603-2dd355070e41/shop/select?locale=en&skin=BAZZAR_V2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "MEET_BIG TOP",
+                  "title": "Meet & greet",
+                  "descriptions": "Elevate your experience with an exclusive meet & greet",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "Meet & Greet opportunity after the show for 20 minutes. Interact with artists and a tour member. Capture the moment with photos. (Meet & Greet is done in English) "
+                    },
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/b07b4e6b-8645-47c6-a431-b6b0ab9c6ab8/shop/select?locale=en&skin=bazzar_v2"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "usa": "hartford" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/usa/hartford/bazzar/buy-tickets"
+            },
+            {
+              "id": 13846,
+              "city": "St. Petersburg",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United States",
+              "region": null,
+              "countryCode": "US",
+              "facility": "Under the Big Top, Tropicana Field",
+              "latitude": "27.76804600000000000000",
+              "longitude": "-82.65064100000000000000",
+              "startDate": "2024-02-22T00:00:00",
+              "endDate": "2024-03-24T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/usa/st-petersburg/bazzar/group/standard-group-offer"
+                    }
+                  ]
+                },
+                {
+                  "offerTypeCode": "AdvancedOffer",
+                  "title": "Purchase Group Tickets online",
+                  "descriptions": "Book your group of 10-19 and save up to 25% off tickets. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/5c49e507-875a-44d5-af9a-7557f9a435d3/shop/select?locale=en&skin=BAZZAR_V2"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/c08fed18-a78f-4e3c-aadc-82df90e2c74d/shop/select?locale=en&skin=BAZZAR_V2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/41e46a43-e95e-4665-9ac0-136c2d7bf036/shop/select?locale=en&skin=BAZZAR_V2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Wheel",
+                  "title": "Accessible Seating Tickets",
+                  "descriptions": "If you need to purchase accessible seating tickets, click here. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/11db2775-2baf-474e-a789-aa436d6a14d7/shop/select?locale=en&skin=BAZZAR_V2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "MEET_BIG TOP",
+                  "title": "Meet & greet",
+                  "descriptions": "Elevate your experience with an exclusive meet & greet",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "Meet & Greet opportunity after the show for 20 minutes. Interact with artists and a tour member. Capture the moment with photos. (Meet & Greet is done in English) "
+                    },
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/1f5efc75-06d2-4a0c-b281-4b532ab72f2c/shop/select?locale=en&skin=bazzar_v2"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "usa": "st-petersburg" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/usa/st-petersburg/bazzar/buy-tickets"
+            }
+          ]
+        },
+        {
+          "showId": 39,
+          "showName": "Corteo",
+          "showPageUrl": "https://test.cirquedusoleil.com/corteo",
+          "showLogo": "https://test.cirquedusoleil.com/-/media/cds/images/shows/corteo/new/logo/corteo-show-logo.svg?db=web&vs=5&hash=5251EA4695757659DEB2135D95EE89C1",
+          "showThumbnail": "https://test.cirquedusoleil.com/-/media/cds/images/shows/corteo/march_2023_assets/thumbnails/cirque-du-soleil-corteo-thumbnail-desktop-454x454.jpg?db=web&vs=1&hash=86A789015EAA8FDC98598610B2915297",
+          "showImage": "https://test.cirquedusoleil.com/-/media/cds/images/shows/corteo/new/hero/corteo_hero_hp_desktop_1920x710.jpg?db=web&vs=1&hash=17DD579B535E823B67192E7DBB02BE4B",
+          "showType": "ARENA",
+          "runs": [
+            {
+              "id": 13884,
+              "city": "Bridgeport",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United States",
+              "region": null,
+              "countryCode": "US",
+              "facility": "Total Mortgage Arena",
+              "latitude": "41.17338823040910000000",
+              "longitude": "-73.18757706959210000000",
+              "startDate": "2024-04-11T00:00:00",
+              "endDate": "2024-04-14T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/usa/bridgeport/corteo/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/237623/30809"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/237623/30809/notap?did=bf4pk"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "MEET",
+                  "title": "Meet & Greet",
+                  "descriptions": "The chance to immerse yourself in the world that gives life to our show",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/237623/30809/notap?did=meet"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "usa": "bridgeport" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/usa/bridgeport/corteo/buy-tickets"
+            },
+            {
+              "id": 13879,
+              "city": "Jacksonville",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United States",
+              "region": null,
+              "countryCode": "US",
+              "facility": "VyStar Veterans Memorial Arena",
+              "latitude": "30.32584200000000000000",
+              "longitude": "-81.64488800000000000000",
+              "startDate": "2024-03-07T00:00:00",
+              "endDate": "2024-03-10T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/usa/jacksonville/corteo/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/278757/30809"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/278757/30809/notap?did=bf4pk"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "MEET",
+                  "title": "Meet & Greet",
+                  "descriptions": "The chance to immerse yourself in the world that gives life to our show",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "Exclusive meet & greet opportunity with Cirque du Soleil artists and After show for 20 minutes (Q&A with artist and a tour member and photo session with artist)"
+                    },
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/event/22005ECEC0EEC124?did=meet"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "usa": "jacksonville" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/usa/jacksonville/corteo/buy-tickets"
+            },
+            {
+              "id": 13877,
+              "city": "Baton Rouge",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United States",
+              "region": null,
+              "countryCode": "US",
+              "facility": "Raising Cane's River Center",
+              "latitude": "-91.18933600000000000000",
+              "longitude": "30.44444700000000000000",
+              "startDate": "2024-02-22T00:00:00",
+              "endDate": "2024-02-25T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/usa/baton-rouge/corteo/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/221692/30809"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/221692/30809/notap?did=bf4pk"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "MEET",
+                  "title": "Meet & Greet",
+                  "descriptions": "The chance to immerse yourself in the world that gives life to our show",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/event/1B005EC9F2BE8B3F?did=meet"
+                    },
+                    {
+                      "code": "LearnMore",
+                      "value": "Exclusive meet & greet opportunity with Cirque du Soleil artists and After show for 20 minutes (Q&A with artist and a tour member and photo session with artist)"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "usa": "baton-rouge" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/usa/baton-rouge/corteo/buy-tickets"
+            },
+            {
+              "id": 13885,
+              "city": "Albany",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United States",
+              "region": null,
+              "countryCode": "US",
+              "facility": "MVP Arena",
+              "latitude": "42.64830100000000000000",
+              "longitude": "-73.75392600000000000000",
+              "startDate": "2024-04-19T00:00:00",
+              "endDate": "2024-04-21T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/usa/albany/corteo/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/1154/30809"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/1154/30809/notap?did=bf4pk"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "usa": "albany" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/usa/albany/corteo/buy-tickets"
+            },
+            {
+              "id": 13880,
+              "city": "Greensboro",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United States",
+              "region": null,
+              "countryCode": "US",
+              "facility": "Greensboro Coliseum",
+              "latitude": "36.05975000000000000000",
+              "longitude": "-79.82564100000000000000",
+              "startDate": "2024-03-14T00:00:00",
+              "endDate": "2024-03-17T00:00:00",
+              "offers": [],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/369330/30809"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/369330/30809/notap?did=bf4pk"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "usa": "greensboro" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/usa/greensboro/corteo/buy-tickets"
+            },
+            {
+              "id": 13923,
+              "city": "Cincinnati",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United States",
+              "region": null,
+              "countryCode": "US",
+              "facility": "Heritage Bank Center",
+              "latitude": "39.09802000000000000000",
+              "longitude": "-84.50425200000000000000",
+              "startDate": "2024-05-09T00:00:00",
+              "endDate": "2024-05-12T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/usa/cincinnati/corteo/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/180631/30809"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/180631/30809/notap?did=bf4pk"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "usa": "cincinnati" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/usa/cincinnati/corteo/buy-tickets"
+            },
+            {
+              "id": 13881,
+              "city": "Greenville",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United States",
+              "region": null,
+              "countryCode": "US",
+              "facility": "The Bon Secours Wellness Arena",
+              "latitude": "34.84827000000000000000",
+              "longitude": "-82.39158300000000000000",
+              "startDate": "2024-03-21T00:00:00",
+              "endDate": "2024-03-24T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/usa/greenville/corteo/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/369090/30809"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/369090/30809/notap?did=bf4pk"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "usa": "greenville" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/usa/greenville/corteo/buy-tickets"
+            },
+            {
+              "id": 13878,
+              "city": "Houston",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United States",
+              "region": null,
+              "countryCode": "US",
+              "facility": "Toyota Center",
+              "latitude": "29.75074200000000000000",
+              "longitude": "-95.36216700000000000000",
+              "startDate": "2024-02-29T00:00:00",
+              "endDate": "2024-03-03T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/usa/houston/corteo/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.toyotacenter.com/events/detail/cirquedusoleilcorteo/"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "MEET",
+                  "title": "Meet & Greet",
+                  "descriptions": "The chance to immerse yourself in the world that gives life to our show",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    { "code": "Select", "value": "https://bit.ly/3WOQgdU " },
+                    {
+                      "code": "LearnMore",
+                      "value": "Exclusive meet & greet opportunity with Cirque du Soleil artists and After show for 25 minutes (Q&A with artist and a tour member and photo session with artist)"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "usa": "houston" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/usa/houston/corteo/buy-tickets"
+            }
+          ]
+        },
+        {
+          "showId": 203,
+          "showName": "Cirque du Soleil CRYSTAL",
+          "showPageUrl": "https://test.cirquedusoleil.com/crystal",
+          "showLogo": "https://test.cirquedusoleil.com/-/media/cds/images/shows/crystal/new/logo/logo_crystal_white.svg?db=web&vs=1&sc_lang=en&hash=C00DD9EC165A937EE53A5CDA82D56378",
+          "showThumbnail": "https://test.cirquedusoleil.com/-/media/cds/images/shows/crystal/may_2023/thumbnails/cirque-du-soleil-crystal-thumbnail-desktop-454x454.jpg?db=web&vs=1&hash=39C8B55DBAE7CD6D3DA012C645A22B8B",
+          "showImage": "https://test.cirquedusoleil.com/-/media/cds/images/shows/crystal/new/hero/2022/shows_1920x710_3.jpg?db=web&vs=1&hash=9384CC49A14A239C8E6E9C243B2D8051",
+          "showType": "ARENA",
+          "runs": [
+            {
+              "id": 13918,
+              "city": "Tucson",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United States",
+              "region": null,
+              "countryCode": "US",
+              "facility": "Tucson Arena",
+              "latitude": "-110.97342800000000000000",
+              "longitude": "32.21843800000000000000",
+              "startDate": "2024-02-29T00:00:00",
+              "endDate": "2024-03-03T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard group offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/usa/tucson/crystal/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/205066/2367484"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/205066/2367484/notap?did=bf4pk"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "usa": "tucson" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/usa/tucson/crystal/buy-tickets"
+            },
+            {
+              "id": 13828,
+              "city": "Denver",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United States",
+              "region": null,
+              "countryCode": "US",
+              "facility": "Ball Arena",
+              "latitude": "39.74871200000000000000",
+              "longitude": "-105.00649500000000000000",
+              "startDate": "2024-03-13T00:00:00",
+              "endDate": "2024-03-17T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard group offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/usa/denver/crystal/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/246112/2367484"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/246112/2367484/notap?did=bf4pk"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "usa": "denver" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/usa/denver/crystal/buy-tickets"
+            },
+            {
+              "id": 13848,
+              "city": "Rio Rancho",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United States",
+              "region": null,
+              "countryCode": "US",
+              "facility": "Rio Rancho Events Center",
+              "latitude": "35.30862900000000000000",
+              "longitude": "-106.68577700000000000000",
+              "startDate": "2024-03-07T00:00:00",
+              "endDate": "2024-03-10T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard group offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/usa/rio-rancho/crystal/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.ca/venueartist/246800/2367484"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.ca/venueartist/246800/2367484/notap?did=bf4pk"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "usa": "rio-rancho" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/usa/rio-rancho/crystal/buy-tickets"
+            },
+            {
+              "id": 13826,
+              "city": "Columbus",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United States",
+              "region": null,
+              "countryCode": "US",
+              "facility": "Schottenstein Center",
+              "latitude": "40.00784984397520000000",
+              "longitude": "-83.02437724659250000000",
+              "startDate": "2024-04-04T00:00:00",
+              "endDate": "2024-04-07T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard group offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/usa/columbus/crystal/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/41424/2367484"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/41424/2367484/notap?did=bf4pk"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "usa": "columbus-ohio" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/usa/columbus-ohio/crystal/buy-tickets"
+            },
+            {
+              "id": 13824,
+              "city": "Cedar Park",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United States",
+              "region": null,
+              "countryCode": "US",
+              "facility": "H-E-B Center",
+              "latitude": "30.54132800000000000000",
+              "longitude": "-97.82028800000000000000",
+              "startDate": "2024-02-21T00:00:00",
+              "endDate": "2024-02-25T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard group offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/usa/cedar-park/crystal/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/475948/2367484"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/475948/2367484/notap?did=bf4pk"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "usa": "cedar-park" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/usa/cedar-park/crystal/buy-tickets"
+            },
+            {
+              "id": 13829,
+              "city": "Milwaukee",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United States",
+              "region": null,
+              "countryCode": "US",
+              "facility": "Fiserv Forum",
+              "latitude": "9.98348100000000000000",
+              "longitude": "-84.14343000000000000000",
+              "startDate": "2024-03-28T00:00:00",
+              "endDate": "2024-03-31T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard group offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/usa/milwaukee/crystal/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/57843/2367484"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.com/venueartist/57843/2367484/notap?did=bf4pk"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "usa": "milwaukee" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/usa/milwaukee/crystal/buy-tickets"
+            }
+          ]
+        },
+        {
+          "showId": 28,
+          "showName": "KÀ",
+          "showPageUrl": "https://test.cirquedusoleil.com/ka",
+          "showLogo": "",
+          "showThumbnail": "https://test.cirquedusoleil.com/-/media/cds/images/shows/ka/2022/thumbnail/ka_thumbnail_new590x590.jpg?db=web&vs=1&hash=EAD8170918CF98476EBC66ABBB084EE7",
+          "showImage": "",
+          "showType": "RESIDENT",
+          "runs": [
+            {
+              "id": 13891,
+              "city": "Las Vegas",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United States",
+              "region": null,
+              "countryCode": "US",
+              "facility": "MGM Grand",
+              "latitude": "36.10253200000000000000",
+              "longitude": "-115.17028200000000000000",
+              "startDate": "2024-01-01T00:00:00",
+              "endDate": "2024-03-31T00:00:00",
+              "offers": [],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": "69.0000000000",
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://mgmgrand.mgmresorts.com/redirect/show-name/ka-by-cirque-du-soleil "
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "VIPExperienceTicketType",
+                  "title": "VIP Experience",
+                  "descriptions": "Enjoy exclusive perks in our VIP Suite and watch the show from Premium seats.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://mgmgrand.mgmresorts.com/redirect/show-multi-offer/ka-royal-vip-experience"
+                    },
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/fr/etats-unis/las-vegas/ka/premium-experience/vip-experience"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "usa": "las-vegas" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/usa/las-vegas/ka/buy-tickets"
+            }
+          ]
+        },
+        {
+          "showId": 50,
+          "showName": "KOOZA",
+          "showPageUrl": "https://test.cirquedusoleil.com/kooza",
+          "showLogo": "https://test.cirquedusoleil.com/-/media/cds/images/shows/kooza/logo_svg/kooza-show-logo.svg?db=web&vs=2&hash=16FD4D56746F36A95194E39A732427FA",
+          "showThumbnail": "https://test.cirquedusoleil.com/-/media/cds/images/shows/kooza/march_2023_assets/thumbnails/cirque-du-soleil-kooza-thumbnail-desktop-454x454.jpg?db=web&vs=1&hash=4A27C2EAFCB9D416D07D2EA232A75419",
+          "showImage": "https://test.cirquedusoleil.com/-/media/cds/images/shows/kooza/march_2023_assets/partners/cirque-du-soleil-kooza-header-partn-desktop-1920x710.jpg?db=web&vs=1&hash=62F3BF37EA6F1EEC636B1E587E93F2FA",
+          "showType": "BIG TOP",
+          "runs": [
+            {
+              "id": 13876,
+              "city": "San Jose",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United States",
+              "region": null,
+              "countryCode": "US",
+              "facility": "Under the Big Top, Santa Clara County Fairgrounds",
+              "latitude": "37.30466400000000000000",
+              "longitude": "-121.85442200000000000000",
+              "startDate": "2024-04-18T00:00:00",
+              "endDate": "2024-05-26T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/usa/san-jose/kooza/group/standard-group-offer"
+                    }
+                  ]
+                },
+                {
+                  "offerTypeCode": "PremiumOffersVIPExperience",
+                  "title": "VIP Experience",
+                  "descriptions": "Plan a turnkey event and enjoy exclusive perks with your group of 10+.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/usa/san-jose/kooza/group/premium-offers-vip-experience"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/4851f09c-44af-4260-9cac-d19c90250133/shop/select?locale=en&skin=kooza_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "VIPExperienceTicketType",
+                  "title": "VIP Experience",
+                  "descriptions": "Enjoy exclusive perks in our VIP Suite and watch the show from Premium seats.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/ec408d65-6a6b-4059-8973-fb7d0ad42653/shop/select?locale=en&skin=kooza_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "BehindTheSceneTicketType",
+                  "title": "Premium Backstage Tour Package",
+                  "descriptions": "Go behind the scenes for the very best of Cirque du Soleil. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/869f8e6d-387d-452b-81f8-b8ba3568b5be/shop/select?locale=en&skin=kooza_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/a3e5ab65-5653-4120-8bf0-12b048b677bd/shop/select?locale=en&skin=kooza_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Wheel",
+                  "title": "Accessible Seating Tickets",
+                  "descriptions": "If you need to purchase accessible seating tickets, click here. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/f5478309-c7db-4684-84a4-64eca4a2f5fd/shop/select?locale=en&skin=kooza_v2"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "usa": "san-jose" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/usa/san-jose/kooza/buy-tickets"
+            },
+            {
+              "id": 13886,
+              "city": "San Francisco",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United States",
+              "region": null,
+              "countryCode": "US",
+              "facility": "Under the Big Top, Oracle Park",
+              "latitude": "37.77407879581000000000",
+              "longitude": "-122.38801701784100000000",
+              "startDate": "2024-01-17T00:00:00",
+              "endDate": "2024-03-10T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/usa/san-francisco/kooza/group/standard-group-offer"
+                    }
+                  ]
+                },
+                {
+                  "offerTypeCode": "PremiumOffersVIPExperience",
+                  "title": "VIP Experience",
+                  "descriptions": "Plan a turnkey event and enjoy exclusive perks with your group of 10+.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/usa/san-francisco/kooza/group/premium-offers-vip-experience"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/6115fe01-f3a4-49bf-9060-c17204c5d2fb/shop/select?locale=en&skin=kooza_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "VIPExperienceTicketType",
+                  "title": "VIP Experience",
+                  "descriptions": "Enjoy exclusive perks in our VIP Suite and watch the show from Premium seats.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/8cdb087e-4283-46fc-8dbc-c12a1394877f/shop/select?locale=en&skin=kooza_v2"
+                    },
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/usa/san-francisco/kooza/premium-experience/vip"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "MEET_BIG TOP",
+                  "title": "Meet & greet",
+                  "descriptions": "Elevate your experience with an exclusive meet & greet",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "Meet & Greet opportunity after the show for 20 minutes. Interact with artists and a tour member. Capture the moment with photos. (Meet & Greet is done in English)"
+                    },
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/69491b6a-2b1c-46e2-99f5-183b30a0770a/shop/select?locale=en&skin=kooza_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "BehindTheSceneTicketType",
+                  "title": "Premium Backstage Tour Package",
+                  "descriptions": "Go behind the scenes for the very best of Cirque du Soleil. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/df263b29-ae25-470e-909e-1ed2850b053b/shop/select?locale=en&skin=kooza_v2"
+                    },
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/usa/san-francisco/kooza/premium-experience/behind-the-scenes"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/02ac27c3-70b6-44b0-a0d4-b4c02c60dc50/shop/select?locale=en&skin=kooza_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Wheel",
+                  "title": "Accessible Seating Tickets",
+                  "descriptions": "If you need to purchase accessible seating tickets, click here. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/3ec12933-8999-40eb-9163-9e2e5e43ba6f/shop/select?locale=en&skin=kooza_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "MEET_BIG TOP",
+                  "title": "Meet & Greet",
+                  "descriptions": "Elevate your experience with an exclusive meet & greet",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "Meet & Greet opportunity after the show for 20 minutes. Interact with artists and a tour member. Capture the moment with photos. (Meet & Greet is done in English) "
+                    },
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/b07b4e6b-8645-47c6-a431-b6b0ab9c6ab8/shop/select?locale=en&skin=bazzar_v2"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "usa": "san-francisco" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/usa/san-francisco/kooza/buy-tickets"
+            }
+          ]
+        },
+        {
+          "showId": 155,
+          "showName": "Kurios",
+          "showPageUrl": "https://test.cirquedusoleil.com/kurios",
+          "showLogo": "https://test.cirquedusoleil.com/-/media/cds/images/shows/kurios/new/logo/kurios-show-logo.svg?db=web&vs=3&sc_lang=en&hash=03AB2D8268965F96DE1083C18EC449B6",
+          "showThumbnail": "https://test.cirquedusoleil.com/-/media/cds/images/shows/kurios/2022/kurios_thumb_454x454.jpg?db=web&vs=1&sc_lang=en&hash=DA3310E306C2B9715347F52321726D70",
+          "showImage": "https://test.cirquedusoleil.com/-/media/cds/images/shows/kurios/new/hero/kurios_hero_hp_desktop_1920x710.jpg?db=web&vs=1&hash=F6E2A3574D9CF6C85E544A46EBB287D4",
+          "showType": "BIG TOP",
+          "runs": [
+            {
+              "id": 13852,
+              "city": "Düsseldorf",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "Germany",
+              "region": null,
+              "countryCode": "DE",
+              "facility": "Under the Big Top, Gerresheim - Glasmacherviertel",
+              "latitude": "51.22130000000000000000",
+              "longitude": "6.86441900000000000000",
+              "startDate": "2024-03-08T00:00:00",
+              "endDate": "2024-04-07T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/germany/dusseldorf/kurios/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    { "code": "Select", "value": "" },
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/0dff62e1-edb5-49ac-b802-040b3e28b1af/shop/select?locale=en&skin=kurios_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "credit",
+                  "title": "How to use an account credit !",
+                  "descriptions": "",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/faq/account-credit"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/aef0e403-53f4-4070-b203-762493679120/shop/select?locale=en&skin=kurios_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Wheel",
+                  "title": "Accessible Seating Tickets",
+                  "descriptions": "If you need to purchase accessible seating tickets, click here. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "Please contact us to purchase tickets for an individual with reduced mobility and it will be a pleasure for us to assist you in finding the best seats available. /  Customer service: 00 800 1 548 0000"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "germany": "dusseldorf" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/germany/dusseldorf/kurios/buy-tickets"
+            },
+            {
+              "id": 13867,
+              "city": "Munich",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "Germany",
+              "region": null,
+              "countryCode": "DE",
+              "facility": "Under the Big Top, Auf der Theresienwiese",
+              "latitude": "48.13380500000000000000",
+              "longitude": "11.54923300000000000000",
+              "startDate": "2024-01-26T00:00:00",
+              "endDate": "2024-02-25T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Save up to 25% per ticket on bookings of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/germany/munich/kurios/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/9b7488d4-b246-4256-9a3e-66845ec2520b/shop/select?locale=en&skin=kurios_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "credit",
+                  "title": "How to use an account credit !",
+                  "descriptions": "",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/faq/account-credit"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/66e3df57-20da-40d4-a1c1-fb481b121f73/shop/select?locale=en&skin=kurios_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Wheel",
+                  "title": "Accessible Seating Tickets",
+                  "descriptions": "If you need to purchase accessible seating tickets, click here. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "Please contact us to purchase tickets for an individual with reduced mobility and it will be a pleasure for us to assist you in finding the best seats available. /  Customer service: 00 800 1 548 0000"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "germany": "munich" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/germany/munich/kurios/buy-tickets"
+            },
+            {
+              "id": 13447,
+              "city": "Rome",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "Italy",
+              "region": null,
+              "countryCode": "IT",
+              "facility": "Cirque du Soleil - Tor di Quinto",
+              "latitude": "41.94393870000000000000",
+              "longitude": "12.48327610000000000000",
+              "startDate": "2023-03-21T00:00:00Z",
+              "endDate": "2023-04-29T00:00:00Z",
+              "offers": [],
+              "tickets": [],
+              "cityMnemonicCountryCity": { "italy": "rome" },
+              "ticketPageUrl": ""
+            },
+            {
+              "id": 13865,
+              "city": "Montreal",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "Canada",
+              "region": null,
+              "countryCode": "CA",
+              "facility": "Under the Big Top, Old Port of Montreal",
+              "latitude": "45.50713980000000000000",
+              "longitude": "-73.54917310000000000000",
+              "startDate": "2024-05-23T00:00:00",
+              "endDate": "2024-07-14T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Group Offer",
+                  "descriptions": "Save up to 25% per ticket on booking of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/canada/montreal/kurios/group/standard-group-offer"
+                    }
+                  ]
+                },
+                {
+                  "offerTypeCode": "PremiumOffersVIPExperience",
+                  "title": "Group VIP Experience",
+                  "descriptions": "Plan a turnkey event and enjoy exclusive perks with your group of 10+.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/canada/montreal/kurios/group/premium-offers-vip-experience"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/132cdf3a-1dda-459c-a1fc-a10fb5bc159e/shop/select?locale=en-CA&skin=kurios_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/05883301-d914-41d3-a91f-22938cdff660/shop/select?locale=en-CA&skin=kurios_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Mastercard VIP Experience",
+                  "title": "Mastercard VIP Experience",
+                  "descriptions": "Enjoy exclusive extras & best seats in the house!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/b4ffc197-cac3-49f0-99e6-d62af9cb2bda/shop/select?locale=en-CA&skin=kurios_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "BehindTheSceneTicketType",
+                  "title": "Premium Backstage Tour Package",
+                  "descriptions": "Go behind the scenes for the very best of Cirque du Soleil. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/248bc25f-7bff-4c34-8a28-51c737d0bf54/shop/select?locale=en-CA&skin=kurios_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "MEET_BIG TOP",
+                  "title": "Meet & greet",
+                  "descriptions": "Elevate your experience with an exclusive meet & greet",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "Meet & Greet opportunity after the show for 20 minutes. Interact with artists and a tour member. Capture the moment with photos. (Meet & Greet is done in French and English)"
+                    },
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/36bd57d7-e53b-4d6c-9d94-528d017298f7/shop/select?locale=en-CA&skin=kurios_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Wheel",
+                  "title": "Accessible Seating Tickets",
+                  "descriptions": "If you need to purchase accessible seating tickets, click here. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/58780777-93bb-4cbf-9e62-bf4946f3f036/shop/select?locale=en-CA&skin=kurios_v2"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "canada": "montreal" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/canada/montreal/kurios/buy-tickets"
+            }
+          ]
+        },
+        {
+          "showId": 171,
+          "showName": "LUZIA",
+          "showPageUrl": "https://test.cirquedusoleil.com/luzia",
+          "showLogo": "https://test.cirquedusoleil.com/-/media/cds/images/shows/luzia/b2c/ticket_page/luzia-logo-2017.svg?db=web&vs=2&hash=EB752D6F4DD2471421E00B6ED2C06FA0",
+          "showThumbnail": "https://test.cirquedusoleil.com/-/media/cds/images/shows/luzia/2022/luzia_thumb_454x454.jpg?db=web&vs=1&sc_lang=en&hash=D2EE4F0D1EC87C140F5FBE8007EAE88B",
+          "showImage": "https://test.cirquedusoleil.com/-/media/cds/images/shows/luzia/b2c/hero_hp/luzia_hero_hp_1920x710.jpg?db=web&vs=1&hash=3F883CEF07145DB3BF95FB7070A8C0CB",
+          "showType": "BIG TOP",
+          "runs": [
+            {
+              "id": 13803,
+              "city": "Adelaide",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "Australia",
+              "region": null,
+              "countryCode": "AU",
+              "facility": "Under the Big Top, Adelaide Showground",
+              "latitude": "-34.94627000000000000000",
+              "longitude": "138.58663800000000000000",
+              "startDate": "2024-06-09T00:00:00",
+              "endDate": "2024-06-30T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Save up to 25% on 10+ tickets (excl. Sat) Click below or call (02) 9037 6563",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/australia/adelaide/luzia/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/a02e0200-98e0-4c38-8a29-eab5d75cec0c/shop/select?locale=en&skin=luzia_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "VIPExperienceTicketType",
+                  "title": "VIP Experience",
+                  "descriptions": "Enjoy exclusive perks in our VIP Suite and watch the show from Premium seats.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/3a3dbc92-3224-464c-8f55-682c19e1ba25/shop/select?locale=en&skin=luzia_v2"
+                    },
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/australia/adelaide/luzia/premium-experience/vip-premium-experience"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "credit",
+                  "title": "How to use an account credit !",
+                  "descriptions": "",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/faq/account-credit"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Wheel",
+                  "title": "Accessible Seating Tickets",
+                  "descriptions": "If you need to purchase accessible seating tickets, click here. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "Please contact us to purchase tickets for an individual with reduced mobility and it will be a pleasure for us to assist you in finding the best seats available. / Customer service: 1 800 573 122 / contact@cirquedusoleil.com"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/31f48ec9-db36-4161-a9eb-3d30c6ff80d5/shop/select?locale=en&skin=luzia_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "BehindTheSceneTicketType",
+                  "title": "Premium Backstage Tour Package",
+                  "descriptions": "Go behind the scenes for the very best of Cirque du Soleil. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/1438c0a5-40e0-4185-ba03-ca878357507d/shop/select?locale=en&skin=luzia_v2"
+                    },
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/australia/adelaide/luzia/premium-experience/behind-the-scenes"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "australia": "adelaide" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/australia/adelaide/luzia/australia-credit-procedure"
+            },
+            {
+              "id": 13804,
+              "city": "Perth",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "Australia",
+              "region": null,
+              "countryCode": "AU",
+              "facility": "Under the Big Top, Higham Car Park at Claremont Showground",
+              "latitude": "-31.97252900000000000000",
+              "longitude": "115.78453500000000000000",
+              "startDate": "",
+              "endDate": "",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Save up to 25% on 10+ tickets (excl. Sat) Click below or call (02) 9037 6563",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/australia/perth/luzia/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/9f239227-83cf-4c8d-9070-576210011245/shop/select?locale=en&skin=luzia_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "VIPExperienceTicketType",
+                  "title": "VIP Experience",
+                  "descriptions": "Enjoy exclusive perks in our VIP Suite and watch the show from Premium seats.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/e23d14dd-dfe3-4862-bd0e-8e8aba03ffc1/shop/select?locale=en&skin=luzia_v2"
+                    },
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/australia/perth/luzia/premium-experience/vip-premium-experience"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "credit",
+                  "title": "How to use an account credit!",
+                  "descriptions": "",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/faq/account-credit"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Wheel",
+                  "title": "Accessible Seating Tickets",
+                  "descriptions": "If you need to purchase accessible seating tickets, click here. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "Please contact us to purchase tickets for an individual with reduced mobility and it will be a pleasure for us to assist you in finding the best seats available. / Customer service: 1 800 573 122 / contact@cirquedusoleil.com"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/aa4bc81a-9812-496f-be5d-4d2843b270c7/shop/select?locale=en&skin=luzia_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "BehindTheSceneTicketType",
+                  "title": "Premium Backstage Tour Package",
+                  "descriptions": "Go behind the scenes for the very best of Cirque du Soleil. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/340acb3f-1a51-413b-b589-b17182d5a7f3/shop/select?locale=en&skin=luzia_v2"
+                    },
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/australia/perth/luzia/premium-experience/behind-the-scenes"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "australia": "perth" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/australia/perth/luzia/australia-credit-procedure"
+            },
+            {
+              "id": 13805,
+              "city": "Brisbane",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "Australia",
+              "region": null,
+              "countryCode": "AU",
+              "facility": "Under the Big Top, Next to Royal Queensland Golf Club",
+              "latitude": "-27.43878300000000000000",
+              "longitude": "153.09871400000000000000",
+              "startDate": "2024-09-25T00:00:00",
+              "endDate": "2024-10-27T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Save up to 25% on 10+ tickets (excl. Sat) Click below or call (02) 9037 6563",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/australia/brisbane/luzia/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/09390f78-6312-4f5c-9426-f9bf4e199cd0/shop/select?locale=en&skin=luzia_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "VIPExperienceTicketType",
+                  "title": "VIP Experience",
+                  "descriptions": "Treat yourself to an VIP package for an unforgettable show experience.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/a5761a78-29ac-4aae-996a-f08148d74f80/shop/select?locale=en&skin=luzia_v2"
+                    },
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/australia/brisbane/luzia/premium-experience/vip-premium-experience"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "credit",
+                  "title": "How to use an account credit !",
+                  "descriptions": "",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/faq/account-credit"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Wheel",
+                  "title": "Accessible Seating Tickets",
+                  "descriptions": "If you need to purchase accessible seating tickets, click here. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "Please contact us to purchase tickets for an individual with reduced mobility and it will be a pleasure for us to assist you in finding the best seats available. / Customer service: 1 800 573 122 / contact@cirquedusoleil.com"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/e075cef2-823b-4e39-b2a2-d17a19e1161a/shop/select?locale=en&skin=luzia_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "BehindTheSceneTicketType",
+                  "title": "Premium Backstage Tour Package",
+                  "descriptions": "Go behind the scenes for the very best of Cirque du Soleil. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/99ce2963-1687-450f-8f08-a82d9db51bef/shop/select?locale=en&skin=luzia_v2"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "australia": "brisbane" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/australia/brisbane/luzia/australia-credit-procedure"
+            },
+            {
+              "id": 13802,
+              "city": "Melbourne",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "Australia",
+              "region": null,
+              "countryCode": "AU",
+              "facility": "Under the Big Top, Flemington Racecourse",
+              "latitude": "-37.78756200000000000000",
+              "longitude": "144.91206500000000000000",
+              "startDate": "2024-03-24T00:00:00",
+              "endDate": "2024-05-05T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Save up to 25% on 10+ tickets (excl. Sat) Click below or call (02) 9037 6563",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/australia/melbourne/luzia/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/b7664f20-c1da-4fc0-94a0-9cea76f7fd31/shop/select?locale=en&skin=luzia_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "VIPExperienceTicketType",
+                  "title": "VIP Experience",
+                  "descriptions": "Enjoy exclusive perks in our VIP Suite and watch the show from Premium seats.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/a4d62246-df2e-4ca4-8a23-c8fc7eddce14/shop/select?locale=en&skin=luzia_v2"
+                    },
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/fr/australie/melbourne/luzia/experience-prestige/vip-premium-experience"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "credit",
+                  "title": "How to use an account credit !",
+                  "descriptions": "",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/faq/account-credit"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Wheel",
+                  "title": "Accessible Seating Tickets",
+                  "descriptions": "If you need to purchase accessible seating tickets, click here. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "Please contact us to purchase tickets for an individual with reduced mobility and it will be a pleasure for us to assist you in finding the best seats available. / Customer service: 1 800 573 122 / contact@cirquedusoleil.com"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/0a3739a1-8dda-4ae1-8993-d928b95ccf0e/shop/select?locale=en&skin=luzia_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "BehindTheSceneTicketType",
+                  "title": "Premium Backstage Tour Package",
+                  "descriptions": "Go behind the scenes for the very best of Cirque du Soleil. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/b7b51e94-c802-45a6-a171-1b9bc8456aa7/shop/select?locale=en&skin=luzia_v2"
+                    },
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/australia/melbourne/luzia/premium-experience/behind-the-scenes"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "australia": "melbourne" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/australia/melbourne/luzia/australia-credit-procedure"
+            },
+            {
+              "id": 13806,
+              "city": "Sydney",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "Australia",
+              "region": null,
+              "countryCode": "AU",
+              "facility": "Under the Big Top, The Entertainment Quarter",
+              "latitude": "-33.89353300000000000000",
+              "longitude": "151.22683900000000000000",
+              "startDate": "2024-11-24T00:00:00",
+              "endDate": "2025-01-12T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Save up to 25% on 10+ tickets (excl. Sat) Click below or call (02) 9037 6563",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/australia/sydney/luzia/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/0c519b80-9155-4db0-9a8b-200083ed431b/shop/select?locale=en&skin=luzia_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "VIPExperienceTicketType",
+                  "title": "VIP Experience",
+                  "descriptions": "Enjoy exclusive perks in our VIP Suite and watch the show from Premium seats.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/0788f6e9-9eb5-4d27-8503-ead3e39dafa7/shop/select?locale=en&skin=luzia_v2"
+                    },
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/australia/sydney/luzia/premium-experience/vip-premium-experience"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "credit",
+                  "title": "How to use an account credit!",
+                  "descriptions": "",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/faq/account-credit"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Wheel",
+                  "title": "Accessible Seating Tickets",
+                  "descriptions": "If you need to purchase accessible seating tickets, click here. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "Please contact us to purchase tickets for an individual with reduced mobility and it will be a pleasure for us to assist you in finding the best seats available. / Customer service: 1 800 573 122 / contact@cirquedusoleil.com"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/61815cbc-6546-44c4-b86a-4a08cc1cf734/shop/select?locale=en&skin=luzia_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "BehindTheSceneTicketType",
+                  "title": "Premium Backstage Tour Package",
+                  "descriptions": "Go behind the scenes for the very best of Cirque du Soleil. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/dffa2a0b-37aa-4788-9630-e058595143d6/shop/select?locale=en&skin=luzia_v2"
+                    },
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/australia/sydney/luzia/premium-experience/behind-the-scenes"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "australia": "sydney" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/australia/sydney/luzia/australia-credit-procedure"
+            }
+          ]
+        },
+        {
+          "showId": 360,
+          "showName": "Mad Apple",
+          "showPageUrl": "https://test.cirquedusoleil.com/mad-apple",
+          "showLogo": "",
+          "showThumbnail": "https://test.cirquedusoleil.com/-/media/cds/images/shows/mad-apple/thumbnails/madapple_thumbnail_454x454.jpg?db=web&vs=1&hash=6F922046761D2A5A45621D0E1EAD004A",
+          "showImage": "https://test.cirquedusoleil.com/-/media/cds/images/shows/mad-apple/hero/madapple_shows_hero_1920x710.jpg?db=web&vs=1&hash=1BDFBA20565F6B10816A5BC15C9697CD",
+          "showType": "RESIDENT",
+          "runs": [
+            {
+              "id": 13897,
+              "city": "Las Vegas",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United States",
+              "region": null,
+              "countryCode": "US",
+              "facility": "New York New York",
+              "latitude": "36.10218600000000000000",
+              "longitude": "-115.17454000000000000000",
+              "startDate": "2024-01-01T00:00:00",
+              "endDate": "2024-03-31T00:00:00",
+              "offers": [],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": "59.0000000000",
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Disclaimer",
+                      "value": "Children under the age of 16 are not permitted. Guests under 18 must be accompanied by an adult. "
+                    },
+                    {
+                      "code": "Select",
+                      "value": "https://newyorknewyork.mgmresorts.com/redirect/show-name/mad-apple"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "usa": "las-vegas" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/usa/las-vegas/mad-apple/buy-tickets"
+            }
+          ]
+        },
+        {
+          "showId": 270,
+          "showName": "Messi10",
+          "showPageUrl": "https://test.cirquedusoleil.com/messi10",
+          "showLogo": "https://test.cirquedusoleil.com/-/media/cds/images/shows/messi10/messi_logo.png?db=web&vs=3&sc_lang=en&hash=3A8040FAD2AF437C97A1D304C873AFF1",
+          "showThumbnail": "https://test.cirquedusoleil.com/-/media/cds/images/shows/messi10/2023/tumbnails/messi10_thumb_454x454.jpg?db=web&vs=1&hash=9A1F9330B69596B8AE3B0DA21D74EC9B",
+          "showImage": "https://test.cirquedusoleil.com/-/media/cds/images/shows/messi10/hero/messi_hero_1920x450.jpg?db=web&vs=1&hash=32D0A53114BD98B3D5114E57C56D737B",
+          "showType": "OTHER",
+          "runs": [
+            {
+              "id": 13967,
+              "city": "Caracas",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "Venezuela, Bolivarian Republic of",
+              "region": null,
+              "countryCode": "VE",
+              "facility": "El Poliedro",
+              "latitude": "10.43365600000000000000",
+              "longitude": "-66.93866700000000000000",
+              "startDate": "2024-02-21T00:00:00",
+              "endDate": "2024-02-25T00:00:00",
+              "offers": [],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Mobile",
+                      "value": "https://www.maketicket.com.ve/evento/Messi10-by-Cirque-Du-Soleil"
+                    },
+                    {
+                      "code": "Select",
+                      "value": "https://www.maketicket.com.ve/evento/Messi10-by-Cirque-Du-Soleil"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "venezuela": "caracas" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/venezuela/caracas/messi10/buy-tickets"
+            }
+          ]
+        },
+        {
+          "showId": 127,
+          "showName": "Michael Jackson ONE",
+          "showPageUrl": "https://test.cirquedusoleil.com/michael-jackson-one",
+          "showLogo": "https://test.cirquedusoleil.com/-/media/cds/images/shows/mj-one/logo_svg/michael-jackson-one-show-logo.svg?db=web&vs=2&hash=D67F93EC9DE8A2512583443FAD87AA0A",
+          "showThumbnail": "https://test.cirquedusoleil.com/-/media/cds/images/shows/mj-one/march_2023_assets/thumbnails/10_anniversary/23_13852_one_cds-website-454x454-10yrs.jpg?db=web&vs=1&sc_lang=en&hash=E2AD8B325DFFB99612A95856C88BB362",
+          "showImage": "https://test.cirquedusoleil.com/-/media/cds/images/shows/mj-one/hero_featured/heroshots_1920x710px_v10_mjone021.jpg?db=web&vs=1&hash=F93B6C1D5D278A98B138BD635D154133",
+          "showType": "RESIDENT",
+          "runs": [
+            {
+              "id": 13896,
+              "city": "Las Vegas",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United States",
+              "region": null,
+              "countryCode": "US",
+              "facility": "Mandalay Bay Resort & Casino",
+              "latitude": "36.09224200000000000000",
+              "longitude": "-115.17616400000000000000",
+              "startDate": "2024-01-01T00:00:00",
+              "endDate": "2024-03-31T00:00:00",
+              "offers": [],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": "69.0000000000",
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://mandalaybay.mgmresorts.com/redirect/show-name/michael-jackson-one"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "VIPExperienceTicketType",
+                  "title": "VIP Experience",
+                  "descriptions": "Enjoy exclusive perks in our VIP Suite and watch the show from Premium seats.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/usa/las-vegas/michael-jackson-one/premium-experience/vip-experience "
+                    },
+                    {
+                      "code": "Select",
+                      "value": "https://mandalaybay.mgmresorts.com/redirect/show-multi-offer/michael-jackson-one-vip"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "usa": "las-vegas" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/usa/las-vegas/michael-jackson-one/buy-tickets"
+            }
+          ]
+        },
+        {
+          "showId": 211,
+          "showName": "Cirque du Soleil ECHO",
+          "showPageUrl": "https://test.cirquedusoleil.com/echo",
+          "showLogo": "",
+          "showThumbnail": "https://test.cirquedusoleil.com/-/media/cds/images/shows/echo/new_2023/thumbnails/cirque-du-soleil-echo-thumb-454x454-2.jpg?db=web&vs=1&hash=B7C3DB2C32CE3A709F94C24934B6DB64",
+          "showImage": "https://test.cirquedusoleil.com/-/media/cds/images/shows/echo/new_2023/hero/cirque-du-soleil-echo-header-1920x450-2.jpg?db=web&vs=1&hash=21F3EF449CD9D0214B4B7A3215B39ED1",
+          "showType": "BIG TOP",
+          "runs": [
+            {
+              "id": 13811,
+              "city": "Toronto",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "Canada",
+              "region": null,
+              "countryCode": "CA",
+              "facility": "Under the Big Top, 2150 Lake Shore Blvd West",
+              "latitude": "43.62667492816250000000",
+              "longitude": "-79.48067145047240000000",
+              "startDate": "2024-05-08T00:00:00",
+              "endDate": "2024-07-21T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Group Offer",
+                  "descriptions": "Save up to 25% per ticket on booking of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/canada/toronto/echo/group/standard-group-offer"
+                    }
+                  ]
+                },
+                {
+                  "offerTypeCode": "PremiumOffersVIPExperience",
+                  "title": "Group VIP Experience",
+                  "descriptions": "Plan a turnkey event and enjoy exclusive perks with your group of 10+.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/canada/toronto/echo/group/premium-offers-vip-experience"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/7c972140-95f0-4cf4-a96c-371e806f15bc/shop/select?locale=en-CA&skin=echo_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Mastercard VIP Experience",
+                  "title": "Mastercard VIP Experience",
+                  "descriptions": "Enjoy exclusive extras & best seats in the house!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/6f51459a-d415-41aa-a9ac-d28761b4d71a/shop/select?locale=en-CA&skin=echo_v2"
+                    },
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/canada/toronto/echo/premium-experience/vip"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "BehindTheSceneTicketType",
+                  "title": "Premium Backstage Tour Package",
+                  "descriptions": "Go behind the scenes for the very best of Cirque du Soleil. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/d1789b16-819d-4200-be38-84b579c7d749/shop/select?locale=en-CA&skin=echo_v2"
+                    },
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/canada/toronto/echo/premium-experience/behind-the-scenes"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "MEET_BIG TOP",
+                  "title": "Meet & greet",
+                  "descriptions": "Elevate your experience with an exclusive meet & greet",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/1bbc039d-3b06-4971-a0fb-185ed1e9b5ac/shop/select?locale=en-CA&skin=echo_v2"
+                    },
+                    {
+                      "code": "LearnMore",
+                      "value": "Meet & Greet opportunity after the show for 20 minutes. Interact with artists and a tour member. Capture the moment with photos. (Meet & Greet is done in English)"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/df2da183-043f-425a-965e-1376534b217d/shop/select?locale=en-CA&skin=echo_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Wheel",
+                  "title": "Accessible Seating Tickets",
+                  "descriptions": "If you need to purchase accessible seating tickets, click here. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/fb082147-b1fd-4a20-96c4-e84787d72cf8/shop/select?locale=en-CA&skin=echo_v2"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "canada": "toronto" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/canada/toronto/echo/buy-tickets"
+            },
+            {
+              "id": 13873,
+              "city": "Miami",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United States",
+              "region": null,
+              "countryCode": "US",
+              "facility": "Under the Big Top, Gulfstream Park",
+              "latitude": "25.98330750233590000000",
+              "longitude": "-80.14082530744010000000",
+              "startDate": "2024-02-22T00:00:00",
+              "endDate": "2024-04-07T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Group Offer",
+                  "descriptions": "Save up to 25% per ticket on booking of 10 or more.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/usa/miami/echo/group/standard-group-offer"
+                    }
+                  ]
+                },
+                {
+                  "offerTypeCode": "PremiumOffersVIPExperience",
+                  "title": "Group VIP Experience",
+                  "descriptions": "Plan a turnkey event and enjoy exclusive perks with your group of 10+.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "MoreInfo",
+                      "value": "https://www.cirquedusoleil.com/usa/miami/echo/group/premium-offers-vip-experience"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/7adca2d7-6a4b-4691-ae8d-e4efb262e96f/shop/select?locale=en&skin=echo_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Family4Pack",
+                  "title": "Family Offer",
+                  "descriptions": "Enjoy this production with the whole family, at a special price!!",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/9961f337-456d-4252-b88e-5d8463f49627/shop/select?locale=en&skin=echo_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "Wheel",
+                  "title": "Accessible Seating Tickets",
+                  "descriptions": "If you need to purchase accessible seating tickets, click here. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/1867afff-6c85-489a-9d99-acb01f9a79db/shop/select?locale=en&skin=echo_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "BehindTheSceneTicketType",
+                  "title": "Premium Backstage Tour Package",
+                  "descriptions": "Go behind the scenes for the very best of Cirque du Soleil. ",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    { "code": "Select", "value": "" },
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/12c76cc2-a745-4ef8-8e2b-7f1a21db34ac/shop/select?locale=en&skin=echo_v2"
+                    },
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/usa/miami/echo/premium-experience/behind-the-scenes"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "VIPExperienceTicketType",
+                  "title": "VIP Experience",
+                  "descriptions": "Enjoy exclusive perks in our VIP Suite and watch the show from Premium seats.",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/499f2fb5-5ed3-4e55-a688-1d6c4a1d8fdb/shop/select?locale=en&skin=echo_v2"
+                    },
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/usa/miami/echo/premium-experience/vip"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "MEET_BIG TOP",
+                  "title": "Meet & greet",
+                  "descriptions": "Elevate your experience with an exclusive meet & greet",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "Meet & Greet opportunity after the show for 20 minutes. Interact with artists and a tour member. Capture the moment with photos. (Meet & Greet is done in English) "
+                    },
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.cirquedusoleil.com/shop/#/1bbc039d-3b06-4971-a0fb-185ed1e9b5ac/shop/select?locale=en&skin=echo_v2"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "usa": "miami" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/usa/miami/echo/buy-tickets"
+            }
+          ]
+        },
+        {
+          "showId": 371,
+          "showName": "Série hommage GUY LAFLEUR ",
+          "showPageUrl": "https://test.cirquedusoleil.com/serie-hommage-guy-lafleur",
+          "showLogo": "",
+          "showThumbnail": "https://test.cirquedusoleil.com/-/media/cds/images/shows/guy-lafleur/thumbnails/march_2023/cirque-du-soleil-guy-lafleur-thumb-desktop-update-454x454.jpg?db=web&vs=1&hash=8DEEE07827F1E6758A81F224FE56F0B6",
+          "showImage": "https://test.cirquedusoleil.com/-/media/cds/images/shows/guy-lafleur/hero/march_2023/cirque-du-soleil-guy-lafleur-header-desktop-update-1920x450-2.jpg?db=web&vs=1&hash=ED364682EB3DA8564E6D38C291A445A7",
+          "showType": "OTHER",
+          "runs": [
+            {
+              "id": 13998,
+              "city": "Trois-Rivieres",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "Canada",
+              "region": null,
+              "countryCode": "CA",
+              "facility": "Amphithéâtre Cogeco",
+              "latitude": "46.34706100000000000000",
+              "longitude": "-72.53213100000000000000",
+              "startDate": "2024-02-01T00:00:00",
+              "endDate": "2024-10-31T00:00:00",
+              "offers": [],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.cirquedusoleil.com/"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "canada": "trois-rivieres" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/canada/trois-rivieres/serie-hommage-guy-lafleur/buy-tickets"
+            }
+          ]
+        },
+        {
+          "showId": 3,
+          "showName": "Mystère",
+          "showPageUrl": "https://test.cirquedusoleil.com/mystere",
+          "showLogo": "https://test.cirquedusoleil.com/-/media/cds/images/shows/mystere/new/logo_svg/mystere-show-logo.svg?db=web&vs=2&hash=BF135D3E3475C45DEA267B8FC3684994",
+          "showThumbnail": "https://test.cirquedusoleil.com/-/media/cds/images/shows/mystere/new/thumbnails_share/mystere_anniversary_454x454.jpg?db=web&vs=1&hash=00E487AA7A3D7BB8B630850FDDB79F2D",
+          "showImage": "",
+          "showType": "RESIDENT",
+          "runs": [
+            {
+              "id": 13888,
+              "city": "Las Vegas",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United States",
+              "region": null,
+              "countryCode": "US",
+              "facility": "Treasure Island",
+              "latitude": "36.12447800000000000000",
+              "longitude": "-115.17126700000000000000",
+              "startDate": "2024-01-01T00:00:00",
+              "endDate": "2024-03-31T00:00:00",
+              "offers": [],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": "69.0000000000",
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.treasureisland.com/tim/#/2d68e712-4547-423e-9529-a7ef66523411/shop/select?fac=TIM&locale=en-US&skin=mystere_v2"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "VIPExperienceTicketType",
+                  "title": "VIP Experience",
+                  "descriptions": "Enjoy exclusive VIP perks including a backstage tour and artist meet & greet",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/fr/etats-unis/las-vegas/mystere/premium-experience/vip-experience "
+                    },
+                    {
+                      "code": "Select",
+                      "value": "https://tickets.treasureisland.com/tim/#/2d68e712-4547-423e-9529-a7ef66523411/shop/select?fac=TIM&locale=en-US&skin=mystere_v2"
+                    },
+                    {
+                      "code": "MoreInfo",
+                      "value": "Available for 7:00 PM performances"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "usa": "las-vegas" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/usa/las-vegas/mystere/buy-tickets"
+            }
+          ]
+        },
+        {
+          "showId": 2,
+          "showName": "\"O\"",
+          "showPageUrl": "https://test.cirquedusoleil.com/o",
+          "showLogo": "https://test.cirquedusoleil.com/-/media/cds/images/shows/o/logo_svg/o-show-logo.svg?db=web&vs=2&sc_lang=en&hash=EBFF58A3FE24D93F8891A13E183C32E3",
+          "showThumbnail": "https://test.cirquedusoleil.com/-/media/cds/images/shows/o/25_anniversary/o_25e_thumbnail_454x454.jpg?db=web&vs=1&hash=0C8DE69F052E71C6842AB061E632852D",
+          "showImage": "https://test.cirquedusoleil.com/-/media/cds/images/shows/o/hero_featured/o_hero_shot_1920x710.jpg?db=web&vs=1&hash=F2C297546D9812B3F783EC4DC5D28143",
+          "showType": "RESIDENT",
+          "runs": [
+            {
+              "id": 13898,
+              "city": "Las Vegas",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United States",
+              "region": null,
+              "countryCode": "US",
+              "facility": "Bellagio",
+              "latitude": "36.11262600000000000000",
+              "longitude": "-115.17670500000000000000",
+              "startDate": "2024-01-03T00:00:00",
+              "endDate": "2024-03-31T00:00:00",
+              "offers": [],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": "79.0000000000",
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://bellagio.mgmresorts.com/redirect/show-name/o-by-cirque-du-soleil"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "VIPExperienceTicketType",
+                  "title": "VIP Experience",
+                  "descriptions": "Enjoy exclusive perks, including artist meet-and-greet, VIP Suite seating & more",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/usa/las-vegas/o/premium-experience/la-grande-experience"
+                    },
+                    {
+                      "code": "Select",
+                      "value": "https://bellagio.mgmresorts.com/redirect/show-multi-offer/o-la-grande-experience"
+                    }
+                  ]
+                },
+                {
+                  "ticketTypeCode": "ProducerSeatsTicketType",
+                  "title": "Loggia Luxe Seating",
+                  "descriptions": "Enjoy exclusive spacious seating with premium views from the Loggia 200 Level",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://bellagio.mgmresorts.com/redirect/show-multi-offer/o-loggia-luxe-seating"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "usa": "las-vegas" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/usa/las-vegas/o/buy-tickets"
+            }
+          ]
+        },
+        {
+          "showId": 80,
+          "showName": "OVO",
+          "showPageUrl": "https://test.cirquedusoleil.com/ovo",
+          "showLogo": "https://test.cirquedusoleil.com/-/media/cds/images/shows/ovo/b2c/logo_svg/ovo-show-logo.svg?db=web&vs=4&hash=7569E10858967259056847052148B1F8",
+          "showThumbnail": "https://test.cirquedusoleil.com/-/media/cds/images/shows/ovo/2022/ovo_thumb_454x454.jpg?db=web&vs=1&hash=1952294B1226C118A744BBDDEBF7EF4D",
+          "showImage": "https://test.cirquedusoleil.com/-/media/cds/images/shows/ovo/b2c/hero/ovo_hero_1920x450.jpg?db=web&vs=1&hash=56DB483E1ED385FC35474A5139326E7F",
+          "showType": "ARENA",
+          "runs": [
+            {
+              "id": 13914,
+              "city": "Liverpool",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United Kingdom",
+              "region": null,
+              "countryCode": "UK",
+              "facility": "M&S Bank Arena",
+              "latitude": "-2.99163800000000000000",
+              "longitude": "53.39755200000000000000",
+              "startDate": "2024-04-11T00:00:00",
+              "endDate": "2024-04-14T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Special rates for group (10+)",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/united-kingdom/liverpool/ovo/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.co.uk/venueartist/452081/2183523 "
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "united-kingdom": "liverpool" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/united-kingdom/liverpool/ovo/buy-tickets"
+            },
+            {
+              "id": 13905,
+              "city": "Birmingham",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United Kingdom",
+              "region": null,
+              "countryCode": "UK",
+              "facility": "Utilita Arena Birmingham",
+              "latitude": "52.47975300000000000000",
+              "longitude": "-1.91501200000000000000",
+              "startDate": "2024-04-25T00:00:00",
+              "endDate": "2024-04-28T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Special rates for group (10+)",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/united-kingdom/birmingham/ovo/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.co.uk/venueartist/289093/2183523 "
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "united-kingdom": "birmingham" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/united-kingdom/birmingham/ovo/buy-tickets"
+            },
+            {
+              "id": 13904,
+              "city": "Dublin",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "Ireland",
+              "region": null,
+              "countryCode": "IE",
+              "facility": "3Arena",
+              "latitude": "53.34750000000000000000",
+              "longitude": "-6.22861100000000000000",
+              "startDate": "2024-04-18T00:00:00",
+              "endDate": "2024-04-21T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Special rates for group (10+)",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/ireland/dublin/ovo/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.ie/venueartist/197033/2183523"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "ireland": "dublin" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/ireland/dublin/ovo/buy-tickets"
+            },
+            {
+              "id": 13899,
+              "city": "Lille",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "France",
+              "region": null,
+              "countryCode": "FR",
+              "facility": "Zénith",
+              "latitude": "50.63261300000000000000",
+              "longitude": "3.07800800000000000000",
+              "startDate": "2024-03-07T00:00:00",
+              "endDate": "2024-03-10T00:00:00",
+              "offers": [],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://losproduction.trium.fr/index.php/72/manifestation/27667?k=64e728efb4abe"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "france": "lille" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/france/lille/ovo/buy-tickets"
+            },
+            {
+              "id": 13901,
+              "city": "Glasgow",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United Kingdom",
+              "region": null,
+              "countryCode": "UK",
+              "facility": "OVO Hydro",
+              "latitude": "55.86024300000000000000",
+              "longitude": "-4.28513900000000000000",
+              "startDate": "2024-03-21T00:00:00",
+              "endDate": "2024-03-24T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Special rates for group (10+)",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/united-kingdom/glasgow/ovo/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.co.uk/venueartist/444745/2183523"
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "united-kingdom": "glasgow" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/united-kingdom/glasgow/ovo/buy-tickets"
+            },
+            {
+              "id": 13919,
+              "city": "Manchester",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United Kingdom",
+              "region": null,
+              "countryCode": "UK",
+              "facility": "AO Arena ",
+              "latitude": "53.48809880000000000000",
+              "longitude": "-2.24585080000000000000",
+              "startDate": "2024-03-27T00:00:00",
+              "endDate": "2024-03-31T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Special rates for group (10+)",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/united-kingdom/manchester/ovo/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.co.uk/venueartist/254336/2183523 "
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "united-kingdom": "manchester" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/united-kingdom/manchester/ovo/buy-tickets"
+            },
+            {
+              "id": 13903,
+              "city": "Leeds",
+              "Mnemonic": null,
+              "CityInfo": null,
+              "country": "United Kingdom",
+              "region": null,
+              "countryCode": "UK",
+              "facility": "first direct arena",
+              "latitude": "-1.54217900000000000000",
+              "longitude": "53.80349700000000000000",
+              "startDate": "2024-04-04T00:00:00",
+              "endDate": "2024-04-07T00:00:00",
+              "offers": [
+                {
+                  "offerTypeCode": "standardgroupoffer2",
+                  "title": "Standard Group Offer",
+                  "descriptions": "Special rates for group (10+)",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "LearnMore",
+                      "value": "https://www.cirquedusoleil.com/united-kingdom/leeds/ovo/group/standard-group-offer"
+                    }
+                  ]
+                }
+              ],
+              "tickets": [
+                {
+                  "ticketTypeCode": "RegularTicketsTicketType",
+                  "title": "Regular Tickets",
+                  "descriptions": "All tickets categories",
+                  "startingPrice": null,
+                  "endingPrice": null,
+                  "ticketPriceCurrencyCode": null,
+                  "links": [
+                    {
+                      "code": "Select",
+                      "value": "https://www.ticketmaster.co.uk/venueartist/256415/2183523 "
+                    }
+                  ]
+                }
+              ],
+              "cityMnemonicCountryCity": { "united-kingdom": "leeds" },
+              "ticketPageUrl": "https://test.cirquedusoleil.com/united-kingdom/leeds/ovo/buy-tickets"
+            }
+          ]
+        }
+      ]
+    },
+    "Id": 21348792,
+    "Exception": null,
+    "Status": 5,
+    "IsCanceled": false,
+    "IsCompleted": true,
+    "CreationOptions": 0,
+    "AsyncState": null,
+    "IsFaulted": false
+  }
+}
