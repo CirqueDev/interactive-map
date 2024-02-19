@@ -7,6 +7,7 @@ Created to facilitate the use of the Google Maps API and to provide ourselve wit
 
 1. Install the dependencies `npm install`
 2. Serve the project `npm run dev`
+3. Vue 3 is on another branch named: `vue-3`
 
 # Build Commands
 
@@ -17,6 +18,11 @@ Created to facilitate the use of the Google Maps API and to provide ourselve wit
 1. Create your component normally in `./src/components`
 2. Export it in the `./src/index.js` file
 3. To test it, import and use it in `./src/App.vue` and do `npm run dev`
+
+# Publish on NPM
+
+1. Vue 3: `npm publish --tag beta`
+2. Vue 2: `npm publish`
 
 # Contribute
 
