@@ -5962,7 +5962,7 @@ function Ll(e, t = null) {
     )), n.value && n.value !== "all" && (h = Math.min(
       d.showName === n.value,
       h
-    )), e.value && i.end) {
+    )), e.value && i.end && d.startDate && d.endDate) {
       const M = new Date(i.start), w = new Date(i.end), v = new Date(d.startDate), p = new Date(d.endDate);
       h = Math.min(
         Ct(
@@ -5972,7 +5972,7 @@ function Ll(e, t = null) {
         h
       );
     }
-    return h;
+    return e.value && i.end && (!d.startDate || !d.endDate) && (h = !1), h;
   }) || []);
   return {
     showTypes: o,
