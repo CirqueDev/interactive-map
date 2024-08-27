@@ -248,6 +248,13 @@ export default function useGoogleMap(
       ? marker.info.showThumbnail
       : marker.info.showImage;
 
+    /*
+       ${
+        marker.info.facility
+          ? `<p class="marker__venue">${marker.info.facility}</p>`
+          : ""
+      }
+      */
     // Create InfoWindow Content
     const options = {
       pixelOffset: marker ? null : new google.maps.Size(0, -50),
@@ -255,19 +262,15 @@ export default function useGoogleMap(
             <div class="marker__image-wrapper">
               ${
                 img
-                  ? ` <img class="marker__image" width="590" height="590" src="${img}" />`
+                  ? ` <img class="marker__image" width="242" height="96" src="${img}" />`
                   : ""
               }
+              </div>
               <div class="marker__content">
                 <h2 class="marker__title">${marker.info.showName}</h2>
                 ${
                   marker.info.city
                     ? `<p class="marker__city">${marker.info.city}</p>`
-                    : ""
-                }
-                ${
-                  marker.info.facility
-                    ? `<p class="marker__venue">${marker.info.facility}</p>`
                     : ""
                 }
                 ${
@@ -286,21 +289,6 @@ export default function useGoogleMap(
               </div>
             </div>
             <div class="marker__buttons">
-              <a class="marker__cta marker__cta--small cta-btn cta-btn--ghost cta-btn--full-width" href="https://www.google.com/maps/search/?api=1&query=${
-                marker.info.latitude
-              },${
-        marker.info.longitude
-      }" onclick='window.mapTrackingViewGmap("${nameNoQuote}", "${
-        marker.info.city
-      }")' onauxclick='window.mapTrackingViewGmap("${nameNoQuote}", "${
-        marker.info.city
-      }")'>
-      ${data.labelDirectionButton.value}
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8.12498 1.875L10.1831 3.93313L5.80811 8.30812L6.69186 9.19187L11.0669 4.81687L13.125 6.875V1.875H8.12498Z" fill="white"/>
-                  <path d="M11.875 11.875H3.125V3.125H7.5L6.25 1.875H3.125C2.43562 1.875 1.875 2.43562 1.875 3.125V11.875C1.875 12.5644 2.43562 13.125 3.125 13.125H11.875C12.5644 13.125 13.125 12.5644 13.125 11.875V8.75L11.875 7.5V11.875Z" fill="white"/>
-                </svg>
-              </a>
               ${
                 marker.info.ticketPageUrl || marker.info.showPageUrl
                   ? `<a class="marker__cta cta-btn cta-btn--grey cta-btn--full-width" href="${
@@ -318,8 +306,21 @@ export default function useGoogleMap(
                     </a>`
                   : ""
               }
-
-            </div>
+              <a class="marker__link" href="https://www.google.com/maps/search/?api=1&query=${
+                marker.info.latitude
+              },${
+        marker.info.longitude
+      }" onclick='window.mapTrackingViewGmap("${nameNoQuote}", "${
+        marker.info.city
+      }")' onauxclick='window.mapTrackingViewGmap("${nameNoQuote}", "${
+        marker.info.city
+      }")'>
+      ${data.labelDirectionButton.value}
+                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.12498 1.875L10.1831 3.93313L5.80811 8.30812L6.69186 9.19187L11.0669 4.81687L13.125 6.875V1.875H8.12498Z" fill="white"/>
+                  <path d="M11.875 11.875H3.125V3.125H7.5L6.25 1.875H3.125C2.43562 1.875 1.875 2.43562 1.875 3.125V11.875C1.875 12.5644 2.43562 13.125 3.125 13.125H11.875C12.5644 13.125 13.125 12.5644 13.125 11.875V8.75L11.875 7.5V11.875Z" fill="white"/>
+                </svg>
+              </a>
             </div>`,
       /*
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
