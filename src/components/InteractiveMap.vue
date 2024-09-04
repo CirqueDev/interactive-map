@@ -298,12 +298,12 @@ export default defineComponent({
 
     .marker__image {
       object-fit: contain;
-      width: 100%;
+      width: 150px;
+      margin: 0 auto;
     }
 
     .marker__image-wrapper {
-      width: calc(100% - 32px);
-      height: 96px;
+      width: 100%;
       margin: 16px auto 0 auto;
       overflow: hidden;
       position: relative;
@@ -332,6 +332,18 @@ export default defineComponent({
       padding-bottom: 8px;
       padding-right: 25px;
       margin: 0;
+    }
+
+    .marker__venue {
+      display: inline;
+    }
+
+    .marker__city {
+      display: inline;
+    }
+
+    .marker__venue:has(+ .marker__city)::after {
+      content: ", ";
     }
 
     .marker__buttons {
@@ -509,8 +521,8 @@ export default defineComponent({
       }
 
       .gm-ui-hover-effect {
-        top: 6px !important;
-        right: 6px !important;
+        top: 4px !important;
+        right: 4px !important;
         width: 40px !important;
         height: 40px !important;
         border-radius: 0 !important;

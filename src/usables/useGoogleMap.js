@@ -244,46 +244,39 @@ export default function useGoogleMap(
       : "";
 
     // Find an image to put in the InfoWindow
-    const img = marker.info.showThumbnail
-      ? marker.info.showThumbnail
-      : marker.info.showImage;
+    const img = marker.info.showLogo ? marker.info.showLogo : null;
 
-    /*
-       ${
-        marker.info.facility
-          ? `<p class="marker__venue">${marker.info.facility}</p>`
-          : ""
-      }
-      */
     // Create InfoWindow Content
     const options = {
       pixelOffset: marker ? null : new google.maps.Size(0, -50),
       content: `<div class="marker marker--${marker.info.id}">
-            <div class="marker__image-wrapper">
               ${
                 img
-                  ? ` <img class="marker__image" width="242" height="96" src="${img}" />`
+                  ? ` <div class="marker__image-wrapper"><img class="marker__image" width="242" height="96" src="${img}" /></div>`
                   : ""
               }
-              </div>
               <div class="marker__content">
-                <h2 class="marker__title">${marker.info.showName}</h2>
                 ${
-                  marker.info.city
-                    ? `<p class="marker__city">${marker.info.city}</p>`
+                  marker.info.showStatus
+                    ? `<p class="marker__status">${marker.info.showStatus}</p>`
                     : ""
                 }
+                <h2 class="marker__title">${marker.info.showName}</h2>
+                <div class="marker__location">
+                  ${
+                    marker.info.facility
+                      ? `<p class="marker__venue">${marker.info.facility}</p>`
+                      : ""
+                  }
+                  ${
+                    marker.info.city
+                      ? `<p class="marker__city">${marker.info.city}</p>`
+                      : ""
+                  }
+                </div>
                 ${
-                  data.dateLocale &&
-                  marker.info.startDate &&
-                  marker.info.endDate
-                    ? `<p class="marker__date">${format(
-                        new Date(marker.info.startDate),
-                        "PPP",
-                        { locale: locales[data.dateLocale.value] }
-                      )} - ${format(new Date(marker.info.endDate), "PPP", {
-                        locale: locales[data.dateLocale.value],
-                      })}</p>`
+                  marker.info.showStatus
+                    ? `<p class="marker__date">${marker.info.dateString}</p>`
                     : ""
                 }
               </div>
@@ -302,7 +295,9 @@ export default function useGoogleMap(
                     }", "${data.labelBuyButton.value}", "${
                       marker.info.ticketPageUrl || marker.info.showPageUrl
                     }")'>
-                      ${data.labelBuyButton.value}
+                      ${
+                        marker.info.primaryCtaLabel || data.labelBuyButton.value
+                      }
                     </a>`
                   : ""
               }

@@ -39,15 +39,6 @@
         },
       ]"
       map-title="When and Where"
-      :restriction="{
-        strictBounds: false,
-        latLngBounds: {
-          north: 89,
-          south: -89,
-          west: -179,
-          east: 179,
-        },
-      }"
       :tracking="{
         clickMarker: {
           gua: `[{ &quot;event&quot;: &quot;userAction&quot;, &quot;eventAction&quot;: &quot;Click on Map&quot;, &quot;eventCategory&quot;: &quot;Interactive Map&quot;, &quot;eventLabel&quot;: &quot;<show_name> - <city_name>&quot;}]`,

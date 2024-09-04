@@ -19,6 +19,8 @@
               "country": "United Kingdom",
               "region": null,
               "countryCode": "UK",
+              "showStatus": "Coming Soon",
+              "dateString": "11 January 2024 - 11 February 2024 test",
               "facility": "Royal Albert Hall",
               "latitude": "51.50094200000000000000",
               "longitude": "-0.17749800000000000000",
