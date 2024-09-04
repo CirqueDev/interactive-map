@@ -321,28 +321,46 @@ export default defineComponent({
       text-align: left;
       padding: 16px 16px 0 16px;
       font-size: 0.875rem;
-      font-family: Avenir, Helvetica, Arial, sans-serif;
+      font-family: var(--primary-font, sans-serif);
     }
 
     .marker__content p {
       margin: 0;
     }
 
+    .marker__status {
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: var(--text-2xs, 10px);
+    }
+
     .marker__title {
-      font-family: Avenir, Helvetica, Arial, sans-serif;
+      font-family: var(--primary-font, sans-serif);
       font-size: 1.25rem;
       font-weight: bold;
-      padding-bottom: 8px;
       padding-right: 25px;
       margin: 0;
+      padding-bottom: var(--spacing-025, 2px);
     }
 
     .marker__venue {
-      display: inline;
+      font-weight: 400;
+      font-size: var(--text-sm, 14px);
+      color: var(--color-grey-3, #989898);
     }
 
     .marker__city {
-      display: inline;
+      font-weight: 400;
+      font-size: var(--text-sm, 14px);
+      color: var(--color-white, #ffffff);
+      padding-bottom: var(--spacing-025, 2px);
+    }
+
+    .marker__date {
+      padding-top: var(--spacing-025, 2px);
+      font-weight: 400;
+      font-size: var(--text-xs, 12px);
+      color: var(--color-grey-3, #989898);
     }
 
     .marker__venue:has(+ .marker__city)::after {
@@ -364,9 +382,9 @@ export default defineComponent({
       width: 100%;
       justify-content: center;
       align-items: center;
-      height: 40px;
+      height: 32px;
       color: #fff;
-      font-family: Avenir, Helvetica, Arial, sans-serif;
+      font-family: var(--primary-font, sans-serif);
       margin-top: 6px;
       opacity: 1;
       transition: opacity 0.2s ease;
@@ -381,8 +399,8 @@ export default defineComponent({
     .marker__cta {
       width: 100%;
       padding: 0 10px;
-      font-size: 0.875rem;
-      font-family: Avenir, Helvetica, Arial, sans-serif;
+      font-size: var(--text-base, 16px);
+      font-family: var(--primary-font, sans-serif);
       font-stretch: normal;
       justify-content: center;
       appearance: none;
@@ -401,7 +419,6 @@ export default defineComponent({
       outline: 0;
       text-align: center;
       font-weight: bold;
-      text-transform: uppercase;
       background: #313131;
       color: #fff;
       border: 1px solid #313131;
@@ -464,10 +481,11 @@ export default defineComponent({
 
     .cluster span {
       color: #fff !important;
-      font-size: 1rem;
       line-height: 1;
-      font-family: Avenir, Helvetica, Arial, sans-serif;
+      font-family: var(--primary-font, sans-serif);
       padding-bottom: 10px;
+      font-size: var(--text-sm, 14px);
+      font-weight: 700;
     }
 
     .cluster div {
@@ -475,6 +493,10 @@ export default defineComponent({
       align-items: center;
       height: 100%;
       justify-content: center;
+    }
+
+    .gm-style-iw-tc::after {
+      background-color: #000;
     }
 
     .gm-style {
@@ -602,7 +624,6 @@ export default defineComponent({
     border: 0px;
     margin: 10px;
     padding: 0px;
-    text-transform: none;
     appearance: none;
     position: absolute;
     cursor: pointer;
@@ -610,6 +631,7 @@ export default defineComponent({
     border-radius: 2px;
     height: 40px;
     width: 40px;
+    text-align: center;
 
     &:hover {
       svg,

@@ -263,16 +263,17 @@ export default function useGoogleMap(
                 }
                 <h2 class="marker__title">${marker.info.showName}</h2>
                 <div class="marker__location">
+                ${
+                  marker.info.city
+                    ? `<p class="marker__city">${marker.info.city}</p>`
+                    : ""
+                }
                   ${
                     marker.info.facility
                       ? `<p class="marker__venue">${marker.info.facility}</p>`
                       : ""
                   }
-                  ${
-                    marker.info.city
-                      ? `<p class="marker__city">${marker.info.city}</p>`
-                      : ""
-                  }
+                  
                 </div>
                 ${
                   marker.info.showStatus
