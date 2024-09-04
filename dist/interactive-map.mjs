@@ -5841,7 +5841,7 @@ function jl(e = {
                   ${c.info.facility ? `<p class="marker__venue">${c.info.facility}</p>` : ""}
                   
                 </div>
-                ${c.info.showStatus ? `<p class="marker__date">${c.info.dateString}</p>` : ""}
+                ${c.info.dateString ? `<p class="marker__date">${c.info.dateString}</p>` : ""}
               </div>
             </div>
             <div class="marker__buttons">

@@ -276,7 +276,7 @@ export default function useGoogleMap(
                   
                 </div>
                 ${
-                  marker.info.showStatus
+                  marker.info.dateString
                     ? `<p class="marker__date">${marker.info.dateString}</p>`
                     : ""
                 }

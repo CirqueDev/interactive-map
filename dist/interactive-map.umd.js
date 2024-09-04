@@ -26,7 +26,7 @@
                   ${h.info.facility?`<p class="marker__venue">${h.info.facility}</p>`:""}
                   
                 </div>
-                ${h.info.showStatus?`<p class="marker__date">${h.info.dateString}</p>`:""}
+                ${h.info.dateString?`<p class="marker__date">${h.info.dateString}</p>`:""}
               </div>
             </div>
             <div class="marker__buttons">
