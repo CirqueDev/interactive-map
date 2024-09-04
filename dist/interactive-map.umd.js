@@ -22,8 +22,9 @@
                 ${h.info.showStatus?`<p class="marker__status">${h.info.showStatus}</p>`:""}
                 <h2 class="marker__title">${h.info.showName}</h2>
                 <div class="marker__location">
+                ${h.info.city?`<p class="marker__city">${h.info.city}</p>`:""}
                   ${h.info.facility?`<p class="marker__venue">${h.info.facility}</p>`:""}
-                  ${h.info.city?`<p class="marker__city">${h.info.city}</p>`:""}
+                  
                 </div>
                 ${h.info.showStatus?`<p class="marker__date">${h.info.dateString}</p>`:""}
               </div>

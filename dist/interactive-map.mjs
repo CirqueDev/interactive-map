@@ -5837,8 +5837,9 @@ function jl(e = {
                 ${c.info.showStatus ? `<p class="marker__status">${c.info.showStatus}</p>` : ""}
                 <h2 class="marker__title">${c.info.showName}</h2>
                 <div class="marker__location">
+                ${c.info.city ? `<p class="marker__city">${c.info.city}</p>` : ""}
                   ${c.info.facility ? `<p class="marker__venue">${c.info.facility}</p>` : ""}
-                  ${c.info.city ? `<p class="marker__city">${c.info.city}</p>` : ""}
+                  
                 </div>
                 ${c.info.showStatus ? `<p class="marker__date">${c.info.dateString}</p>` : ""}
               </div>
