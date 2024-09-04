@@ -307,6 +307,9 @@ export default defineComponent({
       margin: 16px auto 0 auto;
       overflow: hidden;
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .marker {
