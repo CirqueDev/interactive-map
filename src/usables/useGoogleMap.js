@@ -244,49 +244,65 @@ export default function useGoogleMap(
       : "";
 
     // Find an image to put in the InfoWindow
-    const img = marker.info.showThumbnail
-      ? marker.info.showThumbnail
-      : marker.info.showImage;
+    const img = marker.info.showLogo ? marker.info.showLogo : null;
 
     // Create InfoWindow Content
     const options = {
       pixelOffset: marker ? null : new google.maps.Size(0, -50),
       content: `<div class="marker marker--${marker.info.id}">
-            <div class="marker__image-wrapper">
               ${
                 img
-                  ? ` <img class="marker__image" width="590" height="590" src="${img}" />`
+                  ? ` <div class="marker__image-wrapper"><img class="marker__image" width="242" height="96" src="${img}" /></div>`
                   : ""
               }
               <div class="marker__content">
+                ${
+                  marker.info.showStatus
+                    ? `<p class="marker__status">${marker.info.showStatus}</p>`
+                    : ""
+                }
                 <h2 class="marker__title">${marker.info.showName}</h2>
+                <div class="marker__location">
                 ${
                   marker.info.city
                     ? `<p class="marker__city">${marker.info.city}</p>`
                     : ""
                 }
+                  ${
+                    marker.info.facility
+                      ? `<p class="marker__venue">${marker.info.facility}</p>`
+                      : ""
+                  }
+                  
+                </div>
                 ${
-                  marker.info.facility
-                    ? `<p class="marker__venue">${marker.info.facility}</p>`
-                    : ""
-                }
-                ${
-                  data.dateLocale &&
-                  marker.info.startDate &&
-                  marker.info.endDate
-                    ? `<p class="marker__date">${format(
-                        new Date(marker.info.startDate),
-                        "PPP",
-                        { locale: locales[data.dateLocale.value] }
-                      )} - ${format(new Date(marker.info.endDate), "PPP", {
-                        locale: locales[data.dateLocale.value],
-                      })}</p>`
+                  marker.info.dateString
+                    ? `<p class="marker__date">${marker.info.dateString}</p>`
                     : ""
                 }
               </div>
             </div>
             <div class="marker__buttons">
-              <a class="marker__cta marker__cta--small cta-btn cta-btn--ghost cta-btn--full-width" href="https://www.google.com/maps/search/?api=1&query=${
+              ${
+                marker.info.ticketPageUrl || marker.info.showPageUrl
+                  ? `<a class="marker__cta cta-btn cta-btn--grey cta-btn--full-width" href="${
+                      marker.info.ticketPageUrl || marker.info.showPageUrl
+                    }" onclick='window.mapTrackingBuyTicket("${nameNoQuote}", "${
+                      marker.info.city
+                    }", "${data.labelBuyButton.value}", "${
+                      marker.info.ticketPageUrl || marker.info.showPageUrl
+                    }")' onauxclick='window.mapTrackingBuyTicket("${nameNoQuote}", "${
+                      marker.info.city
+                    }", "${data.labelBuyButton.value}", "${
+                      marker.info.ticketPageUrl || marker.info.showPageUrl
+                    }")'>
+                      ${
+                        marker.info.primaryCtaLabel || data.labelBuyButton.value
+                      }
+                    </a>`
+                  : ""
+              }
+              <a class="marker__link" href="https://www.google.com/maps/search/?api=1&query=${
                 marker.info.latitude
               },${
         marker.info.longitude
@@ -301,25 +317,6 @@ export default function useGoogleMap(
                   <path d="M11.875 11.875H3.125V3.125H7.5L6.25 1.875H3.125C2.43562 1.875 1.875 2.43562 1.875 3.125V11.875C1.875 12.5644 2.43562 13.125 3.125 13.125H11.875C12.5644 13.125 13.125 12.5644 13.125 11.875V8.75L11.875 7.5V11.875Z" fill="white"/>
                 </svg>
               </a>
-              ${
-                marker.info.ticketPageUrl || marker.info.showPageUrl
-                  ? `<a class="marker__cta cta-btn cta-btn--grey cta-btn--full-width" href="${
-                      marker.info.ticketPageUrl || marker.info.showPageUrl
-                    }" onclick='window.mapTrackingBuyTicket("${nameNoQuote}", "${
-                      marker.info.city
-                    }", "${data.labelBuyButton.value}", "${
-                      marker.info.ticketPageUrl || marker.info.showPageUrl
-                    }")' onauxclick='window.mapTrackingBuyTicket("${nameNoQuote}", "${
-                      marker.info.city
-                    }", "${data.labelBuyButton.value}", "${
-                      marker.info.ticketPageUrl || marker.info.showPageUrl
-                    }")'>
-                      ${data.labelBuyButton.value}
-                    </a>`
-                  : ""
-              }
-
-            </div>
             </div>`,
       /*
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -297,57 +297,74 @@ export default defineComponent({
     }
 
     .marker__image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top center;
-    }
-
-    .marker__image + .marker__content {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      left: 0;
+      object-fit: contain;
+      width: 150px;
+      margin: 0 auto;
     }
 
     .marker__image-wrapper {
       width: 100%;
-      max-width: 100%;
-      max-height: 250px;
+      margin: 16px auto 0 auto;
       overflow: hidden;
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .marker {
-      background-color: rgb(95, 95, 95);
       color: #fff;
+      background: rgb(0, 0, 0);
     }
 
     .marker__content {
       text-align: left;
-      padding: 16px;
+      padding: 16px 16px 0 16px;
       font-size: 0.875rem;
-      font-family: Avenir, Helvetica, Arial, sans-serif;
-      background: rgb(0, 0, 0);
-      background: linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 0.6) 30%,
-        rgba(0, 0, 0, 1) 100%
-      );
+      font-family: var(--primary-font, sans-serif);
     }
 
     .marker__content p {
       margin: 0;
     }
 
+    .marker__status {
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: var(--text-2xs, 10px);
+    }
+
     .marker__title {
-      font-family: Avenir, Helvetica, Arial, sans-serif;
+      font-family: var(--primary-font, sans-serif);
       font-size: 1.25rem;
       font-weight: bold;
-      padding-bottom: 8px;
       padding-right: 25px;
       margin: 0;
+      padding-bottom: var(--spacing-025, 2px);
+    }
+
+    .marker__venue {
+      font-weight: 400;
+      font-size: var(--text-sm, 14px);
+      color: var(--color-grey-3, #989898);
+    }
+
+    .marker__city {
+      font-weight: 400;
+      font-size: var(--text-sm, 14px);
+      color: var(--color-white, #ffffff);
+      padding-bottom: var(--spacing-025, 2px);
+    }
+
+    .marker__date {
+      padding-top: var(--spacing-025, 2px);
+      font-weight: 400;
+      font-size: var(--text-xs, 12px);
+      color: var(--color-grey-3, #989898);
+    }
+
+    .marker__venue:has(+ .marker__city)::after {
+      content: ", ";
     }
 
     .marker__buttons {
@@ -355,11 +372,35 @@ export default defineComponent({
       background-color: #000;
     }
 
+    .marker__link {
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 128%;
+      padding: 0 10px;
+      display: inline-flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      height: 32px;
+      color: #fff;
+      font-family: var(--primary-font, sans-serif);
+      margin-top: 6px;
+      opacity: 1;
+      transition: opacity 0.2s ease;
+
+      &:hover,
+      &:focus,
+      &:visited {
+        opacity: 0.6;
+      }
+    }
+
     .marker__cta {
       width: 100%;
       padding: 0 10px;
-      font-size: 0.875rem;
-      font-family: Avenir, Helvetica, Arial, sans-serif;
+      font-size: var(--text-base, 16px);
+      font-family: var(--primary-font, sans-serif);
       font-stretch: normal;
       justify-content: center;
       appearance: none;
@@ -378,7 +419,6 @@ export default defineComponent({
       outline: 0;
       text-align: center;
       font-weight: bold;
-      text-transform: uppercase;
       background: #313131;
       color: #fff;
       border: 1px solid #313131;
@@ -418,12 +458,15 @@ export default defineComponent({
       margin-top: 16px;
     }
 
-    .marker__cta svg {
+    .marker__cta svg,
+    .marker__link svg {
       margin-left: 10px;
     }
 
     .marker__cta svg,
-    .marker__cta path {
+    .marker__link svg,
+    .marker__cta path,
+    .marker__link path {
       margin-bottom: 0;
       fill: #fff;
     }
@@ -438,10 +481,11 @@ export default defineComponent({
 
     .cluster span {
       color: #fff !important;
-      font-size: 1rem;
       line-height: 1;
-      font-family: Avenir, Helvetica, Arial, sans-serif;
+      font-family: var(--primary-font, sans-serif);
       padding-bottom: 10px;
+      font-size: var(--text-sm, 14px);
+      font-weight: 700;
     }
 
     .cluster div {
@@ -449,6 +493,10 @@ export default defineComponent({
       align-items: center;
       height: 100%;
       justify-content: center;
+    }
+
+    .gm-style-iw-tc::after {
+      background-color: #000;
     }
 
     .gm-style {
@@ -490,28 +538,36 @@ export default defineComponent({
         z-index: -1;
       }
 
+      .gm-style-iw-chr {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+      }
+
       .gm-ui-hover-effect {
-        top: 0px !important;
-        right: 0px !important;
+        top: 4px !important;
+        right: 4px !important;
         width: 40px !important;
         height: 40px !important;
         border-radius: 0 !important;
-        background-color: #fff !important;
+        background-color: transparent !important;
         display: flex !important;
         align-items: center;
         justify-content: center;
+        z-index: 9;
       }
 
       .gm-ui-hover-effect img,
       .gm-ui-hover-effect span {
-        width: 30px !important;
-        height: 30px !important;
+        width: 20px !important;
+        height: 20px !important;
         margin: 0 !important;
-      }
-
-      .marker__image {
-        max-width: 400px;
-        min-height: 275px;
+        mask-image: url("data:image/svg+xml,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M11.1767%209.99929L20%201.17598L18.8235%20-0.000488281L10.0002%208.82282L1.17716%20-0.000225918L0.000690977%201.17624L8.82372%209.99929L-2.85607e-05%2018.823L1.17644%2019.9995L10.0002%2011.1758L18.8242%2019.9998L20.0007%2018.8233L11.1767%209.99929Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E%0A") !important;
+        background-color: #fff !important;
+        mask-repeat: no-repeat;
+        mask-position: center;
+        mask-size: contain;
       }
 
       .poi-info-window {
@@ -568,7 +624,6 @@ export default defineComponent({
     border: 0px;
     margin: 10px;
     padding: 0px;
-    text-transform: none;
     appearance: none;
     position: absolute;
     cursor: pointer;
@@ -576,6 +631,7 @@ export default defineComponent({
     border-radius: 2px;
     height: 40px;
     width: 40px;
+    text-align: center;
 
     &:hover {
       svg,
