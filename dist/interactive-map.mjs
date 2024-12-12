@@ -5974,7 +5974,7 @@ function Ll(e, t = null) {
     }
     if (e.value && !i.end) {
       const b = e.value.filter((p) => p.latitude === l.latitude && p.longitude === l.longitude);
-      if (b.length > 1 && l.startDate) {
+      if (b.length > 1) {
         const p = b.sort((v, w) => new Date(v.startDate) - new Date(w.startDate))[0];
         h = Math.min(p.id === l.id, h);
       }
