@@ -41,6 +41,14 @@ export default function useShowFilters(markersData, tracking = null) {
           return false;
         }
 
+        if (
+          markersData.value &&
+          currentDates.end &&
+          (!m.startDate || !m.endDate)
+        ) {
+          return false;
+        }
+
         if (currentShowTypeFilter.value) {
           filterFound = Math.min(
             m.showType === currentShowTypeFilter.value,
@@ -73,12 +81,20 @@ export default function useShowFilters(markersData, tracking = null) {
           );
         }
 
-        if (
-          markersData.value &&
-          currentDates.end &&
-          (!m.startDate || !m.endDate)
-        ) {
-          filterFound = false;
+        if (markersData.value && !currentDates.end) {
+          const duplicated = markersData.value.filter((marker) => {
+            return (
+              marker.latitude === m.latitude && marker.longitude === m.longitude
+            );
+          });
+
+          if (duplicated.length > 1) {
+            const closest = duplicated.sort((a, b) => {
+              return new Date(a.startDate) - new Date(b.startDate);
+            })[0];
+
+            filterFound = Math.min(closest.id === m.id, filterFound);
+          }
         }
 
         return filterFound;
