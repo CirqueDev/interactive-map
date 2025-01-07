@@ -1,8 +1,6 @@
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
 import { ref, onMounted, watch, nextTick } from "vue";
 import { Loader } from "@googlemaps/js-api-loader";
-import { format } from "date-fns";
-import { locales } from "../date-fns-locales";
 import useTracking from "./useTracking";
 import locationImg from "../assets/location.png";
 
@@ -43,7 +41,8 @@ export default function useGoogleMap(
   const loadMap = () => {
     return new Promise(async (resolve) => {
       if (!data.mapOptions) throw new Error("[useGoogleMap.js] no map options");
-      await loader.load();
+      await loader.importLibrary("core");
+      await loader.importLibrary("marker");
       map = new google.maps.Map(
         document.getElementById(data.mapId),
         data.mapOptions
@@ -103,15 +102,6 @@ export default function useGoogleMap(
         };
       }
 
-      const label = markerData.pinLabel
-        ? {
-            text: markerData.pinLabel,
-            color: "#000",
-            fontSize: "14px",
-            fontWeight: "bold",
-          }
-        : undefined;
-
       if (
         markerData.showName &&
         markerData.latitude &&
@@ -128,13 +118,11 @@ export default function useGoogleMap(
           parseFloat(markerData.longitude)
         );
 
-        const marker = new google.maps.Marker({
+        const marker = new google.maps.marker.AdvancedMarkerElement({
           position,
-          icon,
+          content: createImage(icon.url),
           title: `${markerData.showName}`,
-          optimized: false,
           map,
-          label,
         });
         marker.info = markerData;
         tmpMarkers.push(marker);
@@ -143,7 +131,7 @@ export default function useGoogleMap(
 
     bounds = new google.maps.LatLngBounds();
     tmpMarkers.forEach((marker) => {
-      bounds.extend(marker.getPosition());
+      bounds.extend(marker.position);
       marker.addListener("click", (evt) => {
         openShowInfo(marker);
 
@@ -171,30 +159,14 @@ export default function useGoogleMap(
 
     const renderer = {
       render: ({ count, position }) =>
-        new google.maps.Marker({
-          label: { text: String(count), color: "white", fontSize: "14px" },
+        new google.maps.marker.AdvancedMarkerElement({
+          content: createImage(
+            data.clusterOptions && data.clusterOptions[0]
+              ? data.clusterOptions[0].url
+              : "https://raw.githubusercontent.com/googlemaps/js-marker-clusterer/gh-pages/images/m1.png",
+            count
+          ),
           position,
-          icon: {
-            url:
-              data.clusterOptions && data.clusterOptions[0]
-                ? data.clusterOptions[0].url
-                : "https://raw.githubusercontent.com/googlemaps/js-marker-clusterer/gh-pages/images/m1.png",
-            scaledSize:
-              data.clusterOptions && data.clusterOptions[0]
-                ? new google.maps.Size(
-                    data.clusterOptions[0].width,
-                    data.clusterOptions[0].height
-                  )
-                : new google.maps.Size(53, 53),
-            labelOrigin:
-              data.clusterOptions && data.clusterOptions[0]
-                ? new google.maps.Point(
-                    data.clusterOptions[0].width / 2,
-                    data.clusterOptions[0].height / 2.5
-                  )
-                : new google.maps.Point(26, 21),
-          },
-          zIndex: Number(google.maps.Marker.MAX_ZINDEX) + count,
         }),
     };
 
@@ -217,7 +189,7 @@ export default function useGoogleMap(
 
   const centerOnMarker = (marker) => {
     if (!map || !marker) return;
-    map.panTo(marker.getPosition());
+    map.panTo(marker.position);
   };
 
   const panTo = (lat, lng) => {
@@ -361,17 +333,11 @@ export default function useGoogleMap(
               lat: position.coords.latitude,
               lng: position.coords.longitude,
             };
-            const icon = {
-              url: data.defaultLocationImg
-                ? data.defaultLocationImg
-                : locationImg,
-              scaledSize: new google.maps.Size(30, 30),
-            };
-            const marker = new google.maps.Marker({
+            const marker = new google.maps.marker.AdvancedMarkerElement({
               position: pos,
-              optimized: false,
-              map,
-              icon,
+              content: createImage(
+                data.defaultLocationImg ? data.defaultLocationImg : locationImg
+              ),
             });
             map.setCenter(pos);
             map.setZoom(8);
@@ -399,6 +365,28 @@ export default function useGoogleMap(
       setZoom(data.zoom);
       panTo(data.center.value.lat, data.center.value.lng);
     }
+  };
+
+  const createImage = (url, label = undefined) => {
+    const imgWrapper = document.createElement("div");
+    imgWrapper.classList.add("pin__image-wrapper");
+
+    const img = document.createElement("img");
+    img.width = 53;
+    img.height = 53;
+    img.src = url;
+
+    imgWrapper.appendChild(img);
+
+    if (label) {
+      const text = document.createElement("div");
+      text.classList.add("pin__text");
+      text.innerHTML = label;
+
+      imgWrapper.appendChild(text);
+    }
+
+    return imgWrapper;
   };
 
   onMounted(() => {

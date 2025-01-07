@@ -645,6 +645,20 @@ export default defineComponent({
       fill: #444;
     }
   }
+
+  .pin__image-wrapper {
+    position: relative;
+  }
+
+  .pin__text {
+    color: #fff;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 12px;
+    font-size: 14px;
+    text-align: center;
+  }
 }
 
 .interactive-map--unsplit {

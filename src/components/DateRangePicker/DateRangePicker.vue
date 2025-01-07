@@ -135,11 +135,13 @@
         </div>
       </div>
       <table class="week">
-        <tr>
-          <td class="weekday" v-for="day in weekdays" :key="day">
-            {{ day }}
-          </td>
-        </tr>
+        <tbody>
+          <tr>
+            <td class="weekday" v-for="day in weekdays" :key="day">
+              {{ day }}
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>

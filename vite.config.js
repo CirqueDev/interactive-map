@@ -12,6 +12,13 @@ export default defineConfig(({ command, mode }) => ({
       ? "public_dev"
       : "public",
   plugins: [vue()],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: "modern-compiler", // or "modern"
+      },
+    },
+  },
   build:
     mode === "staging"
       ? {}
