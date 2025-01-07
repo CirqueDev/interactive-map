@@ -1,69 +1,67 @@
-import { defineComponent as me, toRef as I, ref as N, computed as A, openBlock as T, createElementBlock as x, createElementVNode as y, withDirectives as Be, toDisplayString as _, createCommentVNode as F, Fragment as R, renderList as ve, vModelSelect as ot, reactive as Xe, onMounted as Pe, onBeforeUnmount as st, createTextVNode as fe, normalizeClass as ut, vShow as lt, nextTick as dt, watch as pe, resolveComponent as we, renderSlot as Ve, createBlock as Se, createVNode as Ue, Transition as mt, withCtx as Re, mergeProps as ct } from "vue";
-function ce() {
-  function e(o, u = null) {
-    if (!!o)
+import { defineComponent as ce, toRef as H, ref as N, computed as F, openBlock as C, createElementBlock as T, createElementVNode as b, withDirectives as Ze, toDisplayString as L, createCommentVNode as I, Fragment as te, renderList as ye, vModelSelect as ft, reactive as Ue, onMounted as $e, onBeforeUnmount as gt, createTextVNode as ge, normalizeClass as pt, vShow as wt, nextTick as vt, watch as be, resolveComponent as Me, renderSlot as Ke, createBlock as Te, createVNode as et, Transition as yt, withCtx as tt, mergeProps as bt } from "vue";
+function me() {
+  function e(o, d = null) {
+    if (o)
       try {
-        const s = i(o, u), d = n(s);
-        a(d);
+        const s = i(o, d), c = r(s);
+        n(c);
       } catch (s) {
         console.warn("[useTracking] - ", s);
       }
   }
-  function t(o, u = null) {
-    if (!!o)
+  function t(o, d = null) {
+    if (o)
       try {
-        const s = i(o, u), d = n(s);
-        a(d);
+        const s = i(o, d), c = r(s);
+        n(c);
       } catch (s) {
         console.warn("[useTracking] - ", s);
       }
   }
-  function a(o) {
-    if (!!o)
+  function n(o) {
+    if (o)
       if (window.dataLayer || (window.dataLayer = []), Array.isArray(o))
-        for (let u = 0; u < o.length; u++)
-          window.dataLayer.push(o[u]);
+        for (let d = 0; d < o.length; d++)
+          window.dataLayer.push(o[d]);
       else
         window.dataLayer.push(o);
   }
-  function r(o, u = null) {
-    if (!o)
-      return;
+  function a(o, d = null) {
+    if (!o) return;
     const s = Object.keys(o);
-    for (let d = 0; d < s.length; ++d) {
-      const m = s[d], l = o[m];
-      switch (m) {
+    for (let c = 0; c < s.length; ++c) {
+      const l = s[c], u = o[l];
+      switch (l) {
         case "ga4":
-          t(l, u);
+          t(u, d);
           break;
         case "gua":
-          e(l, u);
+          e(u, d);
           break;
       }
     }
   }
-  function n(o) {
-    if (typeof o != "string")
-      return o;
-    let u = o.replace(/\\n/g, "\\n").replace(/\\'/g, "\\'").replace(/\\"/g, '\\"').replace(/\\&/g, "\\&").replace(/\\r/g, "\\r").replace(/\\t/g, "\\t").replace(/\\b/g, "\\b").replace(/\\f/g, "\\f");
-    return u = u.replace(/[\u0000-\u0019]+/g, ""), JSON.parse(u);
+  function r(o) {
+    if (typeof o != "string") return o;
+    let d = o.replace(/\\n/g, "\\n").replace(/\\'/g, "\\'").replace(/\\"/g, '\\"').replace(/\\&/g, "\\&").replace(/\\r/g, "\\r").replace(/\\t/g, "\\t").replace(/\\b/g, "\\b").replace(/\\f/g, "\\f");
+    return d = d.replace(/[\u0000-\u0019]+/g, ""), JSON.parse(d);
   }
-  function i(o, u = null) {
-    return u ? Object.keys(u).reduce((d, m) => d.replaceAll(m, u[m]), o) : o;
+  function i(o, d = null) {
+    return d ? Object.keys(d).reduce((c, l) => c.replaceAll(l, d[l]), o) : o;
   }
   return {
-    pushDatalayer: a,
-    pushTracking: r,
+    pushDatalayer: n,
+    pushTracking: a,
     pushGua: e,
     pushGa4: t
   };
 }
 const he = (e, t) => {
-  const a = e.__vccOpts || e;
-  for (const [r, n] of t)
-    a[r] = n;
-  return a;
-}, ht = me({
+  const n = e.__vccOpts || e;
+  for (const [a, r] of t)
+    n[a] = r;
+  return n;
+}, Mt = ce({
   name: "DropdownFilters",
   emits: ["onfilterchange"],
   props: {
@@ -73,145 +71,175 @@ const he = (e, t) => {
     tracking: { type: Object, required: !1, default: null }
   },
   setup(e, { emit: t }) {
-    const a = I(e, "filters"), r = N(e.placeholder ? "" : "all"), n = N(!1), i = (m) => {
-      r.value = m, t("onfilterchange", r.value), requestAnimationFrame(() => n.value = !1);
+    const n = H(e, "filters"), a = N(e.placeholder ? "" : "all"), r = N(!1), i = (l) => {
+      a.value = l, t("onfilterchange", a.value), requestAnimationFrame(() => r.value = !1);
     }, o = () => {
-      r.value = "", t("onfilterchange", r.value);
-    }, u = A(
-      () => a.value.filter((m) => !!m.value)
-    ), { pushTracking: s } = ce();
+      a.value = "", t("onfilterchange", a.value);
+    }, d = F(
+      () => n.value.filter((l) => !!l.value)
+    ), { pushTracking: s } = me();
     return {
-      filtersWithoutEmptyValue: u,
-      currentFilter: r,
+      filtersWithoutEmptyValue: d,
+      currentFilter: a,
       resetFilter: o,
       filter: i,
       trackClick: () => {
-        n.value || s(e.tracking?.clickShowToggle), n.value = !0;
+        r.value || s(e.tracking?.clickShowToggle), r.value = !0;
       }
     };
   }
-}), ft = { class: "dropdown-filters" }, gt = { class: "dropdown-filters__input" }, vt = {
+}), Pt = { class: "dropdown-filters" }, kt = { class: "dropdown-filters__input" }, Dt = {
   key: 0,
   value: "",
   selected: "",
   disabled: ""
-}, pt = { value: "all" }, wt = ["value"], bt = /* @__PURE__ */ y("svg", {
-  class: "dropdown-filters__arrow-down",
-  width: "14",
-  height: "9",
-  viewBox: "0 0 14 9",
-  fill: "none",
-  xmlns: "http://www.w3.org/2000/svg"
-}, [
-  /* @__PURE__ */ y("path", {
-    d: "M1 1L7.10049 7.10049L13.201 1",
-    stroke: "black",
-    "stroke-width": "2"
-  })
-], -1);
-function yt(e, t, a, r, n, i) {
-  return T(), x("div", ft, [
-    y("div", gt, [
-      Be(y("select", {
+}, $t = { value: "all" }, St = ["value"];
+function Wt(e, t, n, a, r, i) {
+  return C(), T("div", Pt, [
+    b("div", kt, [
+      Ze(b("select", {
         name: "dropdown-filters__select",
         class: "dropdown-filters__select",
         onChange: t[0] || (t[0] = (o) => e.filter(o.target.value)),
         onClick: t[1] || (t[1] = (o) => e.trackClick()),
         "onUpdate:modelValue": t[2] || (t[2] = (o) => e.currentFilter = o)
       }, [
-        e.placeholder ? (T(), x("option", vt, _(e.placeholder), 1)) : F("", !0),
-        y("option", pt, _(e.labelDefault), 1),
-        (T(!0), x(R, null, ve(e.filtersWithoutEmptyValue, (o, u) => (T(), x("option", {
-          key: u,
+        e.placeholder ? (C(), T("option", Dt, L(e.placeholder), 1)) : I("", !0),
+        b("option", $t, L(e.labelDefault), 1),
+        (C(!0), T(te, null, ye(e.filtersWithoutEmptyValue, (o, d) => (C(), T("option", {
+          key: d,
           value: o.value
-        }, _(o.label || o.value), 9, wt))), 128))
+        }, L(o.label || o.value), 9, St))), 128))
       ], 544), [
-        [ot, e.currentFilter]
+        [ft, e.currentFilter]
       ]),
-      bt
+      t[3] || (t[3] = b("svg", {
+        class: "dropdown-filters__arrow-down",
+        width: "14",
+        height: "9",
+        viewBox: "0 0 14 9",
+        fill: "none",
+        xmlns: "http://www.w3.org/2000/svg"
+      }, [
+        b("path", {
+          d: "M1 1L7.10049 7.10049L13.201 1",
+          stroke: "black",
+          "stroke-width": "2"
+        })
+      ], -1))
     ])
   ]);
 }
-const Mt = /* @__PURE__ */ he(ht, [["render", yt]]);
-function j(e) {
-  if (e === null || e === !0 || e === !1)
-    return NaN;
-  var t = Number(e);
-  return isNaN(t) ? t : t < 0 ? Math.ceil(t) : Math.floor(t);
+const Ct = /* @__PURE__ */ he(Mt, [["render", Wt]]), nt = 6048e5, Ot = 864e5, Ne = Symbol.for("constructDateFrom");
+function z(e, t) {
+  return typeof e == "function" ? e(t) : e && typeof e == "object" && Ne in e ? e[Ne](t) : e instanceof Date ? new e.constructor(t) : new Date(t);
 }
-function D(e, t) {
-  if (t.length < e)
-    throw new TypeError(e + " argument" + (e > 1 ? "s" : "") + " required, but only " + t.length + " present");
+function O(e, t) {
+  return z(t || e, e);
 }
-function O(e) {
-  D(1, arguments);
-  var t = Object.prototype.toString.call(e);
-  return e instanceof Date || typeof e == "object" && t === "[object Date]" ? new Date(e.getTime()) : typeof e == "number" || t === "[object Number]" ? new Date(e) : ((typeof e == "string" || t === "[object String]") && typeof console < "u" && (console.warn("Starting with v2.0.0-beta.1 date-fns doesn't accept strings as date arguments. Please use `parseISO` to parse strings. See: https://git.io/fjule"), console.warn(new Error().stack)), new Date(NaN));
+function Et(e, t, n) {
+  const a = O(e, n?.in);
+  return isNaN(t) ? z(e, NaN) : (t && a.setDate(a.getDate() + t), a);
 }
-function Pt(e, t) {
-  D(2, arguments);
-  var a = O(e), r = j(t);
-  return isNaN(r) ? new Date(NaN) : (r && a.setDate(a.getDate() + r), a);
-}
-function We(e, t) {
-  D(2, arguments);
-  var a = O(e), r = j(t);
-  if (isNaN(r))
-    return new Date(NaN);
-  if (!r)
+function Ae(e, t, n) {
+  const a = O(e, n?.in);
+  if (isNaN(t)) return z(e, NaN);
+  if (!t)
     return a;
-  var n = a.getDate(), i = new Date(a.getTime());
-  i.setMonth(a.getMonth() + r + 1, 0);
-  var o = i.getDate();
-  return n >= o ? i : (a.setFullYear(i.getFullYear(), i.getMonth(), n), a);
+  const r = a.getDate(), i = z(e, a.getTime());
+  i.setMonth(a.getMonth() + t + 1, 0);
+  const o = i.getDate();
+  return r >= o ? i : (a.setFullYear(
+    i.getFullYear(),
+    i.getMonth(),
+    r
+  ), a);
 }
-function kt(e, t) {
-  D(2, arguments);
-  var a = O(e).getTime(), r = j(t);
-  return new Date(a + r);
+let Tt = {};
+function fe() {
+  return Tt;
 }
-function $t(e, t) {
-  D(1, arguments);
-  var a = t || {}, r = a.locale, n = r && r.options && r.options.weekStartsOn, i = n == null ? 0 : j(n), o = a.weekStartsOn == null ? i : j(a.weekStartsOn);
-  if (!(o >= 0 && o <= 6))
-    throw new RangeError("weekStartsOn must be between 0 and 6 inclusively");
-  var u = O(e), s = u.getDay(), d = (s < o ? 7 : 0) + s - o;
-  return u.setDate(u.getDate() - d), u.setHours(0, 0, 0, 0), u;
+function J(e, t) {
+  const n = fe(), a = t?.weekStartsOn ?? t?.locale?.options?.weekStartsOn ?? n.weekStartsOn ?? n.locale?.options?.weekStartsOn ?? 0, r = O(e, t?.in), i = r.getDay(), o = (i < a ? 7 : 0) + i - a;
+  return r.setDate(r.getDate() - o), r.setHours(0, 0, 0, 0), r;
 }
-function Dt(e) {
-  var t = new Date(Date.UTC(e.getFullYear(), e.getMonth(), e.getDate(), e.getHours(), e.getMinutes(), e.getSeconds(), e.getMilliseconds()));
-  return t.setUTCFullYear(e.getFullYear()), e.getTime() - t.getTime();
+function ue(e, t) {
+  return J(e, { ...t, weekStartsOn: 1 });
 }
-function Ct(e, t) {
-  var a = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {
-    inclusive: !1
-  };
-  D(2, arguments);
-  var r = e || {}, n = t || {}, i = O(r.start).getTime(), o = O(r.end).getTime(), u = O(n.start).getTime(), s = O(n.end).getTime();
-  if (!(i <= o && u <= s))
-    throw new RangeError("Invalid interval");
-  return a.inclusive ? i <= s && u <= o : i < s && u < o;
+function at(e, t) {
+  const n = O(e, t?.in), a = n.getFullYear(), r = z(n, 0);
+  r.setFullYear(a + 1, 0, 4), r.setHours(0, 0, 0, 0);
+  const i = ue(r), o = z(n, 0);
+  o.setFullYear(a, 0, 4), o.setHours(0, 0, 0, 0);
+  const d = ue(o);
+  return n.getTime() >= i.getTime() ? a + 1 : n.getTime() >= d.getTime() ? a : a - 1;
 }
-function St(e) {
-  return D(1, arguments), e instanceof Date || typeof e == "object" && Object.prototype.toString.call(e) === "[object Date]";
+function xe(e) {
+  const t = O(e), n = new Date(
+    Date.UTC(
+      t.getFullYear(),
+      t.getMonth(),
+      t.getDate(),
+      t.getHours(),
+      t.getMinutes(),
+      t.getSeconds(),
+      t.getMilliseconds()
+    )
+  );
+  return n.setUTCFullYear(t.getFullYear()), +e - +n;
 }
-function Wt(e) {
-  if (D(1, arguments), !St(e) && typeof e != "number")
-    return !1;
-  var t = O(e);
-  return !isNaN(Number(t));
+function rt(e, ...t) {
+  const n = z.bind(
+    null,
+    e || t.find((a) => typeof a == "object")
+  );
+  return t.map(n);
 }
-function Tt(e) {
-  D(1, arguments);
-  var t = O(e), a = t.getMonth();
-  return t.setFullYear(t.getFullYear(), a + 1, 0), t.setHours(23, 59, 59, 999), t;
+function je(e, t) {
+  const n = O(e, t?.in);
+  return n.setHours(0, 0, 0, 0), n;
 }
-function Ot(e) {
-  D(1, arguments);
-  var t = O(e);
-  return t.setDate(1), t.setHours(0, 0, 0, 0), t;
+function Nt(e, t, n) {
+  const [a, r] = rt(
+    n?.in,
+    e,
+    t
+  ), i = je(a), o = je(r), d = +i - xe(i), s = +o - xe(o);
+  return Math.round((d - s) / Ot);
 }
-var xt = {
+function At(e, t) {
+  const n = at(e, t), a = z(e, 0);
+  return a.setFullYear(n, 0, 4), a.setHours(0, 0, 0, 0), ue(a);
+}
+function xt(e, t, n) {
+  const [a, r] = [
+    +O(e.start, n?.in),
+    +O(e.end, n?.in)
+  ].sort((d, s) => d - s), [i, o] = [
+    +O(t.start, n?.in),
+    +O(t.end, n?.in)
+  ].sort((d, s) => d - s);
+  return a < o && i < r;
+}
+function jt(e) {
+  return e instanceof Date || typeof e == "object" && Object.prototype.toString.call(e) === "[object Date]";
+}
+function Lt(e) {
+  return !(!jt(e) && typeof e != "number" || isNaN(+O(e)));
+}
+function _t(e, t) {
+  const n = O(e, t?.in), a = n.getMonth();
+  return n.setFullYear(n.getFullYear(), a + 1, 0), n.setHours(23, 59, 59, 999), n;
+}
+function Ft(e, t) {
+  const n = O(e, t?.in);
+  return n.setDate(1), n.setHours(0, 0, 0, 0), n;
+}
+function zt(e, t) {
+  const n = O(e, t?.in);
+  return n.setFullYear(n.getFullYear(), 0, 1), n.setHours(0, 0, 0, 0), n;
+}
+const qt = {
   lessThanXSeconds: {
     one: "less than a second",
     other: "less than {{count}} seconds"
@@ -273,90 +301,120 @@ var xt = {
     one: "almost 1 year",
     other: "almost {{count}} years"
   }
-}, Nt = function(e, t, a) {
-  var r, n = xt[e];
-  return typeof n == "string" ? r = n : t === 1 ? r = n.one : r = n.other.replace("{{count}}", t.toString()), a != null && a.addSuffix ? a.comparison && a.comparison > 0 ? "in " + r : r + " ago" : r;
+}, It = (e, t, n) => {
+  let a;
+  const r = qt[e];
+  return typeof r == "string" ? a = r : t === 1 ? a = r.one : a = r.other.replace("{{count}}", t.toString()), n?.addSuffix ? n.comparison && n.comparison > 0 ? "in " + a : a + " ago" : a;
 };
-const Et = Nt;
 function M(e) {
-  return function() {
-    var t = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {}, a = t.width ? String(t.width) : e.defaultWidth, r = e.formats[a] || e.formats[e.defaultWidth];
-    return r;
+  return (t = {}) => {
+    const n = t.width ? String(t.width) : e.defaultWidth;
+    return e.formats[n] || e.formats[e.defaultWidth];
   };
 }
-var jt = {
+const Ht = {
   full: "EEEE, MMMM do, y",
   long: "MMMM do, y",
   medium: "MMM d, y",
   short: "MM/dd/yyyy"
-}, Lt = {
+}, Bt = {
   full: "h:mm:ss a zzzz",
   long: "h:mm:ss a z",
   medium: "h:mm:ss a",
   short: "h:mm a"
-}, zt = {
+}, Gt = {
   full: "{{date}} 'at' {{time}}",
   long: "{{date}} 'at' {{time}}",
   medium: "{{date}}, {{time}}",
   short: "{{date}}, {{time}}"
-}, _t = {
+}, Vt = {
   date: M({
-    formats: jt,
+    formats: Ht,
     defaultWidth: "full"
   }),
   time: M({
-    formats: Lt,
+    formats: Bt,
     defaultWidth: "full"
   }),
   dateTime: M({
-    formats: zt,
+    formats: Gt,
     defaultWidth: "full"
   })
-};
-const At = _t;
-var Ft = {
+}, Yt = {
   lastWeek: "'last' eeee 'at' p",
   yesterday: "'yesterday at' p",
   today: "'today at' p",
   tomorrow: "'tomorrow at' p",
   nextWeek: "eeee 'at' p",
   other: "P"
-}, It = function(e, t, a, r) {
-  return Ft[e];
-};
-const Je = It;
+}, it = (e, t, n, a) => Yt[e];
 function f(e) {
-  return function(t, a) {
-    var r = a || {}, n = r.context ? String(r.context) : "standalone", i;
-    if (n === "formatting" && e.formattingValues) {
-      var o = e.defaultFormattingWidth || e.defaultWidth, u = r.width ? String(r.width) : o;
-      i = e.formattingValues[u] || e.formattingValues[o];
+  return (t, n) => {
+    const a = n?.context ? String(n.context) : "standalone";
+    let r;
+    if (a === "formatting" && e.formattingValues) {
+      const o = e.defaultFormattingWidth || e.defaultWidth, d = n?.width ? String(n.width) : o;
+      r = e.formattingValues[d] || e.formattingValues[o];
     } else {
-      var s = e.defaultWidth, d = r.width ? String(r.width) : e.defaultWidth;
-      i = e.values[d] || e.values[s];
+      const o = e.defaultWidth, d = n?.width ? String(n.width) : e.defaultWidth;
+      r = e.values[d] || e.values[o];
     }
-    var m = e.argumentCallback ? e.argumentCallback(t) : t;
-    return i[m];
+    const i = e.argumentCallback ? e.argumentCallback(t) : t;
+    return r[i];
   };
 }
-var qt = {
+const Xt = {
   narrow: ["B", "A"],
   abbreviated: ["BC", "AD"],
   wide: ["Before Christ", "Anno Domini"]
-}, Ht = {
+}, Rt = {
   narrow: ["1", "2", "3", "4"],
   abbreviated: ["Q1", "Q2", "Q3", "Q4"],
   wide: ["1st quarter", "2nd quarter", "3rd quarter", "4th quarter"]
-}, Gt = {
+}, Jt = {
   narrow: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
-  abbreviated: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-  wide: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-}, Yt = {
+  abbreviated: [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ],
+  wide: [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ]
+}, Qt = {
   narrow: ["S", "M", "T", "W", "T", "F", "S"],
   short: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
   abbreviated: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-  wide: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-}, Bt = {
+  wide: [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ]
+}, Zt = {
   narrow: {
     am: "a",
     pm: "p",
@@ -387,154 +445,172 @@ var qt = {
     evening: "evening",
     night: "night"
   }
-}, Xt = {
-  narrow: {
-    am: "a",
-    pm: "p",
-    midnight: "mi",
-    noon: "n",
-    morning: "in the morning",
-    afternoon: "in the afternoon",
-    evening: "in the evening",
-    night: "at night"
-  },
-  abbreviated: {
-    am: "AM",
-    pm: "PM",
-    midnight: "midnight",
-    noon: "noon",
-    morning: "in the morning",
-    afternoon: "in the afternoon",
-    evening: "in the evening",
-    night: "at night"
-  },
-  wide: {
-    am: "a.m.",
-    pm: "p.m.",
-    midnight: "midnight",
-    noon: "noon",
-    morning: "in the morning",
-    afternoon: "in the afternoon",
-    evening: "in the evening",
-    night: "at night"
-  }
-}, Vt = function(e, t) {
-  var a = Number(e), r = a % 100;
-  if (r > 20 || r < 10)
-    switch (r % 10) {
-      case 1:
-        return a + "st";
-      case 2:
-        return a + "nd";
-      case 3:
-        return a + "rd";
-    }
-  return a + "th";
 }, Ut = {
-  ordinalNumber: Vt,
+  narrow: {
+    am: "a",
+    pm: "p",
+    midnight: "mi",
+    noon: "n",
+    morning: "in the morning",
+    afternoon: "in the afternoon",
+    evening: "in the evening",
+    night: "at night"
+  },
+  abbreviated: {
+    am: "AM",
+    pm: "PM",
+    midnight: "midnight",
+    noon: "noon",
+    morning: "in the morning",
+    afternoon: "in the afternoon",
+    evening: "in the evening",
+    night: "at night"
+  },
+  wide: {
+    am: "a.m.",
+    pm: "p.m.",
+    midnight: "midnight",
+    noon: "noon",
+    morning: "in the morning",
+    afternoon: "in the afternoon",
+    evening: "in the evening",
+    night: "at night"
+  }
+}, Kt = (e, t) => {
+  const n = Number(e), a = n % 100;
+  if (a > 20 || a < 10)
+    switch (a % 10) {
+      case 1:
+        return n + "st";
+      case 2:
+        return n + "nd";
+      case 3:
+        return n + "rd";
+    }
+  return n + "th";
+}, ot = {
+  ordinalNumber: Kt,
   era: f({
-    values: qt,
+    values: Xt,
     defaultWidth: "wide"
   }),
   quarter: f({
-    values: Ht,
+    values: Rt,
     defaultWidth: "wide",
-    argumentCallback: function(e) {
-      return e - 1;
-    }
+    argumentCallback: (e) => e - 1
   }),
   month: f({
-    values: Gt,
+    values: Jt,
     defaultWidth: "wide"
   }),
   day: f({
-    values: Yt,
+    values: Qt,
     defaultWidth: "wide"
   }),
   dayPeriod: f({
-    values: Bt,
+    values: Zt,
     defaultWidth: "wide",
-    formattingValues: Xt,
+    formattingValues: Ut,
     defaultFormattingWidth: "wide"
   })
 };
-const Qe = Ut;
 function g(e) {
-  return function(t) {
-    var a = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, r = a.width, n = r && e.matchPatterns[r] || e.matchPatterns[e.defaultMatchWidth], i = t.match(n);
+  return (t, n = {}) => {
+    const a = n.width, r = a && e.matchPatterns[a] || e.matchPatterns[e.defaultMatchWidth], i = t.match(r);
     if (!i)
       return null;
-    var o = i[0], u = r && e.parsePatterns[r] || e.parsePatterns[e.defaultParseWidth], s = Array.isArray(u) ? Jt(u, function(l) {
-      return l.test(o);
-    }) : Rt(u, function(l) {
-      return l.test(o);
-    }), d;
-    d = e.valueCallback ? e.valueCallback(s) : s, d = a.valueCallback ? a.valueCallback(d) : d;
-    var m = t.slice(o.length);
-    return {
-      value: d,
-      rest: m
-    };
+    const o = i[0], d = a && e.parsePatterns[a] || e.parsePatterns[e.defaultParseWidth], s = Array.isArray(d) ? tn(d, (u) => u.test(o)) : (
+      // [TODO] -- I challenge you to fix the type
+      en(d, (u) => u.test(o))
+    );
+    let c;
+    c = e.valueCallback ? e.valueCallback(s) : s, c = n.valueCallback ? (
+      // [TODO] -- I challenge you to fix the type
+      n.valueCallback(c)
+    ) : c;
+    const l = t.slice(o.length);
+    return { value: c, rest: l };
   };
 }
-function Rt(e, t) {
-  for (var a in e)
-    if (e.hasOwnProperty(a) && t(e[a]))
-      return a;
+function en(e, t) {
+  for (const n in e)
+    if (Object.prototype.hasOwnProperty.call(e, n) && t(e[n]))
+      return n;
 }
-function Jt(e, t) {
-  for (var a = 0; a < e.length; a++)
-    if (t(e[a]))
-      return a;
+function tn(e, t) {
+  for (let n = 0; n < e.length; n++)
+    if (t(e[n]))
+      return n;
 }
-function q(e) {
-  return function(t) {
-    var a = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, r = t.match(e.matchPattern);
-    if (!r)
-      return null;
-    var n = r[0], i = t.match(e.parsePattern);
-    if (!i)
-      return null;
-    var o = e.valueCallback ? e.valueCallback(i[0]) : i[0];
-    o = a.valueCallback ? a.valueCallback(o) : o;
-    var u = t.slice(n.length);
-    return {
-      value: o,
-      rest: u
-    };
+function B(e) {
+  return (t, n = {}) => {
+    const a = t.match(e.matchPattern);
+    if (!a) return null;
+    const r = a[0], i = t.match(e.parsePattern);
+    if (!i) return null;
+    let o = e.valueCallback ? e.valueCallback(i[0]) : i[0];
+    o = n.valueCallback ? n.valueCallback(o) : o;
+    const d = t.slice(r.length);
+    return { value: o, rest: d };
   };
 }
-var Qt = /^(\d+)(th|st|nd|rd)?/i, Zt = /\d+/i, Kt = {
+const nn = /^(\d+)(th|st|nd|rd)?/i, an = /\d+/i, rn = {
   narrow: /^(b|a)/i,
   abbreviated: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
   wide: /^(before christ|before common era|anno domini|common era)/i
-}, ea = {
+}, on = {
   any: [/^b/i, /^(a|c)/i]
-}, ta = {
+}, sn = {
   narrow: /^[1234]/i,
   abbreviated: /^q[1234]/i,
   wide: /^[1234](th|st|nd|rd)? quarter/i
-}, aa = {
+}, dn = {
   any: [/1/i, /2/i, /3/i, /4/i]
-}, ra = {
+}, un = {
   narrow: /^[jfmasond]/i,
   abbreviated: /^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i,
   wide: /^(january|february|march|april|may|june|july|august|september|october|november|december)/i
-}, na = {
-  narrow: [/^j/i, /^f/i, /^m/i, /^a/i, /^m/i, /^j/i, /^j/i, /^a/i, /^s/i, /^o/i, /^n/i, /^d/i],
-  any: [/^ja/i, /^f/i, /^mar/i, /^ap/i, /^may/i, /^jun/i, /^jul/i, /^au/i, /^s/i, /^o/i, /^n/i, /^d/i]
-}, ia = {
+}, ln = {
+  narrow: [
+    /^j/i,
+    /^f/i,
+    /^m/i,
+    /^a/i,
+    /^m/i,
+    /^j/i,
+    /^j/i,
+    /^a/i,
+    /^s/i,
+    /^o/i,
+    /^n/i,
+    /^d/i
+  ],
+  any: [
+    /^ja/i,
+    /^f/i,
+    /^mar/i,
+    /^ap/i,
+    /^may/i,
+    /^jun/i,
+    /^jul/i,
+    /^au/i,
+    /^s/i,
+    /^o/i,
+    /^n/i,
+    /^d/i
+  ]
+}, cn = {
   narrow: /^[smtwf]/i,
   short: /^(su|mo|tu|we|th|fr|sa)/i,
   abbreviated: /^(sun|mon|tue|wed|thu|fri|sat)/i,
   wide: /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)/i
-}, oa = {
+}, mn = {
   narrow: [/^s/i, /^m/i, /^t/i, /^w/i, /^t/i, /^f/i, /^s/i],
   any: [/^su/i, /^m/i, /^tu/i, /^w/i, /^th/i, /^f/i, /^sa/i]
-}, sa = {
+}, hn = {
   narrow: /^(a|p|mi|n|(in the|at) (morning|afternoon|evening|night))/i,
   any: /^([ap]\.?\s?m\.?|midnight|noon|(in the|at) (morning|afternoon|evening|night))/i
-}, ua = {
+}, fn = {
   any: {
     am: /^a/i,
     pm: /^p/i,
@@ -545,186 +621,138 @@ var Qt = /^(\d+)(th|st|nd|rd)?/i, Zt = /\d+/i, Kt = {
     evening: /evening/i,
     night: /night/i
   }
-}, la = {
-  ordinalNumber: q({
-    matchPattern: Qt,
-    parsePattern: Zt,
-    valueCallback: function(e) {
-      return parseInt(e, 10);
-    }
+}, st = {
+  ordinalNumber: B({
+    matchPattern: nn,
+    parsePattern: an,
+    valueCallback: (e) => parseInt(e, 10)
   }),
   era: g({
-    matchPatterns: Kt,
+    matchPatterns: rn,
     defaultMatchWidth: "wide",
-    parsePatterns: ea,
+    parsePatterns: on,
     defaultParseWidth: "any"
   }),
   quarter: g({
-    matchPatterns: ta,
+    matchPatterns: sn,
     defaultMatchWidth: "wide",
-    parsePatterns: aa,
+    parsePatterns: dn,
     defaultParseWidth: "any",
-    valueCallback: function(e) {
-      return e + 1;
-    }
+    valueCallback: (e) => e + 1
   }),
   month: g({
-    matchPatterns: ra,
+    matchPatterns: un,
     defaultMatchWidth: "wide",
-    parsePatterns: na,
+    parsePatterns: ln,
     defaultParseWidth: "any"
   }),
   day: g({
-    matchPatterns: ia,
+    matchPatterns: cn,
     defaultMatchWidth: "wide",
-    parsePatterns: oa,
+    parsePatterns: mn,
     defaultParseWidth: "any"
   }),
   dayPeriod: g({
-    matchPatterns: sa,
+    matchPatterns: hn,
     defaultMatchWidth: "any",
-    parsePatterns: ua,
+    parsePatterns: fn,
     defaultParseWidth: "any"
   })
-};
-const Ze = la;
-var da = {
+}, gn = {
   code: "en-US",
-  formatDistance: Et,
-  formatLong: At,
-  formatRelative: Je,
-  localize: Qe,
-  match: Ze,
+  formatDistance: It,
+  formatLong: Vt,
+  formatRelative: it,
+  localize: ot,
+  match: st,
   options: {
     weekStartsOn: 0,
     firstWeekContainsDate: 1
   }
 };
-const ma = da;
-function ca(e, t) {
-  D(2, arguments);
-  var a = j(t);
-  return kt(e, -a);
+function pn(e, t) {
+  const n = O(e, t?.in);
+  return Nt(n, zt(n)) + 1;
 }
-var ha = 864e5;
-function fa(e) {
-  D(1, arguments);
-  var t = O(e), a = t.getTime();
-  t.setUTCMonth(0, 1), t.setUTCHours(0, 0, 0, 0);
-  var r = t.getTime(), n = a - r;
-  return Math.floor(n / ha) + 1;
+function wn(e, t) {
+  const n = O(e, t?.in), a = +ue(n) - +At(n);
+  return Math.round(a / nt) + 1;
 }
-function ue(e) {
-  D(1, arguments);
-  var t = 1, a = O(e), r = a.getUTCDay(), n = (r < t ? 7 : 0) + r - t;
-  return a.setUTCDate(a.getUTCDate() - n), a.setUTCHours(0, 0, 0, 0), a;
+function dt(e, t) {
+  const n = O(e, t?.in), a = n.getFullYear(), r = fe(), i = t?.firstWeekContainsDate ?? t?.locale?.options?.firstWeekContainsDate ?? r.firstWeekContainsDate ?? r.locale?.options?.firstWeekContainsDate ?? 1, o = z(t?.in || e, 0);
+  o.setFullYear(a + 1, 0, i), o.setHours(0, 0, 0, 0);
+  const d = J(o, t), s = z(t?.in || e, 0);
+  s.setFullYear(a, 0, i), s.setHours(0, 0, 0, 0);
+  const c = J(s, t);
+  return +n >= +d ? a + 1 : +n >= +c ? a : a - 1;
 }
-function Ke(e) {
-  D(1, arguments);
-  var t = O(e), a = t.getUTCFullYear(), r = new Date(0);
-  r.setUTCFullYear(a + 1, 0, 4), r.setUTCHours(0, 0, 0, 0);
-  var n = ue(r), i = new Date(0);
-  i.setUTCFullYear(a, 0, 4), i.setUTCHours(0, 0, 0, 0);
-  var o = ue(i);
-  return t.getTime() >= n.getTime() ? a + 1 : t.getTime() >= o.getTime() ? a : a - 1;
+function vn(e, t) {
+  const n = fe(), a = t?.firstWeekContainsDate ?? t?.locale?.options?.firstWeekContainsDate ?? n.firstWeekContainsDate ?? n.locale?.options?.firstWeekContainsDate ?? 1, r = dt(e, t), i = z(t?.in || e, 0);
+  return i.setFullYear(r, 0, a), i.setHours(0, 0, 0, 0), J(i, t);
 }
-function ga(e) {
-  D(1, arguments);
-  var t = Ke(e), a = new Date(0);
-  a.setUTCFullYear(t, 0, 4), a.setUTCHours(0, 0, 0, 0);
-  var r = ue(a);
-  return r;
+function yn(e, t) {
+  const n = O(e, t?.in), a = +J(n, t) - +vn(n, t);
+  return Math.round(a / nt) + 1;
 }
-var va = 6048e5;
-function pa(e) {
-  D(1, arguments);
-  var t = O(e), a = ue(t).getTime() - ga(t).getTime();
-  return Math.round(a / va) + 1;
+function k(e, t) {
+  const n = e < 0 ? "-" : "", a = Math.abs(e).toString().padStart(t, "0");
+  return n + a;
 }
-function Q(e, t) {
-  D(1, arguments);
-  var a = t || {}, r = a.locale, n = r && r.options && r.options.weekStartsOn, i = n == null ? 0 : j(n), o = a.weekStartsOn == null ? i : j(a.weekStartsOn);
-  if (!(o >= 0 && o <= 6))
-    throw new RangeError("weekStartsOn must be between 0 and 6 inclusively");
-  var u = O(e), s = u.getUTCDay(), d = (s < o ? 7 : 0) + s - o;
-  return u.setUTCDate(u.getUTCDate() - d), u.setUTCHours(0, 0, 0, 0), u;
-}
-function et(e, t) {
-  D(1, arguments);
-  var a = O(e), r = a.getUTCFullYear(), n = t || {}, i = n.locale, o = i && i.options && i.options.firstWeekContainsDate, u = o == null ? 1 : j(o), s = n.firstWeekContainsDate == null ? u : j(n.firstWeekContainsDate);
-  if (!(s >= 1 && s <= 7))
-    throw new RangeError("firstWeekContainsDate must be between 1 and 7 inclusively");
-  var d = new Date(0);
-  d.setUTCFullYear(r + 1, 0, s), d.setUTCHours(0, 0, 0, 0);
-  var m = Q(d, t), l = new Date(0);
-  l.setUTCFullYear(r, 0, s), l.setUTCHours(0, 0, 0, 0);
-  var h = Q(l, t);
-  return a.getTime() >= m.getTime() ? r + 1 : a.getTime() >= h.getTime() ? r : r - 1;
-}
-function wa(e, t) {
-  D(1, arguments);
-  var a = t || {}, r = a.locale, n = r && r.options && r.options.firstWeekContainsDate, i = n == null ? 1 : j(n), o = a.firstWeekContainsDate == null ? i : j(a.firstWeekContainsDate), u = et(e, t), s = new Date(0);
-  s.setUTCFullYear(u, 0, o), s.setUTCHours(0, 0, 0, 0);
-  var d = Q(s, t);
-  return d;
-}
-var ba = 6048e5;
-function ya(e, t) {
-  D(1, arguments);
-  var a = O(e), r = Q(a, t).getTime() - wa(a, t).getTime();
-  return Math.round(r / ba) + 1;
-}
-function P(e, t) {
-  for (var a = e < 0 ? "-" : "", r = Math.abs(e).toString(); r.length < t; )
-    r = "0" + r;
-  return a + r;
-}
-var Ma = {
-  y: function(e, t) {
-    var a = e.getUTCFullYear(), r = a > 0 ? a : 1 - a;
-    return P(t === "yy" ? r % 100 : r, t.length);
+const Y = {
+  // Year
+  y(e, t) {
+    const n = e.getFullYear(), a = n > 0 ? n : 1 - n;
+    return k(t === "yy" ? a % 100 : a, t.length);
   },
-  M: function(e, t) {
-    var a = e.getUTCMonth();
-    return t === "M" ? String(a + 1) : P(a + 1, 2);
+  // Month
+  M(e, t) {
+    const n = e.getMonth();
+    return t === "M" ? String(n + 1) : k(n + 1, 2);
   },
-  d: function(e, t) {
-    return P(e.getUTCDate(), t.length);
+  // Day of the month
+  d(e, t) {
+    return k(e.getDate(), t.length);
   },
-  a: function(e, t) {
-    var a = e.getUTCHours() / 12 >= 1 ? "pm" : "am";
+  // AM or PM
+  a(e, t) {
+    const n = e.getHours() / 12 >= 1 ? "pm" : "am";
     switch (t) {
       case "a":
       case "aa":
-        return a.toUpperCase();
+        return n.toUpperCase();
       case "aaa":
-        return a;
+        return n;
       case "aaaaa":
-        return a[0];
+        return n[0];
       case "aaaa":
       default:
-        return a === "am" ? "a.m." : "p.m.";
+        return n === "am" ? "a.m." : "p.m.";
     }
   },
-  h: function(e, t) {
-    return P(e.getUTCHours() % 12 || 12, t.length);
+  // Hour [1-12]
+  h(e, t) {
+    return k(e.getHours() % 12 || 12, t.length);
   },
-  H: function(e, t) {
-    return P(e.getUTCHours(), t.length);
+  // Hour [0-23]
+  H(e, t) {
+    return k(e.getHours(), t.length);
   },
-  m: function(e, t) {
-    return P(e.getUTCMinutes(), t.length);
+  // Minute
+  m(e, t) {
+    return k(e.getMinutes(), t.length);
   },
-  s: function(e, t) {
-    return P(e.getUTCSeconds(), t.length);
+  // Second
+  s(e, t) {
+    return k(e.getSeconds(), t.length);
   },
-  S: function(e, t) {
-    var a = t.length, r = e.getUTCMilliseconds(), n = Math.floor(r * Math.pow(10, a - 3));
-    return P(n, t.length);
+  // Fraction of second
+  S(e, t) {
+    const n = t.length, a = e.getMilliseconds(), r = Math.trunc(
+      a * Math.pow(10, n - 3)
+    );
+    return k(r, t.length);
   }
-};
-const H = Ma;
-var V = {
+}, ee = {
   am: "am",
   pm: "pm",
   midnight: "midnight",
@@ -733,676 +761,627 @@ var V = {
   afternoon: "afternoon",
   evening: "evening",
   night: "night"
-}, Pa = {
-  G: function(e, t, a) {
-    var r = e.getUTCFullYear() > 0 ? 1 : 0;
+}, Le = {
+  // Era
+  G: function(e, t, n) {
+    const a = e.getFullYear() > 0 ? 1 : 0;
     switch (t) {
       case "G":
       case "GG":
       case "GGG":
-        return a.era(r, {
-          width: "abbreviated"
-        });
+        return n.era(a, { width: "abbreviated" });
       case "GGGGG":
-        return a.era(r, {
-          width: "narrow"
-        });
+        return n.era(a, { width: "narrow" });
       case "GGGG":
       default:
-        return a.era(r, {
-          width: "wide"
-        });
+        return n.era(a, { width: "wide" });
     }
   },
-  y: function(e, t, a) {
+  // Year
+  y: function(e, t, n) {
     if (t === "yo") {
-      var r = e.getUTCFullYear(), n = r > 0 ? r : 1 - r;
-      return a.ordinalNumber(n, {
-        unit: "year"
-      });
+      const a = e.getFullYear(), r = a > 0 ? a : 1 - a;
+      return n.ordinalNumber(r, { unit: "year" });
     }
-    return H.y(e, t);
+    return Y.y(e, t);
   },
-  Y: function(e, t, a, r) {
-    var n = et(e, r), i = n > 0 ? n : 1 - n;
+  // Local week-numbering year
+  Y: function(e, t, n, a) {
+    const r = dt(e, a), i = r > 0 ? r : 1 - r;
     if (t === "YY") {
-      var o = i % 100;
-      return P(o, 2);
+      const o = i % 100;
+      return k(o, 2);
     }
-    return t === "Yo" ? a.ordinalNumber(i, {
-      unit: "year"
-    }) : P(i, t.length);
+    return t === "Yo" ? n.ordinalNumber(i, { unit: "year" }) : k(i, t.length);
   },
+  // ISO week-numbering year
   R: function(e, t) {
-    var a = Ke(e);
-    return P(a, t.length);
+    const n = at(e);
+    return k(n, t.length);
   },
+  // Extended year. This is a single number designating the year of this calendar system.
+  // The main difference between `y` and `u` localizers are B.C. years:
+  // | Year | `y` | `u` |
+  // |------|-----|-----|
+  // | AC 1 |   1 |   1 |
+  // | BC 1 |   1 |   0 |
+  // | BC 2 |   2 |  -1 |
+  // Also `yy` always returns the last two digits of a year,
+  // while `uu` pads single digit years to 2 characters and returns other years unchanged.
   u: function(e, t) {
-    var a = e.getUTCFullYear();
-    return P(a, t.length);
+    const n = e.getFullYear();
+    return k(n, t.length);
   },
-  Q: function(e, t, a) {
-    var r = Math.ceil((e.getUTCMonth() + 1) / 3);
+  // Quarter
+  Q: function(e, t, n) {
+    const a = Math.ceil((e.getMonth() + 1) / 3);
     switch (t) {
       case "Q":
-        return String(r);
+        return String(a);
       case "QQ":
-        return P(r, 2);
+        return k(a, 2);
       case "Qo":
-        return a.ordinalNumber(r, {
-          unit: "quarter"
-        });
+        return n.ordinalNumber(a, { unit: "quarter" });
       case "QQQ":
-        return a.quarter(r, {
+        return n.quarter(a, {
           width: "abbreviated",
           context: "formatting"
         });
       case "QQQQQ":
-        return a.quarter(r, {
+        return n.quarter(a, {
           width: "narrow",
           context: "formatting"
         });
       case "QQQQ":
       default:
-        return a.quarter(r, {
+        return n.quarter(a, {
           width: "wide",
           context: "formatting"
         });
     }
   },
-  q: function(e, t, a) {
-    var r = Math.ceil((e.getUTCMonth() + 1) / 3);
+  // Stand-alone quarter
+  q: function(e, t, n) {
+    const a = Math.ceil((e.getMonth() + 1) / 3);
     switch (t) {
       case "q":
-        return String(r);
+        return String(a);
       case "qq":
-        return P(r, 2);
+        return k(a, 2);
       case "qo":
-        return a.ordinalNumber(r, {
-          unit: "quarter"
-        });
+        return n.ordinalNumber(a, { unit: "quarter" });
       case "qqq":
-        return a.quarter(r, {
+        return n.quarter(a, {
           width: "abbreviated",
           context: "standalone"
         });
       case "qqqqq":
-        return a.quarter(r, {
+        return n.quarter(a, {
           width: "narrow",
           context: "standalone"
         });
       case "qqqq":
       default:
-        return a.quarter(r, {
+        return n.quarter(a, {
           width: "wide",
           context: "standalone"
         });
     }
   },
-  M: function(e, t, a) {
-    var r = e.getUTCMonth();
+  // Month
+  M: function(e, t, n) {
+    const a = e.getMonth();
     switch (t) {
       case "M":
       case "MM":
-        return H.M(e, t);
+        return Y.M(e, t);
       case "Mo":
-        return a.ordinalNumber(r + 1, {
-          unit: "month"
-        });
+        return n.ordinalNumber(a + 1, { unit: "month" });
       case "MMM":
-        return a.month(r, {
+        return n.month(a, {
           width: "abbreviated",
           context: "formatting"
         });
       case "MMMMM":
-        return a.month(r, {
+        return n.month(a, {
           width: "narrow",
           context: "formatting"
         });
       case "MMMM":
       default:
-        return a.month(r, {
-          width: "wide",
-          context: "formatting"
-        });
+        return n.month(a, { width: "wide", context: "formatting" });
     }
   },
-  L: function(e, t, a) {
-    var r = e.getUTCMonth();
+  // Stand-alone month
+  L: function(e, t, n) {
+    const a = e.getMonth();
     switch (t) {
       case "L":
-        return String(r + 1);
+        return String(a + 1);
       case "LL":
-        return P(r + 1, 2);
+        return k(a + 1, 2);
       case "Lo":
-        return a.ordinalNumber(r + 1, {
-          unit: "month"
-        });
+        return n.ordinalNumber(a + 1, { unit: "month" });
       case "LLL":
-        return a.month(r, {
+        return n.month(a, {
           width: "abbreviated",
           context: "standalone"
         });
       case "LLLLL":
-        return a.month(r, {
+        return n.month(a, {
           width: "narrow",
           context: "standalone"
         });
       case "LLLL":
       default:
-        return a.month(r, {
-          width: "wide",
-          context: "standalone"
-        });
+        return n.month(a, { width: "wide", context: "standalone" });
     }
   },
-  w: function(e, t, a, r) {
-    var n = ya(e, r);
-    return t === "wo" ? a.ordinalNumber(n, {
-      unit: "week"
-    }) : P(n, t.length);
+  // Local week of year
+  w: function(e, t, n, a) {
+    const r = yn(e, a);
+    return t === "wo" ? n.ordinalNumber(r, { unit: "week" }) : k(r, t.length);
   },
-  I: function(e, t, a) {
-    var r = pa(e);
-    return t === "Io" ? a.ordinalNumber(r, {
-      unit: "week"
-    }) : P(r, t.length);
+  // ISO week of year
+  I: function(e, t, n) {
+    const a = wn(e);
+    return t === "Io" ? n.ordinalNumber(a, { unit: "week" }) : k(a, t.length);
   },
-  d: function(e, t, a) {
-    return t === "do" ? a.ordinalNumber(e.getUTCDate(), {
-      unit: "date"
-    }) : H.d(e, t);
+  // Day of the month
+  d: function(e, t, n) {
+    return t === "do" ? n.ordinalNumber(e.getDate(), { unit: "date" }) : Y.d(e, t);
   },
-  D: function(e, t, a) {
-    var r = fa(e);
-    return t === "Do" ? a.ordinalNumber(r, {
-      unit: "dayOfYear"
-    }) : P(r, t.length);
+  // Day of year
+  D: function(e, t, n) {
+    const a = pn(e);
+    return t === "Do" ? n.ordinalNumber(a, { unit: "dayOfYear" }) : k(a, t.length);
   },
-  E: function(e, t, a) {
-    var r = e.getUTCDay();
+  // Day of week
+  E: function(e, t, n) {
+    const a = e.getDay();
     switch (t) {
       case "E":
       case "EE":
       case "EEE":
-        return a.day(r, {
+        return n.day(a, {
           width: "abbreviated",
           context: "formatting"
         });
       case "EEEEE":
-        return a.day(r, {
+        return n.day(a, {
           width: "narrow",
           context: "formatting"
         });
       case "EEEEEE":
-        return a.day(r, {
+        return n.day(a, {
           width: "short",
           context: "formatting"
         });
       case "EEEE":
       default:
-        return a.day(r, {
+        return n.day(a, {
           width: "wide",
           context: "formatting"
         });
     }
   },
-  e: function(e, t, a, r) {
-    var n = e.getUTCDay(), i = (n - r.weekStartsOn + 8) % 7 || 7;
+  // Local day of week
+  e: function(e, t, n, a) {
+    const r = e.getDay(), i = (r - a.weekStartsOn + 8) % 7 || 7;
     switch (t) {
       case "e":
         return String(i);
       case "ee":
-        return P(i, 2);
+        return k(i, 2);
       case "eo":
-        return a.ordinalNumber(i, {
-          unit: "day"
-        });
+        return n.ordinalNumber(i, { unit: "day" });
       case "eee":
-        return a.day(n, {
+        return n.day(r, {
           width: "abbreviated",
           context: "formatting"
         });
       case "eeeee":
-        return a.day(n, {
+        return n.day(r, {
           width: "narrow",
           context: "formatting"
         });
       case "eeeeee":
-        return a.day(n, {
+        return n.day(r, {
           width: "short",
           context: "formatting"
         });
       case "eeee":
       default:
-        return a.day(n, {
+        return n.day(r, {
           width: "wide",
           context: "formatting"
         });
     }
   },
-  c: function(e, t, a, r) {
-    var n = e.getUTCDay(), i = (n - r.weekStartsOn + 8) % 7 || 7;
+  // Stand-alone local day of week
+  c: function(e, t, n, a) {
+    const r = e.getDay(), i = (r - a.weekStartsOn + 8) % 7 || 7;
     switch (t) {
       case "c":
         return String(i);
       case "cc":
-        return P(i, t.length);
+        return k(i, t.length);
       case "co":
-        return a.ordinalNumber(i, {
-          unit: "day"
-        });
+        return n.ordinalNumber(i, { unit: "day" });
       case "ccc":
-        return a.day(n, {
+        return n.day(r, {
           width: "abbreviated",
           context: "standalone"
         });
       case "ccccc":
-        return a.day(n, {
+        return n.day(r, {
           width: "narrow",
           context: "standalone"
         });
       case "cccccc":
-        return a.day(n, {
+        return n.day(r, {
           width: "short",
           context: "standalone"
         });
       case "cccc":
       default:
-        return a.day(n, {
+        return n.day(r, {
           width: "wide",
           context: "standalone"
         });
     }
   },
-  i: function(e, t, a) {
-    var r = e.getUTCDay(), n = r === 0 ? 7 : r;
+  // ISO day of week
+  i: function(e, t, n) {
+    const a = e.getDay(), r = a === 0 ? 7 : a;
     switch (t) {
       case "i":
-        return String(n);
+        return String(r);
       case "ii":
-        return P(n, t.length);
+        return k(r, t.length);
       case "io":
-        return a.ordinalNumber(n, {
-          unit: "day"
-        });
+        return n.ordinalNumber(r, { unit: "day" });
       case "iii":
-        return a.day(r, {
+        return n.day(a, {
           width: "abbreviated",
           context: "formatting"
         });
       case "iiiii":
-        return a.day(r, {
+        return n.day(a, {
           width: "narrow",
           context: "formatting"
         });
       case "iiiiii":
-        return a.day(r, {
+        return n.day(a, {
           width: "short",
           context: "formatting"
         });
       case "iiii":
       default:
-        return a.day(r, {
+        return n.day(a, {
           width: "wide",
           context: "formatting"
         });
     }
   },
-  a: function(e, t, a) {
-    var r = e.getUTCHours(), n = r / 12 >= 1 ? "pm" : "am";
+  // AM or PM
+  a: function(e, t, n) {
+    const r = e.getHours() / 12 >= 1 ? "pm" : "am";
     switch (t) {
       case "a":
       case "aa":
-        return a.dayPeriod(n, {
+        return n.dayPeriod(r, {
           width: "abbreviated",
           context: "formatting"
         });
       case "aaa":
-        return a.dayPeriod(n, {
+        return n.dayPeriod(r, {
           width: "abbreviated",
           context: "formatting"
         }).toLowerCase();
       case "aaaaa":
-        return a.dayPeriod(n, {
+        return n.dayPeriod(r, {
           width: "narrow",
           context: "formatting"
         });
       case "aaaa":
       default:
-        return a.dayPeriod(n, {
+        return n.dayPeriod(r, {
           width: "wide",
           context: "formatting"
         });
     }
   },
-  b: function(e, t, a) {
-    var r = e.getUTCHours(), n;
-    switch (r === 12 ? n = V.noon : r === 0 ? n = V.midnight : n = r / 12 >= 1 ? "pm" : "am", t) {
+  // AM, PM, midnight, noon
+  b: function(e, t, n) {
+    const a = e.getHours();
+    let r;
+    switch (a === 12 ? r = ee.noon : a === 0 ? r = ee.midnight : r = a / 12 >= 1 ? "pm" : "am", t) {
       case "b":
       case "bb":
-        return a.dayPeriod(n, {
+        return n.dayPeriod(r, {
           width: "abbreviated",
           context: "formatting"
         });
       case "bbb":
-        return a.dayPeriod(n, {
+        return n.dayPeriod(r, {
           width: "abbreviated",
           context: "formatting"
         }).toLowerCase();
       case "bbbbb":
-        return a.dayPeriod(n, {
+        return n.dayPeriod(r, {
           width: "narrow",
           context: "formatting"
         });
       case "bbbb":
       default:
-        return a.dayPeriod(n, {
+        return n.dayPeriod(r, {
           width: "wide",
           context: "formatting"
         });
     }
   },
-  B: function(e, t, a) {
-    var r = e.getUTCHours(), n;
-    switch (r >= 17 ? n = V.evening : r >= 12 ? n = V.afternoon : r >= 4 ? n = V.morning : n = V.night, t) {
+  // in the morning, in the afternoon, in the evening, at night
+  B: function(e, t, n) {
+    const a = e.getHours();
+    let r;
+    switch (a >= 17 ? r = ee.evening : a >= 12 ? r = ee.afternoon : a >= 4 ? r = ee.morning : r = ee.night, t) {
       case "B":
       case "BB":
       case "BBB":
-        return a.dayPeriod(n, {
+        return n.dayPeriod(r, {
           width: "abbreviated",
           context: "formatting"
         });
       case "BBBBB":
-        return a.dayPeriod(n, {
+        return n.dayPeriod(r, {
           width: "narrow",
           context: "formatting"
         });
       case "BBBB":
       default:
-        return a.dayPeriod(n, {
+        return n.dayPeriod(r, {
           width: "wide",
           context: "formatting"
         });
     }
   },
-  h: function(e, t, a) {
+  // Hour [1-12]
+  h: function(e, t, n) {
     if (t === "ho") {
-      var r = e.getUTCHours() % 12;
-      return r === 0 && (r = 12), a.ordinalNumber(r, {
-        unit: "hour"
-      });
+      let a = e.getHours() % 12;
+      return a === 0 && (a = 12), n.ordinalNumber(a, { unit: "hour" });
     }
-    return H.h(e, t);
+    return Y.h(e, t);
   },
-  H: function(e, t, a) {
-    return t === "Ho" ? a.ordinalNumber(e.getUTCHours(), {
-      unit: "hour"
-    }) : H.H(e, t);
+  // Hour [0-23]
+  H: function(e, t, n) {
+    return t === "Ho" ? n.ordinalNumber(e.getHours(), { unit: "hour" }) : Y.H(e, t);
   },
-  K: function(e, t, a) {
-    var r = e.getUTCHours() % 12;
-    return t === "Ko" ? a.ordinalNumber(r, {
-      unit: "hour"
-    }) : P(r, t.length);
+  // Hour [0-11]
+  K: function(e, t, n) {
+    const a = e.getHours() % 12;
+    return t === "Ko" ? n.ordinalNumber(a, { unit: "hour" }) : k(a, t.length);
   },
-  k: function(e, t, a) {
-    var r = e.getUTCHours();
-    return r === 0 && (r = 24), t === "ko" ? a.ordinalNumber(r, {
-      unit: "hour"
-    }) : P(r, t.length);
+  // Hour [1-24]
+  k: function(e, t, n) {
+    let a = e.getHours();
+    return a === 0 && (a = 24), t === "ko" ? n.ordinalNumber(a, { unit: "hour" }) : k(a, t.length);
   },
-  m: function(e, t, a) {
-    return t === "mo" ? a.ordinalNumber(e.getUTCMinutes(), {
-      unit: "minute"
-    }) : H.m(e, t);
+  // Minute
+  m: function(e, t, n) {
+    return t === "mo" ? n.ordinalNumber(e.getMinutes(), { unit: "minute" }) : Y.m(e, t);
   },
-  s: function(e, t, a) {
-    return t === "so" ? a.ordinalNumber(e.getUTCSeconds(), {
-      unit: "second"
-    }) : H.s(e, t);
+  // Second
+  s: function(e, t, n) {
+    return t === "so" ? n.ordinalNumber(e.getSeconds(), { unit: "second" }) : Y.s(e, t);
   },
+  // Fraction of second
   S: function(e, t) {
-    return H.S(e, t);
+    return Y.S(e, t);
   },
-  X: function(e, t, a, r) {
-    var n = r._originalDate || e, i = n.getTimezoneOffset();
-    if (i === 0)
+  // Timezone (ISO-8601. If offset is 0, output is always `'Z'`)
+  X: function(e, t, n) {
+    const a = e.getTimezoneOffset();
+    if (a === 0)
       return "Z";
     switch (t) {
       case "X":
-        return Oe(i);
+        return Fe(a);
       case "XXXX":
       case "XX":
-        return Y(i);
+        return U(a);
       case "XXXXX":
       case "XXX":
       default:
-        return Y(i, ":");
+        return U(a, ":");
     }
   },
-  x: function(e, t, a, r) {
-    var n = r._originalDate || e, i = n.getTimezoneOffset();
+  // Timezone (ISO-8601. If offset is 0, output is `'+00:00'` or equivalent)
+  x: function(e, t, n) {
+    const a = e.getTimezoneOffset();
     switch (t) {
       case "x":
-        return Oe(i);
+        return Fe(a);
       case "xxxx":
       case "xx":
-        return Y(i);
+        return U(a);
       case "xxxxx":
       case "xxx":
       default:
-        return Y(i, ":");
+        return U(a, ":");
     }
   },
-  O: function(e, t, a, r) {
-    var n = r._originalDate || e, i = n.getTimezoneOffset();
+  // Timezone (GMT)
+  O: function(e, t, n) {
+    const a = e.getTimezoneOffset();
     switch (t) {
       case "O":
       case "OO":
       case "OOO":
-        return "GMT" + Te(i, ":");
+        return "GMT" + _e(a, ":");
       case "OOOO":
       default:
-        return "GMT" + Y(i, ":");
+        return "GMT" + U(a, ":");
     }
   },
-  z: function(e, t, a, r) {
-    var n = r._originalDate || e, i = n.getTimezoneOffset();
+  // Timezone (specific non-location)
+  z: function(e, t, n) {
+    const a = e.getTimezoneOffset();
     switch (t) {
       case "z":
       case "zz":
       case "zzz":
-        return "GMT" + Te(i, ":");
+        return "GMT" + _e(a, ":");
       case "zzzz":
       default:
-        return "GMT" + Y(i, ":");
+        return "GMT" + U(a, ":");
     }
   },
-  t: function(e, t, a, r) {
-    var n = r._originalDate || e, i = Math.floor(n.getTime() / 1e3);
-    return P(i, t.length);
+  // Seconds timestamp
+  t: function(e, t, n) {
+    const a = Math.trunc(+e / 1e3);
+    return k(a, t.length);
   },
-  T: function(e, t, a, r) {
-    var n = r._originalDate || e, i = n.getTime();
-    return P(i, t.length);
+  // Milliseconds timestamp
+  T: function(e, t, n) {
+    return k(+e, t.length);
   }
 };
-function Te(e, t) {
-  var a = e > 0 ? "-" : "+", r = Math.abs(e), n = Math.floor(r / 60), i = r % 60;
-  if (i === 0)
-    return a + String(n);
-  var o = t || "";
-  return a + String(n) + o + P(i, 2);
+function _e(e, t = "") {
+  const n = e > 0 ? "-" : "+", a = Math.abs(e), r = Math.trunc(a / 60), i = a % 60;
+  return i === 0 ? n + String(r) : n + String(r) + t + k(i, 2);
 }
-function Oe(e, t) {
-  if (e % 60 === 0) {
-    var a = e > 0 ? "-" : "+";
-    return a + P(Math.abs(e) / 60, 2);
-  }
-  return Y(e, t);
+function Fe(e, t) {
+  return e % 60 === 0 ? (e > 0 ? "-" : "+") + k(Math.abs(e) / 60, 2) : U(e, t);
 }
-function Y(e, t) {
-  var a = t || "", r = e > 0 ? "-" : "+", n = Math.abs(e), i = P(Math.floor(n / 60), 2), o = P(n % 60, 2);
-  return r + i + a + o;
+function U(e, t = "") {
+  const n = e > 0 ? "-" : "+", a = Math.abs(e), r = k(Math.trunc(a / 60), 2), i = k(a % 60, 2);
+  return n + r + t + i;
 }
-const ka = Pa;
-function xe(e, t) {
+const ze = (e, t) => {
   switch (e) {
     case "P":
-      return t.date({
-        width: "short"
-      });
+      return t.date({ width: "short" });
     case "PP":
-      return t.date({
-        width: "medium"
-      });
+      return t.date({ width: "medium" });
     case "PPP":
-      return t.date({
-        width: "long"
-      });
+      return t.date({ width: "long" });
     case "PPPP":
     default:
-      return t.date({
-        width: "full"
-      });
+      return t.date({ width: "full" });
   }
-}
-function tt(e, t) {
+}, ut = (e, t) => {
   switch (e) {
     case "p":
-      return t.time({
-        width: "short"
-      });
+      return t.time({ width: "short" });
     case "pp":
-      return t.time({
-        width: "medium"
-      });
+      return t.time({ width: "medium" });
     case "ppp":
-      return t.time({
-        width: "long"
-      });
+      return t.time({ width: "long" });
     case "pppp":
     default:
-      return t.time({
-        width: "full"
-      });
+      return t.time({ width: "full" });
   }
-}
-function $a(e, t) {
-  var a = e.match(/(P+)(p+)?/) || [], r = a[1], n = a[2];
-  if (!n)
-    return xe(e, t);
-  var i;
-  switch (r) {
+}, bn = (e, t) => {
+  const n = e.match(/(P+)(p+)?/) || [], a = n[1], r = n[2];
+  if (!r)
+    return ze(e, t);
+  let i;
+  switch (a) {
     case "P":
-      i = t.dateTime({
-        width: "short"
-      });
+      i = t.dateTime({ width: "short" });
       break;
     case "PP":
-      i = t.dateTime({
-        width: "medium"
-      });
+      i = t.dateTime({ width: "medium" });
       break;
     case "PPP":
-      i = t.dateTime({
-        width: "long"
-      });
+      i = t.dateTime({ width: "long" });
       break;
     case "PPPP":
     default:
-      i = t.dateTime({
-        width: "full"
-      });
+      i = t.dateTime({ width: "full" });
       break;
   }
-  return i.replace("{{date}}", xe(r, t)).replace("{{time}}", tt(n, t));
+  return i.replace("{{date}}", ze(a, t)).replace("{{time}}", ut(r, t));
+}, Mn = {
+  p: ut,
+  P: bn
+}, Pn = /^D+$/, kn = /^Y+$/, Dn = ["D", "DD", "YY", "YYYY"];
+function $n(e) {
+  return Pn.test(e);
 }
-var Da = {
-  p: tt,
-  P: $a
-};
-const Ca = Da;
-var Sa = ["D", "DD"], Wa = ["YY", "YYYY"];
-function Ta(e) {
-  return Sa.indexOf(e) !== -1;
+function Sn(e) {
+  return kn.test(e);
 }
-function Oa(e) {
-  return Wa.indexOf(e) !== -1;
+function Wn(e, t, n) {
+  const a = Cn(e, t, n);
+  if (console.warn(a), Dn.includes(e)) throw new RangeError(a);
 }
-function Ne(e, t, a) {
-  if (e === "YYYY")
-    throw new RangeError("Use `yyyy` instead of `YYYY` (in `".concat(t, "`) for formatting years to the input `").concat(a, "`; see: https://git.io/fxCyr"));
-  if (e === "YY")
-    throw new RangeError("Use `yy` instead of `YY` (in `".concat(t, "`) for formatting years to the input `").concat(a, "`; see: https://git.io/fxCyr"));
-  if (e === "D")
-    throw new RangeError("Use `d` instead of `D` (in `".concat(t, "`) for formatting days of the month to the input `").concat(a, "`; see: https://git.io/fxCyr"));
-  if (e === "DD")
-    throw new RangeError("Use `dd` instead of `DD` (in `".concat(t, "`) for formatting days of the month to the input `").concat(a, "`; see: https://git.io/fxCyr"));
+function Cn(e, t, n) {
+  const a = e[0] === "Y" ? "years" : "days of the month";
+  return `Use \`${e.toLowerCase()}\` instead of \`${e}\` (in \`${t}\`) for formatting ${a} to the input \`${n}\`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md`;
 }
-var xa = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g, Na = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g, Ea = /^'([^]*?)'?$/, ja = /''/g, La = /[a-zA-Z]/;
-function G(e, t, a) {
-  D(2, arguments);
-  var r = String(t), n = a || {}, i = n.locale || ma, o = i.options && i.options.firstWeekContainsDate, u = o == null ? 1 : j(o), s = n.firstWeekContainsDate == null ? u : j(n.firstWeekContainsDate);
-  if (!(s >= 1 && s <= 7))
-    throw new RangeError("firstWeekContainsDate must be between 1 and 7 inclusively");
-  var d = i.options && i.options.weekStartsOn, m = d == null ? 0 : j(d), l = n.weekStartsOn == null ? m : j(n.weekStartsOn);
-  if (!(l >= 0 && l <= 6))
-    throw new RangeError("weekStartsOn must be between 0 and 6 inclusively");
-  if (!i.localize)
-    throw new RangeError("locale must contain localize property");
-  if (!i.formatLong)
-    throw new RangeError("locale must contain formatLong property");
-  var h = O(e);
-  if (!Wt(h))
+const On = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g, En = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g, Tn = /^'([^]*?)'?$/, Nn = /''/g, An = /[a-zA-Z]/;
+function Q(e, t, n) {
+  const a = fe(), r = n?.locale ?? a.locale ?? gn, i = n?.firstWeekContainsDate ?? n?.locale?.options?.firstWeekContainsDate ?? a.firstWeekContainsDate ?? a.locale?.options?.firstWeekContainsDate ?? 1, o = n?.weekStartsOn ?? n?.locale?.options?.weekStartsOn ?? a.weekStartsOn ?? a.locale?.options?.weekStartsOn ?? 0, d = O(e, n?.in);
+  if (!Lt(d))
     throw new RangeError("Invalid time value");
-  var b = Dt(h), p = ca(h, b), v = {
-    firstWeekContainsDate: s,
-    weekStartsOn: l,
-    locale: i,
-    _originalDate: h
-  }, w = r.match(Na).map(function(k) {
-    var W = k[0];
-    if (W === "p" || W === "P") {
-      var z = Ca[W];
-      return z(k, i.formatLong, v);
+  let s = t.match(En).map((l) => {
+    const u = l[0];
+    if (u === "p" || u === "P") {
+      const h = Mn[u];
+      return h(l, r.formatLong);
     }
-    return k;
-  }).join("").match(xa).map(function(k) {
-    if (k === "''")
-      return "'";
-    var W = k[0];
-    if (W === "'")
-      return za(k);
-    var z = ka[W];
-    if (z)
-      return !n.useAdditionalWeekYearTokens && Oa(k) && Ne(k, t, e), !n.useAdditionalDayOfYearTokens && Ta(k) && Ne(k, t, e), z(p, k, i.localize, v);
-    if (W.match(La))
-      throw new RangeError("Format string contains an unescaped latin alphabet character `" + W + "`");
-    return k;
+    return l;
+  }).join("").match(On).map((l) => {
+    if (l === "''")
+      return { isToken: !1, value: "'" };
+    const u = l[0];
+    if (u === "'")
+      return { isToken: !1, value: xn(l) };
+    if (Le[u])
+      return { isToken: !0, value: l };
+    if (u.match(An))
+      throw new RangeError(
+        "Format string contains an unescaped latin alphabet character `" + u + "`"
+      );
+    return { isToken: !1, value: l };
+  });
+  r.localize.preprocessor && (s = r.localize.preprocessor(d, s));
+  const c = {
+    firstWeekContainsDate: i,
+    weekStartsOn: o,
+    locale: r
+  };
+  return s.map((l) => {
+    if (!l.isToken) return l.value;
+    const u = l.value;
+    (!n?.useAdditionalWeekYearTokens && Sn(u) || !n?.useAdditionalDayOfYearTokens && $n(u)) && Wn(u, t, String(e));
+    const h = Le[u[0]];
+    return h(d, u, r.localize, c);
   }).join("");
-  return w;
 }
-function za(e) {
-  return e.match(Ea)[1].replace(ja, "'");
+function xn(e) {
+  const t = e.match(Tn);
+  return t ? t[1].replace(Nn, "'") : e;
 }
-function Ee(e) {
-  D(1, arguments);
-  var t = O(e), a = t.getDay();
-  return a;
+function qe(e, t) {
+  return O(e, t?.in).getDay();
 }
-function _a(e) {
-  D(1, arguments);
-  var t = O(e), a = t.getFullYear(), r = t.getMonth(), n = new Date(0);
-  return n.setFullYear(a, r + 1, 0), n.setHours(0, 0, 0, 0), n.getDate();
+function jn(e, t) {
+  const n = O(e, t?.in), a = n.getFullYear(), r = n.getMonth(), i = z(n, 0);
+  return i.setFullYear(a, r + 1, 0), i.setHours(0, 0, 0, 0), i.getDate();
 }
-function le(e, t, a) {
-  D(2, arguments);
-  var r = Q(e, a), n = Q(t, a);
-  return r.getTime() === n.getTime();
+function le(e, t, n) {
+  const [a, r] = rt(
+    n?.in,
+    e,
+    t
+  );
+  return +J(a, n) == +J(r, n);
 }
-var U = {
+const Ln = {
   lessThanXSeconds: {
     one: "menys d'un segon",
     eleven: "menys d'onze segons",
@@ -1459,92 +1438,136 @@ var U = {
     other: "{{count}} anys"
   },
   overXYears: {
-    one: "m\xE9s d'un any",
-    eleven: "m\xE9s d'onze anys",
-    other: "m\xE9s de {{count}} anys"
+    one: "més d'un any",
+    eleven: "més d'onze anys",
+    other: "més de {{count}} anys"
   },
   almostXYears: {
-    one: "gaireb\xE9 un any",
-    other: "gaireb\xE9 {{count}} anys"
+    one: "gairebé un any",
+    other: "gairebé {{count}} anys"
   }
-};
-function Aa(e, t, a) {
-  a = a || {};
-  var r;
-  return typeof U[e] == "string" ? r = U[e] : t === 1 ? r = U[e].one : t === 11 && U[e].eleven ? r = U[e].eleven : r = U[e].other.replace("{{count}}", t), a.addSuffix ? a.comparison > 0 ? "en " + r : "fa " + r : r;
-}
-var Fa = {
+}, _n = (e, t, n) => {
+  let a;
+  const r = Ln[e];
+  return typeof r == "string" ? a = r : t === 1 ? a = r.one : t === 11 && r.eleven ? a = r.eleven : a = r.other.replace("{{count}}", String(t)), n?.addSuffix ? n.comparison && n.comparison > 0 ? "en " + a : "fa " + a : a;
+}, Fn = {
   full: "EEEE, d 'de' MMMM y",
   long: "d 'de' MMMM y",
   medium: "d MMM y",
   short: "dd/MM/y"
-}, Ia = {
+}, zn = {
   full: "HH:mm:ss zzzz",
   long: "HH:mm:ss z",
   medium: "HH:mm:ss",
   short: "HH:mm"
-}, qa = {
+}, qn = {
   full: "{{date}} 'a les' {{time}}",
   long: "{{date}} 'a les' {{time}}",
   medium: "{{date}}, {{time}}",
   short: "{{date}}, {{time}}"
-}, Ha = {
+}, In = {
   date: M({
-    formats: Fa,
+    formats: Fn,
     defaultWidth: "full"
   }),
   time: M({
-    formats: Ia,
+    formats: zn,
     defaultWidth: "full"
   }),
   dateTime: M({
-    formats: qa,
+    formats: qn,
     defaultWidth: "full"
   })
-};
-const Ga = Ha;
-var Ya = {
+}, Hn = {
   lastWeek: "'el' eeee 'passat a la' LT",
   yesterday: "'ahir a la' p",
   today: "'avui a la' p",
-  tomorrow: "'dem\xE0 a la' p",
+  tomorrow: "'demà a la' p",
   nextWeek: "eeee 'a la' p",
   other: "P"
-}, Ba = {
+}, Bn = {
   lastWeek: "'el' eeee 'passat a les' p",
   yesterday: "'ahir a les' p",
   today: "'avui a les' p",
-  tomorrow: "'dem\xE0 a les' p",
+  tomorrow: "'demà a les' p",
   nextWeek: "eeee 'a les' p",
   other: "P"
-};
-function Xa(e, t, a, r) {
-  return t.getUTCHours() !== 1 ? Ba[e] : Ya[e];
-}
-var Va = {
+}, Gn = (e, t, n, a) => t.getHours() !== 1 ? Bn[e] : Hn[e], Vn = {
   narrow: ["aC", "dC"],
   abbreviated: ["a. de C.", "d. de C."],
-  wide: ["abans de Crist", "despr\xE9s de Crist"]
-}, Ua = {
+  wide: ["abans de Crist", "després de Crist"]
+}, Yn = {
   narrow: ["1", "2", "3", "4"],
   abbreviated: ["T1", "T2", "T3", "T4"],
   wide: ["1r trimestre", "2n trimestre", "3r trimestre", "4t trimestre"]
-}, Ra = {
-  narrow: ["GN", "FB", "M\xC7", "AB", "MG", "JN", "JL", "AG", "ST", "OC", "NV", "DS"],
-  abbreviated: ["gen.", "febr.", "mar\xE7", "abr.", "maig", "juny", "jul.", "ag.", "set.", "oct.", "nov.", "des."],
-  wide: ["gener", "febrer", "mar\xE7", "abril", "maig", "juny", "juliol", "agost", "setembre", "octubre", "novembre", "desembre"]
-}, Ja = {
+}, Xn = {
+  narrow: [
+    "GN",
+    "FB",
+    "MÇ",
+    "AB",
+    "MG",
+    "JN",
+    "JL",
+    "AG",
+    "ST",
+    "OC",
+    "NV",
+    "DS"
+  ],
+  /**
+   * Les abreviatures dels mesos de l'any es formen seguint una de les normes generals de formació d'abreviatures.
+   * S'escriu la primera síl·laba i les consonants de la síl·laba següent anteriors a la primera vocal.
+   * Els mesos de març, maig i juny no s'abreugen perquè són paraules d'una sola síl·laba.
+   */
+  abbreviated: [
+    "gen.",
+    "febr.",
+    "març",
+    "abr.",
+    "maig",
+    "juny",
+    "jul.",
+    "ag.",
+    "set.",
+    "oct.",
+    "nov.",
+    "des."
+  ],
+  wide: [
+    "gener",
+    "febrer",
+    "març",
+    "abril",
+    "maig",
+    "juny",
+    "juliol",
+    "agost",
+    "setembre",
+    "octubre",
+    "novembre",
+    "desembre"
+  ]
+}, Rn = {
   narrow: ["dg.", "dl.", "dt.", "dm.", "dj.", "dv.", "ds."],
   short: ["dg.", "dl.", "dt.", "dm.", "dj.", "dv.", "ds."],
   abbreviated: ["dg.", "dl.", "dt.", "dm.", "dj.", "dv.", "ds."],
-  wide: ["diumenge", "dilluns", "dimarts", "dimecres", "dijous", "divendres", "dissabte"]
-}, Qa = {
+  wide: [
+    "diumenge",
+    "dilluns",
+    "dimarts",
+    "dimecres",
+    "dijous",
+    "divendres",
+    "dissabte"
+  ]
+}, Jn = {
   narrow: {
     am: "am",
     pm: "pm",
     midnight: "mitjanit",
     noon: "migdia",
-    morning: "mat\xED",
+    morning: "matí",
     afternoon: "tarda",
     evening: "vespre",
     night: "nit"
@@ -1554,7 +1577,7 @@ var Va = {
     pm: "p.m.",
     midnight: "mitjanit",
     noon: "migdia",
-    morning: "mat\xED",
+    morning: "matí",
     afternoon: "tarda",
     evening: "vespre",
     night: "nit"
@@ -1564,18 +1587,18 @@ var Va = {
     pm: "post meridiem",
     midnight: "mitjanit",
     noon: "migdia",
-    morning: "mat\xED",
+    morning: "matí",
     afternoon: "tarda",
     evening: "vespre",
     night: "nit"
   }
-}, Za = {
+}, Qn = {
   narrow: {
     am: "am",
     pm: "pm",
     midnight: "de la mitjanit",
     noon: "del migdia",
-    morning: "del mat\xED",
+    morning: "del matí",
     afternoon: "de la tarda",
     evening: "del vespre",
     night: "de la nit"
@@ -1585,7 +1608,7 @@ var Va = {
     pm: "PM",
     midnight: "de la mitjanit",
     noon: "del migdia",
-    morning: "del mat\xED",
+    morning: "del matí",
     afternoon: "de la tarda",
     evening: "del vespre",
     night: "de la nit"
@@ -1595,92 +1618,133 @@ var Va = {
     pm: "post meridiem",
     midnight: "de la mitjanit",
     noon: "del migdia",
-    morning: "del mat\xED",
+    morning: "del matí",
     afternoon: "de la tarda",
     evening: "del vespre",
     night: "de la nit"
   }
-};
-function Ka(e, t) {
-  var a = Number(e), r = a % 100;
-  if (r > 20 || r < 10)
-    switch (r % 10) {
+}, Zn = (e, t) => {
+  const n = Number(e), a = n % 100;
+  if (a > 20 || a < 10)
+    switch (a % 10) {
       case 1:
-        return a + "r";
+        return n + "r";
       case 2:
-        return a + "n";
+        return n + "n";
       case 3:
-        return a + "r";
+        return n + "r";
       case 4:
-        return a + "t";
+        return n + "t";
     }
-  return a + "\xE8";
-}
-var er = {
-  ordinalNumber: Ka,
+  return n + "è";
+}, Un = {
+  ordinalNumber: Zn,
   era: f({
-    values: Va,
+    values: Vn,
     defaultWidth: "wide"
   }),
   quarter: f({
-    values: Ua,
+    values: Yn,
     defaultWidth: "wide",
-    argumentCallback: function(e) {
-      return Number(e) - 1;
-    }
+    argumentCallback: (e) => e - 1
   }),
   month: f({
-    values: Ra,
+    values: Xn,
     defaultWidth: "wide"
   }),
   day: f({
-    values: Ja,
+    values: Rn,
     defaultWidth: "wide"
   }),
   dayPeriod: f({
-    values: Qa,
+    values: Jn,
     defaultWidth: "wide",
-    formattingValues: Za,
+    formattingValues: Qn,
     defaultFormattingWidth: "wide"
   })
-};
-const tr = er;
-var ar = /^(\d+)(è|r|n|r|t)?/i, rr = /\d+/i, nr = {
+}, Kn = /^(\d+)(è|r|n|r|t)?/i, ea = /\d+/i, ta = {
   narrow: /^(aC|dC)/i,
   abbreviated: /^(a. de C.|d. de C.)/i,
   wide: /^(abans de Crist|despr[eé]s de Crist)/i
-}, ir = {
+}, na = {
   narrow: [/^aC/i, /^dC/i],
   abbreviated: [/^(a. de C.)/i, /^(d. de C.)/i],
   wide: [/^(abans de Crist)/i, /^(despr[eé]s de Crist)/i]
-}, or = {
+}, aa = {
   narrow: /^[1234]/i,
   abbreviated: /^T[1234]/i,
   wide: /^[1234](è|r|n|r|t)? trimestre/i
-}, sr = {
+}, ra = {
   any: [/1/i, /2/i, /3/i, /4/i]
-}, ur = {
+}, ia = {
   narrow: /^(GN|FB|MÇ|AB|MG|JN|JL|AG|ST|OC|NV|DS)/i,
   abbreviated: /^(gen.|febr.|març|abr.|maig|juny|jul.|ag.|set.|oct.|nov.|des.)/i,
   wide: /^(gener|febrer|març|abril|maig|juny|juliol|agost|setembre|octubre|novembre|desembre)/i
-}, lr = {
-  narrow: [/^GN/i, /^FB/i, /^MÇ/i, /^AB/i, /^MG/i, /^JN/i, /^JL/i, /^AG/i, /^ST/i, /^OC/i, /^NV/i, /^DS/i],
-  abbreviated: [/^gen./i, /^febr./i, /^març/i, /^abr./i, /^maig/i, /^juny/i, /^jul./i, /^ag./i, /^set./i, /^oct./i, /^nov./i, /^des./i],
-  wide: [/^gener/i, /^febrer/i, /^març/i, /^abril/i, /^maig/i, /^juny/i, /^juliol/i, /^agost/i, /^setembre/i, /^octubre/i, /^novembre/i, /^desembre/i]
-}, dr = {
+}, oa = {
+  narrow: [
+    /^GN/i,
+    /^FB/i,
+    /^MÇ/i,
+    /^AB/i,
+    /^MG/i,
+    /^JN/i,
+    /^JL/i,
+    /^AG/i,
+    /^ST/i,
+    /^OC/i,
+    /^NV/i,
+    /^DS/i
+  ],
+  abbreviated: [
+    /^gen./i,
+    /^febr./i,
+    /^març/i,
+    /^abr./i,
+    /^maig/i,
+    /^juny/i,
+    /^jul./i,
+    /^ag./i,
+    /^set./i,
+    /^oct./i,
+    /^nov./i,
+    /^des./i
+  ],
+  wide: [
+    /^gener/i,
+    /^febrer/i,
+    /^març/i,
+    /^abril/i,
+    /^maig/i,
+    /^juny/i,
+    /^juliol/i,
+    /^agost/i,
+    /^setembre/i,
+    /^octubre/i,
+    /^novembre/i,
+    /^desembre/i
+  ]
+}, sa = {
   narrow: /^(dg\.|dl\.|dt\.|dm\.|dj\.|dv\.|ds\.)/i,
   short: /^(dg\.|dl\.|dt\.|dm\.|dj\.|dv\.|ds\.)/i,
   abbreviated: /^(dg\.|dl\.|dt\.|dm\.|dj\.|dv\.|ds\.)/i,
   wide: /^(diumenge|dilluns|dimarts|dimecres|dijous|divendres|dissabte)/i
-}, mr = {
+}, da = {
   narrow: [/^dg./i, /^dl./i, /^dt./i, /^dm./i, /^dj./i, /^dv./i, /^ds./i],
   abbreviated: [/^dg./i, /^dl./i, /^dt./i, /^dm./i, /^dj./i, /^dv./i, /^ds./i],
-  wide: [/^diumenge/i, /^dilluns/i, /^dimarts/i, /^dimecres/i, /^dijous/i, /^divendres/i, /^disssabte/i]
-}, cr = {
+  wide: [
+    /^diumenge/i,
+    /^dilluns/i,
+    /^dimarts/i,
+    /^dimecres/i,
+    /^dijous/i,
+    /^divendres/i,
+    /^disssabte/i
+  ]
+}, ua = {
   narrow: /^(a|p|mn|md|(del|de la) (matí|tarda|vespre|nit))/i,
   abbreviated: /^([ap]\.?\s?m\.?|mitjanit|migdia|(del|de la) (matí|tarda|vespre|nit))/i,
   wide: /^(ante meridiem|post meridiem|mitjanit|migdia|(del|de la) (matí|tarda|vespre|nit))/i
-}, hr = {
+}, la = {
   any: {
     am: /^a/i,
     pm: /^p/i,
@@ -1691,74 +1755,66 @@ var ar = /^(\d+)(è|r|n|r|t)?/i, rr = /\d+/i, nr = {
     evening: /vespre/i,
     night: /nit/i
   }
-}, fr = {
-  ordinalNumber: q({
-    matchPattern: ar,
-    parsePattern: rr,
-    valueCallback: function(e) {
-      return parseInt(e, 10);
-    }
+}, ca = {
+  ordinalNumber: B({
+    matchPattern: Kn,
+    parsePattern: ea,
+    valueCallback: (e) => parseInt(e, 10)
   }),
   era: g({
-    matchPatterns: nr,
+    matchPatterns: ta,
     defaultMatchWidth: "wide",
-    parsePatterns: ir,
-    defaultParseWidth: "any"
+    parsePatterns: na,
+    defaultParseWidth: "wide"
   }),
   quarter: g({
-    matchPatterns: or,
+    matchPatterns: aa,
     defaultMatchWidth: "wide",
-    parsePatterns: sr,
+    parsePatterns: ra,
     defaultParseWidth: "any",
-    valueCallback: function(e) {
-      return e + 1;
-    }
+    valueCallback: (e) => e + 1
   }),
   month: g({
-    matchPatterns: ur,
+    matchPatterns: ia,
     defaultMatchWidth: "wide",
-    parsePatterns: lr,
-    defaultParseWidth: "any"
+    parsePatterns: oa,
+    defaultParseWidth: "wide"
   }),
   day: g({
-    matchPatterns: dr,
+    matchPatterns: sa,
     defaultMatchWidth: "wide",
-    parsePatterns: mr,
-    defaultParseWidth: "any"
+    parsePatterns: da,
+    defaultParseWidth: "wide"
   }),
   dayPeriod: g({
-    matchPatterns: cr,
-    defaultMatchWidth: "any",
-    parsePatterns: hr,
+    matchPatterns: ua,
+    defaultMatchWidth: "wide",
+    parsePatterns: la,
     defaultParseWidth: "any"
   })
-};
-const gr = fr;
-var vr = {
+}, ma = {
   code: "ca",
-  formatDistance: Aa,
-  formatLong: Ga,
-  formatRelative: Xa,
-  localize: tr,
-  match: gr,
+  formatDistance: _n,
+  formatLong: In,
+  formatRelative: Gn,
+  localize: Un,
+  match: ca,
   options: {
     weekStartsOn: 1,
     firstWeekContainsDate: 4
   }
-};
-const pr = vr;
-var ne = {
+}, ha = {
   lessThanXSeconds: {
-    one: "mindre end \xE9t sekund",
+    one: "mindre end ét sekund",
     other: "mindre end {{count}} sekunder"
   },
   xSeconds: {
     one: "1 sekund",
     other: "{{count}} sekunder"
   },
-  halfAMinute: "\xE9t halvt minut",
+  halfAMinute: "ét halvt minut",
   lessThanXMinutes: {
-    one: "mindre end \xE9t minut",
+    one: "mindre end ét minut",
     other: "mindre end {{count}} minutter"
   },
   xMinutes: {
@@ -1786,94 +1842,120 @@ var ne = {
     other: "{{count}} uger"
   },
   aboutXMonths: {
-    one: "cirka 1 m\xE5ned",
-    other: "cirka {{count}} m\xE5neder"
+    one: "cirka 1 måned",
+    other: "cirka {{count}} måneder"
   },
   xMonths: {
-    one: "1 m\xE5ned",
-    other: "{{count}} m\xE5neder"
+    one: "1 måned",
+    other: "{{count}} måneder"
   },
   aboutXYears: {
-    one: "cirka 1 \xE5r",
-    other: "cirka {{count}} \xE5r"
+    one: "cirka 1 år",
+    other: "cirka {{count}} år"
   },
   xYears: {
-    one: "1 \xE5r",
-    other: "{{count}} \xE5r"
+    one: "1 år",
+    other: "{{count}} år"
   },
   overXYears: {
-    one: "over 1 \xE5r",
-    other: "over {{count}} \xE5r"
+    one: "over 1 år",
+    other: "over {{count}} år"
   },
   almostXYears: {
-    one: "n\xE6sten 1 \xE5r",
-    other: "n\xE6sten {{count}} \xE5r"
+    one: "næsten 1 år",
+    other: "næsten {{count}} år"
   }
-};
-function wr(e, t, a) {
-  a = a || {};
-  var r;
-  return typeof ne[e] == "string" ? r = ne[e] : t === 1 ? r = ne[e].one : r = ne[e].other.replace("{{count}}", t), a.addSuffix ? a.comparison > 0 ? "om " + r : r + " siden" : r;
-}
-var br = {
+}, fa = (e, t, n) => {
+  let a;
+  const r = ha[e];
+  return typeof r == "string" ? a = r : t === 1 ? a = r.one : a = r.other.replace("{{count}}", String(t)), n?.addSuffix ? n.comparison && n.comparison > 0 ? "om " + a : a + " siden" : a;
+}, ga = {
   full: "EEEE 'den' d. MMMM y",
   long: "d. MMMM y",
   medium: "d. MMM y",
   short: "dd/MM/y"
-}, yr = {
+}, pa = {
   full: "HH:mm:ss zzzz",
   long: "HH:mm:ss z",
   medium: "HH:mm:ss",
   short: "HH:mm"
-}, Mr = {
+}, wa = {
   full: "{{date}} 'kl'. {{time}}",
   long: "{{date}} 'kl'. {{time}}",
   medium: "{{date}} {{time}}",
   short: "{{date}} {{time}}"
-}, Pr = {
+}, va = {
   date: M({
-    formats: br,
+    formats: ga,
     defaultWidth: "full"
   }),
   time: M({
-    formats: yr,
+    formats: pa,
     defaultWidth: "full"
   }),
   dateTime: M({
-    formats: Mr,
+    formats: wa,
     defaultWidth: "full"
   })
-};
-const kr = Pr;
-var $r = {
+}, ya = {
   lastWeek: "'sidste' eeee 'kl.' p",
-  yesterday: "'i g\xE5r kl.' p",
+  yesterday: "'i går kl.' p",
   today: "'i dag kl.' p",
   tomorrow: "'i morgen kl.' p",
-  nextWeek: "'p\xE5' eeee 'kl.' p",
+  nextWeek: "'på' eeee 'kl.' p",
   other: "P"
-};
-function Dr(e, t, a, r) {
-  return $r[e];
-}
-var Cr = {
+}, ba = (e, t, n, a) => ya[e], Ma = {
   narrow: ["fvt", "vt"],
   abbreviated: ["f.v.t.", "v.t."],
-  wide: ["f\xF8r vesterlandsk tidsregning", "vesterlandsk tidsregning"]
-}, Sr = {
+  wide: ["før vesterlandsk tidsregning", "vesterlandsk tidsregning"]
+}, Pa = {
   narrow: ["1", "2", "3", "4"],
   abbreviated: ["1. kvt.", "2. kvt.", "3. kvt.", "4. kvt."],
   wide: ["1. kvartal", "2. kvartal", "3. kvartal", "4. kvartal"]
-}, Wr = {
+}, ka = {
   narrow: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
-  abbreviated: ["jan.", "feb.", "mar.", "apr.", "maj", "jun.", "jul.", "aug.", "sep.", "okt.", "nov.", "dec."],
-  wide: ["januar", "februar", "marts", "april", "maj", "juni", "juli", "august", "september", "oktober", "november", "december"]
-}, Tr = {
+  abbreviated: [
+    "jan.",
+    "feb.",
+    "mar.",
+    "apr.",
+    "maj",
+    "jun.",
+    "jul.",
+    "aug.",
+    "sep.",
+    "okt.",
+    "nov.",
+    "dec."
+  ],
+  wide: [
+    "januar",
+    "februar",
+    "marts",
+    "april",
+    "maj",
+    "juni",
+    "juli",
+    "august",
+    "september",
+    "oktober",
+    "november",
+    "december"
+  ]
+}, Da = {
   narrow: ["S", "M", "T", "O", "T", "F", "L"],
-  short: ["s\xF8", "ma", "ti", "on", "to", "fr", "l\xF8"],
-  abbreviated: ["s\xF8n.", "man.", "tir.", "ons.", "tor.", "fre.", "l\xF8r."],
-  wide: ["s\xF8ndag", "mandag", "tirsdag", "onsdag", "torsdag", "fredag", "l\xF8rdag"]
-}, Or = {
+  short: ["sø", "ma", "ti", "on", "to", "fr", "lø"],
+  abbreviated: ["søn.", "man.", "tir.", "ons.", "tor.", "fre.", "lør."],
+  wide: [
+    "søndag",
+    "mandag",
+    "tirsdag",
+    "onsdag",
+    "torsdag",
+    "fredag",
+    "lørdag"
+  ]
+}, $a = {
   narrow: {
     am: "a",
     pm: "p",
@@ -1904,7 +1986,7 @@ var Cr = {
     evening: "aften",
     night: "nat"
   }
-}, xr = {
+}, Sa = {
   narrow: {
     am: "a",
     pm: "p",
@@ -1935,71 +2017,88 @@ var Cr = {
     evening: "om aftenen",
     night: "om natten"
   }
-};
-function Nr(e) {
-  var t = Number(e);
-  return t + ".";
-}
-var Er = {
-  ordinalNumber: Nr,
+}, Wa = (e, t) => Number(e) + ".", Ca = {
+  ordinalNumber: Wa,
   era: f({
-    values: Cr,
+    values: Ma,
     defaultWidth: "wide"
   }),
   quarter: f({
-    values: Sr,
+    values: Pa,
     defaultWidth: "wide",
-    argumentCallback: function(e) {
-      return Number(e) - 1;
-    }
+    argumentCallback: (e) => e - 1
   }),
   month: f({
-    values: Wr,
+    values: ka,
     defaultWidth: "wide"
   }),
   day: f({
-    values: Tr,
+    values: Da,
     defaultWidth: "wide"
   }),
   dayPeriod: f({
-    values: Or,
+    values: $a,
     defaultWidth: "wide",
-    formattingValues: xr,
+    formattingValues: Sa,
     defaultFormattingWidth: "wide"
   })
-};
-const jr = Er;
-var Lr = /^(\d+)(\.)?/i, zr = /\d+/i, _r = {
+}, Oa = /^(\d+)(\.)?/i, Ea = /\d+/i, Ta = {
   narrow: /^(fKr|fvt|eKr|vt)/i,
   abbreviated: /^(f\.Kr\.?|f\.v\.t\.?|e\.Kr\.?|v\.t\.)/i,
   wide: /^(f.Kr.|før vesterlandsk tidsregning|e.Kr.|vesterlandsk tidsregning)/i
-}, Ar = {
+}, Na = {
   any: [/^f/i, /^(v|e)/i]
-}, Fr = {
+}, Aa = {
   narrow: /^[1234]/i,
   abbreviated: /^[1234]. kvt\./i,
   wide: /^[1234]\.? kvartal/i
-}, Ir = {
+}, xa = {
   any: [/1/i, /2/i, /3/i, /4/i]
-}, qr = {
+}, ja = {
   narrow: /^[jfmasond]/i,
   abbreviated: /^(jan.|feb.|mar.|apr.|maj|jun.|jul.|aug.|sep.|okt.|nov.|dec.)/i,
   wide: /^(januar|februar|marts|april|maj|juni|juli|august|september|oktober|november|december)/i
-}, Hr = {
-  narrow: [/^j/i, /^f/i, /^m/i, /^a/i, /^m/i, /^j/i, /^j/i, /^a/i, /^s/i, /^o/i, /^n/i, /^d/i],
-  any: [/^ja/i, /^f/i, /^mar/i, /^ap/i, /^maj/i, /^jun/i, /^jul/i, /^au/i, /^s/i, /^o/i, /^n/i, /^d/i]
-}, Gr = {
+}, La = {
+  narrow: [
+    /^j/i,
+    /^f/i,
+    /^m/i,
+    /^a/i,
+    /^m/i,
+    /^j/i,
+    /^j/i,
+    /^a/i,
+    /^s/i,
+    /^o/i,
+    /^n/i,
+    /^d/i
+  ],
+  any: [
+    /^ja/i,
+    /^f/i,
+    /^mar/i,
+    /^ap/i,
+    /^maj/i,
+    /^jun/i,
+    /^jul/i,
+    /^au/i,
+    /^s/i,
+    /^o/i,
+    /^n/i,
+    /^d/i
+  ]
+}, _a = {
   narrow: /^[smtofl]/i,
   short: /^(søn.|man.|tir.|ons.|tor.|fre.|lør.)/i,
   abbreviated: /^(søn|man|tir|ons|tor|fre|lør)/i,
   wide: /^(søndag|mandag|tirsdag|onsdag|torsdag|fredag|lørdag)/i
-}, Yr = {
+}, Fa = {
   narrow: [/^s/i, /^m/i, /^t/i, /^o/i, /^t/i, /^f/i, /^l/i],
   any: [/^s/i, /^m/i, /^ti/i, /^o/i, /^to/i, /^f/i, /^l/i]
-}, Br = {
+}, za = {
   narrow: /^(a|p|midnat|middag|(om) (morgenen|eftermiddagen|aftenen|natten))/i,
   any: /^([ap]\.?\s?m\.?|midnat|middag|(om) (morgenen|eftermiddagen|aftenen|natten))/i
-}, Xr = {
+}, qa = {
   any: {
     am: /^a/i,
     pm: /^p/i,
@@ -2010,63 +2109,55 @@ var Lr = /^(\d+)(\.)?/i, zr = /\d+/i, _r = {
     evening: /aften/i,
     night: /nat/i
   }
-}, Vr = {
-  ordinalNumber: q({
-    matchPattern: Lr,
-    parsePattern: zr,
-    valueCallback: function(e) {
-      return parseInt(e, 10);
-    }
+}, Ia = {
+  ordinalNumber: B({
+    matchPattern: Oa,
+    parsePattern: Ea,
+    valueCallback: (e) => parseInt(e, 10)
   }),
   era: g({
-    matchPatterns: _r,
+    matchPatterns: Ta,
     defaultMatchWidth: "wide",
-    parsePatterns: Ar,
+    parsePatterns: Na,
     defaultParseWidth: "any"
   }),
   quarter: g({
-    matchPatterns: Fr,
+    matchPatterns: Aa,
     defaultMatchWidth: "wide",
-    parsePatterns: Ir,
+    parsePatterns: xa,
     defaultParseWidth: "any",
-    valueCallback: function(e) {
-      return e + 1;
-    }
+    valueCallback: (e) => e + 1
   }),
   month: g({
-    matchPatterns: qr,
+    matchPatterns: ja,
     defaultMatchWidth: "wide",
-    parsePatterns: Hr,
+    parsePatterns: La,
     defaultParseWidth: "any"
   }),
   day: g({
-    matchPatterns: Gr,
+    matchPatterns: _a,
     defaultMatchWidth: "wide",
-    parsePatterns: Yr,
+    parsePatterns: Fa,
     defaultParseWidth: "any"
   }),
   dayPeriod: g({
-    matchPatterns: Br,
+    matchPatterns: za,
     defaultMatchWidth: "any",
-    parsePatterns: Xr,
+    parsePatterns: qa,
     defaultParseWidth: "any"
   })
-};
-const Ur = Vr;
-var Rr = {
+}, Ha = {
   code: "da",
-  formatDistance: wr,
-  formatLong: kr,
-  formatRelative: Dr,
-  localize: jr,
-  match: Ur,
+  formatDistance: fa,
+  formatLong: va,
+  formatRelative: ba,
+  localize: Ca,
+  match: Ia,
   options: {
     weekStartsOn: 1,
     firstWeekContainsDate: 4
   }
-};
-const Jr = Rr;
-var je = {
+}, Ie = {
   lessThanXSeconds: {
     standalone: {
       one: "weniger als 1 Sekunde",
@@ -2088,8 +2179,8 @@ var je = {
     }
   },
   halfAMinute: {
-    standalone: "halbe Minute",
-    withPreposition: "halben Minute"
+    standalone: "eine halbe Minute",
+    withPreposition: "einer halben Minute"
   },
   lessThanXMinutes: {
     standalone: {
@@ -2221,74 +2312,118 @@ var je = {
       other: "fast {{count}} Jahren"
     }
   }
-}, Qr = function(e, t, a) {
-  var r, n = a != null && a.addSuffix ? je[e].withPreposition : je[e].standalone;
-  return typeof n == "string" ? r = n : t === 1 ? r = n.one : r = n.other.replace("{{count}}", String(t)), a != null && a.addSuffix ? a.comparison && a.comparison > 0 ? "in " + r : "vor " + r : r;
-};
-const Zr = Qr;
-var Kr = {
+}, Ba = (e, t, n) => {
+  let a;
+  const r = n?.addSuffix ? Ie[e].withPreposition : Ie[e].standalone;
+  return typeof r == "string" ? a = r : t === 1 ? a = r.one : a = r.other.replace("{{count}}", String(t)), n?.addSuffix ? n.comparison && n.comparison > 0 ? "in " + a : "vor " + a : a;
+}, Ga = {
   full: "EEEE, do MMMM y",
+  // Montag, 7. Januar 2018
   long: "do MMMM y",
+  // 7. Januar 2018
   medium: "do MMM y",
+  // 7. Jan. 2018
   short: "dd.MM.y"
-}, en = {
+  // 07.01.2018
+}, Va = {
   full: "HH:mm:ss zzzz",
   long: "HH:mm:ss z",
   medium: "HH:mm:ss",
   short: "HH:mm"
-}, tn = {
+}, Ya = {
   full: "{{date}} 'um' {{time}}",
   long: "{{date}} 'um' {{time}}",
   medium: "{{date}} {{time}}",
   short: "{{date}} {{time}}"
-}, an = {
+}, Xa = {
   date: M({
-    formats: Kr,
+    formats: Ga,
     defaultWidth: "full"
   }),
   time: M({
-    formats: en,
+    formats: Va,
     defaultWidth: "full"
   }),
   dateTime: M({
-    formats: tn,
+    formats: Ya,
     defaultWidth: "full"
   })
-};
-const rn = an;
-var nn = {
+}, Ra = {
   lastWeek: "'letzten' eeee 'um' p",
   yesterday: "'gestern um' p",
   today: "'heute um' p",
   tomorrow: "'morgen um' p",
   nextWeek: "eeee 'um' p",
   other: "P"
-}, on = function(e, t, a, r) {
-  return nn[e];
-};
-const sn = on;
-var un = {
+}, Ja = (e, t, n, a) => Ra[e], Qa = {
   narrow: ["v.Chr.", "n.Chr."],
   abbreviated: ["v.Chr.", "n.Chr."],
   wide: ["vor Christus", "nach Christus"]
-}, ln = {
+}, Za = {
   narrow: ["1", "2", "3", "4"],
   abbreviated: ["Q1", "Q2", "Q3", "Q4"],
   wide: ["1. Quartal", "2. Quartal", "3. Quartal", "4. Quartal"]
-}, be = {
+}, Pe = {
   narrow: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
-  abbreviated: ["Jan", "Feb", "M\xE4r", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
-  wide: ["Januar", "Februar", "M\xE4rz", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
-}, dn = {
-  narrow: be.narrow,
-  abbreviated: ["Jan.", "Feb.", "M\xE4rz", "Apr.", "Mai", "Juni", "Juli", "Aug.", "Sep.", "Okt.", "Nov.", "Dez."],
-  wide: be.wide
-}, mn = {
+  abbreviated: [
+    "Jan",
+    "Feb",
+    "Mär",
+    "Apr",
+    "Mai",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Okt",
+    "Nov",
+    "Dez"
+  ],
+  wide: [
+    "Januar",
+    "Februar",
+    "März",
+    "April",
+    "Mai",
+    "Juni",
+    "Juli",
+    "August",
+    "September",
+    "Oktober",
+    "November",
+    "Dezember"
+  ]
+}, Ua = {
+  narrow: Pe.narrow,
+  abbreviated: [
+    "Jan.",
+    "Feb.",
+    "März",
+    "Apr.",
+    "Mai",
+    "Juni",
+    "Juli",
+    "Aug.",
+    "Sep.",
+    "Okt.",
+    "Nov.",
+    "Dez."
+  ],
+  wide: Pe.wide
+}, Ka = {
   narrow: ["S", "M", "D", "M", "D", "F", "S"],
   short: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
   abbreviated: ["So.", "Mo.", "Di.", "Mi.", "Do.", "Fr.", "Sa."],
-  wide: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"]
-}, cn = {
+  wide: [
+    "Sonntag",
+    "Montag",
+    "Dienstag",
+    "Mittwoch",
+    "Donnerstag",
+    "Freitag",
+    "Samstag"
+  ]
+}, er = {
   narrow: {
     am: "vm.",
     pm: "nm.",
@@ -2319,7 +2454,7 @@ var un = {
     evening: "Abend",
     night: "Nacht"
   }
-}, hn = {
+}, tr = {
   narrow: {
     am: "vm.",
     pm: "nm.",
@@ -2350,70 +2485,89 @@ var un = {
     evening: "abends",
     night: "nachts"
   }
-}, fn = function(e) {
-  var t = Number(e);
-  return t + ".";
-}, gn = {
-  ordinalNumber: fn,
+}, nr = (e) => Number(e) + ".", ar = {
+  ordinalNumber: nr,
   era: f({
-    values: un,
+    values: Qa,
     defaultWidth: "wide"
   }),
   quarter: f({
-    values: ln,
+    values: Za,
     defaultWidth: "wide",
-    argumentCallback: function(e) {
-      return e - 1;
-    }
+    argumentCallback: (e) => e - 1
   }),
   month: f({
-    values: be,
-    formattingValues: dn,
+    values: Pe,
+    formattingValues: Ua,
     defaultWidth: "wide"
   }),
   day: f({
-    values: mn,
+    values: Ka,
     defaultWidth: "wide"
   }),
   dayPeriod: f({
-    values: cn,
+    values: er,
     defaultWidth: "wide",
-    formattingValues: hn,
+    formattingValues: tr,
     defaultFormattingWidth: "wide"
   })
-};
-const vn = gn;
-var pn = /^(\d+)(\.)?/i, wn = /\d+/i, bn = {
+}, rr = /^(\d+)(\.)?/i, ir = /\d+/i, or = {
   narrow: /^(v\.? ?Chr\.?|n\.? ?Chr\.?)/i,
   abbreviated: /^(v\.? ?Chr\.?|n\.? ?Chr\.?)/i,
   wide: /^(vor Christus|vor unserer Zeitrechnung|nach Christus|unserer Zeitrechnung)/i
-}, yn = {
+}, sr = {
   any: [/^v/i, /^n/i]
-}, Mn = {
+}, dr = {
   narrow: /^[1234]/i,
   abbreviated: /^q[1234]/i,
   wide: /^[1234](\.)? Quartal/i
-}, Pn = {
+}, ur = {
   any: [/1/i, /2/i, /3/i, /4/i]
-}, kn = {
+}, lr = {
   narrow: /^[jfmasond]/i,
   abbreviated: /^(j[aä]n|feb|mär[z]?|apr|mai|jun[i]?|jul[i]?|aug|sep|okt|nov|dez)\.?/i,
   wide: /^(januar|februar|märz|april|mai|juni|juli|august|september|oktober|november|dezember)/i
-}, $n = {
-  narrow: [/^j/i, /^f/i, /^m/i, /^a/i, /^m/i, /^j/i, /^j/i, /^a/i, /^s/i, /^o/i, /^n/i, /^d/i],
-  any: [/^j[aä]/i, /^f/i, /^mär/i, /^ap/i, /^mai/i, /^jun/i, /^jul/i, /^au/i, /^s/i, /^o/i, /^n/i, /^d/i]
-}, Dn = {
+}, cr = {
+  narrow: [
+    /^j/i,
+    /^f/i,
+    /^m/i,
+    /^a/i,
+    /^m/i,
+    /^j/i,
+    /^j/i,
+    /^a/i,
+    /^s/i,
+    /^o/i,
+    /^n/i,
+    /^d/i
+  ],
+  any: [
+    /^j[aä]/i,
+    /^f/i,
+    /^mär/i,
+    /^ap/i,
+    /^mai/i,
+    /^jun/i,
+    /^jul/i,
+    /^au/i,
+    /^s/i,
+    /^o/i,
+    /^n/i,
+    /^d/i
+  ]
+}, mr = {
   narrow: /^[smdmf]/i,
   short: /^(so|mo|di|mi|do|fr|sa)/i,
   abbreviated: /^(son?|mon?|die?|mit?|don?|fre?|sam?)\.?/i,
   wide: /^(sonntag|montag|dienstag|mittwoch|donnerstag|freitag|samstag)/i
-}, Cn = {
+}, hr = {
   any: [/^so/i, /^mo/i, /^di/i, /^mi/i, /^do/i, /^f/i, /^sa/i]
-}, Sn = {
+}, fr = {
   narrow: /^(vm\.?|nm\.?|Mitternacht|Mittag|morgens|nachm\.?|abends|nachts)/i,
   abbreviated: /^(vorm\.?|nachm\.?|Mitternacht|Mittag|morgens|nachm\.?|abends|nachts)/i,
   wide: /^(vormittags|nachmittags|Mitternacht|Mittag|morgens|nachmittags|abends|nachts)/i
-}, Wn = {
+}, gr = {
   any: {
     am: /^v/i,
     pm: /^n/i,
@@ -2421,66 +2575,60 @@ var pn = /^(\d+)(\.)?/i, wn = /\d+/i, bn = {
     noon: /^Mitta/i,
     morning: /morgens/i,
     afternoon: /nachmittags/i,
+    // will never be matched. Afternoon is matched by `pm`
     evening: /abends/i,
     night: /nachts/i
+    // will never be matched. Night is matched by `pm`
   }
-}, Tn = {
-  ordinalNumber: q({
-    matchPattern: pn,
-    parsePattern: wn,
-    valueCallback: function(e) {
-      return parseInt(e);
-    }
+}, pr = {
+  ordinalNumber: B({
+    matchPattern: rr,
+    parsePattern: ir,
+    valueCallback: (e) => parseInt(e)
   }),
   era: g({
-    matchPatterns: bn,
+    matchPatterns: or,
     defaultMatchWidth: "wide",
-    parsePatterns: yn,
+    parsePatterns: sr,
     defaultParseWidth: "any"
   }),
   quarter: g({
-    matchPatterns: Mn,
+    matchPatterns: dr,
     defaultMatchWidth: "wide",
-    parsePatterns: Pn,
+    parsePatterns: ur,
     defaultParseWidth: "any",
-    valueCallback: function(e) {
-      return e + 1;
-    }
+    valueCallback: (e) => e + 1
   }),
   month: g({
-    matchPatterns: kn,
+    matchPatterns: lr,
     defaultMatchWidth: "wide",
-    parsePatterns: $n,
+    parsePatterns: cr,
     defaultParseWidth: "any"
   }),
   day: g({
-    matchPatterns: Dn,
+    matchPatterns: mr,
     defaultMatchWidth: "wide",
-    parsePatterns: Cn,
+    parsePatterns: hr,
     defaultParseWidth: "any"
   }),
   dayPeriod: g({
-    matchPatterns: Sn,
+    matchPatterns: fr,
     defaultMatchWidth: "wide",
-    parsePatterns: Wn,
+    parsePatterns: gr,
     defaultParseWidth: "any"
   })
-};
-const On = Tn;
-var xn = {
+}, wr = {
   code: "de",
-  formatDistance: Zr,
-  formatLong: rn,
-  formatRelative: sn,
-  localize: vn,
-  match: On,
+  formatDistance: Ba,
+  formatLong: Xa,
+  formatRelative: Ja,
+  localize: ar,
+  match: pr,
   options: {
     weekStartsOn: 1,
     firstWeekContainsDate: 4
   }
-};
-const Nn = xn;
-var En = {
+}, vr = {
   lessThanXSeconds: {
     one: "less than a second",
     other: "less than {{count}} seconds"
@@ -2542,55 +2690,50 @@ var En = {
     one: "almost a year",
     other: "almost {{count}} years"
   }
-}, jn = function(e, t, a) {
-  var r, n = En[e];
-  return typeof n == "string" ? r = n : t === 1 ? r = n.one : r = n.other.replace("{{count}}", t.toString()), a != null && a.addSuffix ? a.comparison && a.comparison > 0 ? "in " + r : r + " ago" : r;
-};
-const Ln = jn;
-var zn = {
+}, yr = (e, t, n) => {
+  let a;
+  const r = vr[e];
+  return typeof r == "string" ? a = r : t === 1 ? a = r.one : a = r.other.replace("{{count}}", t.toString()), n?.addSuffix ? n.comparison && n.comparison > 0 ? "in " + a : a + " ago" : a;
+}, br = {
   full: "EEEE, MMMM do, yyyy",
   long: "MMMM do, yyyy",
   medium: "MMM d, yyyy",
   short: "yyyy-MM-dd"
-}, _n = {
+}, Mr = {
   full: "h:mm:ss a zzzz",
   long: "h:mm:ss a z",
   medium: "h:mm:ss a",
   short: "h:mm a"
-}, An = {
+}, Pr = {
   full: "{{date}} 'at' {{time}}",
   long: "{{date}} 'at' {{time}}",
   medium: "{{date}}, {{time}}",
   short: "{{date}}, {{time}}"
-}, Fn = {
+}, kr = {
   date: M({
-    formats: zn,
+    formats: br,
     defaultWidth: "full"
   }),
   time: M({
-    formats: _n,
+    formats: Mr,
     defaultWidth: "full"
   }),
   dateTime: M({
-    formats: An,
+    formats: Pr,
     defaultWidth: "full"
   })
-};
-const In = Fn;
-var qn = {
+}, Dr = {
   code: "en-CA",
-  formatDistance: Ln,
-  formatLong: In,
-  formatRelative: Je,
-  localize: Qe,
-  match: Ze,
+  formatDistance: yr,
+  formatLong: kr,
+  formatRelative: it,
+  localize: ot,
+  match: st,
   options: {
     weekStartsOn: 0,
     firstWeekContainsDate: 1
   }
-};
-const Hn = qn;
-var Gn = {
+}, $r = {
   lessThanXSeconds: {
     one: "menos de un segundo",
     other: "menos de {{count}} segundos"
@@ -2617,8 +2760,8 @@ var Gn = {
     other: "{{count}} horas"
   },
   xDays: {
-    one: "1 d\xEDa",
-    other: "{{count}} d\xEDas"
+    one: "1 día",
+    other: "{{count}} días"
   },
   aboutXWeeks: {
     one: "alrededor de 1 semana",
@@ -2637,98 +2780,125 @@ var Gn = {
     other: "{{count}} meses"
   },
   aboutXYears: {
-    one: "alrededor de 1 a\xF1o",
-    other: "alrededor de {{count}} a\xF1os"
+    one: "alrededor de 1 año",
+    other: "alrededor de {{count}} años"
   },
   xYears: {
-    one: "1 a\xF1o",
-    other: "{{count}} a\xF1os"
+    one: "1 año",
+    other: "{{count}} años"
   },
   overXYears: {
-    one: "m\xE1s de 1 a\xF1o",
-    other: "m\xE1s de {{count}} a\xF1os"
+    one: "más de 1 año",
+    other: "más de {{count}} años"
   },
   almostXYears: {
-    one: "casi 1 a\xF1o",
-    other: "casi {{count}} a\xF1os"
+    one: "casi 1 año",
+    other: "casi {{count}} años"
   }
-}, Yn = function(e, t, a) {
-  var r, n = Gn[e];
-  return typeof n == "string" ? r = n : t === 1 ? r = n.one : r = n.other.replace("{{count}}", t.toString()), a != null && a.addSuffix ? a.comparison && a.comparison > 0 ? "en " + r : "hace " + r : r;
-};
-const Bn = Yn;
-var Xn = {
+}, Sr = (e, t, n) => {
+  let a;
+  const r = $r[e];
+  return typeof r == "string" ? a = r : t === 1 ? a = r.one : a = r.other.replace("{{count}}", t.toString()), n?.addSuffix ? n.comparison && n.comparison > 0 ? "en " + a : "hace " + a : a;
+}, Wr = {
   full: "EEEE, d 'de' MMMM 'de' y",
   long: "d 'de' MMMM 'de' y",
   medium: "d MMM y",
   short: "dd/MM/y"
-}, Vn = {
+}, Cr = {
   full: "HH:mm:ss zzzz",
   long: "HH:mm:ss z",
   medium: "HH:mm:ss",
   short: "HH:mm"
-}, Un = {
+}, Or = {
   full: "{{date}} 'a las' {{time}}",
   long: "{{date}} 'a las' {{time}}",
   medium: "{{date}}, {{time}}",
   short: "{{date}}, {{time}}"
-}, Rn = {
+}, Er = {
   date: M({
-    formats: Xn,
+    formats: Wr,
     defaultWidth: "full"
   }),
   time: M({
-    formats: Vn,
+    formats: Cr,
     defaultWidth: "full"
   }),
   dateTime: M({
-    formats: Un,
+    formats: Or,
     defaultWidth: "full"
   })
-};
-const Jn = Rn;
-var Qn = {
+}, Tr = {
   lastWeek: "'el' eeee 'pasado a la' p",
   yesterday: "'ayer a la' p",
   today: "'hoy a la' p",
-  tomorrow: "'ma\xF1ana a la' p",
+  tomorrow: "'mañana a la' p",
   nextWeek: "eeee 'a la' p",
   other: "P"
-}, Zn = {
+}, Nr = {
   lastWeek: "'el' eeee 'pasado a las' p",
   yesterday: "'ayer a las' p",
   today: "'hoy a las' p",
-  tomorrow: "'ma\xF1ana a las' p",
+  tomorrow: "'mañana a las' p",
   nextWeek: "eeee 'a las' p",
   other: "P"
-}, Kn = function(e, t, a, r) {
-  return t.getUTCHours() !== 1 ? Zn[e] : Qn[e];
-};
-const ei = Kn;
-var ti = {
+}, Ar = (e, t, n, a) => t.getHours() !== 1 ? Nr[e] : Tr[e], xr = {
   narrow: ["AC", "DC"],
   abbreviated: ["AC", "DC"],
-  wide: ["antes de cristo", "despu\xE9s de cristo"]
-}, ai = {
+  wide: ["antes de cristo", "después de cristo"]
+}, jr = {
   narrow: ["1", "2", "3", "4"],
   abbreviated: ["T1", "T2", "T3", "T4"],
-  wide: ["1\xBA trimestre", "2\xBA trimestre", "3\xBA trimestre", "4\xBA trimestre"]
-}, ri = {
+  wide: ["1º trimestre", "2º trimestre", "3º trimestre", "4º trimestre"]
+}, Lr = {
   narrow: ["e", "f", "m", "a", "m", "j", "j", "a", "s", "o", "n", "d"],
-  abbreviated: ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"],
-  wide: ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
-}, ni = {
+  abbreviated: [
+    "ene",
+    "feb",
+    "mar",
+    "abr",
+    "may",
+    "jun",
+    "jul",
+    "ago",
+    "sep",
+    "oct",
+    "nov",
+    "dic"
+  ],
+  wide: [
+    "enero",
+    "febrero",
+    "marzo",
+    "abril",
+    "mayo",
+    "junio",
+    "julio",
+    "agosto",
+    "septiembre",
+    "octubre",
+    "noviembre",
+    "diciembre"
+  ]
+}, _r = {
   narrow: ["d", "l", "m", "m", "j", "v", "s"],
-  short: ["do", "lu", "ma", "mi", "ju", "vi", "s\xE1"],
-  abbreviated: ["dom", "lun", "mar", "mi\xE9", "jue", "vie", "s\xE1b"],
-  wide: ["domingo", "lunes", "martes", "mi\xE9rcoles", "jueves", "viernes", "s\xE1bado"]
-}, ii = {
+  short: ["do", "lu", "ma", "mi", "ju", "vi", "sá"],
+  abbreviated: ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"],
+  wide: [
+    "domingo",
+    "lunes",
+    "martes",
+    "miércoles",
+    "jueves",
+    "viernes",
+    "sábado"
+  ]
+}, Fr = {
   narrow: {
     am: "a",
     pm: "p",
     midnight: "mn",
     noon: "md",
-    morning: "ma\xF1ana",
+    morning: "mañana",
     afternoon: "tarde",
     evening: "tarde",
     night: "noche"
@@ -2738,7 +2908,7 @@ var ti = {
     pm: "PM",
     midnight: "medianoche",
     noon: "mediodia",
-    morning: "ma\xF1ana",
+    morning: "mañana",
     afternoon: "tarde",
     evening: "tarde",
     night: "noche"
@@ -2748,18 +2918,18 @@ var ti = {
     pm: "p.m.",
     midnight: "medianoche",
     noon: "mediodia",
-    morning: "ma\xF1ana",
+    morning: "mañana",
     afternoon: "tarde",
     evening: "tarde",
     night: "noche"
   }
-}, oi = {
+}, zr = {
   narrow: {
     am: "a",
     pm: "p",
     midnight: "mn",
     noon: "md",
-    morning: "de la ma\xF1ana",
+    morning: "de la mañana",
     afternoon: "de la tarde",
     evening: "de la tarde",
     night: "de la noche"
@@ -2769,7 +2939,7 @@ var ti = {
     pm: "PM",
     midnight: "medianoche",
     noon: "mediodia",
-    morning: "de la ma\xF1ana",
+    morning: "de la mañana",
     afternoon: "de la tarde",
     evening: "de la tarde",
     night: "de la noche"
@@ -2779,75 +2949,97 @@ var ti = {
     pm: "p.m.",
     midnight: "medianoche",
     noon: "mediodia",
-    morning: "de la ma\xF1ana",
+    morning: "de la mañana",
     afternoon: "de la tarde",
     evening: "de la tarde",
     night: "de la noche"
   }
-}, si = function(e, t) {
-  var a = Number(e);
-  return a + "\xBA";
-}, ui = {
-  ordinalNumber: si,
+}, qr = (e, t) => Number(e) + "º", Ir = {
+  ordinalNumber: qr,
   era: f({
-    values: ti,
+    values: xr,
     defaultWidth: "wide"
   }),
   quarter: f({
-    values: ai,
+    values: jr,
     defaultWidth: "wide",
-    argumentCallback: function(e) {
-      return Number(e) - 1;
-    }
+    argumentCallback: (e) => Number(e) - 1
   }),
   month: f({
-    values: ri,
+    values: Lr,
     defaultWidth: "wide"
   }),
   day: f({
-    values: ni,
+    values: _r,
     defaultWidth: "wide"
   }),
   dayPeriod: f({
-    values: ii,
+    values: Fr,
     defaultWidth: "wide",
-    formattingValues: oi,
+    formattingValues: zr,
     defaultFormattingWidth: "wide"
   })
-};
-const li = ui;
-var di = /^(\d+)(º)?/i, mi = /\d+/i, ci = {
+}, Hr = /^(\d+)(º)?/i, Br = /\d+/i, Gr = {
   narrow: /^(ac|dc|a|d)/i,
   abbreviated: /^(a\.?\s?c\.?|a\.?\s?e\.?\s?c\.?|d\.?\s?c\.?|e\.?\s?c\.?)/i,
   wide: /^(antes de cristo|antes de la era com[uú]n|despu[eé]s de cristo|era com[uú]n)/i
-}, hi = {
+}, Vr = {
   any: [/^ac/i, /^dc/i],
-  wide: [/^(antes de cristo|antes de la era com[uú]n)/i, /^(despu[eé]s de cristo|era com[uú]n)/i]
-}, fi = {
+  wide: [
+    /^(antes de cristo|antes de la era com[uú]n)/i,
+    /^(despu[eé]s de cristo|era com[uú]n)/i
+  ]
+}, Yr = {
   narrow: /^[1234]/i,
   abbreviated: /^T[1234]/i,
   wide: /^[1234](º)? trimestre/i
-}, gi = {
+}, Xr = {
   any: [/1/i, /2/i, /3/i, /4/i]
-}, vi = {
+}, Rr = {
   narrow: /^[efmajsond]/i,
   abbreviated: /^(ene|feb|mar|abr|may|jun|jul|ago|sep|oct|nov|dic)/i,
   wide: /^(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/i
-}, pi = {
-  narrow: [/^e/i, /^f/i, /^m/i, /^a/i, /^m/i, /^j/i, /^j/i, /^a/i, /^s/i, /^o/i, /^n/i, /^d/i],
-  any: [/^en/i, /^feb/i, /^mar/i, /^abr/i, /^may/i, /^jun/i, /^jul/i, /^ago/i, /^sep/i, /^oct/i, /^nov/i, /^dic/i]
-}, wi = {
+}, Jr = {
+  narrow: [
+    /^e/i,
+    /^f/i,
+    /^m/i,
+    /^a/i,
+    /^m/i,
+    /^j/i,
+    /^j/i,
+    /^a/i,
+    /^s/i,
+    /^o/i,
+    /^n/i,
+    /^d/i
+  ],
+  any: [
+    /^en/i,
+    /^feb/i,
+    /^mar/i,
+    /^abr/i,
+    /^may/i,
+    /^jun/i,
+    /^jul/i,
+    /^ago/i,
+    /^sep/i,
+    /^oct/i,
+    /^nov/i,
+    /^dic/i
+  ]
+}, Qr = {
   narrow: /^[dlmjvs]/i,
   short: /^(do|lu|ma|mi|ju|vi|s[áa])/i,
   abbreviated: /^(dom|lun|mar|mi[ée]|jue|vie|s[áa]b)/i,
   wide: /^(domingo|lunes|martes|mi[ée]rcoles|jueves|viernes|s[áa]bado)/i
-}, bi = {
+}, Zr = {
   narrow: [/^d/i, /^l/i, /^m/i, /^m/i, /^j/i, /^v/i, /^s/i],
   any: [/^do/i, /^lu/i, /^ma/i, /^mi/i, /^ju/i, /^vi/i, /^sa/i]
-}, yi = {
+}, Ur = {
   narrow: /^(a|p|mn|md|(de la|a las) (mañana|tarde|noche))/i,
   any: /^([ap]\.?\s?m\.?|medianoche|mediodia|(de la|a las) (mañana|tarde|noche))/i
-}, Mi = {
+}, Kr = {
   any: {
     am: /^a/i,
     pm: /^p/i,
@@ -2858,65 +3050,59 @@ var di = /^(\d+)(º)?/i, mi = /\d+/i, ci = {
     evening: /tarde/i,
     night: /noche/i
   }
-}, Pi = {
-  ordinalNumber: q({
-    matchPattern: di,
-    parsePattern: mi,
+}, ei = {
+  ordinalNumber: B({
+    matchPattern: Hr,
+    parsePattern: Br,
     valueCallback: function(e) {
       return parseInt(e, 10);
     }
   }),
   era: g({
-    matchPatterns: ci,
+    matchPatterns: Gr,
     defaultMatchWidth: "wide",
-    parsePatterns: hi,
+    parsePatterns: Vr,
     defaultParseWidth: "any"
   }),
   quarter: g({
-    matchPatterns: fi,
+    matchPatterns: Yr,
     defaultMatchWidth: "wide",
-    parsePatterns: gi,
+    parsePatterns: Xr,
     defaultParseWidth: "any",
-    valueCallback: function(e) {
-      return e + 1;
-    }
+    valueCallback: (e) => e + 1
   }),
   month: g({
-    matchPatterns: vi,
+    matchPatterns: Rr,
     defaultMatchWidth: "wide",
-    parsePatterns: pi,
+    parsePatterns: Jr,
     defaultParseWidth: "any"
   }),
   day: g({
-    matchPatterns: wi,
+    matchPatterns: Qr,
     defaultMatchWidth: "wide",
-    parsePatterns: bi,
+    parsePatterns: Zr,
     defaultParseWidth: "any"
   }),
   dayPeriod: g({
-    matchPatterns: yi,
+    matchPatterns: Ur,
     defaultMatchWidth: "any",
-    parsePatterns: Mi,
+    parsePatterns: Kr,
     defaultParseWidth: "any"
   })
-};
-const ki = Pi;
-var $i = {
+}, ti = {
   code: "es",
-  formatDistance: Bn,
-  formatLong: Jn,
-  formatRelative: ei,
-  localize: li,
-  match: ki,
+  formatDistance: Sr,
+  formatLong: Er,
+  formatRelative: Ar,
+  localize: Ir,
+  match: ei,
   options: {
     weekStartsOn: 1,
     firstWeekContainsDate: 1
   }
-};
-const Di = $i;
-var Ci = {
+}, ni = {
   lessThanXSeconds: {
-    one: "moins d\u2019une seconde",
+    one: "moins d’une seconde",
     other: "moins de {{count}} secondes"
   },
   xSeconds: {
@@ -2925,7 +3111,7 @@ var Ci = {
   },
   halfAMinute: "30 secondes",
   lessThanXMinutes: {
-    one: "moins d\u2019une minute",
+    one: "moins d’une minute",
     other: "moins de {{count}} minutes"
   },
   xMinutes: {
@@ -2969,47 +3155,76 @@ var Ci = {
     other: "{{count}} ans"
   },
   overXYears: {
-    one: "plus d\u2019un an",
+    one: "plus d’un an",
     other: "plus de {{count}} ans"
   },
   almostXYears: {
-    one: "presqu\u2019un an",
+    one: "presqu’un an",
     other: "presque {{count}} ans"
   }
-}, Si = function(e, t, a) {
-  var r, n = Ci[e];
-  return typeof n == "string" ? r = n : t === 1 ? r = n.one : r = n.other.replace("{{count}}", String(t)), a != null && a.addSuffix ? a.comparison && a.comparison > 0 ? "dans " + r : "il y a " + r : r;
-};
-const Wi = Si;
-var Ti = {
-  lastWeek: "eeee 'dernier \xE0' p",
-  yesterday: "'hier \xE0' p",
-  today: "'aujourd\u2019hui \xE0' p",
-  tomorrow: "'demain \xE0' p'",
-  nextWeek: "eeee 'prochain \xE0' p",
+}, ai = (e, t, n) => {
+  let a;
+  const r = ni[e];
+  return typeof r == "string" ? a = r : t === 1 ? a = r.one : a = r.other.replace("{{count}}", String(t)), n?.addSuffix ? n.comparison && n.comparison > 0 ? "dans " + a : "il y a " + a : a;
+}, ri = {
+  lastWeek: "eeee 'dernier à' p",
+  yesterday: "'hier à' p",
+  today: "'aujourd’hui à' p",
+  tomorrow: "'demain à' p'",
+  nextWeek: "eeee 'prochain à' p",
   other: "P"
-}, Oi = function(e, t, a, r) {
-  return Ti[e];
-};
-const xi = Oi;
-var Ni = {
+}, ii = (e, t, n, a) => ri[e], oi = {
   narrow: ["av. J.-C", "ap. J.-C"],
   abbreviated: ["av. J.-C", "ap. J.-C"],
-  wide: ["avant J\xE9sus-Christ", "apr\xE8s J\xE9sus-Christ"]
-}, Ei = {
+  wide: ["avant Jésus-Christ", "après Jésus-Christ"]
+}, si = {
   narrow: ["T1", "T2", "T3", "T4"],
-  abbreviated: ["1er trim.", "2\xE8me trim.", "3\xE8me trim.", "4\xE8me trim."],
-  wide: ["1er trimestre", "2\xE8me trimestre", "3\xE8me trimestre", "4\xE8me trimestre"]
-}, ji = {
+  abbreviated: ["1er trim.", "2ème trim.", "3ème trim.", "4ème trim."],
+  wide: ["1er trimestre", "2ème trimestre", "3ème trimestre", "4ème trimestre"]
+}, di = {
   narrow: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
-  abbreviated: ["janv.", "f\xE9vr.", "mars", "avr.", "mai", "juin", "juil.", "ao\xFBt", "sept.", "oct.", "nov.", "d\xE9c."],
-  wide: ["janvier", "f\xE9vrier", "mars", "avril", "mai", "juin", "juillet", "ao\xFBt", "septembre", "octobre", "novembre", "d\xE9cembre"]
-}, Li = {
+  abbreviated: [
+    "janv.",
+    "févr.",
+    "mars",
+    "avr.",
+    "mai",
+    "juin",
+    "juil.",
+    "août",
+    "sept.",
+    "oct.",
+    "nov.",
+    "déc."
+  ],
+  wide: [
+    "janvier",
+    "février",
+    "mars",
+    "avril",
+    "mai",
+    "juin",
+    "juillet",
+    "août",
+    "septembre",
+    "octobre",
+    "novembre",
+    "décembre"
+  ]
+}, ui = {
   narrow: ["D", "L", "M", "M", "J", "V", "S"],
   short: ["di", "lu", "ma", "me", "je", "ve", "sa"],
   abbreviated: ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."],
-  wide: ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"]
-}, zi = {
+  wide: [
+    "dimanche",
+    "lundi",
+    "mardi",
+    "mercredi",
+    "jeudi",
+    "vendredi",
+    "samedi"
+  ]
+}, li = {
   narrow: {
     am: "AM",
     pm: "PM",
@@ -3026,7 +3241,7 @@ var Ni = {
     midnight: "minuit",
     noon: "midi",
     morning: "matin",
-    afternoon: "apr\xE8s-midi",
+    afternoon: "après-midi",
     evening: "soir",
     night: "matin"
   },
@@ -3036,74 +3251,101 @@ var Ni = {
     midnight: "minuit",
     noon: "midi",
     morning: "du matin",
-    afternoon: "de l\u2019apr\xE8s-midi",
+    afternoon: "de l’après-midi",
     evening: "du soir",
     night: "du matin"
   }
-}, _i = function(e, t) {
-  var a = Number(e), r = t?.unit;
-  if (a === 0)
-    return "0";
-  var n = ["year", "week", "hour", "minute", "second"], i;
-  return a === 1 ? i = r && n.includes(r) ? "\xE8re" : "er" : i = "\xE8me", a + i;
-}, Ai = {
-  ordinalNumber: _i,
+}, ci = (e, t) => {
+  const n = Number(e), a = t?.unit;
+  if (n === 0) return "0";
+  const r = ["year", "week", "hour", "minute", "second"];
+  let i;
+  return n === 1 ? i = a && r.includes(a) ? "ère" : "er" : i = "ème", n + i;
+}, mi = ["MMM", "MMMM"], hi = {
+  preprocessor: (e, t) => e.getDate() === 1 || !t.some(
+    (a) => a.isToken && mi.includes(a.value)
+  ) ? t : t.map(
+    (a) => a.isToken && a.value === "do" ? { isToken: !0, value: "d" } : a
+  ),
+  ordinalNumber: ci,
   era: f({
-    values: Ni,
+    values: oi,
     defaultWidth: "wide"
   }),
   quarter: f({
-    values: Ei,
+    values: si,
     defaultWidth: "wide",
-    argumentCallback: function(e) {
-      return e - 1;
-    }
+    argumentCallback: (e) => e - 1
   }),
   month: f({
-    values: ji,
+    values: di,
     defaultWidth: "wide"
   }),
   day: f({
-    values: Li,
+    values: ui,
     defaultWidth: "wide"
   }),
   dayPeriod: f({
-    values: zi,
+    values: li,
     defaultWidth: "wide"
   })
-};
-const Fi = Ai;
-var Ii = /^(\d+)(ième|ère|ème|er|e)?/i, qi = /\d+/i, Hi = {
+}, fi = /^(\d+)(ième|ère|ème|er|e)?/i, gi = /\d+/i, pi = {
   narrow: /^(av\.J\.C|ap\.J\.C|ap\.J\.-C)/i,
   abbreviated: /^(av\.J\.-C|av\.J-C|apr\.J\.-C|apr\.J-C|ap\.J-C)/i,
   wide: /^(avant Jésus-Christ|après Jésus-Christ)/i
-}, Gi = {
+}, wi = {
   any: [/^av/i, /^ap/i]
-}, Yi = {
+}, vi = {
   narrow: /^T?[1234]/i,
   abbreviated: /^[1234](er|ème|e)? trim\.?/i,
   wide: /^[1234](er|ème|e)? trimestre/i
-}, Bi = {
+}, yi = {
   any: [/1/i, /2/i, /3/i, /4/i]
-}, Xi = {
+}, bi = {
   narrow: /^[jfmasond]/i,
   abbreviated: /^(janv|févr|mars|avr|mai|juin|juill|juil|août|sept|oct|nov|déc)\.?/i,
   wide: /^(janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)/i
-}, Vi = {
-  narrow: [/^j/i, /^f/i, /^m/i, /^a/i, /^m/i, /^j/i, /^j/i, /^a/i, /^s/i, /^o/i, /^n/i, /^d/i],
-  any: [/^ja/i, /^f/i, /^mar/i, /^av/i, /^ma/i, /^juin/i, /^juil/i, /^ao/i, /^s/i, /^o/i, /^n/i, /^d/i]
-}, Ui = {
+}, Mi = {
+  narrow: [
+    /^j/i,
+    /^f/i,
+    /^m/i,
+    /^a/i,
+    /^m/i,
+    /^j/i,
+    /^j/i,
+    /^a/i,
+    /^s/i,
+    /^o/i,
+    /^n/i,
+    /^d/i
+  ],
+  any: [
+    /^ja/i,
+    /^f/i,
+    /^mar/i,
+    /^av/i,
+    /^ma/i,
+    /^juin/i,
+    /^juil/i,
+    /^ao/i,
+    /^s/i,
+    /^o/i,
+    /^n/i,
+    /^d/i
+  ]
+}, Pi = {
   narrow: /^[lmjvsd]/i,
   short: /^(di|lu|ma|me|je|ve|sa)/i,
   abbreviated: /^(dim|lun|mar|mer|jeu|ven|sam)\.?/i,
   wide: /^(dimanche|lundi|mardi|mercredi|jeudi|vendredi|samedi)/i
-}, Ri = {
+}, ki = {
   narrow: [/^d/i, /^l/i, /^m/i, /^m/i, /^j/i, /^v/i, /^s/i],
   any: [/^di/i, /^lu/i, /^ma/i, /^me/i, /^je/i, /^ve/i, /^sa/i]
-}, Ji = {
+}, Di = {
   narrow: /^(a|p|minuit|midi|mat\.?|ap\.?m\.?|soir|nuit)/i,
   any: /^([ap]\.?\s?m\.?|du matin|de l'après[-\s]midi|du soir|de la nuit)/i
-}, Qi = {
+}, $i = {
   any: {
     am: /^a/i,
     pm: /^p/i,
@@ -3114,93 +3356,84 @@ var Ii = /^(\d+)(ième|ère|ème|er|e)?/i, qi = /\d+/i, Hi = {
     evening: /soir/i,
     night: /nuit/i
   }
-}, Zi = {
-  ordinalNumber: q({
-    matchPattern: Ii,
-    parsePattern: qi,
-    valueCallback: function(e) {
-      return parseInt(e);
-    }
+}, Si = {
+  ordinalNumber: B({
+    matchPattern: fi,
+    parsePattern: gi,
+    valueCallback: (e) => parseInt(e)
   }),
   era: g({
-    matchPatterns: Hi,
+    matchPatterns: pi,
     defaultMatchWidth: "wide",
-    parsePatterns: Gi,
+    parsePatterns: wi,
     defaultParseWidth: "any"
   }),
   quarter: g({
-    matchPatterns: Yi,
+    matchPatterns: vi,
     defaultMatchWidth: "wide",
-    parsePatterns: Bi,
+    parsePatterns: yi,
     defaultParseWidth: "any",
-    valueCallback: function(e) {
-      return e + 1;
-    }
+    valueCallback: (e) => e + 1
   }),
   month: g({
-    matchPatterns: Xi,
+    matchPatterns: bi,
     defaultMatchWidth: "wide",
-    parsePatterns: Vi,
+    parsePatterns: Mi,
     defaultParseWidth: "any"
   }),
   day: g({
-    matchPatterns: Ui,
+    matchPatterns: Pi,
     defaultMatchWidth: "wide",
-    parsePatterns: Ri,
+    parsePatterns: ki,
     defaultParseWidth: "any"
   }),
   dayPeriod: g({
-    matchPatterns: Ji,
+    matchPatterns: Di,
     defaultMatchWidth: "any",
-    parsePatterns: Qi,
+    parsePatterns: $i,
     defaultParseWidth: "any"
   })
-};
-const Ki = Zi;
-var eo = {
+}, Wi = {
   full: "EEEE d MMMM y",
   long: "d MMMM y",
   medium: "d MMM y",
   short: "yy-MM-dd"
-}, to = {
+}, Ci = {
   full: "HH:mm:ss zzzz",
   long: "HH:mm:ss z",
   medium: "HH:mm:ss",
   short: "HH:mm"
-}, ao = {
-  full: "{{date}} '\xE0' {{time}}",
-  long: "{{date}} '\xE0' {{time}}",
+}, Oi = {
+  full: "{{date}} 'à' {{time}}",
+  long: "{{date}} 'à' {{time}}",
   medium: "{{date}}, {{time}}",
   short: "{{date}}, {{time}}"
-}, ro = {
+}, Ei = {
   date: M({
-    formats: eo,
+    formats: Wi,
     defaultWidth: "full"
   }),
   time: M({
-    formats: to,
+    formats: Ci,
     defaultWidth: "full"
   }),
   dateTime: M({
-    formats: ao,
+    formats: Oi,
     defaultWidth: "full"
   })
-};
-const no = ro;
-var io = {
+}, Ti = {
   code: "fr-CA",
-  formatDistance: Wi,
-  formatLong: no,
-  formatRelative: xi,
-  localize: Fi,
-  match: Ki,
+  formatDistance: ai,
+  formatLong: Ei,
+  formatRelative: ii,
+  localize: hi,
+  match: Si,
+  // Unique for fr-CA
   options: {
     weekStartsOn: 0,
     firstWeekContainsDate: 1
   }
-};
-const oo = io;
-var so = {
+}, Ni = {
   lessThanXSeconds: {
     one: "meno di un secondo",
     other: "meno di {{count}} secondi"
@@ -3255,104 +3488,141 @@ var so = {
     other: "{{count}} anni"
   },
   overXYears: {
-    one: "pi\xF9 di un anno",
-    other: "pi\xF9 di {{count}} anni"
+    one: "più di un anno",
+    other: "più di {{count}} anni"
   },
   almostXYears: {
     one: "quasi un anno",
     other: "quasi {{count}} anni"
   }
-}, uo = function(e, t, a) {
-  var r, n = so[e];
-  return typeof n == "string" ? r = n : t === 1 ? r = n.one : r = n.other.replace("{{count}}", t.toString()), a != null && a.addSuffix ? a.comparison && a.comparison > 0 ? "tra " + r : r + " fa" : r;
-};
-const lo = uo;
-var mo = {
+}, Ai = (e, t, n) => {
+  let a;
+  const r = Ni[e];
+  return typeof r == "string" ? a = r : t === 1 ? a = r.one : a = r.other.replace("{{count}}", t.toString()), n?.addSuffix ? n.comparison && n.comparison > 0 ? "tra " + a : a + " fa" : a;
+}, xi = {
   full: "EEEE d MMMM y",
   long: "d MMMM y",
   medium: "d MMM y",
   short: "dd/MM/y"
-}, co = {
+}, ji = {
   full: "HH:mm:ss zzzz",
   long: "HH:mm:ss z",
   medium: "HH:mm:ss",
   short: "HH:mm"
-}, ho = {
+}, Li = {
   full: "{{date}} {{time}}",
   long: "{{date}} {{time}}",
   medium: "{{date}} {{time}}",
   short: "{{date}} {{time}}"
-}, fo = {
+}, _i = {
   date: M({
-    formats: mo,
+    formats: xi,
     defaultWidth: "full"
   }),
   time: M({
-    formats: co,
+    formats: ji,
     defaultWidth: "full"
   }),
   dateTime: M({
-    formats: ho,
+    formats: Li,
     defaultWidth: "full"
   })
-};
-const go = fo;
-var ke = ["domenica", "luned\xEC", "marted\xEC", "mercoled\xEC", "gioved\xEC", "venerd\xEC", "sabato"];
-function vo(e) {
+}, Se = [
+  "domenica",
+  "lunedì",
+  "martedì",
+  "mercoledì",
+  "giovedì",
+  "venerdì",
+  "sabato"
+];
+function Fi(e) {
   switch (e) {
     case 0:
       return "'domenica scorsa alle' p";
     default:
-      return "'" + ke[e] + " scorso alle' p";
+      return "'" + Se[e] + " scorso alle' p";
   }
 }
-function Le(e) {
-  return "'" + ke[e] + " alle' p";
+function He(e) {
+  return "'" + Se[e] + " alle' p";
 }
-function po(e) {
+function zi(e) {
   switch (e) {
     case 0:
       return "'domenica prossima alle' p";
     default:
-      return "'" + ke[e] + " prossimo alle' p";
+      return "'" + Se[e] + " prossimo alle' p";
   }
 }
-var wo = {
-  lastWeek: function(e, t, a) {
-    var r = e.getUTCDay();
-    return le(e, t, a) ? Le(r) : vo(r);
+const qi = {
+  lastWeek: (e, t, n) => {
+    const a = e.getDay();
+    return le(e, t, n) ? He(a) : Fi(a);
   },
   yesterday: "'ieri alle' p",
   today: "'oggi alle' p",
   tomorrow: "'domani alle' p",
-  nextWeek: function(e, t, a) {
-    var r = e.getUTCDay();
-    return le(e, t, a) ? Le(r) : po(r);
+  nextWeek: (e, t, n) => {
+    const a = e.getDay();
+    return le(e, t, n) ? He(a) : zi(a);
   },
   other: "P"
-}, bo = function(e, t, a, r) {
-  var n = wo[e];
-  return typeof n == "function" ? n(t, a, r) : n;
-};
-const yo = bo;
-var Mo = {
+}, Ii = (e, t, n, a) => {
+  const r = qi[e];
+  return typeof r == "function" ? r(t, n, a) : r;
+}, Hi = {
   narrow: ["aC", "dC"],
   abbreviated: ["a.C.", "d.C."],
   wide: ["avanti Cristo", "dopo Cristo"]
-}, Po = {
+}, Bi = {
   narrow: ["1", "2", "3", "4"],
   abbreviated: ["T1", "T2", "T3", "T4"],
-  wide: ["1\xBA trimestre", "2\xBA trimestre", "3\xBA trimestre", "4\xBA trimestre"]
-}, ko = {
+  wide: ["1º trimestre", "2º trimestre", "3º trimestre", "4º trimestre"]
+}, Gi = {
   narrow: ["G", "F", "M", "A", "M", "G", "L", "A", "S", "O", "N", "D"],
-  abbreviated: ["gen", "feb", "mar", "apr", "mag", "giu", "lug", "ago", "set", "ott", "nov", "dic"],
-  wide: ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
-}, $o = {
+  abbreviated: [
+    "gen",
+    "feb",
+    "mar",
+    "apr",
+    "mag",
+    "giu",
+    "lug",
+    "ago",
+    "set",
+    "ott",
+    "nov",
+    "dic"
+  ],
+  wide: [
+    "gennaio",
+    "febbraio",
+    "marzo",
+    "aprile",
+    "maggio",
+    "giugno",
+    "luglio",
+    "agosto",
+    "settembre",
+    "ottobre",
+    "novembre",
+    "dicembre"
+  ]
+}, Vi = {
   narrow: ["D", "L", "M", "M", "G", "V", "S"],
   short: ["dom", "lun", "mar", "mer", "gio", "ven", "sab"],
   abbreviated: ["dom", "lun", "mar", "mer", "gio", "ven", "sab"],
-  wide: ["domenica", "luned\xEC", "marted\xEC", "mercoled\xEC", "gioved\xEC", "venerd\xEC", "sabato"]
-}, Do = {
+  wide: [
+    "domenica",
+    "lunedì",
+    "martedì",
+    "mercoledì",
+    "giovedì",
+    "venerdì",
+    "sabato"
+  ]
+}, Yi = {
   narrow: {
     am: "m.",
     pm: "p.",
@@ -3383,7 +3653,7 @@ var Mo = {
     evening: "sera",
     night: "notte"
   }
-}, Co = {
+}, Xi = {
   narrow: {
     am: "m.",
     pm: "p.",
@@ -3414,69 +3684,91 @@ var Mo = {
     evening: "di sera",
     night: "di notte"
   }
-}, So = function(e, t) {
-  var a = Number(e);
-  return a + "\xBA";
-}, Wo = {
-  ordinalNumber: So,
+}, Ri = (e, t) => {
+  const n = Number(e);
+  return String(n);
+}, Ji = {
+  ordinalNumber: Ri,
   era: f({
-    values: Mo,
+    values: Hi,
     defaultWidth: "wide"
   }),
   quarter: f({
-    values: Po,
+    values: Bi,
     defaultWidth: "wide",
-    argumentCallback: function(e) {
-      return e - 1;
-    }
+    argumentCallback: (e) => e - 1
   }),
   month: f({
-    values: ko,
+    values: Gi,
     defaultWidth: "wide"
   }),
   day: f({
-    values: $o,
+    values: Vi,
     defaultWidth: "wide"
   }),
   dayPeriod: f({
-    values: Do,
+    values: Yi,
     defaultWidth: "wide",
-    formattingValues: Co,
+    formattingValues: Xi,
     defaultFormattingWidth: "wide"
   })
-};
-const To = Wo;
-var Oo = /^(\d+)(º)?/i, xo = /\d+/i, No = {
+}, Qi = /^(\d+)(º)?/i, Zi = /\d+/i, Ui = {
   narrow: /^(aC|dC)/i,
   abbreviated: /^(a\.?\s?C\.?|a\.?\s?e\.?\s?v\.?|d\.?\s?C\.?|e\.?\s?v\.?)/i,
   wide: /^(avanti Cristo|avanti Era Volgare|dopo Cristo|Era Volgare)/i
-}, Eo = {
+}, Ki = {
   any: [/^a/i, /^(d|e)/i]
-}, jo = {
+}, eo = {
   narrow: /^[1234]/i,
   abbreviated: /^t[1234]/i,
   wide: /^[1234](º)? trimestre/i
-}, Lo = {
+}, to = {
   any: [/1/i, /2/i, /3/i, /4/i]
-}, zo = {
+}, no = {
   narrow: /^[gfmalsond]/i,
   abbreviated: /^(gen|feb|mar|apr|mag|giu|lug|ago|set|ott|nov|dic)/i,
   wide: /^(gennaio|febbraio|marzo|aprile|maggio|giugno|luglio|agosto|settembre|ottobre|novembre|dicembre)/i
-}, _o = {
-  narrow: [/^g/i, /^f/i, /^m/i, /^a/i, /^m/i, /^g/i, /^l/i, /^a/i, /^s/i, /^o/i, /^n/i, /^d/i],
-  any: [/^ge/i, /^f/i, /^mar/i, /^ap/i, /^mag/i, /^gi/i, /^l/i, /^ag/i, /^s/i, /^o/i, /^n/i, /^d/i]
-}, Ao = {
+}, ao = {
+  narrow: [
+    /^g/i,
+    /^f/i,
+    /^m/i,
+    /^a/i,
+    /^m/i,
+    /^g/i,
+    /^l/i,
+    /^a/i,
+    /^s/i,
+    /^o/i,
+    /^n/i,
+    /^d/i
+  ],
+  any: [
+    /^ge/i,
+    /^f/i,
+    /^mar/i,
+    /^ap/i,
+    /^mag/i,
+    /^gi/i,
+    /^l/i,
+    /^ag/i,
+    /^s/i,
+    /^o/i,
+    /^n/i,
+    /^d/i
+  ]
+}, ro = {
   narrow: /^[dlmgvs]/i,
   short: /^(do|lu|ma|me|gi|ve|sa)/i,
   abbreviated: /^(dom|lun|mar|mer|gio|ven|sab)/i,
   wide: /^(domenica|luned[i|ì]|marted[i|ì]|mercoled[i|ì]|gioved[i|ì]|venerd[i|ì]|sabato)/i
-}, Fo = {
+}, io = {
   narrow: [/^d/i, /^l/i, /^m/i, /^m/i, /^g/i, /^v/i, /^s/i],
   any: [/^d/i, /^l/i, /^ma/i, /^me/i, /^g/i, /^v/i, /^s/i]
-}, Io = {
+}, oo = {
   narrow: /^(a|m\.|p|mezzanotte|mezzogiorno|(di|del) (mattina|pomeriggio|sera|notte))/i,
   any: /^([ap]\.?\s?m\.?|mezzanotte|mezzogiorno|(di|del) (mattina|pomeriggio|sera|notte))/i
-}, qo = {
+}, so = {
   any: {
     am: /^a/i,
     pm: /^p/i,
@@ -3487,317 +3779,337 @@ var Oo = /^(\d+)(º)?/i, xo = /\d+/i, No = {
     evening: /sera/i,
     night: /notte/i
   }
-}, Ho = {
-  ordinalNumber: q({
-    matchPattern: Oo,
-    parsePattern: xo,
-    valueCallback: function(e) {
-      return parseInt(e, 10);
-    }
+}, uo = {
+  ordinalNumber: B({
+    matchPattern: Qi,
+    parsePattern: Zi,
+    valueCallback: (e) => parseInt(e, 10)
   }),
   era: g({
-    matchPatterns: No,
+    matchPatterns: Ui,
     defaultMatchWidth: "wide",
-    parsePatterns: Eo,
+    parsePatterns: Ki,
     defaultParseWidth: "any"
   }),
   quarter: g({
-    matchPatterns: jo,
+    matchPatterns: eo,
     defaultMatchWidth: "wide",
-    parsePatterns: Lo,
+    parsePatterns: to,
     defaultParseWidth: "any",
-    valueCallback: function(e) {
-      return e + 1;
-    }
+    valueCallback: (e) => e + 1
   }),
   month: g({
-    matchPatterns: zo,
+    matchPatterns: no,
     defaultMatchWidth: "wide",
-    parsePatterns: _o,
+    parsePatterns: ao,
     defaultParseWidth: "any"
   }),
   day: g({
-    matchPatterns: Ao,
+    matchPatterns: ro,
     defaultMatchWidth: "wide",
-    parsePatterns: Fo,
+    parsePatterns: io,
     defaultParseWidth: "any"
   }),
   dayPeriod: g({
-    matchPatterns: Io,
+    matchPatterns: oo,
     defaultMatchWidth: "any",
-    parsePatterns: qo,
+    parsePatterns: so,
     defaultParseWidth: "any"
   })
-};
-const Go = Ho;
-var Yo = {
+}, lo = {
   code: "it",
-  formatDistance: lo,
-  formatLong: go,
-  formatRelative: yo,
-  localize: To,
-  match: Go,
+  formatDistance: Ai,
+  formatLong: _i,
+  formatRelative: Ii,
+  localize: Ji,
+  match: uo,
   options: {
     weekStartsOn: 1,
     firstWeekContainsDate: 4
   }
-};
-const Bo = Yo;
-var Xo = {
+}, co = {
   lessThanXSeconds: {
-    one: "1\uCD08 \uBBF8\uB9CC",
-    other: "{{count}}\uCD08 \uBBF8\uB9CC"
+    one: "1초 미만",
+    other: "{{count}}초 미만"
   },
   xSeconds: {
-    one: "1\uCD08",
-    other: "{{count}}\uCD08"
+    one: "1초",
+    other: "{{count}}초"
   },
-  halfAMinute: "30\uCD08",
+  halfAMinute: "30초",
   lessThanXMinutes: {
-    one: "1\uBD84 \uBBF8\uB9CC",
-    other: "{{count}}\uBD84 \uBBF8\uB9CC"
+    one: "1분 미만",
+    other: "{{count}}분 미만"
   },
   xMinutes: {
-    one: "1\uBD84",
-    other: "{{count}}\uBD84"
+    one: "1분",
+    other: "{{count}}분"
   },
   aboutXHours: {
-    one: "\uC57D 1\uC2DC\uAC04",
-    other: "\uC57D {{count}}\uC2DC\uAC04"
+    one: "약 1시간",
+    other: "약 {{count}}시간"
   },
   xHours: {
-    one: "1\uC2DC\uAC04",
-    other: "{{count}}\uC2DC\uAC04"
+    one: "1시간",
+    other: "{{count}}시간"
   },
   xDays: {
-    one: "1\uC77C",
-    other: "{{count}}\uC77C"
+    one: "1일",
+    other: "{{count}}일"
   },
   aboutXWeeks: {
-    one: "\uC57D 1\uC8FC",
-    other: "\uC57D {{count}}\uC8FC"
+    one: "약 1주",
+    other: "약 {{count}}주"
   },
   xWeeks: {
-    one: "1\uC8FC",
-    other: "{{count}}\uC8FC"
+    one: "1주",
+    other: "{{count}}주"
   },
   aboutXMonths: {
-    one: "\uC57D 1\uAC1C\uC6D4",
-    other: "\uC57D {{count}}\uAC1C\uC6D4"
+    one: "약 1개월",
+    other: "약 {{count}}개월"
   },
   xMonths: {
-    one: "1\uAC1C\uC6D4",
-    other: "{{count}}\uAC1C\uC6D4"
+    one: "1개월",
+    other: "{{count}}개월"
   },
   aboutXYears: {
-    one: "\uC57D 1\uB144",
-    other: "\uC57D {{count}}\uB144"
+    one: "약 1년",
+    other: "약 {{count}}년"
   },
   xYears: {
-    one: "1\uB144",
-    other: "{{count}}\uB144"
+    one: "1년",
+    other: "{{count}}년"
   },
   overXYears: {
-    one: "1\uB144 \uC774\uC0C1",
-    other: "{{count}}\uB144 \uC774\uC0C1"
+    one: "1년 이상",
+    other: "{{count}}년 이상"
   },
   almostXYears: {
-    one: "\uAC70\uC758 1\uB144",
-    other: "\uAC70\uC758 {{count}}\uB144"
+    one: "거의 1년",
+    other: "거의 {{count}}년"
   }
-}, Vo = function(e, t, a) {
-  var r, n = Xo[e];
-  return typeof n == "string" ? r = n : t === 1 ? r = n.one : r = n.other.replace("{{count}}", t.toString()), a != null && a.addSuffix ? a.comparison && a.comparison > 0 ? r + " \uD6C4" : r + " \uC804" : r;
-};
-const Uo = Vo;
-var Ro = {
-  full: "y\uB144 M\uC6D4 d\uC77C EEEE",
-  long: "y\uB144 M\uC6D4 d\uC77C",
+}, mo = (e, t, n) => {
+  let a;
+  const r = co[e];
+  return typeof r == "string" ? a = r : t === 1 ? a = r.one : a = r.other.replace("{{count}}", t.toString()), n?.addSuffix ? n.comparison && n.comparison > 0 ? a + " 후" : a + " 전" : a;
+}, ho = {
+  full: "y년 M월 d일 EEEE",
+  long: "y년 M월 d일",
   medium: "y.MM.dd",
   short: "y.MM.dd"
-}, Jo = {
-  full: "a H\uC2DC mm\uBD84 ss\uCD08 zzzz",
+}, fo = {
+  full: "a H시 mm분 ss초 zzzz",
   long: "a H:mm:ss z",
   medium: "HH:mm:ss",
   short: "HH:mm"
-}, Qo = {
+}, go = {
   full: "{{date}} {{time}}",
   long: "{{date}} {{time}}",
   medium: "{{date}} {{time}}",
   short: "{{date}} {{time}}"
-}, Zo = {
+}, po = {
   date: M({
-    formats: Ro,
+    formats: ho,
     defaultWidth: "full"
   }),
   time: M({
-    formats: Jo,
+    formats: fo,
     defaultWidth: "full"
   }),
   dateTime: M({
-    formats: Qo,
+    formats: go,
     defaultWidth: "full"
   })
-};
-const Ko = Zo;
-var es = {
-  lastWeek: "'\uC9C0\uB09C' eeee p",
-  yesterday: "'\uC5B4\uC81C' p",
-  today: "'\uC624\uB298' p",
-  tomorrow: "'\uB0B4\uC77C' p",
-  nextWeek: "'\uB2E4\uC74C' eeee p",
+}, wo = {
+  lastWeek: "'지난' eeee p",
+  yesterday: "'어제' p",
+  today: "'오늘' p",
+  tomorrow: "'내일' p",
+  nextWeek: "'다음' eeee p",
   other: "P"
-}, ts = function(e, t, a, r) {
-  return es[e];
-};
-const as = ts;
-var rs = {
+}, vo = (e, t, n, a) => wo[e], yo = {
   narrow: ["BC", "AD"],
   abbreviated: ["BC", "AD"],
-  wide: ["\uAE30\uC6D0\uC804", "\uC11C\uAE30"]
-}, ns = {
+  wide: ["기원전", "서기"]
+}, bo = {
   narrow: ["1", "2", "3", "4"],
   abbreviated: ["Q1", "Q2", "Q3", "Q4"],
-  wide: ["1\uBD84\uAE30", "2\uBD84\uAE30", "3\uBD84\uAE30", "4\uBD84\uAE30"]
-}, is = {
+  wide: ["1분기", "2분기", "3분기", "4분기"]
+}, Mo = {
   narrow: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
-  abbreviated: ["1\uC6D4", "2\uC6D4", "3\uC6D4", "4\uC6D4", "5\uC6D4", "6\uC6D4", "7\uC6D4", "8\uC6D4", "9\uC6D4", "10\uC6D4", "11\uC6D4", "12\uC6D4"],
-  wide: ["1\uC6D4", "2\uC6D4", "3\uC6D4", "4\uC6D4", "5\uC6D4", "6\uC6D4", "7\uC6D4", "8\uC6D4", "9\uC6D4", "10\uC6D4", "11\uC6D4", "12\uC6D4"]
-}, os = {
-  narrow: ["\uC77C", "\uC6D4", "\uD654", "\uC218", "\uBAA9", "\uAE08", "\uD1A0"],
-  short: ["\uC77C", "\uC6D4", "\uD654", "\uC218", "\uBAA9", "\uAE08", "\uD1A0"],
-  abbreviated: ["\uC77C", "\uC6D4", "\uD654", "\uC218", "\uBAA9", "\uAE08", "\uD1A0"],
-  wide: ["\uC77C\uC694\uC77C", "\uC6D4\uC694\uC77C", "\uD654\uC694\uC77C", "\uC218\uC694\uC77C", "\uBAA9\uC694\uC77C", "\uAE08\uC694\uC77C", "\uD1A0\uC694\uC77C"]
-}, ss = {
+  abbreviated: [
+    "1월",
+    "2월",
+    "3월",
+    "4월",
+    "5월",
+    "6월",
+    "7월",
+    "8월",
+    "9월",
+    "10월",
+    "11월",
+    "12월"
+  ],
+  wide: [
+    "1월",
+    "2월",
+    "3월",
+    "4월",
+    "5월",
+    "6월",
+    "7월",
+    "8월",
+    "9월",
+    "10월",
+    "11월",
+    "12월"
+  ]
+}, Po = {
+  narrow: ["일", "월", "화", "수", "목", "금", "토"],
+  short: ["일", "월", "화", "수", "목", "금", "토"],
+  abbreviated: ["일", "월", "화", "수", "목", "금", "토"],
+  wide: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"]
+}, ko = {
   narrow: {
-    am: "\uC624\uC804",
-    pm: "\uC624\uD6C4",
-    midnight: "\uC790\uC815",
-    noon: "\uC815\uC624",
-    morning: "\uC544\uCE68",
-    afternoon: "\uC624\uD6C4",
-    evening: "\uC800\uB141",
-    night: "\uBC24"
+    am: "오전",
+    pm: "오후",
+    midnight: "자정",
+    noon: "정오",
+    morning: "아침",
+    afternoon: "오후",
+    evening: "저녁",
+    night: "밤"
   },
   abbreviated: {
-    am: "\uC624\uC804",
-    pm: "\uC624\uD6C4",
-    midnight: "\uC790\uC815",
-    noon: "\uC815\uC624",
-    morning: "\uC544\uCE68",
-    afternoon: "\uC624\uD6C4",
-    evening: "\uC800\uB141",
-    night: "\uBC24"
+    am: "오전",
+    pm: "오후",
+    midnight: "자정",
+    noon: "정오",
+    morning: "아침",
+    afternoon: "오후",
+    evening: "저녁",
+    night: "밤"
   },
   wide: {
-    am: "\uC624\uC804",
-    pm: "\uC624\uD6C4",
-    midnight: "\uC790\uC815",
-    noon: "\uC815\uC624",
-    morning: "\uC544\uCE68",
-    afternoon: "\uC624\uD6C4",
-    evening: "\uC800\uB141",
-    night: "\uBC24"
+    am: "오전",
+    pm: "오후",
+    midnight: "자정",
+    noon: "정오",
+    morning: "아침",
+    afternoon: "오후",
+    evening: "저녁",
+    night: "밤"
   }
-}, us = {
+}, Do = {
   narrow: {
-    am: "\uC624\uC804",
-    pm: "\uC624\uD6C4",
-    midnight: "\uC790\uC815",
-    noon: "\uC815\uC624",
-    morning: "\uC544\uCE68",
-    afternoon: "\uC624\uD6C4",
-    evening: "\uC800\uB141",
-    night: "\uBC24"
+    am: "오전",
+    pm: "오후",
+    midnight: "자정",
+    noon: "정오",
+    morning: "아침",
+    afternoon: "오후",
+    evening: "저녁",
+    night: "밤"
   },
   abbreviated: {
-    am: "\uC624\uC804",
-    pm: "\uC624\uD6C4",
-    midnight: "\uC790\uC815",
-    noon: "\uC815\uC624",
-    morning: "\uC544\uCE68",
-    afternoon: "\uC624\uD6C4",
-    evening: "\uC800\uB141",
-    night: "\uBC24"
+    am: "오전",
+    pm: "오후",
+    midnight: "자정",
+    noon: "정오",
+    morning: "아침",
+    afternoon: "오후",
+    evening: "저녁",
+    night: "밤"
   },
   wide: {
-    am: "\uC624\uC804",
-    pm: "\uC624\uD6C4",
-    midnight: "\uC790\uC815",
-    noon: "\uC815\uC624",
-    morning: "\uC544\uCE68",
-    afternoon: "\uC624\uD6C4",
-    evening: "\uC800\uB141",
-    night: "\uBC24"
+    am: "오전",
+    pm: "오후",
+    midnight: "자정",
+    noon: "정오",
+    morning: "아침",
+    afternoon: "오후",
+    evening: "저녁",
+    night: "밤"
   }
-}, ls = function(e, t) {
-  var a = Number(e), r = t || {}, n = String(r.unit);
-  switch (n) {
+}, $o = (e, t) => {
+  const n = Number(e);
+  switch (String(t?.unit)) {
     case "minute":
     case "second":
-      return String(a);
+      return String(n);
     case "date":
-      return a + "\uC77C";
+      return n + "일";
     default:
-      return a + "\uBC88\uC9F8";
+      return n + "번째";
   }
-}, ds = {
-  ordinalNumber: ls,
+}, So = {
+  ordinalNumber: $o,
   era: f({
-    values: rs,
+    values: yo,
     defaultWidth: "wide"
   }),
   quarter: f({
-    values: ns,
+    values: bo,
     defaultWidth: "wide",
-    argumentCallback: function(e) {
-      return e - 1;
-    }
+    argumentCallback: (e) => e - 1
   }),
   month: f({
-    values: is,
+    values: Mo,
     defaultWidth: "wide"
   }),
   day: f({
-    values: os,
+    values: Po,
     defaultWidth: "wide"
   }),
   dayPeriod: f({
-    values: ss,
+    values: ko,
     defaultWidth: "wide",
-    formattingValues: us,
+    formattingValues: Do,
     defaultFormattingWidth: "wide"
   })
-};
-const ms = ds;
-var cs = /^(\d+)(일|번째)?/i, hs = /\d+/i, fs = {
+}, Wo = /^(\d+)(일|번째)?/i, Co = /\d+/i, Oo = {
   narrow: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
   abbreviated: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
   wide: /^(기원전|서기)/i
-}, gs = {
+}, Eo = {
   any: [/^(bc|기원전)/i, /^(ad|서기)/i]
-}, vs = {
+}, To = {
   narrow: /^[1234]/i,
   abbreviated: /^q[1234]/i,
   wide: /^[1234]사?분기/i
-}, ps = {
+}, No = {
   any: [/1/i, /2/i, /3/i, /4/i]
-}, ws = {
+}, Ao = {
   narrow: /^(1[012]|[123456789])/,
   abbreviated: /^(1[012]|[123456789])월/i,
   wide: /^(1[012]|[123456789])월/i
-}, bs = {
-  any: [/^1월?$/, /^2/, /^3/, /^4/, /^5/, /^6/, /^7/, /^8/, /^9/, /^10/, /^11/, /^12/]
-}, ys = {
+}, xo = {
+  any: [
+    /^1월?$/,
+    /^2/,
+    /^3/,
+    /^4/,
+    /^5/,
+    /^6/,
+    /^7/,
+    /^8/,
+    /^9/,
+    /^10/,
+    /^11/,
+    /^12/
+  ]
+}, jo = {
   narrow: /^[일월화수목금토]/,
   short: /^[일월화수목금토]/,
   abbreviated: /^[일월화수목금토]/,
   wide: /^[일월화수목금토]요일/
-}, Ms = {
+}, Lo = {
   any: [/^일/, /^월/, /^화/, /^수/, /^목/, /^금/, /^토/]
-}, Ps = {
+}, _o = {
   any: /^(am|pm|오전|오후|자정|정오|아침|저녁|밤)/i
-}, ks = {
+}, Fo = {
   any: {
     am: /^(am|오전)/i,
     pm: /^(pm|오후)/i,
@@ -3808,63 +4120,55 @@ var cs = /^(\d+)(일|번째)?/i, hs = /\d+/i, fs = {
     evening: /^저녁/i,
     night: /^밤/i
   }
-}, $s = {
-  ordinalNumber: q({
-    matchPattern: cs,
-    parsePattern: hs,
-    valueCallback: function(e) {
-      return parseInt(e, 10);
-    }
+}, zo = {
+  ordinalNumber: B({
+    matchPattern: Wo,
+    parsePattern: Co,
+    valueCallback: (e) => parseInt(e, 10)
   }),
   era: g({
-    matchPatterns: fs,
+    matchPatterns: Oo,
     defaultMatchWidth: "wide",
-    parsePatterns: gs,
+    parsePatterns: Eo,
     defaultParseWidth: "any"
   }),
   quarter: g({
-    matchPatterns: vs,
+    matchPatterns: To,
     defaultMatchWidth: "wide",
-    parsePatterns: ps,
+    parsePatterns: No,
     defaultParseWidth: "any",
-    valueCallback: function(e) {
-      return e + 1;
-    }
+    valueCallback: (e) => e + 1
   }),
   month: g({
-    matchPatterns: ws,
+    matchPatterns: Ao,
     defaultMatchWidth: "wide",
-    parsePatterns: bs,
+    parsePatterns: xo,
     defaultParseWidth: "any"
   }),
   day: g({
-    matchPatterns: ys,
+    matchPatterns: jo,
     defaultMatchWidth: "wide",
-    parsePatterns: Ms,
+    parsePatterns: Lo,
     defaultParseWidth: "any"
   }),
   dayPeriod: g({
-    matchPatterns: Ps,
+    matchPatterns: _o,
     defaultMatchWidth: "any",
-    parsePatterns: ks,
+    parsePatterns: Fo,
     defaultParseWidth: "any"
   })
-};
-const Ds = $s;
-var Cs = {
+}, qo = {
   code: "ko",
-  formatDistance: Uo,
-  formatLong: Ko,
-  formatRelative: as,
-  localize: ms,
-  match: Ds,
+  formatDistance: mo,
+  formatLong: po,
+  formatRelative: vo,
+  localize: So,
+  match: zo,
   options: {
     weekStartsOn: 0,
     firstWeekContainsDate: 1
   }
-};
-const Ss = Cs;
-var ie = {
+}, Io = {
   lessThanXSeconds: {
     one: "menos de um segundo",
     other: "menos de {{count}} segundos"
@@ -3903,11 +4207,11 @@ var ie = {
     other: "{{count}} semanas"
   },
   aboutXMonths: {
-    one: "aproximadamente 1 m\xEAs",
+    one: "aproximadamente 1 mês",
     other: "aproximadamente {{count}} meses"
   },
   xMonths: {
-    one: "1 m\xEAs",
+    one: "1 mês",
     other: "{{count}} meses"
   },
   aboutXYears: {
@@ -3926,81 +4230,109 @@ var ie = {
     one: "quase 1 ano",
     other: "quase {{count}} anos"
   }
-};
-function Ws(e, t, a) {
-  a = a || {};
-  var r;
-  return typeof ie[e] == "string" ? r = ie[e] : t === 1 ? r = ie[e].one : r = ie[e].other.replace("{{count}}", t), a.addSuffix ? a.comparison > 0 ? "daqui a " + r : "h\xE1 " + r : r;
-}
-var Ts = {
+}, Ho = (e, t, n) => {
+  let a;
+  const r = Io[e];
+  return typeof r == "string" ? a = r : t === 1 ? a = r.one : a = r.other.replace("{{count}}", String(t)), n?.addSuffix ? n.comparison && n.comparison > 0 ? "daqui a " + a : "há " + a : a;
+}, Bo = {
   full: "EEEE, d 'de' MMMM 'de' y",
   long: "d 'de' MMMM 'de' y",
   medium: "d 'de' MMM 'de' y",
   short: "dd/MM/y"
-}, Os = {
+}, Go = {
   full: "HH:mm:ss zzzz",
   long: "HH:mm:ss z",
   medium: "HH:mm:ss",
   short: "HH:mm"
-}, xs = {
-  full: "{{date}} '\xE0s' {{time}}",
-  long: "{{date}} '\xE0s' {{time}}",
+}, Vo = {
+  full: "{{date}} 'às' {{time}}",
+  long: "{{date}} 'às' {{time}}",
   medium: "{{date}}, {{time}}",
   short: "{{date}}, {{time}}"
-}, Ns = {
+}, Yo = {
   date: M({
-    formats: Ts,
+    formats: Bo,
     defaultWidth: "full"
   }),
   time: M({
-    formats: Os,
+    formats: Go,
     defaultWidth: "full"
   }),
   dateTime: M({
-    formats: xs,
+    formats: Vo,
     defaultWidth: "full"
   })
-};
-const Es = Ns;
-var js = {
-  lastWeek: "'na \xFAltima' eeee '\xE0s' p",
-  yesterday: "'ontem \xE0s' p",
-  today: "'hoje \xE0s' p",
-  tomorrow: "'amanh\xE3 \xE0s' p",
-  nextWeek: "eeee '\xE0s' p",
+}, Xo = {
+  lastWeek: (e) => {
+    const t = e.getDay();
+    return "'" + (t === 0 || t === 6 ? "último" : "última") + "' eeee 'às' p";
+  },
+  yesterday: "'ontem às' p",
+  today: "'hoje às' p",
+  tomorrow: "'amanhã às' p",
+  nextWeek: "eeee 'às' p",
   other: "P"
-};
-function Ls(e, t, a, r) {
-  return js[e];
-}
-function zs(e) {
-  var t = Number(e);
-  return t + "\xBA";
-}
-var _s = {
+}, Ro = (e, t, n, a) => {
+  const r = Xo[e];
+  return typeof r == "function" ? r(t) : r;
+}, Jo = {
   narrow: ["aC", "dC"],
   abbreviated: ["a.C.", "d.C."],
   wide: ["antes de Cristo", "depois de Cristo"]
-}, As = {
+}, Qo = {
   narrow: ["1", "2", "3", "4"],
   abbreviated: ["T1", "T2", "T3", "T4"],
-  wide: ["1\xBA trimestre", "2\xBA trimestre", "3\xBA trimestre", "4\xBA trimestre"]
-}, Fs = {
+  wide: ["1º trimestre", "2º trimestre", "3º trimestre", "4º trimestre"]
+}, Zo = {
   narrow: ["j", "f", "m", "a", "m", "j", "j", "a", "s", "o", "n", "d"],
-  abbreviated: ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
-  wide: ["janeiro", "fevereiro", "mar\xE7o", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"]
-}, Is = {
+  abbreviated: [
+    "jan",
+    "fev",
+    "mar",
+    "abr",
+    "mai",
+    "jun",
+    "jul",
+    "ago",
+    "set",
+    "out",
+    "nov",
+    "dez"
+  ],
+  wide: [
+    "janeiro",
+    "fevereiro",
+    "março",
+    "abril",
+    "maio",
+    "junho",
+    "julho",
+    "agosto",
+    "setembro",
+    "outubro",
+    "novembro",
+    "dezembro"
+  ]
+}, Uo = {
   narrow: ["d", "s", "t", "q", "q", "s", "s"],
-  short: ["dom", "seg", "ter", "qua", "qui", "sex", "s\xE1b"],
-  abbreviated: ["dom", "seg", "ter", "qua", "qui", "sex", "s\xE1b"],
-  wide: ["domingo", "segunda-feira", "ter\xE7a-feira", "quarta-feira", "quinta-feira", "sexta-feira", "s\xE1bado"]
-}, qs = {
+  short: ["dom", "seg", "ter", "qua", "qui", "sex", "sáb"],
+  abbreviated: ["dom", "seg", "ter", "qua", "qui", "sex", "sáb"],
+  wide: [
+    "domingo",
+    "segunda-feira",
+    "terça-feira",
+    "quarta-feira",
+    "quinta-feira",
+    "sexta-feira",
+    "sábado"
+  ]
+}, Ko = {
   narrow: {
     am: "AM",
     pm: "PM",
     midnight: "meia-noite",
     noon: "meio-dia",
-    morning: "manh\xE3",
+    morning: "manhã",
     afternoon: "tarde",
     evening: "noite",
     night: "madrugada"
@@ -4010,7 +4342,7 @@ var _s = {
     pm: "PM",
     midnight: "meia-noite",
     noon: "meio-dia",
-    morning: "manh\xE3",
+    morning: "manhã",
     afternoon: "tarde",
     evening: "noite",
     night: "madrugada"
@@ -4020,18 +4352,18 @@ var _s = {
     pm: "PM",
     midnight: "meia-noite",
     noon: "meio-dia",
-    morning: "manh\xE3",
+    morning: "manhã",
     afternoon: "tarde",
     evening: "noite",
     night: "madrugada"
   }
-}, Hs = {
+}, es = {
   narrow: {
     am: "AM",
     pm: "PM",
     midnight: "meia-noite",
     noon: "meio-dia",
-    morning: "da manh\xE3",
+    morning: "da manhã",
     afternoon: "da tarde",
     evening: "da noite",
     night: "da madrugada"
@@ -4041,7 +4373,7 @@ var _s = {
     pm: "PM",
     midnight: "meia-noite",
     noon: "meio-dia",
-    morning: "da manh\xE3",
+    morning: "da manhã",
     afternoon: "da tarde",
     evening: "da noite",
     night: "da madrugada"
@@ -4051,72 +4383,97 @@ var _s = {
     pm: "PM",
     midnight: "meia-noite",
     noon: "meio-dia",
-    morning: "da manh\xE3",
+    morning: "da manhã",
     afternoon: "da tarde",
     evening: "da noite",
     night: "da madrugada"
   }
-}, Gs = {
-  ordinalNumber: zs,
+}, ts = (e, t) => Number(e) + "º", ns = {
+  ordinalNumber: ts,
   era: f({
-    values: _s,
+    values: Jo,
     defaultWidth: "wide"
   }),
   quarter: f({
-    values: As,
+    values: Qo,
     defaultWidth: "wide",
-    argumentCallback: function(e) {
-      return Number(e) - 1;
-    }
+    argumentCallback: (e) => e - 1
   }),
   month: f({
-    values: Fs,
+    values: Zo,
     defaultWidth: "wide"
   }),
   day: f({
-    values: Is,
+    values: Uo,
     defaultWidth: "wide"
   }),
   dayPeriod: f({
-    values: qs,
+    values: Ko,
     defaultWidth: "wide",
-    formattingValues: Hs,
+    formattingValues: es,
     defaultFormattingWidth: "wide"
   })
-};
-const Ys = Gs;
-var Bs = /^(\d+)(º|ª)?/i, Xs = /\d+/i, Vs = {
+}, as = /^(\d+)(º|ª)?/i, rs = /\d+/i, is = {
   narrow: /^(ac|dc|a|d)/i,
   abbreviated: /^(a\.?\s?c\.?|a\.?\s?e\.?\s?c\.?|d\.?\s?c\.?|e\.?\s?c\.?)/i,
   wide: /^(antes de cristo|antes da era comum|depois de cristo|era comum)/i
-}, Us = {
+}, os = {
   any: [/^ac/i, /^dc/i],
-  wide: [/^(antes de cristo|antes da era comum)/i, /^(depois de cristo|era comum)/i]
-}, Rs = {
+  wide: [
+    /^(antes de cristo|antes da era comum)/i,
+    /^(depois de cristo|era comum)/i
+  ]
+}, ss = {
   narrow: /^[1234]/i,
   abbreviated: /^T[1234]/i,
   wide: /^[1234](º|ª)? trimestre/i
-}, Js = {
+}, ds = {
   any: [/1/i, /2/i, /3/i, /4/i]
-}, Qs = {
+}, us = {
   narrow: /^[jfmasond]/i,
   abbreviated: /^(jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez)/i,
   wide: /^(janeiro|fevereiro|março|abril|maio|junho|julho|agosto|setembro|outubro|novembro|dezembro)/i
-}, Zs = {
-  narrow: [/^j/i, /^f/i, /^m/i, /^a/i, /^m/i, /^j/i, /^j/i, /^a/i, /^s/i, /^o/i, /^n/i, /^d/i],
-  any: [/^ja/i, /^f/i, /^mar/i, /^ab/i, /^mai/i, /^jun/i, /^jul/i, /^ag/i, /^s/i, /^o/i, /^n/i, /^d/i]
-}, Ks = {
+}, ls = {
+  narrow: [
+    /^j/i,
+    /^f/i,
+    /^m/i,
+    /^a/i,
+    /^m/i,
+    /^j/i,
+    /^j/i,
+    /^a/i,
+    /^s/i,
+    /^o/i,
+    /^n/i,
+    /^d/i
+  ],
+  any: [
+    /^ja/i,
+    /^f/i,
+    /^mar/i,
+    /^ab/i,
+    /^mai/i,
+    /^jun/i,
+    /^jul/i,
+    /^ag/i,
+    /^s/i,
+    /^o/i,
+    /^n/i,
+    /^d/i
+  ]
+}, cs = {
   narrow: /^[dstq]/i,
   short: /^(dom|seg|ter|qua|qui|sex|s[áa]b)/i,
   abbreviated: /^(dom|seg|ter|qua|qui|sex|s[áa]b)/i,
   wide: /^(domingo|segunda-?\s?feira|terça-?\s?feira|quarta-?\s?feira|quinta-?\s?feira|sexta-?\s?feira|s[áa]bado)/i
-}, eu = {
+}, ms = {
   narrow: [/^d/i, /^s/i, /^t/i, /^q/i, /^q/i, /^s/i, /^s/i],
   any: [/^d/i, /^seg/i, /^t/i, /^qua/i, /^qui/i, /^sex/i, /^s[áa]/i]
-}, tu = {
+}, hs = {
   narrow: /^(a|p|meia-?\s?noite|meio-?\s?dia|(da) (manh[ãa]|tarde|noite|madrugada))/i,
   any: /^([ap]\.?\s?m\.?|meia-?\s?noite|meio-?\s?dia|(da) (manh[ãa]|tarde|noite|madrugada))/i
-}, au = {
+}, fs = {
   any: {
     am: /^a/i,
     pm: /^p/i,
@@ -4127,481 +4484,551 @@ var Bs = /^(\d+)(º|ª)?/i, Xs = /\d+/i, Vs = {
     evening: /noite/i,
     night: /madrugada/i
   }
-}, ru = {
-  ordinalNumber: q({
-    matchPattern: Bs,
-    parsePattern: Xs,
-    valueCallback: function(e) {
-      return parseInt(e, 10);
-    }
+}, gs = {
+  ordinalNumber: B({
+    matchPattern: as,
+    parsePattern: rs,
+    valueCallback: (e) => parseInt(e, 10)
   }),
   era: g({
-    matchPatterns: Vs,
+    matchPatterns: is,
     defaultMatchWidth: "wide",
-    parsePatterns: Us,
+    parsePatterns: os,
     defaultParseWidth: "any"
   }),
   quarter: g({
-    matchPatterns: Rs,
+    matchPatterns: ss,
     defaultMatchWidth: "wide",
-    parsePatterns: Js,
+    parsePatterns: ds,
     defaultParseWidth: "any",
-    valueCallback: function(e) {
-      return e + 1;
-    }
+    valueCallback: (e) => e + 1
   }),
   month: g({
-    matchPatterns: Qs,
+    matchPatterns: us,
     defaultMatchWidth: "wide",
-    parsePatterns: Zs,
+    parsePatterns: ls,
     defaultParseWidth: "any"
   }),
   day: g({
-    matchPatterns: Ks,
+    matchPatterns: cs,
     defaultMatchWidth: "wide",
-    parsePatterns: eu,
+    parsePatterns: ms,
     defaultParseWidth: "any"
   }),
   dayPeriod: g({
-    matchPatterns: tu,
+    matchPatterns: hs,
     defaultMatchWidth: "any",
-    parsePatterns: au,
+    parsePatterns: fs,
     defaultParseWidth: "any"
   })
-};
-const nu = ru;
-var iu = {
+}, ps = {
   code: "pt",
-  formatDistance: Ws,
-  formatLong: Es,
-  formatRelative: Ls,
-  localize: Ys,
-  match: nu,
+  formatDistance: Ho,
+  formatLong: Yo,
+  formatRelative: Ro,
+  localize: ns,
+  match: gs,
   options: {
     weekStartsOn: 1,
     firstWeekContainsDate: 4
   }
 };
-const ou = iu;
-function K(e, t) {
+function ae(e, t) {
   if (e.one !== void 0 && t === 1)
     return e.one;
-  var a = t % 10, r = t % 100;
-  return a === 1 && r !== 11 ? e.singularNominative.replace("{{count}}", t) : a >= 2 && a <= 4 && (r < 10 || r > 20) ? e.singularGenitive.replace("{{count}}", t) : e.pluralGenitive.replace("{{count}}", t);
+  const n = t % 10, a = t % 100;
+  return n === 1 && a !== 11 ? e.singularNominative.replace("{{count}}", String(t)) : n >= 2 && n <= 4 && (a < 10 || a > 20) ? e.singularGenitive.replace("{{count}}", String(t)) : e.pluralGenitive.replace("{{count}}", String(t));
 }
-function L(e) {
-  return function(t, a) {
-    return a.addSuffix ? a.comparison > 0 ? e.future ? K(e.future, t) : "\u0447\u0435\u0440\u0435\u0437 " + K(e.regular, t) : e.past ? K(e.past, t) : K(e.regular, t) + " \u043D\u0430\u0437\u0430\u0434" : K(e.regular, t);
-  };
+function x(e) {
+  return (t, n) => n?.addSuffix ? n.comparison && n.comparison > 0 ? e.future ? ae(e.future, t) : "через " + ae(e.regular, t) : e.past ? ae(e.past, t) : ae(e.regular, t) + " назад" : ae(e.regular, t);
 }
-var su = {
-  lessThanXSeconds: L({
+const ws = {
+  lessThanXSeconds: x({
     regular: {
-      one: "\u043C\u0435\u043D\u044C\u0448\u0435 \u0441\u0435\u043A\u0443\u043D\u0434\u044B",
-      singularNominative: "\u043C\u0435\u043D\u044C\u0448\u0435 {{count}} \u0441\u0435\u043A\u0443\u043D\u0434\u044B",
-      singularGenitive: "\u043C\u0435\u043D\u044C\u0448\u0435 {{count}} \u0441\u0435\u043A\u0443\u043D\u0434",
-      pluralGenitive: "\u043C\u0435\u043D\u044C\u0448\u0435 {{count}} \u0441\u0435\u043A\u0443\u043D\u0434"
+      one: "меньше секунды",
+      singularNominative: "меньше {{count}} секунды",
+      singularGenitive: "меньше {{count}} секунд",
+      pluralGenitive: "меньше {{count}} секунд"
     },
     future: {
-      one: "\u043C\u0435\u043D\u044C\u0448\u0435, \u0447\u0435\u043C \u0447\u0435\u0440\u0435\u0437 \u0441\u0435\u043A\u0443\u043D\u0434\u0443",
-      singularNominative: "\u043C\u0435\u043D\u044C\u0448\u0435, \u0447\u0435\u043C \u0447\u0435\u0440\u0435\u0437 {{count}} \u0441\u0435\u043A\u0443\u043D\u0434\u0443",
-      singularGenitive: "\u043C\u0435\u043D\u044C\u0448\u0435, \u0447\u0435\u043C \u0447\u0435\u0440\u0435\u0437 {{count}} \u0441\u0435\u043A\u0443\u043D\u0434\u044B",
-      pluralGenitive: "\u043C\u0435\u043D\u044C\u0448\u0435, \u0447\u0435\u043C \u0447\u0435\u0440\u0435\u0437 {{count}} \u0441\u0435\u043A\u0443\u043D\u0434"
+      one: "меньше, чем через секунду",
+      singularNominative: "меньше, чем через {{count}} секунду",
+      singularGenitive: "меньше, чем через {{count}} секунды",
+      pluralGenitive: "меньше, чем через {{count}} секунд"
     }
   }),
-  xSeconds: L({
+  xSeconds: x({
     regular: {
-      singularNominative: "{{count}} \u0441\u0435\u043A\u0443\u043D\u0434\u0430",
-      singularGenitive: "{{count}} \u0441\u0435\u043A\u0443\u043D\u0434\u044B",
-      pluralGenitive: "{{count}} \u0441\u0435\u043A\u0443\u043D\u0434"
+      singularNominative: "{{count}} секунда",
+      singularGenitive: "{{count}} секунды",
+      pluralGenitive: "{{count}} секунд"
     },
     past: {
-      singularNominative: "{{count}} \u0441\u0435\u043A\u0443\u043D\u0434\u0443 \u043D\u0430\u0437\u0430\u0434",
-      singularGenitive: "{{count}} \u0441\u0435\u043A\u0443\u043D\u0434\u044B \u043D\u0430\u0437\u0430\u0434",
-      pluralGenitive: "{{count}} \u0441\u0435\u043A\u0443\u043D\u0434 \u043D\u0430\u0437\u0430\u0434"
+      singularNominative: "{{count}} секунду назад",
+      singularGenitive: "{{count}} секунды назад",
+      pluralGenitive: "{{count}} секунд назад"
     },
     future: {
-      singularNominative: "\u0447\u0435\u0440\u0435\u0437 {{count}} \u0441\u0435\u043A\u0443\u043D\u0434\u0443",
-      singularGenitive: "\u0447\u0435\u0440\u0435\u0437 {{count}} \u0441\u0435\u043A\u0443\u043D\u0434\u044B",
-      pluralGenitive: "\u0447\u0435\u0440\u0435\u0437 {{count}} \u0441\u0435\u043A\u0443\u043D\u0434"
+      singularNominative: "через {{count}} секунду",
+      singularGenitive: "через {{count}} секунды",
+      pluralGenitive: "через {{count}} секунд"
     }
   }),
-  halfAMinute: function(e, t) {
-    return t.addSuffix ? t.comparison > 0 ? "\u0447\u0435\u0440\u0435\u0437 \u043F\u043E\u043B\u043C\u0438\u043D\u0443\u0442\u044B" : "\u043F\u043E\u043B\u043C\u0438\u043D\u0443\u0442\u044B \u043D\u0430\u0437\u0430\u0434" : "\u043F\u043E\u043B\u043C\u0438\u043D\u0443\u0442\u044B";
-  },
-  lessThanXMinutes: L({
+  halfAMinute: (e, t) => t?.addSuffix ? t.comparison && t.comparison > 0 ? "через полминуты" : "полминуты назад" : "полминуты",
+  lessThanXMinutes: x({
     regular: {
-      one: "\u043C\u0435\u043D\u044C\u0448\u0435 \u043C\u0438\u043D\u0443\u0442\u044B",
-      singularNominative: "\u043C\u0435\u043D\u044C\u0448\u0435 {{count}} \u043C\u0438\u043D\u0443\u0442\u044B",
-      singularGenitive: "\u043C\u0435\u043D\u044C\u0448\u0435 {{count}} \u043C\u0438\u043D\u0443\u0442",
-      pluralGenitive: "\u043C\u0435\u043D\u044C\u0448\u0435 {{count}} \u043C\u0438\u043D\u0443\u0442"
+      one: "меньше минуты",
+      singularNominative: "меньше {{count}} минуты",
+      singularGenitive: "меньше {{count}} минут",
+      pluralGenitive: "меньше {{count}} минут"
     },
     future: {
-      one: "\u043C\u0435\u043D\u044C\u0448\u0435, \u0447\u0435\u043C \u0447\u0435\u0440\u0435\u0437 \u043C\u0438\u043D\u0443\u0442\u0443",
-      singularNominative: "\u043C\u0435\u043D\u044C\u0448\u0435, \u0447\u0435\u043C \u0447\u0435\u0440\u0435\u0437 {{count}} \u043C\u0438\u043D\u0443\u0442\u0443",
-      singularGenitive: "\u043C\u0435\u043D\u044C\u0448\u0435, \u0447\u0435\u043C \u0447\u0435\u0440\u0435\u0437 {{count}} \u043C\u0438\u043D\u0443\u0442\u044B",
-      pluralGenitive: "\u043C\u0435\u043D\u044C\u0448\u0435, \u0447\u0435\u043C \u0447\u0435\u0440\u0435\u0437 {{count}} \u043C\u0438\u043D\u0443\u0442"
+      one: "меньше, чем через минуту",
+      singularNominative: "меньше, чем через {{count}} минуту",
+      singularGenitive: "меньше, чем через {{count}} минуты",
+      pluralGenitive: "меньше, чем через {{count}} минут"
     }
   }),
-  xMinutes: L({
+  xMinutes: x({
     regular: {
-      singularNominative: "{{count}} \u043C\u0438\u043D\u0443\u0442\u0430",
-      singularGenitive: "{{count}} \u043C\u0438\u043D\u0443\u0442\u044B",
-      pluralGenitive: "{{count}} \u043C\u0438\u043D\u0443\u0442"
+      singularNominative: "{{count}} минута",
+      singularGenitive: "{{count}} минуты",
+      pluralGenitive: "{{count}} минут"
     },
     past: {
-      singularNominative: "{{count}} \u043C\u0438\u043D\u0443\u0442\u0443 \u043D\u0430\u0437\u0430\u0434",
-      singularGenitive: "{{count}} \u043C\u0438\u043D\u0443\u0442\u044B \u043D\u0430\u0437\u0430\u0434",
-      pluralGenitive: "{{count}} \u043C\u0438\u043D\u0443\u0442 \u043D\u0430\u0437\u0430\u0434"
+      singularNominative: "{{count}} минуту назад",
+      singularGenitive: "{{count}} минуты назад",
+      pluralGenitive: "{{count}} минут назад"
     },
     future: {
-      singularNominative: "\u0447\u0435\u0440\u0435\u0437 {{count}} \u043C\u0438\u043D\u0443\u0442\u0443",
-      singularGenitive: "\u0447\u0435\u0440\u0435\u0437 {{count}} \u043C\u0438\u043D\u0443\u0442\u044B",
-      pluralGenitive: "\u0447\u0435\u0440\u0435\u0437 {{count}} \u043C\u0438\u043D\u0443\u0442"
+      singularNominative: "через {{count}} минуту",
+      singularGenitive: "через {{count}} минуты",
+      pluralGenitive: "через {{count}} минут"
     }
   }),
-  aboutXHours: L({
+  aboutXHours: x({
     regular: {
-      singularNominative: "\u043E\u043A\u043E\u043B\u043E {{count}} \u0447\u0430\u0441\u0430",
-      singularGenitive: "\u043E\u043A\u043E\u043B\u043E {{count}} \u0447\u0430\u0441\u043E\u0432",
-      pluralGenitive: "\u043E\u043A\u043E\u043B\u043E {{count}} \u0447\u0430\u0441\u043E\u0432"
+      singularNominative: "около {{count}} часа",
+      singularGenitive: "около {{count}} часов",
+      pluralGenitive: "около {{count}} часов"
     },
     future: {
-      singularNominative: "\u043F\u0440\u0438\u0431\u043B\u0438\u0437\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u0447\u0435\u0440\u0435\u0437 {{count}} \u0447\u0430\u0441",
-      singularGenitive: "\u043F\u0440\u0438\u0431\u043B\u0438\u0437\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u0447\u0435\u0440\u0435\u0437 {{count}} \u0447\u0430\u0441\u0430",
-      pluralGenitive: "\u043F\u0440\u0438\u0431\u043B\u0438\u0437\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u0447\u0435\u0440\u0435\u0437 {{count}} \u0447\u0430\u0441\u043E\u0432"
+      singularNominative: "приблизительно через {{count}} час",
+      singularGenitive: "приблизительно через {{count}} часа",
+      pluralGenitive: "приблизительно через {{count}} часов"
     }
   }),
-  xHours: L({
+  xHours: x({
     regular: {
-      singularNominative: "{{count}} \u0447\u0430\u0441",
-      singularGenitive: "{{count}} \u0447\u0430\u0441\u0430",
-      pluralGenitive: "{{count}} \u0447\u0430\u0441\u043E\u0432"
+      singularNominative: "{{count}} час",
+      singularGenitive: "{{count}} часа",
+      pluralGenitive: "{{count}} часов"
     }
   }),
-  xDays: L({
+  xDays: x({
     regular: {
-      singularNominative: "{{count}} \u0434\u0435\u043D\u044C",
-      singularGenitive: "{{count}} \u0434\u043D\u044F",
-      pluralGenitive: "{{count}} \u0434\u043D\u0435\u0439"
+      singularNominative: "{{count}} день",
+      singularGenitive: "{{count}} дня",
+      pluralGenitive: "{{count}} дней"
     }
   }),
-  aboutXWeeks: L({
+  aboutXWeeks: x({
     regular: {
-      singularNominative: "\u043E\u043A\u043E\u043B\u043E {{count}} \u043D\u0435\u0434\u0435\u043B\u0438",
-      singularGenitive: "\u043E\u043A\u043E\u043B\u043E {{count}} \u043D\u0435\u0434\u0435\u043B\u044C",
-      pluralGenitive: "\u043E\u043A\u043E\u043B\u043E {{count}} \u043D\u0435\u0434\u0435\u043B\u044C"
+      singularNominative: "около {{count}} недели",
+      singularGenitive: "около {{count}} недель",
+      pluralGenitive: "около {{count}} недель"
     },
     future: {
-      singularNominative: "\u043F\u0440\u0438\u0431\u043B\u0438\u0437\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u0447\u0435\u0440\u0435\u0437 {{count}} \u043D\u0435\u0434\u0435\u043B\u044E",
-      singularGenitive: "\u043F\u0440\u0438\u0431\u043B\u0438\u0437\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u0447\u0435\u0440\u0435\u0437 {{count}} \u043D\u0435\u0434\u0435\u043B\u0438",
-      pluralGenitive: "\u043F\u0440\u0438\u0431\u043B\u0438\u0437\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u0447\u0435\u0440\u0435\u0437 {{count}} \u043D\u0435\u0434\u0435\u043B\u044C"
+      singularNominative: "приблизительно через {{count}} неделю",
+      singularGenitive: "приблизительно через {{count}} недели",
+      pluralGenitive: "приблизительно через {{count}} недель"
     }
   }),
-  xWeeks: L({
+  xWeeks: x({
     regular: {
-      singularNominative: "{{count}} \u043D\u0435\u0434\u0435\u043B\u044F",
-      singularGenitive: "{{count}} \u043D\u0435\u0434\u0435\u043B\u0438",
-      pluralGenitive: "{{count}} \u043D\u0435\u0434\u0435\u043B\u044C"
+      singularNominative: "{{count}} неделя",
+      singularGenitive: "{{count}} недели",
+      pluralGenitive: "{{count}} недель"
     }
   }),
-  aboutXMonths: L({
+  aboutXMonths: x({
     regular: {
-      singularNominative: "\u043E\u043A\u043E\u043B\u043E {{count}} \u043C\u0435\u0441\u044F\u0446\u0430",
-      singularGenitive: "\u043E\u043A\u043E\u043B\u043E {{count}} \u043C\u0435\u0441\u044F\u0446\u0435\u0432",
-      pluralGenitive: "\u043E\u043A\u043E\u043B\u043E {{count}} \u043C\u0435\u0441\u044F\u0446\u0435\u0432"
+      singularNominative: "около {{count}} месяца",
+      singularGenitive: "около {{count}} месяцев",
+      pluralGenitive: "около {{count}} месяцев"
     },
     future: {
-      singularNominative: "\u043F\u0440\u0438\u0431\u043B\u0438\u0437\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u0447\u0435\u0440\u0435\u0437 {{count}} \u043C\u0435\u0441\u044F\u0446",
-      singularGenitive: "\u043F\u0440\u0438\u0431\u043B\u0438\u0437\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u0447\u0435\u0440\u0435\u0437 {{count}} \u043C\u0435\u0441\u044F\u0446\u0430",
-      pluralGenitive: "\u043F\u0440\u0438\u0431\u043B\u0438\u0437\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u0447\u0435\u0440\u0435\u0437 {{count}} \u043C\u0435\u0441\u044F\u0446\u0435\u0432"
+      singularNominative: "приблизительно через {{count}} месяц",
+      singularGenitive: "приблизительно через {{count}} месяца",
+      pluralGenitive: "приблизительно через {{count}} месяцев"
     }
   }),
-  xMonths: L({
+  xMonths: x({
     regular: {
-      singularNominative: "{{count}} \u043C\u0435\u0441\u044F\u0446",
-      singularGenitive: "{{count}} \u043C\u0435\u0441\u044F\u0446\u0430",
-      pluralGenitive: "{{count}} \u043C\u0435\u0441\u044F\u0446\u0435\u0432"
+      singularNominative: "{{count}} месяц",
+      singularGenitive: "{{count}} месяца",
+      pluralGenitive: "{{count}} месяцев"
     }
   }),
-  aboutXYears: L({
+  aboutXYears: x({
     regular: {
-      singularNominative: "\u043E\u043A\u043E\u043B\u043E {{count}} \u0433\u043E\u0434\u0430",
-      singularGenitive: "\u043E\u043A\u043E\u043B\u043E {{count}} \u043B\u0435\u0442",
-      pluralGenitive: "\u043E\u043A\u043E\u043B\u043E {{count}} \u043B\u0435\u0442"
+      singularNominative: "около {{count}} года",
+      singularGenitive: "около {{count}} лет",
+      pluralGenitive: "около {{count}} лет"
     },
     future: {
-      singularNominative: "\u043F\u0440\u0438\u0431\u043B\u0438\u0437\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u0447\u0435\u0440\u0435\u0437 {{count}} \u0433\u043E\u0434",
-      singularGenitive: "\u043F\u0440\u0438\u0431\u043B\u0438\u0437\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u0447\u0435\u0440\u0435\u0437 {{count}} \u0433\u043E\u0434\u0430",
-      pluralGenitive: "\u043F\u0440\u0438\u0431\u043B\u0438\u0437\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u0447\u0435\u0440\u0435\u0437 {{count}} \u043B\u0435\u0442"
+      singularNominative: "приблизительно через {{count}} год",
+      singularGenitive: "приблизительно через {{count}} года",
+      pluralGenitive: "приблизительно через {{count}} лет"
     }
   }),
-  xYears: L({
+  xYears: x({
     regular: {
-      singularNominative: "{{count}} \u0433\u043E\u0434",
-      singularGenitive: "{{count}} \u0433\u043E\u0434\u0430",
-      pluralGenitive: "{{count}} \u043B\u0435\u0442"
+      singularNominative: "{{count}} год",
+      singularGenitive: "{{count}} года",
+      pluralGenitive: "{{count}} лет"
     }
   }),
-  overXYears: L({
+  overXYears: x({
     regular: {
-      singularNominative: "\u0431\u043E\u043B\u044C\u0448\u0435 {{count}} \u0433\u043E\u0434\u0430",
-      singularGenitive: "\u0431\u043E\u043B\u044C\u0448\u0435 {{count}} \u043B\u0435\u0442",
-      pluralGenitive: "\u0431\u043E\u043B\u044C\u0448\u0435 {{count}} \u043B\u0435\u0442"
+      singularNominative: "больше {{count}} года",
+      singularGenitive: "больше {{count}} лет",
+      pluralGenitive: "больше {{count}} лет"
     },
     future: {
-      singularNominative: "\u0431\u043E\u043B\u044C\u0448\u0435, \u0447\u0435\u043C \u0447\u0435\u0440\u0435\u0437 {{count}} \u0433\u043E\u0434",
-      singularGenitive: "\u0431\u043E\u043B\u044C\u0448\u0435, \u0447\u0435\u043C \u0447\u0435\u0440\u0435\u0437 {{count}} \u0433\u043E\u0434\u0430",
-      pluralGenitive: "\u0431\u043E\u043B\u044C\u0448\u0435, \u0447\u0435\u043C \u0447\u0435\u0440\u0435\u0437 {{count}} \u043B\u0435\u0442"
+      singularNominative: "больше, чем через {{count}} год",
+      singularGenitive: "больше, чем через {{count}} года",
+      pluralGenitive: "больше, чем через {{count}} лет"
     }
   }),
-  almostXYears: L({
+  almostXYears: x({
     regular: {
-      singularNominative: "\u043F\u043E\u0447\u0442\u0438 {{count}} \u0433\u043E\u0434",
-      singularGenitive: "\u043F\u043E\u0447\u0442\u0438 {{count}} \u0433\u043E\u0434\u0430",
-      pluralGenitive: "\u043F\u043E\u0447\u0442\u0438 {{count}} \u043B\u0435\u0442"
+      singularNominative: "почти {{count}} год",
+      singularGenitive: "почти {{count}} года",
+      pluralGenitive: "почти {{count}} лет"
     },
     future: {
-      singularNominative: "\u043F\u043E\u0447\u0442\u0438 \u0447\u0435\u0440\u0435\u0437 {{count}} \u0433\u043E\u0434",
-      singularGenitive: "\u043F\u043E\u0447\u0442\u0438 \u0447\u0435\u0440\u0435\u0437 {{count}} \u0433\u043E\u0434\u0430",
-      pluralGenitive: "\u043F\u043E\u0447\u0442\u0438 \u0447\u0435\u0440\u0435\u0437 {{count}} \u043B\u0435\u0442"
+      singularNominative: "почти через {{count}} год",
+      singularGenitive: "почти через {{count}} года",
+      pluralGenitive: "почти через {{count}} лет"
     }
   })
-};
-function uu(e, t, a) {
-  return a = a || {}, su[e](t, a);
-}
-var lu = {
-  full: "EEEE, d MMMM y '\u0433.'",
-  long: "d MMMM y '\u0433.'",
-  medium: "d MMM y '\u0433.'",
+}, vs = (e, t, n) => ws[e](t, n), ys = {
+  full: "EEEE, d MMMM y 'г.'",
+  long: "d MMMM y 'г.'",
+  medium: "d MMM y 'г.'",
   short: "dd.MM.y"
-}, du = {
+}, bs = {
   full: "H:mm:ss zzzz",
   long: "H:mm:ss z",
   medium: "H:mm:ss",
   short: "H:mm"
-}, mu = {
+}, Ms = {
   any: "{{date}}, {{time}}"
-}, cu = {
+}, Ps = {
   date: M({
-    formats: lu,
+    formats: ys,
     defaultWidth: "full"
   }),
   time: M({
-    formats: du,
+    formats: bs,
     defaultWidth: "full"
   }),
   dateTime: M({
-    formats: mu,
+    formats: Ms,
     defaultWidth: "any"
   })
-};
-const hu = cu;
-var $e = ["\u0432\u043E\u0441\u043A\u0440\u0435\u0441\u0435\u043D\u044C\u0435", "\u043F\u043E\u043D\u0435\u0434\u0435\u043B\u044C\u043D\u0438\u043A", "\u0432\u0442\u043E\u0440\u043D\u0438\u043A", "\u0441\u0440\u0435\u0434\u0443", "\u0447\u0435\u0442\u0432\u0435\u0440\u0433", "\u043F\u044F\u0442\u043D\u0438\u0446\u0443", "\u0441\u0443\u0431\u0431\u043E\u0442\u0443"];
-function fu(e) {
-  var t = $e[e];
+}, We = [
+  "воскресенье",
+  "понедельник",
+  "вторник",
+  "среду",
+  "четверг",
+  "пятницу",
+  "субботу"
+];
+function ks(e) {
+  const t = We[e];
   switch (e) {
     case 0:
-      return "'\u0432 \u043F\u0440\u043E\u0448\u043B\u043E\u0435 " + t + " \u0432' p";
+      return "'в прошлое " + t + " в' p";
     case 1:
     case 2:
     case 4:
-      return "'\u0432 \u043F\u0440\u043E\u0448\u043B\u044B\u0439 " + t + " \u0432' p";
+      return "'в прошлый " + t + " в' p";
     case 3:
     case 5:
     case 6:
-      return "'\u0432 \u043F\u0440\u043E\u0448\u043B\u0443\u044E " + t + " \u0432' p";
+      return "'в прошлую " + t + " в' p";
   }
 }
-function ze(e) {
-  var t = $e[e];
-  return e === 2 ? "'\u0432\u043E " + t + " \u0432' p" : "'\u0432 " + t + " \u0432' p";
+function Be(e) {
+  const t = We[e];
+  return e === 2 ? "'во " + t + " в' p" : "'в " + t + " в' p";
 }
-function gu(e) {
-  var t = $e[e];
+function Ds(e) {
+  const t = We[e];
   switch (e) {
     case 0:
-      return "'\u0432 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0435\u0435 " + t + " \u0432' p";
+      return "'в следующее " + t + " в' p";
     case 1:
     case 2:
     case 4:
-      return "'\u0432 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0439 " + t + " \u0432' p";
+      return "'в следующий " + t + " в' p";
     case 3:
     case 5:
     case 6:
-      return "'\u0432 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0443\u044E " + t + " \u0432' p";
+      return "'в следующую " + t + " в' p";
   }
 }
-var vu = {
-  lastWeek: function(e, t, a) {
-    var r = e.getUTCDay();
-    return le(e, t, a) ? ze(r) : fu(r);
+const $s = {
+  lastWeek: (e, t, n) => {
+    const a = e.getDay();
+    return le(e, t, n) ? Be(a) : ks(a);
   },
-  yesterday: "'\u0432\u0447\u0435\u0440\u0430 \u0432' p",
-  today: "'\u0441\u0435\u0433\u043E\u0434\u043D\u044F \u0432' p",
-  tomorrow: "'\u0437\u0430\u0432\u0442\u0440\u0430 \u0432' p",
-  nextWeek: function(e, t, a) {
-    var r = e.getUTCDay();
-    return le(e, t, a) ? ze(r) : gu(r);
+  yesterday: "'вчера в' p",
+  today: "'сегодня в' p",
+  tomorrow: "'завтра в' p",
+  nextWeek: (e, t, n) => {
+    const a = e.getDay();
+    return le(e, t, n) ? Be(a) : Ds(a);
   },
   other: "P"
-};
-function pu(e, t, a, r) {
-  var n = vu[e];
-  return typeof n == "function" ? n(t, a, r) : n;
-}
-var wu = {
-  narrow: ["\u0434\u043E \u043D.\u044D.", "\u043D.\u044D."],
-  abbreviated: ["\u0434\u043E \u043D. \u044D.", "\u043D. \u044D."],
-  wide: ["\u0434\u043E \u043D\u0430\u0448\u0435\u0439 \u044D\u0440\u044B", "\u043D\u0430\u0448\u0435\u0439 \u044D\u0440\u044B"]
-}, bu = {
+}, Ss = (e, t, n, a) => {
+  const r = $s[e];
+  return typeof r == "function" ? r(t, n, a) : r;
+}, Ws = {
+  narrow: ["до н.э.", "н.э."],
+  abbreviated: ["до н. э.", "н. э."],
+  wide: ["до нашей эры", "нашей эры"]
+}, Cs = {
   narrow: ["1", "2", "3", "4"],
-  abbreviated: ["1-\u0439 \u043A\u0432.", "2-\u0439 \u043A\u0432.", "3-\u0439 \u043A\u0432.", "4-\u0439 \u043A\u0432."],
-  wide: ["1-\u0439 \u043A\u0432\u0430\u0440\u0442\u0430\u043B", "2-\u0439 \u043A\u0432\u0430\u0440\u0442\u0430\u043B", "3-\u0439 \u043A\u0432\u0430\u0440\u0442\u0430\u043B", "4-\u0439 \u043A\u0432\u0430\u0440\u0442\u0430\u043B"]
-}, yu = {
-  narrow: ["\u042F", "\u0424", "\u041C", "\u0410", "\u041C", "\u0418", "\u0418", "\u0410", "\u0421", "\u041E", "\u041D", "\u0414"],
-  abbreviated: ["\u044F\u043D\u0432.", "\u0444\u0435\u0432.", "\u043C\u0430\u0440\u0442", "\u0430\u043F\u0440.", "\u043C\u0430\u0439", "\u0438\u044E\u043D\u044C", "\u0438\u044E\u043B\u044C", "\u0430\u0432\u0433.", "\u0441\u0435\u043D\u0442.", "\u043E\u043A\u0442.", "\u043D\u043E\u044F\u0431.", "\u0434\u0435\u043A."],
-  wide: ["\u044F\u043D\u0432\u0430\u0440\u044C", "\u0444\u0435\u0432\u0440\u0430\u043B\u044C", "\u043C\u0430\u0440\u0442", "\u0430\u043F\u0440\u0435\u043B\u044C", "\u043C\u0430\u0439", "\u0438\u044E\u043D\u044C", "\u0438\u044E\u043B\u044C", "\u0430\u0432\u0433\u0443\u0441\u0442", "\u0441\u0435\u043D\u0442\u044F\u0431\u0440\u044C", "\u043E\u043A\u0442\u044F\u0431\u0440\u044C", "\u043D\u043E\u044F\u0431\u0440\u044C", "\u0434\u0435\u043A\u0430\u0431\u0440\u044C"]
-}, Mu = {
-  narrow: ["\u042F", "\u0424", "\u041C", "\u0410", "\u041C", "\u0418", "\u0418", "\u0410", "\u0421", "\u041E", "\u041D", "\u0414"],
-  abbreviated: ["\u044F\u043D\u0432.", "\u0444\u0435\u0432.", "\u043C\u0430\u0440.", "\u0430\u043F\u0440.", "\u043C\u0430\u044F", "\u0438\u044E\u043D.", "\u0438\u044E\u043B.", "\u0430\u0432\u0433.", "\u0441\u0435\u043D\u0442.", "\u043E\u043A\u0442.", "\u043D\u043E\u044F\u0431.", "\u0434\u0435\u043A."],
-  wide: ["\u044F\u043D\u0432\u0430\u0440\u044F", "\u0444\u0435\u0432\u0440\u0430\u043B\u044F", "\u043C\u0430\u0440\u0442\u0430", "\u0430\u043F\u0440\u0435\u043B\u044F", "\u043C\u0430\u044F", "\u0438\u044E\u043D\u044F", "\u0438\u044E\u043B\u044F", "\u0430\u0432\u0433\u0443\u0441\u0442\u0430", "\u0441\u0435\u043D\u0442\u044F\u0431\u0440\u044F", "\u043E\u043A\u0442\u044F\u0431\u0440\u044F", "\u043D\u043E\u044F\u0431\u0440\u044F", "\u0434\u0435\u043A\u0430\u0431\u0440\u044F"]
-}, Pu = {
-  narrow: ["\u0412", "\u041F", "\u0412", "\u0421", "\u0427", "\u041F", "\u0421"],
-  short: ["\u0432\u0441", "\u043F\u043D", "\u0432\u0442", "\u0441\u0440", "\u0447\u0442", "\u043F\u0442", "\u0441\u0431"],
-  abbreviated: ["\u0432\u0441\u043A", "\u043F\u043D\u0434", "\u0432\u0442\u0440", "\u0441\u0440\u0434", "\u0447\u0442\u0432", "\u043F\u0442\u043D", "\u0441\u0443\u0431"],
-  wide: ["\u0432\u043E\u0441\u043A\u0440\u0435\u0441\u0435\u043D\u044C\u0435", "\u043F\u043E\u043D\u0435\u0434\u0435\u043B\u044C\u043D\u0438\u043A", "\u0432\u0442\u043E\u0440\u043D\u0438\u043A", "\u0441\u0440\u0435\u0434\u0430", "\u0447\u0435\u0442\u0432\u0435\u0440\u0433", "\u043F\u044F\u0442\u043D\u0438\u0446\u0430", "\u0441\u0443\u0431\u0431\u043E\u0442\u0430"]
-}, ku = {
+  abbreviated: ["1-й кв.", "2-й кв.", "3-й кв.", "4-й кв."],
+  wide: ["1-й квартал", "2-й квартал", "3-й квартал", "4-й квартал"]
+}, Os = {
+  narrow: ["Я", "Ф", "М", "А", "М", "И", "И", "А", "С", "О", "Н", "Д"],
+  abbreviated: [
+    "янв.",
+    "фев.",
+    "март",
+    "апр.",
+    "май",
+    "июнь",
+    "июль",
+    "авг.",
+    "сент.",
+    "окт.",
+    "нояб.",
+    "дек."
+  ],
+  wide: [
+    "январь",
+    "февраль",
+    "март",
+    "апрель",
+    "май",
+    "июнь",
+    "июль",
+    "август",
+    "сентябрь",
+    "октябрь",
+    "ноябрь",
+    "декабрь"
+  ]
+}, Es = {
+  narrow: ["Я", "Ф", "М", "А", "М", "И", "И", "А", "С", "О", "Н", "Д"],
+  abbreviated: [
+    "янв.",
+    "фев.",
+    "мар.",
+    "апр.",
+    "мая",
+    "июн.",
+    "июл.",
+    "авг.",
+    "сент.",
+    "окт.",
+    "нояб.",
+    "дек."
+  ],
+  wide: [
+    "января",
+    "февраля",
+    "марта",
+    "апреля",
+    "мая",
+    "июня",
+    "июля",
+    "августа",
+    "сентября",
+    "октября",
+    "ноября",
+    "декабря"
+  ]
+}, Ts = {
+  narrow: ["В", "П", "В", "С", "Ч", "П", "С"],
+  short: ["вс", "пн", "вт", "ср", "чт", "пт", "сб"],
+  abbreviated: ["вск", "пнд", "втр", "срд", "чтв", "птн", "суб"],
+  wide: [
+    "воскресенье",
+    "понедельник",
+    "вторник",
+    "среда",
+    "четверг",
+    "пятница",
+    "суббота"
+  ]
+}, Ns = {
   narrow: {
-    am: "\u0414\u041F",
-    pm: "\u041F\u041F",
-    midnight: "\u043F\u043E\u043B\u043D.",
-    noon: "\u043F\u043E\u043B\u0434.",
-    morning: "\u0443\u0442\u0440\u043E",
-    afternoon: "\u0434\u0435\u043D\u044C",
-    evening: "\u0432\u0435\u0447.",
-    night: "\u043D\u043E\u0447\u044C"
+    am: "ДП",
+    pm: "ПП",
+    midnight: "полн.",
+    noon: "полд.",
+    morning: "утро",
+    afternoon: "день",
+    evening: "веч.",
+    night: "ночь"
   },
   abbreviated: {
-    am: "\u0414\u041F",
-    pm: "\u041F\u041F",
-    midnight: "\u043F\u043E\u043B\u043D.",
-    noon: "\u043F\u043E\u043B\u0434.",
-    morning: "\u0443\u0442\u0440\u043E",
-    afternoon: "\u0434\u0435\u043D\u044C",
-    evening: "\u0432\u0435\u0447.",
-    night: "\u043D\u043E\u0447\u044C"
+    am: "ДП",
+    pm: "ПП",
+    midnight: "полн.",
+    noon: "полд.",
+    morning: "утро",
+    afternoon: "день",
+    evening: "веч.",
+    night: "ночь"
   },
   wide: {
-    am: "\u0414\u041F",
-    pm: "\u041F\u041F",
-    midnight: "\u043F\u043E\u043B\u043D\u043E\u0447\u044C",
-    noon: "\u043F\u043E\u043B\u0434\u0435\u043D\u044C",
-    morning: "\u0443\u0442\u0440\u043E",
-    afternoon: "\u0434\u0435\u043D\u044C",
-    evening: "\u0432\u0435\u0447\u0435\u0440",
-    night: "\u043D\u043E\u0447\u044C"
+    am: "ДП",
+    pm: "ПП",
+    midnight: "полночь",
+    noon: "полдень",
+    morning: "утро",
+    afternoon: "день",
+    evening: "вечер",
+    night: "ночь"
   }
-}, $u = {
+}, As = {
   narrow: {
-    am: "\u0414\u041F",
-    pm: "\u041F\u041F",
-    midnight: "\u043F\u043E\u043B\u043D.",
-    noon: "\u043F\u043E\u043B\u0434.",
-    morning: "\u0443\u0442\u0440\u0430",
-    afternoon: "\u0434\u043D\u044F",
-    evening: "\u0432\u0435\u0447.",
-    night: "\u043D\u043E\u0447\u0438"
+    am: "ДП",
+    pm: "ПП",
+    midnight: "полн.",
+    noon: "полд.",
+    morning: "утра",
+    afternoon: "дня",
+    evening: "веч.",
+    night: "ночи"
   },
   abbreviated: {
-    am: "\u0414\u041F",
-    pm: "\u041F\u041F",
-    midnight: "\u043F\u043E\u043B\u043D.",
-    noon: "\u043F\u043E\u043B\u0434.",
-    morning: "\u0443\u0442\u0440\u0430",
-    afternoon: "\u0434\u043D\u044F",
-    evening: "\u0432\u0435\u0447.",
-    night: "\u043D\u043E\u0447\u0438"
+    am: "ДП",
+    pm: "ПП",
+    midnight: "полн.",
+    noon: "полд.",
+    morning: "утра",
+    afternoon: "дня",
+    evening: "веч.",
+    night: "ночи"
   },
   wide: {
-    am: "\u0414\u041F",
-    pm: "\u041F\u041F",
-    midnight: "\u043F\u043E\u043B\u043D\u043E\u0447\u044C",
-    noon: "\u043F\u043E\u043B\u0434\u0435\u043D\u044C",
-    morning: "\u0443\u0442\u0440\u0430",
-    afternoon: "\u0434\u043D\u044F",
-    evening: "\u0432\u0435\u0447\u0435\u0440\u0430",
-    night: "\u043D\u043E\u0447\u0438"
+    am: "ДП",
+    pm: "ПП",
+    midnight: "полночь",
+    noon: "полдень",
+    morning: "утра",
+    afternoon: "дня",
+    evening: "вечера",
+    night: "ночи"
   }
-};
-function Du(e, t) {
-  var a = t || {}, r = String(a.unit), n;
-  return r === "date" ? n = "-\u0435" : r === "week" || r === "minute" || r === "second" ? n = "-\u044F" : n = "-\u0439", e + n;
-}
-var Cu = {
-  ordinalNumber: Du,
+}, xs = (e, t) => {
+  const n = Number(e), a = t?.unit;
+  let r;
+  return a === "date" ? r = "-е" : a === "week" || a === "minute" || a === "second" ? r = "-я" : r = "-й", n + r;
+}, js = {
+  ordinalNumber: xs,
   era: f({
-    values: wu,
+    values: Ws,
     defaultWidth: "wide"
   }),
   quarter: f({
-    values: bu,
+    values: Cs,
     defaultWidth: "wide",
-    argumentCallback: function(e) {
-      return Number(e) - 1;
-    }
+    argumentCallback: (e) => e - 1
   }),
   month: f({
-    values: yu,
+    values: Os,
     defaultWidth: "wide",
-    formattingValues: Mu,
+    formattingValues: Es,
     defaultFormattingWidth: "wide"
   }),
   day: f({
-    values: Pu,
+    values: Ts,
     defaultWidth: "wide"
   }),
   dayPeriod: f({
-    values: ku,
+    values: Ns,
     defaultWidth: "any",
-    formattingValues: $u,
+    formattingValues: As,
     defaultFormattingWidth: "wide"
   })
-};
-const Su = Cu;
-var Wu = /^(\d+)(-?(е|я|й|ое|ье|ая|ья|ый|ой|ий|ый))?/i, Tu = /\d+/i, Ou = {
+}, Ls = /^(\d+)(-?(е|я|й|ое|ье|ая|ья|ый|ой|ий|ый))?/i, _s = /\d+/i, Fs = {
   narrow: /^((до )?н\.?\s?э\.?)/i,
   abbreviated: /^((до )?н\.?\s?э\.?)/i,
   wide: /^(до нашей эры|нашей эры|наша эра)/i
-}, xu = {
+}, zs = {
   any: [/^д/i, /^н/i]
-}, Nu = {
+}, qs = {
   narrow: /^[1234]/i,
   abbreviated: /^[1234](-?[ыои]?й?)? кв.?/i,
   wide: /^[1234](-?[ыои]?й?)? квартал/i
-}, Eu = {
+}, Is = {
   any: [/1/i, /2/i, /3/i, /4/i]
-}, ju = {
+}, Hs = {
   narrow: /^[яфмаисонд]/i,
   abbreviated: /^(янв|фев|март?|апр|ма[йя]|июн[ья]?|июл[ья]?|авг|сент?|окт|нояб?|дек)\.?/i,
   wide: /^(январ[ья]|феврал[ья]|марта?|апрел[ья]|ма[йя]|июн[ья]|июл[ья]|августа?|сентябр[ья]|октябр[ья]|октябр[ья]|ноябр[ья]|декабр[ья])/i
-}, Lu = {
-  narrow: [/^я/i, /^ф/i, /^м/i, /^а/i, /^м/i, /^и/i, /^и/i, /^а/i, /^с/i, /^о/i, /^н/i, /^я/i],
-  any: [/^я/i, /^ф/i, /^мар/i, /^ап/i, /^ма[йя]/i, /^июн/i, /^июл/i, /^ав/i, /^с/i, /^о/i, /^н/i, /^д/i]
-}, zu = {
+}, Bs = {
+  narrow: [
+    /^я/i,
+    /^ф/i,
+    /^м/i,
+    /^а/i,
+    /^м/i,
+    /^и/i,
+    /^и/i,
+    /^а/i,
+    /^с/i,
+    /^о/i,
+    /^н/i,
+    /^я/i
+  ],
+  any: [
+    /^я/i,
+    /^ф/i,
+    /^мар/i,
+    /^ап/i,
+    /^ма[йя]/i,
+    /^июн/i,
+    /^июл/i,
+    /^ав/i,
+    /^с/i,
+    /^о/i,
+    /^н/i,
+    /^д/i
+  ]
+}, Gs = {
   narrow: /^[впсч]/i,
   short: /^(вс|во|пн|по|вт|ср|чт|че|пт|пя|сб|су)\.?/i,
   abbreviated: /^(вск|вос|пнд|пон|втр|вто|срд|сре|чтв|чет|птн|пят|суб).?/i,
   wide: /^(воскресень[ея]|понедельника?|вторника?|сред[аы]|четверга?|пятниц[аы]|суббот[аы])/i
-}, _u = {
+}, Vs = {
   narrow: [/^в/i, /^п/i, /^в/i, /^с/i, /^ч/i, /^п/i, /^с/i],
   any: [/^в[ос]/i, /^п[он]/i, /^в/i, /^ср/i, /^ч/i, /^п[ят]/i, /^с[уб]/i]
-}, Au = {
+}, Ys = {
   narrow: /^([дп]п|полн\.?|полд\.?|утр[оа]|день|дня|веч\.?|ноч[ьи])/i,
   abbreviated: /^([дп]п|полн\.?|полд\.?|утр[оа]|день|дня|веч\.?|ноч[ьи])/i,
   wide: /^([дп]п|полночь|полдень|утр[оа]|день|дня|вечера?|ноч[ьи])/i
-}, Fu = {
+}, Xs = {
   any: {
     am: /^дп/i,
     pm: /^пп/i,
@@ -4612,159 +5039,156 @@ var Wu = /^(\d+)(-?(е|я|й|ое|ье|ая|ья|ый|ой|ий|ый))?/i, Tu = 
     evening: /^в/i,
     night: /^н/i
   }
-}, Iu = {
-  ordinalNumber: q({
-    matchPattern: Wu,
-    parsePattern: Tu,
-    valueCallback: function(e) {
-      return parseInt(e, 10);
-    }
+}, Rs = {
+  ordinalNumber: B({
+    matchPattern: Ls,
+    parsePattern: _s,
+    valueCallback: (e) => parseInt(e, 10)
   }),
   era: g({
-    matchPatterns: Ou,
+    matchPatterns: Fs,
     defaultMatchWidth: "wide",
-    parsePatterns: xu,
+    parsePatterns: zs,
     defaultParseWidth: "any"
   }),
   quarter: g({
-    matchPatterns: Nu,
+    matchPatterns: qs,
     defaultMatchWidth: "wide",
-    parsePatterns: Eu,
+    parsePatterns: Is,
     defaultParseWidth: "any",
-    valueCallback: function(e) {
-      return e + 1;
-    }
+    valueCallback: (e) => e + 1
   }),
   month: g({
-    matchPatterns: ju,
+    matchPatterns: Hs,
     defaultMatchWidth: "wide",
-    parsePatterns: Lu,
+    parsePatterns: Bs,
     defaultParseWidth: "any"
   }),
   day: g({
-    matchPatterns: zu,
+    matchPatterns: Gs,
     defaultMatchWidth: "wide",
-    parsePatterns: _u,
+    parsePatterns: Vs,
     defaultParseWidth: "any"
   }),
   dayPeriod: g({
-    matchPatterns: Au,
+    matchPatterns: Ys,
     defaultMatchWidth: "wide",
-    parsePatterns: Fu,
+    parsePatterns: Xs,
     defaultParseWidth: "any"
   })
-};
-const qu = Iu;
-var Hu = {
+}, Js = {
   code: "ru",
-  formatDistance: uu,
-  formatLong: hu,
-  formatRelative: pu,
-  localize: Su,
-  match: qu,
+  formatDistance: vs,
+  formatLong: Ps,
+  formatRelative: Ss,
+  localize: js,
+  match: Rs,
   options: {
     weekStartsOn: 1,
     firstWeekContainsDate: 1
   }
-};
-const Gu = Hu, _e = { en: Hn, fr: oo, es: Di, de: Nn, ca: pr, it: Bo, ru: Gu, pt: ou, da: Jr, ko: Ss };
-function Yu(e = N(new Date()), t = N("en")) {
-  const a = Xe({
+}, Ge = { en: Dr, fr: Ti, es: ti, de: wr, ca: ma, it: lo, ru: Js, pt: ps, da: Ha, ko: qo };
+function Qs(e = N(/* @__PURE__ */ new Date()), t = N("en")) {
+  const n = Ue({
     start: null,
     end: null
-  }), r = A(() => ({
-    start: a && a.start ? G(
+  }), a = F(() => ({
+    start: n && n.start ? Q(
       new Date(
-        a.start.year,
-        a.start.month,
-        a.start.date
+        n.start.year,
+        n.start.month,
+        n.start.date
       ),
       "yyyy-MM-dd"
+      // 'Z'
     ) : null,
-    end: a && a.end ? G(
+    end: n && n.end ? Q(
       new Date(
-        a.end.year,
-        a.end.month,
-        a.end.date
+        n.end.year,
+        n.end.month,
+        n.end.date
       ),
       "yyyy-MM-dd"
+      // 'Z'
     ) : null
-  })), n = A(() => ({
-    start: a && a.start ? G(
+  })), r = F(() => ({
+    start: n && n.start ? Q(
       new Date(
-        a.start.year,
-        a.start.month,
-        a.start.date,
+        n.start.year,
+        n.start.month,
+        n.start.date,
         0,
         -1
       ),
       "yyyy-MM-dd'T'HH:mm:ss"
+      // 'Z'
     ) : null,
-    end: a && a.end ? G(
+    end: n && n.end ? Q(
       new Date(
-        a.end.year,
-        a.end.month,
-        a.end.date,
+        n.end.year,
+        n.end.month,
+        n.end.date,
         23,
         59,
         59
       ),
       "yyyy-MM-dd'T'HH:mm:ss"
+      // 'Z'
     ) : null
-  })), i = A(() => {
-    const v = new Array(o.value), w = _a(e.value), k = e.value.getMonth(), W = e.value.getFullYear();
-    for (let E = 1; E <= w; E++)
-      v.push({
+  })), i = F(() => {
+    const w = new Array(o.value), v = jn(e.value), P = e.value.getMonth(), W = e.value.getFullYear();
+    for (let A = 1; A <= v; A++)
+      w.push({
         year: W,
-        month: k,
-        date: E,
-        formatted: G(new Date(W, k, E), "yyyy-MM-dd")
+        month: P,
+        date: A,
+        formatted: Q(new Date(W, P, A), "yyyy-MM-dd")
       });
-    const z = new Array(6 - u.value);
-    return v.concat(z);
-  }), o = A(() => Ee(Ot(e.value))), u = A(() => Ee(Tt(e.value))), s = A(() => G(e.value, "MMMM yyyy", {
-    locale: _e[t.value]
-  })), d = A(() => {
-    const v = $t(new Date());
+    const E = new Array(6 - d.value);
+    return w.concat(E);
+  }), o = F(() => qe(Ft(e.value))), d = F(() => qe(_t(e.value))), s = F(() => Q(e.value, "MMMM yyyy", {
+    locale: Ge[t.value]
+  })), c = F(() => {
+    const w = J(/* @__PURE__ */ new Date());
     return [...Array(7).keys()].map(
-      (k) => G(Pt(v, k), "EEEEEE", {
-        locale: _e[t.value]
+      (P) => Q(Et(w, P), "EEEEEE", {
+        locale: Ge[t.value]
       })
     );
   });
   return {
-    selectedDates: a,
-    isoSelectedDates: n,
-    readableSelectedDates: r,
+    selectedDates: n,
+    isoSelectedDates: r,
+    readableSelectedDates: a,
     daysInMonth: i,
     firstDayOfMonth: o,
-    lastDayOfMonth: u,
+    lastDayOfMonth: d,
     shownMonthName: s,
-    weekdays: d,
-    changeShownMonth: (v = new Date()) => {
-      e.value = v;
+    weekdays: c,
+    changeShownMonth: (w = /* @__PURE__ */ new Date()) => {
+      e.value = w;
     },
-    changeSelectedDate: (v) => {
-      if (v && (a.start == null || a.end != null ? (a.start = v, a.end != null && (a.end = null)) : a.end == null && (a.end = v), a && a.end && a.start && a.end.formatted < a.start.formatted)) {
-        const w = a.start;
-        a.start = a.end, a.end = w;
+    changeSelectedDate: (w) => {
+      if (w && (n.start == null || n.end != null ? (n.start = w, n.end != null && (n.end = null)) : n.end == null && (n.end = w), n && n.end && n.start && n.end.formatted < n.start.formatted)) {
+        const v = n.start;
+        n.start = n.end, n.end = v;
       }
     },
     clearSelectedDate: () => {
-      Object.assign(a, {
+      Object.assign(n, {
         start: null,
         end: null
       });
     },
     showNextMonth: () => {
-      e.value = We(e.value, 1);
+      e.value = Ae(e.value, 1);
     },
     showPreviousMonth: () => {
-      e.value = We(e.value, -1);
+      e.value = Ae(e.value, -1);
     }
   };
 }
-const Bu = me({
+const Zs = ce({
   name: "DateRangePicker",
   emits: ["datechanged", "close"],
   props: {
@@ -4785,153 +5209,153 @@ const Bu = me({
       required: !1,
       default: "Toggle the calendar"
     },
-    defaultDate: { type: Date, required: !1, default: () => new Date() },
+    defaultDate: { type: Date, required: !1, default: () => /* @__PURE__ */ new Date() },
     tracking: { type: Object, required: !1, default: null }
   },
   setup(e, { emit: t }) {
-    const a = I(e, "dateLocale"), r = N(!1), n = N(null), i = N(null), o = N(null), u = (c) => c.stopPropagation(), s = () => {
-      r.value && (r.value = !1);
+    const n = H(e, "dateLocale"), a = N(!1), r = N(null), i = N(null), o = N(null), d = (j) => j.stopPropagation(), s = () => {
+      a.value && (a.value = !1);
     };
-    Pe(() => {
-      document.addEventListener("click", s), n.value && n.value.addEventListener("click", u);
-    }), st(() => {
-      document.removeEventListener("click", s), n.value && n.value.removeEventListener(
+    $e(() => {
+      document.addEventListener("click", s), r.value && r.value.addEventListener("click", d);
+    }), gt(() => {
+      document.removeEventListener("click", s), r.value && r.value.removeEventListener(
         "click",
-        u
+        d
       );
     });
     const {
-      isoSelectedDates: d,
-      readableSelectedDates: m,
-      clearSelectedDate: l,
+      isoSelectedDates: c,
+      readableSelectedDates: l,
+      clearSelectedDate: u,
       changeSelectedDate: h,
-      weekdays: b,
-      shownMonthName: p,
-      showNextMonth: v,
-      showPreviousMonth: w,
-      daysInMonth: k,
+      weekdays: p,
+      shownMonthName: y,
+      showNextMonth: w,
+      showPreviousMonth: v,
+      daysInMonth: P,
       selectedDates: W
-    } = Yu(N(e.defaultDate), a), z = () => {
-      l(), t("datechanged", d.value), i.value = m.value.start, o.value = m.value.end, s();
-    }, E = () => {
-      W && !d.value.end && h(W.start), t("datechanged", d.value), i.value = m.value.start, o.value = m.value.end, s();
-    }, { pushTracking: X } = ce();
+    } = Qs(N(e.defaultDate), n), E = () => {
+      u(), t("datechanged", c.value), i.value = l.value.start, o.value = l.value.end, s();
+    }, A = () => {
+      W && !c.value.end && h(W.start), t("datechanged", c.value), i.value = l.value.start, o.value = l.value.end, s();
+    }, { pushTracking: q } = me();
     return {
-      locale: a,
-      isoSelectedDates: d,
-      readableSelectedDates: m,
+      locale: n,
+      isoSelectedDates: c,
+      readableSelectedDates: l,
       readableStartDate: i,
       readableEndDate: o,
-      clearSelectedDate: l,
+      clearSelectedDate: u,
       changeSelectedDate: h,
-      weekdays: b,
-      shownMonthName: p,
-      showNextMonth: v,
-      showPreviousMonth: w,
-      daysInMonth: k,
+      weekdays: p,
+      shownMonthName: y,
+      showNextMonth: w,
+      showPreviousMonth: v,
+      daysInMonth: P,
       selectedDates: W,
-      clear: z,
-      save: E,
-      showDateRange: r,
+      clear: E,
+      save: A,
+      showDateRange: a,
       closeDatePicker: s,
-      dateRangePickerElement: n,
+      dateRangePickerElement: r,
       toggleDatePicker: () => {
-        r.value = !r.value, X(e.tracking?.clickDateToggle);
+        a.value = !a.value, q(e.tracking?.clickDateToggle);
       }
     };
   }
-}), Xu = {
+}), Us = {
   class: "date-range-picker__wrapper",
   ref: "dateRangePickerElement"
-}, Vu = ["aria-label", "aria-expanded", "aria-controls"], Uu = /* @__PURE__ */ y("svg", {
-  class: "dropdown-filters__arrow-down",
-  width: "14",
-  height: "9",
-  viewBox: "0 0 14 9",
-  fill: "none",
-  xmlns: "http://www.w3.org/2000/svg"
-}, [
-  /* @__PURE__ */ y("path", {
-    d: "M1 1L7.10049 7.10049L13.201 1",
-    stroke: "black",
-    "stroke-width": "2"
-  })
-], -1), Ru = ["id"], Ju = { class: "months" }, Qu = { class: "month" }, Zu = { class: "month__name" }, Ku = ["aria-label"], el = /* @__PURE__ */ y("svg", {
-  width: "9",
-  height: "14",
-  viewBox: "0 0 9 14",
-  fill: "none",
-  xmlns: "http://www.w3.org/2000/svg"
-}, [
-  /* @__PURE__ */ y("path", {
-    d: "M8.10049 1L2 7.10049L8.10049 13.201",
-    stroke: "#1B1B1B",
-    "stroke-width": "2"
-  })
-], -1), tl = [
-  el
-], al = ["aria-label"], rl = /* @__PURE__ */ y("svg", {
-  width: "9",
-  height: "14",
-  viewBox: "0 0 9 14",
-  fill: "none",
-  xmlns: "http://www.w3.org/2000/svg"
-}, [
-  /* @__PURE__ */ y("path", {
-    d: "M0.899536 13L7.00003 6.89951L0.899537 0.799012",
-    stroke: "#1B1B1B",
-    "stroke-width": "2"
-  })
-], -1), nl = [
-  rl
-], il = { class: "days" }, ol = ["onClick", "aria-hidden", "disabled", "aria-label"], sl = {
+}, Ks = ["aria-label", "aria-expanded", "aria-controls"], ed = ["id"], td = { class: "months" }, nd = { class: "month" }, ad = { class: "month__name" }, rd = ["aria-label"], id = ["aria-label"], od = { class: "days" }, sd = ["onClick", "aria-hidden", "disabled", "aria-label"], dd = {
   key: 0,
   class: "day__number"
-}, ul = { class: "date-range-picker__buttons" }, ll = ["disabled"], dl = { class: "week" };
-function ml(e, t, a, r, n, i) {
-  return T(), x("div", Xu, [
-    y("button", {
+}, ud = { class: "date-range-picker__buttons" }, ld = ["disabled"], cd = { class: "week" };
+function md(e, t, n, a, r, i) {
+  return C(), T("div", Us, [
+    b("button", {
       class: "date-range-picker__toggle",
       onClick: t[0] || (t[0] = (o) => e.toggleDatePicker()),
       "aria-label": e.ariaToggleCalendar,
       "aria-expanded": e.showDateRange + "",
       "aria-controls": e.pickerId
     }, [
-      !e.readableStartDate && !e.readableEndDate ? (T(), x(R, { key: 0 }, [
-        fe(_(e.labelDatesFilter), 1)
-      ], 64)) : F("", !0),
-      e.readableStartDate ? (T(), x(R, { key: 1 }, [
-        fe(_(e.readableStartDate), 1)
-      ], 64)) : F("", !0),
-      e.readableEndDate && e.readableStartDate !== e.readableEndDate ? (T(), x(R, { key: 2 }, [
-        fe(" - " + _(e.readableEndDate), 1)
-      ], 64)) : F("", !0),
-      Uu
-    ], 8, Vu),
-    Be(y("div", {
+      !e.readableStartDate && !e.readableEndDate ? (C(), T(te, { key: 0 }, [
+        ge(L(e.labelDatesFilter), 1)
+      ], 64)) : I("", !0),
+      e.readableStartDate ? (C(), T(te, { key: 1 }, [
+        ge(L(e.readableStartDate), 1)
+      ], 64)) : I("", !0),
+      e.readableEndDate && e.readableStartDate !== e.readableEndDate ? (C(), T(te, { key: 2 }, [
+        ge(" - " + L(e.readableEndDate), 1)
+      ], 64)) : I("", !0),
+      t[5] || (t[5] = b("svg", {
+        class: "dropdown-filters__arrow-down",
+        width: "14",
+        height: "9",
+        viewBox: "0 0 14 9",
+        fill: "none",
+        xmlns: "http://www.w3.org/2000/svg"
+      }, [
+        b("path", {
+          d: "M1 1L7.10049 7.10049L13.201 1",
+          stroke: "black",
+          "stroke-width": "2"
+        })
+      ], -1))
+    ], 8, Ks),
+    Ze(b("div", {
       id: e.pickerId,
       class: "date-range-picker"
     }, [
-      y("div", Ju, [
-        y("div", Qu, [
-          y("div", Zu, [
-            y("button", {
+      b("div", td, [
+        b("div", nd, [
+          b("div", ad, [
+            b("button", {
               class: "month-selector month-selector--previous",
               "aria-label": e.ariaPreviousMonth,
               onClick: t[1] || (t[1] = (...o) => e.showPreviousMonth && e.showPreviousMonth(...o))
-            }, tl, 8, Ku),
-            y("span", null, _(e.shownMonthName), 1),
-            y("button", {
+            }, t[6] || (t[6] = [
+              b("svg", {
+                width: "9",
+                height: "14",
+                viewBox: "0 0 9 14",
+                fill: "none",
+                xmlns: "http://www.w3.org/2000/svg"
+              }, [
+                b("path", {
+                  d: "M8.10049 1L2 7.10049L8.10049 13.201",
+                  stroke: "#1B1B1B",
+                  "stroke-width": "2"
+                })
+              ], -1)
+            ]), 8, rd),
+            b("span", null, L(e.shownMonthName), 1),
+            b("button", {
               class: "month-selector month-selector--next",
               "aria-label": e.ariaNextMonth,
               onClick: t[2] || (t[2] = (...o) => e.showNextMonth && e.showNextMonth(...o))
-            }, nl, 8, al)
+            }, t[7] || (t[7] = [
+              b("svg", {
+                width: "9",
+                height: "14",
+                viewBox: "0 0 9 14",
+                fill: "none",
+                xmlns: "http://www.w3.org/2000/svg"
+              }, [
+                b("path", {
+                  d: "M0.899536 13L7.00003 6.89951L0.899537 0.799012",
+                  stroke: "#1B1B1B",
+                  "stroke-width": "2"
+                })
+              ], -1)
+            ]), 8, id)
           ]),
-          y("div", il, [
-            (T(!0), x(R, null, ve(e.daysInMonth, (o, u) => (T(), x("button", {
-              key: u,
+          b("div", od, [
+            (C(!0), T(te, null, ye(e.daysInMonth, (o, d) => (C(), T("button", {
+              key: d,
               onClick: (s) => e.changeSelectedDate(o),
-              class: ut(["day", [
+              class: pt(["day", [
                 o ? `day--${o.date}` : "day--empty",
                 o && e.selectedDates && e.selectedDates.start && e.selectedDates.end && o.formatted >= e.selectedDates.start.formatted && o.formatted <= e.selectedDates.end.formatted ? "day--active" : "",
                 o && e.selectedDates && e.selectedDates.start && o.formatted == e.selectedDates.start.formatted ? "day--active-first" : "",
@@ -4941,407 +5365,469 @@ function ml(e, t, a, r, n, i) {
               disabled: !o,
               "aria-label": o ? e.ariaSelectDate + o.date + " " + e.shownMonthName : ""
             }, [
-              o ? (T(), x("span", sl, _(o.date), 1)) : F("", !0)
-            ], 10, ol))), 128))
+              o ? (C(), T("span", dd, L(o.date), 1)) : I("", !0)
+            ], 10, sd))), 128))
           ]),
-          y("div", ul, [
-            y("button", {
+          b("div", ud, [
+            b("button", {
               class: "date-range-picker__reset",
               onClick: t[3] || (t[3] = (...o) => e.clear && e.clear(...o))
-            }, _(e.labelClearButton), 1),
-            y("button", {
+            }, L(e.labelClearButton), 1),
+            b("button", {
               class: "date-range-picker__save",
               onClick: t[4] || (t[4] = (...o) => e.save && e.save(...o)),
               disabled: !e.selectedDates || !e.selectedDates.start && !e.selectedDates.end
-            }, _(e.labelSaveButton), 9, ll)
+            }, L(e.labelSaveButton), 9, ld)
           ])
         ])
       ]),
-      y("table", dl, [
-        y("tr", null, [
-          (T(!0), x(R, null, ve(e.weekdays, (o) => (T(), x("td", {
-            class: "weekday",
-            key: o
-          }, _(o), 1))), 128))
+      b("table", cd, [
+        b("tbody", null, [
+          b("tr", null, [
+            (C(!0), T(te, null, ye(e.weekdays, (o) => (C(), T("td", {
+              class: "weekday",
+              key: o
+            }, L(o), 1))), 128))
+          ])
         ])
       ])
-    ], 8, Ru), [
-      [lt, e.showDateRange]
+    ], 8, ed), [
+      [wt, e.showDateRange]
     ])
   ], 512);
 }
-const cl = /* @__PURE__ */ he(Bu, [["render", ml]]);
-function ye(e, t, a, r, n, i) {
-  if (n - r <= a)
-    return;
-  const o = r + n >> 1;
-  at(e, t, o, r, n, i % 2), ye(e, t, a, r, o - 1, i + 1), ye(e, t, a, o + 1, n, i + 1);
+const hd = /* @__PURE__ */ he(Zs, [["render", md]]);
+function fd(e) {
+  return e.__esModule && Object.prototype.hasOwnProperty.call(e, "default") ? e.default : e;
 }
-function at(e, t, a, r, n, i) {
-  for (; n > r; ) {
-    if (n - r > 600) {
-      const d = n - r + 1, m = a - r + 1, l = Math.log(d), h = 0.5 * Math.exp(2 * l / 3), b = 0.5 * Math.sqrt(l * h * (d - h) / d) * (m - d / 2 < 0 ? -1 : 1), p = Math.max(r, Math.floor(a - m * h / d + b)), v = Math.min(n, Math.floor(a + (d - m) * h / d + b));
-      at(e, t, a, p, v, i);
+var gd = function e(t, n) {
+  if (t === n) return !0;
+  if (t && n && typeof t == "object" && typeof n == "object") {
+    if (t.constructor !== n.constructor) return !1;
+    var a, r, i;
+    if (Array.isArray(t)) {
+      if (a = t.length, a != n.length) return !1;
+      for (r = a; r-- !== 0; )
+        if (!e(t[r], n[r])) return !1;
+      return !0;
     }
-    const o = t[2 * a + i];
-    let u = r, s = n;
-    for (ee(e, t, r, a), t[2 * n + i] > o && ee(e, t, r, n); u < s; ) {
-      for (ee(e, t, u, s), u++, s--; t[2 * u + i] < o; )
-        u++;
-      for (; t[2 * s + i] > o; )
-        s--;
+    if (t.constructor === RegExp) return t.source === n.source && t.flags === n.flags;
+    if (t.valueOf !== Object.prototype.valueOf) return t.valueOf() === n.valueOf();
+    if (t.toString !== Object.prototype.toString) return t.toString() === n.toString();
+    if (i = Object.keys(t), a = i.length, a !== Object.keys(n).length) return !1;
+    for (r = a; r-- !== 0; )
+      if (!Object.prototype.hasOwnProperty.call(n, i[r])) return !1;
+    for (r = a; r-- !== 0; ) {
+      var o = i[r];
+      if (!e(t[o], n[o])) return !1;
     }
-    t[2 * r + i] === o ? ee(e, t, r, s) : (s++, ee(e, t, s, n)), s <= a && (r = s + 1), a <= s && (n = s - 1);
+    return !0;
   }
-}
-function ee(e, t, a, r) {
-  ge(e, a, r), ge(t, 2 * a, 2 * r), ge(t, 2 * a + 1, 2 * r + 1);
-}
-function ge(e, t, a) {
-  const r = e[t];
-  e[t] = e[a], e[a] = r;
-}
-function hl(e, t, a, r, n, i, o) {
-  const u = [0, e.length - 1, 0], s = [];
-  let d, m;
-  for (; u.length; ) {
-    const l = u.pop(), h = u.pop(), b = u.pop();
-    if (h - b <= o) {
-      for (let w = b; w <= h; w++)
-        d = t[2 * w], m = t[2 * w + 1], d >= a && d <= n && m >= r && m <= i && s.push(e[w]);
-      continue;
+  return t !== t && n !== n;
+};
+const Ve = /* @__PURE__ */ fd(gd), Ye = [
+  Int8Array,
+  Uint8Array,
+  Uint8ClampedArray,
+  Int16Array,
+  Uint16Array,
+  Int32Array,
+  Uint32Array,
+  Float32Array,
+  Float64Array
+], pe = 1, re = 8;
+class Ce {
+  /**
+   * Creates an index from raw `ArrayBuffer` data.
+   * @param {ArrayBuffer} data
+   */
+  static from(t) {
+    if (!(t instanceof ArrayBuffer))
+      throw new Error("Data must be an instance of ArrayBuffer.");
+    const [n, a] = new Uint8Array(t, 0, 2);
+    if (n !== 219)
+      throw new Error("Data does not appear to be in a KDBush format.");
+    const r = a >> 4;
+    if (r !== pe)
+      throw new Error(`Got v${r} data when expected v${pe}.`);
+    const i = Ye[a & 15];
+    if (!i)
+      throw new Error("Unrecognized array type.");
+    const [o] = new Uint16Array(t, 2, 1), [d] = new Uint32Array(t, 4, 1);
+    return new Ce(d, o, i, t);
+  }
+  /**
+   * Creates an index that will hold a given number of items.
+   * @param {number} numItems
+   * @param {number} [nodeSize=64] Size of the KD-tree node (64 by default).
+   * @param {TypedArrayConstructor} [ArrayType=Float64Array] The array type used for coordinates storage (`Float64Array` by default).
+   * @param {ArrayBuffer} [data] (For internal use only)
+   */
+  constructor(t, n = 64, a = Float64Array, r) {
+    if (isNaN(t) || t < 0) throw new Error(`Unpexpected numItems value: ${t}.`);
+    this.numItems = +t, this.nodeSize = Math.min(Math.max(+n, 2), 65535), this.ArrayType = a, this.IndexArrayType = t < 65536 ? Uint16Array : Uint32Array;
+    const i = Ye.indexOf(this.ArrayType), o = t * 2 * this.ArrayType.BYTES_PER_ELEMENT, d = t * this.IndexArrayType.BYTES_PER_ELEMENT, s = (8 - d % 8) % 8;
+    if (i < 0)
+      throw new Error(`Unexpected typed array class: ${a}.`);
+    r && r instanceof ArrayBuffer ? (this.data = r, this.ids = new this.IndexArrayType(this.data, re, t), this.coords = new this.ArrayType(this.data, re + d + s, t * 2), this._pos = t * 2, this._finished = !0) : (this.data = new ArrayBuffer(re + o + d + s), this.ids = new this.IndexArrayType(this.data, re, t), this.coords = new this.ArrayType(this.data, re + d + s, t * 2), this._pos = 0, this._finished = !1, new Uint8Array(this.data, 0, 2).set([219, (pe << 4) + i]), new Uint16Array(this.data, 2, 1)[0] = n, new Uint32Array(this.data, 4, 1)[0] = t);
+  }
+  /**
+   * Add a point to the index.
+   * @param {number} x
+   * @param {number} y
+   * @returns {number} An incremental index associated with the added item (starting from `0`).
+   */
+  add(t, n) {
+    const a = this._pos >> 1;
+    return this.ids[a] = a, this.coords[this._pos++] = t, this.coords[this._pos++] = n, a;
+  }
+  /**
+   * Perform indexing of the added points.
+   */
+  finish() {
+    const t = this._pos >> 1;
+    if (t !== this.numItems)
+      throw new Error(`Added ${t} items when expected ${this.numItems}.`);
+    return ke(this.ids, this.coords, this.nodeSize, 0, this.numItems - 1, 0), this._finished = !0, this;
+  }
+  /**
+   * Search the index for items within a given bounding box.
+   * @param {number} minX
+   * @param {number} minY
+   * @param {number} maxX
+   * @param {number} maxY
+   * @returns {number[]} An array of indices correponding to the found items.
+   */
+  range(t, n, a, r) {
+    if (!this._finished) throw new Error("Data not yet indexed - call index.finish().");
+    const { ids: i, coords: o, nodeSize: d } = this, s = [0, i.length - 1, 0], c = [];
+    for (; s.length; ) {
+      const l = s.pop() || 0, u = s.pop() || 0, h = s.pop() || 0;
+      if (u - h <= d) {
+        for (let v = h; v <= u; v++) {
+          const P = o[2 * v], W = o[2 * v + 1];
+          P >= t && P <= a && W >= n && W <= r && c.push(i[v]);
+        }
+        continue;
+      }
+      const p = h + u >> 1, y = o[2 * p], w = o[2 * p + 1];
+      y >= t && y <= a && w >= n && w <= r && c.push(i[p]), (l === 0 ? t <= y : n <= w) && (s.push(h), s.push(p - 1), s.push(1 - l)), (l === 0 ? a >= y : r >= w) && (s.push(p + 1), s.push(u), s.push(1 - l));
     }
-    const p = Math.floor((b + h) / 2);
-    d = t[2 * p], m = t[2 * p + 1], d >= a && d <= n && m >= r && m <= i && s.push(e[p]);
-    const v = (l + 1) % 2;
-    (l === 0 ? a <= d : r <= m) && (u.push(b), u.push(p - 1), u.push(v)), (l === 0 ? n >= d : i >= m) && (u.push(p + 1), u.push(h), u.push(v));
+    return c;
   }
-  return s;
-}
-function fl(e, t, a, r, n, i) {
-  const o = [0, e.length - 1, 0], u = [], s = n * n;
-  for (; o.length; ) {
-    const d = o.pop(), m = o.pop(), l = o.pop();
-    if (m - l <= i) {
-      for (let w = l; w <= m; w++)
-        Ae(t[2 * w], t[2 * w + 1], a, r) <= s && u.push(e[w]);
-      continue;
+  /**
+   * Search the index for items within a given radius.
+   * @param {number} qx
+   * @param {number} qy
+   * @param {number} r Query radius.
+   * @returns {number[]} An array of indices correponding to the found items.
+   */
+  within(t, n, a) {
+    if (!this._finished) throw new Error("Data not yet indexed - call index.finish().");
+    const { ids: r, coords: i, nodeSize: o } = this, d = [0, r.length - 1, 0], s = [], c = a * a;
+    for (; d.length; ) {
+      const l = d.pop() || 0, u = d.pop() || 0, h = d.pop() || 0;
+      if (u - h <= o) {
+        for (let v = h; v <= u; v++)
+          Xe(i[2 * v], i[2 * v + 1], t, n) <= c && s.push(r[v]);
+        continue;
+      }
+      const p = h + u >> 1, y = i[2 * p], w = i[2 * p + 1];
+      Xe(y, w, t, n) <= c && s.push(r[p]), (l === 0 ? t - a <= y : n - a <= w) && (d.push(h), d.push(p - 1), d.push(1 - l)), (l === 0 ? t + a >= y : n + a >= w) && (d.push(p + 1), d.push(u), d.push(1 - l));
     }
-    const h = Math.floor((l + m) / 2), b = t[2 * h], p = t[2 * h + 1];
-    Ae(b, p, a, r) <= s && u.push(e[h]);
-    const v = (d + 1) % 2;
-    (d === 0 ? a - n <= b : r - n <= p) && (o.push(l), o.push(h - 1), o.push(v)), (d === 0 ? a + n >= b : r + n >= p) && (o.push(h + 1), o.push(m), o.push(v));
-  }
-  return u;
-}
-function Ae(e, t, a, r) {
-  const n = e - a, i = t - r;
-  return n * n + i * i;
-}
-const gl = (e) => e[0], vl = (e) => e[1];
-class Fe {
-  constructor(t, a = gl, r = vl, n = 64, i = Float64Array) {
-    this.nodeSize = n, this.points = t;
-    const o = t.length < 65536 ? Uint16Array : Uint32Array, u = this.ids = new o(t.length), s = this.coords = new i(t.length * 2);
-    for (let d = 0; d < t.length; d++)
-      u[d] = d, s[2 * d] = a(t[d]), s[2 * d + 1] = r(t[d]);
-    ye(u, s, n, 0, u.length - 1, 0);
-  }
-  range(t, a, r, n) {
-    return hl(this.ids, this.coords, t, a, r, n, this.nodeSize);
-  }
-  within(t, a, r) {
-    return fl(this.ids, this.coords, t, a, r, this.nodeSize);
+    return s;
   }
 }
-const pl = {
+function ke(e, t, n, a, r, i) {
+  if (r - a <= n) return;
+  const o = a + r >> 1;
+  lt(e, t, o, a, r, i), ke(e, t, n, a, o - 1, 1 - i), ke(e, t, n, o + 1, r, 1 - i);
+}
+function lt(e, t, n, a, r, i) {
+  for (; r > a; ) {
+    if (r - a > 600) {
+      const c = r - a + 1, l = n - a + 1, u = Math.log(c), h = 0.5 * Math.exp(2 * u / 3), p = 0.5 * Math.sqrt(u * h * (c - h) / c) * (l - c / 2 < 0 ? -1 : 1), y = Math.max(a, Math.floor(n - l * h / c + p)), w = Math.min(r, Math.floor(n + (c - l) * h / c + p));
+      lt(e, t, n, y, w, i);
+    }
+    const o = t[2 * n + i];
+    let d = a, s = r;
+    for (ie(e, t, a, n), t[2 * r + i] > o && ie(e, t, a, r); d < s; ) {
+      for (ie(e, t, d, s), d++, s--; t[2 * d + i] < o; ) d++;
+      for (; t[2 * s + i] > o; ) s--;
+    }
+    t[2 * a + i] === o ? ie(e, t, a, s) : (s++, ie(e, t, s, r)), s <= n && (a = s + 1), n <= s && (r = s - 1);
+  }
+}
+function ie(e, t, n, a) {
+  we(e, n, a), we(t, 2 * n, 2 * a), we(t, 2 * n + 1, 2 * a + 1);
+}
+function we(e, t, n) {
+  const a = e[t];
+  e[t] = e[n], e[n] = a;
+}
+function Xe(e, t, n, a) {
+  const r = e - n, i = t - a;
+  return r * r + i * i;
+}
+const pd = {
   minZoom: 0,
+  // min zoom to generate clusters on
   maxZoom: 16,
+  // max zoom level to cluster the points on
   minPoints: 2,
+  // minimum points to form a cluster
   radius: 40,
+  // cluster radius in pixels
   extent: 512,
+  // tile extent (radius is calculated relative to it)
   nodeSize: 64,
+  // size of the KD-tree leaf node, affects performance
   log: !1,
+  // whether to log timing info
+  // whether to generate numeric ids for input features (in vector tiles)
   generateId: !1,
+  // a reduce function for calculating custom cluster properties
   reduce: null,
+  // (accumulated, props) => { accumulated.sum += props.sum; }
+  // properties to use for individual points when running the reducer
   map: (e) => e
-}, de = Math.fround || ((e) => (t) => (e[0] = +t, e[0]))(new Float32Array(1));
-class wl {
+  // props => ({sum: props.my_value})
+}, Re = Math.fround || /* @__PURE__ */ ((e) => (t) => (e[0] = +t, e[0]))(new Float32Array(1)), Z = 2, R = 3, ve = 4, X = 5, ct = 6;
+class wd {
   constructor(t) {
-    this.options = te(Object.create(pl), t), this.trees = new Array(this.options.maxZoom + 1);
+    this.options = Object.assign(Object.create(pd), t), this.trees = new Array(this.options.maxZoom + 1), this.stride = this.options.reduce ? 7 : 6, this.clusterProps = [];
   }
   load(t) {
-    const { log: a, minZoom: r, maxZoom: n, nodeSize: i } = this.options;
-    a && console.time("total time");
-    const o = `prepare ${t.length} points`;
-    a && console.time(o), this.points = t;
-    let u = [];
-    for (let s = 0; s < t.length; s++)
-      !t[s].geometry || u.push(yl(t[s], s));
-    this.trees[n + 1] = new Fe(u, qe, He, i, Float32Array), a && console.timeEnd(o);
-    for (let s = n; s >= r; s--) {
-      const d = +Date.now();
-      u = this._cluster(u, s), this.trees[s] = new Fe(u, qe, He, i, Float32Array), a && console.log("z%d: %d clusters in %dms", s, u.length, +Date.now() - d);
+    const { log: n, minZoom: a, maxZoom: r } = this.options;
+    n && console.time("total time");
+    const i = `prepare ${t.length} points`;
+    n && console.time(i), this.points = t;
+    const o = [];
+    for (let s = 0; s < t.length; s++) {
+      const c = t[s];
+      if (!c.geometry) continue;
+      const [l, u] = c.geometry.coordinates, h = Re(se(l)), p = Re(de(u));
+      o.push(
+        h,
+        p,
+        // projected point coordinates
+        1 / 0,
+        // the last zoom the point was processed at
+        s,
+        // index of the source feature in the original input array
+        -1,
+        // parent cluster id
+        1
+        // number of points in a cluster
+      ), this.options.reduce && o.push(0);
     }
-    return a && console.timeEnd("total time"), this;
+    let d = this.trees[r + 1] = this._createTree(o);
+    n && console.timeEnd(i);
+    for (let s = r; s >= a; s--) {
+      const c = +Date.now();
+      d = this.trees[s] = this._createTree(this._cluster(d, s)), n && console.log("z%d: %d clusters in %dms", s, d.numItems, +Date.now() - c);
+    }
+    return n && console.timeEnd("total time"), this;
   }
-  getClusters(t, a) {
-    let r = ((t[0] + 180) % 360 + 360) % 360 - 180;
-    const n = Math.max(-90, Math.min(90, t[1]));
+  getClusters(t, n) {
+    let a = ((t[0] + 180) % 360 + 360) % 360 - 180;
+    const r = Math.max(-90, Math.min(90, t[1]));
     let i = t[2] === 180 ? 180 : ((t[2] + 180) % 360 + 360) % 360 - 180;
     const o = Math.max(-90, Math.min(90, t[3]));
     if (t[2] - t[0] >= 360)
-      r = -180, i = 180;
-    else if (r > i) {
-      const m = this.getClusters([r, n, 180, o], a), l = this.getClusters([-180, n, i, o], a);
-      return m.concat(l);
+      a = -180, i = 180;
+    else if (a > i) {
+      const u = this.getClusters([a, r, 180, o], n), h = this.getClusters([-180, r, i, o], n);
+      return u.concat(h);
     }
-    const u = this.trees[this._limitZoom(a)], s = u.range(oe(r), se(o), oe(i), se(n)), d = [];
-    for (const m of s) {
-      const l = u.points[m];
-      d.push(l.numPoints ? Ie(l) : this.points[l.index]);
+    const d = this.trees[this._limitZoom(n)], s = d.range(se(a), de(o), se(i), de(r)), c = d.data, l = [];
+    for (const u of s) {
+      const h = this.stride * u;
+      l.push(c[h + X] > 1 ? Je(c, h, this.clusterProps) : this.points[c[h + R]]);
     }
-    return d;
+    return l;
   }
   getChildren(t) {
-    const a = this._getOriginId(t), r = this._getOriginZoom(t), n = "No cluster with the specified id.", i = this.trees[r];
-    if (!i)
-      throw new Error(n);
-    const o = i.points[a];
-    if (!o)
-      throw new Error(n);
-    const u = this.options.radius / (this.options.extent * Math.pow(2, r - 1)), s = i.within(o.x, o.y, u), d = [];
-    for (const m of s) {
-      const l = i.points[m];
-      l.parentId === t && d.push(l.numPoints ? Ie(l) : this.points[l.index]);
+    const n = this._getOriginId(t), a = this._getOriginZoom(t), r = "No cluster with the specified id.", i = this.trees[a];
+    if (!i) throw new Error(r);
+    const o = i.data;
+    if (n * this.stride >= o.length) throw new Error(r);
+    const d = this.options.radius / (this.options.extent * Math.pow(2, a - 1)), s = o[n * this.stride], c = o[n * this.stride + 1], l = i.within(s, c, d), u = [];
+    for (const h of l) {
+      const p = h * this.stride;
+      o[p + ve] === t && u.push(o[p + X] > 1 ? Je(o, p, this.clusterProps) : this.points[o[p + R]]);
     }
-    if (d.length === 0)
-      throw new Error(n);
-    return d;
+    if (u.length === 0) throw new Error(r);
+    return u;
   }
-  getLeaves(t, a, r) {
-    a = a || 10, r = r || 0;
-    const n = [];
-    return this._appendLeaves(n, t, a, r, 0), n;
+  getLeaves(t, n, a) {
+    n = n || 10, a = a || 0;
+    const r = [];
+    return this._appendLeaves(r, t, n, a, 0), r;
   }
-  getTile(t, a, r) {
-    const n = this.trees[this._limitZoom(t)], i = Math.pow(2, t), { extent: o, radius: u } = this.options, s = u / o, d = (r - s) / i, m = (r + 1 + s) / i, l = {
+  getTile(t, n, a) {
+    const r = this.trees[this._limitZoom(t)], i = Math.pow(2, t), { extent: o, radius: d } = this.options, s = d / o, c = (a - s) / i, l = (a + 1 + s) / i, u = {
       features: []
     };
     return this._addTileFeatures(
-      n.range((a - s) / i, d, (a + 1 + s) / i, m),
-      n.points,
+      r.range((n - s) / i, c, (n + 1 + s) / i, l),
+      r.data,
+      n,
       a,
-      r,
       i,
-      l
-    ), a === 0 && this._addTileFeatures(
-      n.range(1 - s / i, d, 1, m),
-      n.points,
+      u
+    ), n === 0 && this._addTileFeatures(
+      r.range(1 - s / i, c, 1, l),
+      r.data,
       i,
-      r,
+      a,
       i,
-      l
-    ), a === i - 1 && this._addTileFeatures(
-      n.range(0, d, s / i, m),
-      n.points,
+      u
+    ), n === i - 1 && this._addTileFeatures(
+      r.range(0, c, s / i, l),
+      r.data,
       -1,
-      r,
+      a,
       i,
-      l
-    ), l.features.length ? l : null;
+      u
+    ), u.features.length ? u : null;
   }
   getClusterExpansionZoom(t) {
-    let a = this._getOriginZoom(t) - 1;
-    for (; a <= this.options.maxZoom; ) {
-      const r = this.getChildren(t);
-      if (a++, r.length !== 1)
-        break;
-      t = r[0].properties.cluster_id;
+    let n = this._getOriginZoom(t) - 1;
+    for (; n <= this.options.maxZoom; ) {
+      const a = this.getChildren(t);
+      if (n++, a.length !== 1) break;
+      t = a[0].properties.cluster_id;
     }
-    return a;
+    return n;
   }
-  _appendLeaves(t, a, r, n, i) {
-    const o = this.getChildren(a);
-    for (const u of o) {
-      const s = u.properties;
-      if (s && s.cluster ? i + s.point_count <= n ? i += s.point_count : i = this._appendLeaves(t, s.cluster_id, r, n, i) : i < n ? i++ : t.push(u), t.length === r)
-        break;
+  _appendLeaves(t, n, a, r, i) {
+    const o = this.getChildren(n);
+    for (const d of o) {
+      const s = d.properties;
+      if (s && s.cluster ? i + s.point_count <= r ? i += s.point_count : i = this._appendLeaves(t, s.cluster_id, a, r, i) : i < r ? i++ : t.push(d), t.length === a) break;
     }
     return i;
   }
-  _addTileFeatures(t, a, r, n, i, o) {
-    for (const u of t) {
-      const s = a[u], d = s.numPoints;
-      let m, l, h;
-      if (d)
-        m = rt(s), l = s.x, h = s.y;
+  _createTree(t) {
+    const n = new Ce(t.length / this.stride | 0, this.options.nodeSize, Float32Array);
+    for (let a = 0; a < t.length; a += this.stride) n.add(t[a], t[a + 1]);
+    return n.finish(), n.data = t, n;
+  }
+  _addTileFeatures(t, n, a, r, i, o) {
+    for (const d of t) {
+      const s = d * this.stride, c = n[s + X] > 1;
+      let l, u, h;
+      if (c)
+        l = mt(n, s, this.clusterProps), u = n[s], h = n[s + 1];
       else {
-        const v = this.points[s.index];
-        m = v.properties, l = oe(v.geometry.coordinates[0]), h = se(v.geometry.coordinates[1]);
+        const w = this.points[n[s + R]];
+        l = w.properties;
+        const [v, P] = w.geometry.coordinates;
+        u = se(v), h = de(P);
       }
-      const b = {
+      const p = {
         type: 1,
         geometry: [[
-          Math.round(this.options.extent * (l * i - r)),
-          Math.round(this.options.extent * (h * i - n))
+          Math.round(this.options.extent * (u * i - a)),
+          Math.round(this.options.extent * (h * i - r))
         ]],
-        tags: m
+        tags: l
       };
-      let p;
-      d ? p = s.id : this.options.generateId ? p = s.index : this.points[s.index].id && (p = this.points[s.index].id), p !== void 0 && (b.id = p), o.features.push(b);
+      let y;
+      c || this.options.generateId ? y = n[s + R] : y = this.points[n[s + R]].id, y !== void 0 && (p.id = y), o.features.push(p);
     }
   }
   _limitZoom(t) {
     return Math.max(this.options.minZoom, Math.min(Math.floor(+t), this.options.maxZoom + 1));
   }
-  _cluster(t, a) {
-    const r = [], { radius: n, extent: i, reduce: o, minPoints: u } = this.options, s = n / (i * Math.pow(2, a));
-    for (let d = 0; d < t.length; d++) {
-      const m = t[d];
-      if (m.zoom <= a)
-        continue;
-      m.zoom = a;
-      const l = this.trees[a + 1], h = l.within(m.x, m.y, s), b = m.numPoints || 1;
-      let p = b;
-      for (const v of h) {
-        const w = l.points[v];
-        w.zoom > a && (p += w.numPoints || 1);
+  _cluster(t, n) {
+    const { radius: a, extent: r, reduce: i, minPoints: o } = this.options, d = a / (r * Math.pow(2, n)), s = t.data, c = [], l = this.stride;
+    for (let u = 0; u < s.length; u += l) {
+      if (s[u + Z] <= n) continue;
+      s[u + Z] = n;
+      const h = s[u], p = s[u + 1], y = t.within(s[u], s[u + 1], d), w = s[u + X];
+      let v = w;
+      for (const P of y) {
+        const W = P * l;
+        s[W + Z] > n && (v += s[W + X]);
       }
-      if (p > b && p >= u) {
-        let v = m.x * b, w = m.y * b, k = o && b > 1 ? this._map(m, !0) : null;
-        const W = (d << 5) + (a + 1) + this.points.length;
-        for (const z of h) {
-          const E = l.points[z];
-          if (E.zoom <= a)
-            continue;
-          E.zoom = a;
-          const X = E.numPoints || 1;
-          v += E.x * X, w += E.y * X, E.parentId = W, o && (k || (k = this._map(m, !0)), o(k, this._map(E)));
+      if (v > w && v >= o) {
+        let P = h * w, W = p * w, E, A = -1;
+        const q = ((u / l | 0) << 5) + (n + 1) + this.points.length;
+        for (const G of y) {
+          const j = G * l;
+          if (s[j + Z] <= n) continue;
+          s[j + Z] = n;
+          const m = s[j + X];
+          P += s[j] * m, W += s[j + 1] * m, s[j + ve] = q, i && (E || (E = this._map(s, u, !0), A = this.clusterProps.length, this.clusterProps.push(E)), i(E, this._map(s, j)));
         }
-        m.parentId = W, r.push(bl(v / p, w / p, W, p, k));
-      } else if (r.push(m), p > 1)
-        for (const v of h) {
-          const w = l.points[v];
-          w.zoom <= a || (w.zoom = a, r.push(w));
-        }
+        s[u + ve] = q, c.push(P / v, W / v, 1 / 0, q, -1, v), i && c.push(A);
+      } else {
+        for (let P = 0; P < l; P++) c.push(s[u + P]);
+        if (v > 1)
+          for (const P of y) {
+            const W = P * l;
+            if (!(s[W + Z] <= n)) {
+              s[W + Z] = n;
+              for (let E = 0; E < l; E++) c.push(s[W + E]);
+            }
+          }
+      }
     }
-    return r;
+    return c;
   }
+  // get index of the point from which the cluster originated
   _getOriginId(t) {
     return t - this.points.length >> 5;
   }
+  // get zoom of the point from which the cluster originated
   _getOriginZoom(t) {
     return (t - this.points.length) % 32;
   }
-  _map(t, a) {
-    if (t.numPoints)
-      return a ? te({}, t.properties) : t.properties;
-    const r = this.points[t.index].properties, n = this.options.map(r);
-    return a && n === r ? te({}, n) : n;
+  _map(t, n, a) {
+    if (t[n + X] > 1) {
+      const o = this.clusterProps[t[n + ct]];
+      return a ? Object.assign({}, o) : o;
+    }
+    const r = this.points[t[n + R]].properties, i = this.options.map(r);
+    return a && i === r ? Object.assign({}, i) : i;
   }
 }
-function bl(e, t, a, r, n) {
-  return {
-    x: de(e),
-    y: de(t),
-    zoom: 1 / 0,
-    id: a,
-    parentId: -1,
-    numPoints: r,
-    properties: n
-  };
-}
-function yl(e, t) {
-  const [a, r] = e.geometry.coordinates;
-  return {
-    x: de(oe(a)),
-    y: de(se(r)),
-    zoom: 1 / 0,
-    index: t,
-    parentId: -1
-  };
-}
-function Ie(e) {
+function Je(e, t, n) {
   return {
     type: "Feature",
-    id: e.id,
-    properties: rt(e),
+    id: e[t + R],
+    properties: mt(e, t, n),
     geometry: {
       type: "Point",
-      coordinates: [Ml(e.x), Pl(e.y)]
+      coordinates: [vd(e[t]), yd(e[t + 1])]
     }
   };
 }
-function rt(e) {
-  const t = e.numPoints, a = t >= 1e4 ? `${Math.round(t / 1e3)}k` : t >= 1e3 ? `${Math.round(t / 100) / 10}k` : t;
-  return te(te({}, e.properties), {
+function mt(e, t, n) {
+  const a = e[t + X], r = a >= 1e4 ? `${Math.round(a / 1e3)}k` : a >= 1e3 ? `${Math.round(a / 100) / 10}k` : a, i = e[t + ct], o = i === -1 ? {} : Object.assign({}, n[i]);
+  return Object.assign(o, {
     cluster: !0,
-    cluster_id: e.id,
-    point_count: t,
-    point_count_abbreviated: a
+    cluster_id: e[t + R],
+    point_count: a,
+    point_count_abbreviated: r
   });
 }
-function oe(e) {
+function se(e) {
   return e / 360 + 0.5;
 }
-function se(e) {
-  const t = Math.sin(e * Math.PI / 180), a = 0.5 - 0.25 * Math.log((1 + t) / (1 - t)) / Math.PI;
-  return a < 0 ? 0 : a > 1 ? 1 : a;
+function de(e) {
+  const t = Math.sin(e * Math.PI / 180), n = 0.5 - 0.25 * Math.log((1 + t) / (1 - t)) / Math.PI;
+  return n < 0 ? 0 : n > 1 ? 1 : n;
 }
-function Ml(e) {
+function vd(e) {
   return (e - 0.5) * 360;
 }
-function Pl(e) {
+function yd(e) {
   const t = (180 - e * 360) * Math.PI / 180;
   return 360 * Math.atan(Math.exp(t)) / Math.PI - 90;
 }
-function te(e, t) {
-  for (const a in t)
-    e[a] = t[a];
-  return e;
-}
-function qe(e) {
-  return e.x;
-}
-function He(e) {
-  return e.y;
-}
-var Ge = function e(t, a) {
-  if (t === a)
-    return !0;
-  if (t && a && typeof t == "object" && typeof a == "object") {
-    if (t.constructor !== a.constructor)
-      return !1;
-    var r, n, i;
-    if (Array.isArray(t)) {
-      if (r = t.length, r != a.length)
-        return !1;
-      for (n = r; n-- !== 0; )
-        if (!e(t[n], a[n]))
-          return !1;
-      return !0;
-    }
-    if (t.constructor === RegExp)
-      return t.source === a.source && t.flags === a.flags;
-    if (t.valueOf !== Object.prototype.valueOf)
-      return t.valueOf() === a.valueOf();
-    if (t.toString !== Object.prototype.toString)
-      return t.toString() === a.toString();
-    if (i = Object.keys(t), r = i.length, r !== Object.keys(a).length)
-      return !1;
-    for (n = r; n-- !== 0; )
-      if (!Object.prototype.hasOwnProperty.call(a, i[n]))
-        return !1;
-    for (n = r; n-- !== 0; ) {
-      var o = i[n];
-      if (!e(t[o], a[o]))
-        return !1;
-    }
-    return !0;
-  }
-  return t !== t && a !== a;
-};
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
 
@@ -5356,181 +5842,287 @@ LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
-function kl(e, t) {
-  var a = {};
-  for (var r in e)
-    Object.prototype.hasOwnProperty.call(e, r) && t.indexOf(r) < 0 && (a[r] = e[r]);
+function bd(e, t) {
+  var n = {};
+  for (var a in e) Object.prototype.hasOwnProperty.call(e, a) && t.indexOf(a) < 0 && (n[a] = e[a]);
   if (e != null && typeof Object.getOwnPropertySymbols == "function")
-    for (var n = 0, r = Object.getOwnPropertySymbols(e); n < r.length; n++)
-      t.indexOf(r[n]) < 0 && Object.prototype.propertyIsEnumerable.call(e, r[n]) && (a[r[n]] = e[r[n]]);
-  return a;
+    for (var r = 0, a = Object.getOwnPropertySymbols(e); r < a.length; r++)
+      t.indexOf(a[r]) < 0 && Object.prototype.propertyIsEnumerable.call(e, a[r]) && (n[a[r]] = e[a[r]]);
+  return n;
 }
-class Me {
-  constructor({ markers: t, position: a }) {
-    this.markers = t, a && (a instanceof google.maps.LatLng ? this._position = a : this._position = new google.maps.LatLng(a));
+class _ {
+  static isAdvancedMarkerAvailable(t) {
+    return google.maps.marker && t.getMapCapabilities().isAdvancedMarkersAvailable === !0;
+  }
+  static isAdvancedMarker(t) {
+    return google.maps.marker && t instanceof google.maps.marker.AdvancedMarkerElement;
+  }
+  static setMap(t, n) {
+    this.isAdvancedMarker(t) ? t.map = n : t.setMap(n);
+  }
+  static getPosition(t) {
+    if (this.isAdvancedMarker(t)) {
+      if (t.position) {
+        if (t.position instanceof google.maps.LatLng)
+          return t.position;
+        if (t.position.lat && t.position.lng)
+          return new google.maps.LatLng(t.position.lat, t.position.lng);
+      }
+      return new google.maps.LatLng(null);
+    }
+    return t.getPosition();
+  }
+  static getVisible(t) {
+    return this.isAdvancedMarker(t) ? !0 : t.getVisible();
+  }
+}
+class De {
+  constructor({ markers: t, position: n }) {
+    this.markers = t, n && (n instanceof google.maps.LatLng ? this._position = n : this._position = new google.maps.LatLng(n));
   }
   get bounds() {
-    if (!(this.markers.length === 0 && !this._position))
-      return this.markers.reduce((t, a) => t.extend(a.getPosition()), new google.maps.LatLngBounds(this._position, this._position));
+    if (this.markers.length === 0 && !this._position)
+      return;
+    const t = new google.maps.LatLngBounds(this._position, this._position);
+    for (const n of this.markers)
+      t.extend(_.getPosition(n));
+    return t;
   }
   get position() {
     return this._position || this.bounds.getCenter();
   }
+  /**
+   * Get the count of **visible** markers.
+   */
   get count() {
-    return this.markers.filter((t) => t.getVisible()).length;
+    return this.markers.filter((t) => _.getVisible(t)).length;
   }
+  /**
+   * Add a marker to the cluster.
+   */
   push(t) {
     this.markers.push(t);
   }
+  /**
+   * Cleanup references and remove marker from map.
+   */
   delete() {
-    this.marker && (this.marker.setMap(null), delete this.marker), this.markers.length = 0;
+    this.marker && (_.setMap(this.marker, null), this.marker = void 0), this.markers.length = 0;
   }
 }
-class $l {
+class Md {
   constructor({ maxZoom: t = 16 }) {
     this.maxZoom = t;
   }
+  /**
+   * Helper function to bypass clustering based upon some map state such as
+   * zoom, number of markers, etc.
+   *
+   * ```typescript
+   *  cluster({markers, map}: AlgorithmInput): Cluster[] {
+   *    if (shouldBypassClustering(map)) {
+   *      return this.noop({markers})
+   *    }
+   * }
+   * ```
+   */
   noop({ markers: t }) {
-    return Dl(t);
+    return Pd(t);
   }
 }
-const Dl = (e) => e.map((a) => new Me({
-  position: a.getPosition(),
-  markers: [a]
+const Pd = (e) => e.map((n) => new De({
+  position: _.getPosition(n),
+  markers: [n]
 }));
-class Cl extends $l {
+class kd extends Md {
   constructor(t) {
-    var { maxZoom: a, radius: r = 60 } = t, n = kl(t, ["maxZoom", "radius"]);
-    super({ maxZoom: a }), this.superCluster = new wl(Object.assign({ maxZoom: this.maxZoom, radius: r }, n)), this.state = { zoom: null };
+    var { maxZoom: n, radius: a = 60 } = t, r = bd(t, ["maxZoom", "radius"]);
+    super({ maxZoom: n }), this.state = { zoom: -1 }, this.superCluster = new wd(Object.assign({ maxZoom: this.maxZoom, radius: a }, r));
   }
   calculate(t) {
-    let a = !1;
-    if (!Ge(t.markers, this.markers)) {
-      a = !0, this.markers = [...t.markers];
-      const n = this.markers.map((i) => ({
-        type: "Feature",
-        geometry: {
-          type: "Point",
-          coordinates: [
-            i.getPosition().lng(),
-            i.getPosition().lat()
-          ]
-        },
-        properties: { marker: i }
-      }));
-      this.superCluster.load(n);
+    let n = !1;
+    const a = { zoom: t.map.getZoom() };
+    if (!Ve(t.markers, this.markers)) {
+      n = !0, this.markers = [...t.markers];
+      const r = this.markers.map((i) => {
+        const o = _.getPosition(i);
+        return {
+          type: "Feature",
+          geometry: {
+            type: "Point",
+            coordinates: [o.lng(), o.lat()]
+          },
+          properties: { marker: i }
+        };
+      });
+      this.superCluster.load(r);
     }
-    const r = { zoom: t.map.getZoom() };
-    return a || this.state.zoom > this.maxZoom && r.zoom > this.maxZoom || (a = a || !Ge(this.state, r)), this.state = r, a && (this.clusters = this.cluster(t)), { clusters: this.clusters, changed: a };
+    return n || (this.state.zoom <= this.maxZoom || a.zoom <= this.maxZoom) && (n = !Ve(this.state, a)), this.state = a, n && (this.clusters = this.cluster(t)), { clusters: this.clusters, changed: n };
   }
   cluster({ map: t }) {
-    return this.superCluster.getClusters([-180, -90, 180, 90], Math.round(t.getZoom())).map(this.transformCluster.bind(this));
+    return this.superCluster.getClusters([-180, -90, 180, 90], Math.round(t.getZoom())).map((n) => this.transformCluster(n));
   }
-  transformCluster({ geometry: { coordinates: [t, a] }, properties: r }) {
-    if (r.cluster)
-      return new Me({
-        markers: this.superCluster.getLeaves(r.cluster_id, 1 / 0).map((n) => n.properties.marker),
-        position: new google.maps.LatLng({ lat: a, lng: t })
+  transformCluster({ geometry: { coordinates: [t, n] }, properties: a }) {
+    if (a.cluster)
+      return new De({
+        markers: this.superCluster.getLeaves(a.cluster_id, 1 / 0).map((i) => i.properties.marker),
+        position: { lat: n, lng: t }
       });
-    {
-      const n = r.marker;
-      return new Me({
-        markers: [n],
-        position: n.getPosition()
-      });
-    }
+    const r = a.marker;
+    return new De({
+      markers: [r],
+      position: _.getPosition(r)
+    });
   }
 }
-class Sl {
-  constructor(t, a) {
+class Dd {
+  constructor(t, n) {
     this.markers = { sum: t.length };
-    const r = a.map((i) => i.count), n = r.reduce((i, o) => i + o, 0);
+    const a = n.map((i) => i.count), r = a.reduce((i, o) => i + o, 0);
     this.clusters = {
-      count: a.length,
+      count: n.length,
       markers: {
-        mean: n / a.length,
-        sum: n,
-        min: Math.min(...r),
-        max: Math.max(...r)
+        mean: r / n.length,
+        sum: r,
+        min: Math.min(...a),
+        max: Math.max(...a)
       }
     };
   }
 }
-class Wl {
-  render({ count: t, position: a }, r) {
-    const n = t > Math.max(10, r.clusters.markers.mean) ? "#ff0000" : "#0000ff", i = window.btoa(`
-  <svg fill="${n}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
-    <circle cx="120" cy="120" opacity=".6" r="70" />
-    <circle cx="120" cy="120" opacity=".3" r="90" />
-    <circle cx="120" cy="120" opacity=".2" r="110" />
-  </svg>`);
-    return new google.maps.Marker({
-      position: a,
+class $d {
+  /**
+   * The default render function for the library used by {@link MarkerClusterer}.
+   *
+   * Currently set to use the following:
+   *
+   * ```typescript
+   * // change color if this cluster has more markers than the mean cluster
+   * const color =
+   *   count > Math.max(10, stats.clusters.markers.mean)
+   *     ? "#ff0000"
+   *     : "#0000ff";
+   *
+   * // create svg url with fill color
+   * const svg = window.btoa(`
+   * <svg fill="${color}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+   *   <circle cx="120" cy="120" opacity=".6" r="70" />
+   *   <circle cx="120" cy="120" opacity=".3" r="90" />
+   *   <circle cx="120" cy="120" opacity=".2" r="110" />
+   *   <circle cx="120" cy="120" opacity=".1" r="130" />
+   * </svg>`);
+   *
+   * // create marker using svg icon
+   * return new google.maps.Marker({
+   *   position,
+   *   icon: {
+   *     url: `data:image/svg+xml;base64,${svg}`,
+   *     scaledSize: new google.maps.Size(45, 45),
+   *   },
+   *   label: {
+   *     text: String(count),
+   *     color: "rgba(255,255,255,0.9)",
+   *     fontSize: "12px",
+   *   },
+   *   // adjust zIndex to be above other markers
+   *   zIndex: 1000 + count,
+   * });
+   * ```
+   */
+  render({ count: t, position: n }, a, r) {
+    const o = `<svg fill="${t > Math.max(10, a.clusters.markers.mean) ? "#ff0000" : "#0000ff"}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="50" height="50">
+<circle cx="120" cy="120" opacity=".6" r="70" />
+<circle cx="120" cy="120" opacity=".3" r="90" />
+<circle cx="120" cy="120" opacity=".2" r="110" />
+<text x="50%" y="50%" style="fill:#fff" text-anchor="middle" font-size="50" dominant-baseline="middle" font-family="roboto,arial,sans-serif">${t}</text>
+</svg>`, d = `Cluster of ${t} markers`, s = Number(google.maps.Marker.MAX_ZINDEX) + t;
+    if (_.isAdvancedMarkerAvailable(r)) {
+      const u = new DOMParser().parseFromString(o, "image/svg+xml").documentElement;
+      u.setAttribute("transform", "translate(0 25)");
+      const h = {
+        map: r,
+        position: n,
+        zIndex: s,
+        title: d,
+        content: u
+      };
+      return new google.maps.marker.AdvancedMarkerElement(h);
+    }
+    const c = {
+      position: n,
+      zIndex: s,
+      title: d,
       icon: {
-        url: `data:image/svg+xml;base64,${i}`,
-        scaledSize: new google.maps.Size(45, 45)
-      },
-      label: {
-        text: String(t),
-        color: "rgba(255,255,255,0.9)",
-        fontSize: "12px"
-      },
-      title: `Cluster of ${t} markers`,
-      zIndex: Number(google.maps.Marker.MAX_ZINDEX) + t
-    });
+        url: `data:image/svg+xml;base64,${btoa(o)}`,
+        anchor: new google.maps.Point(25, 25)
+      }
+    };
+    return new google.maps.Marker(c);
   }
 }
-function Tl(e, t) {
-  for (let a in t.prototype)
-    e.prototype[a] = t.prototype[a];
+function Sd(e, t) {
+  for (let n in t.prototype)
+    e.prototype[n] = t.prototype[n];
 }
-class De {
+class Oe {
   constructor() {
-    Tl(De, google.maps.OverlayView);
+    Sd(Oe, google.maps.OverlayView);
   }
 }
-var ae;
+var oe;
 (function(e) {
   e.CLUSTERING_BEGIN = "clusteringbegin", e.CLUSTERING_END = "clusteringend", e.CLUSTER_CLICK = "click";
-})(ae || (ae = {}));
-const Ol = (e, t, a) => {
-  a.fitBounds(t.bounds);
+})(oe || (oe = {}));
+const Wd = (e, t, n) => {
+  n.fitBounds(t.bounds);
 };
-class xl extends De {
-  constructor({ map: t, markers: a = [], algorithm: r = new Cl({}), renderer: n = new Wl(), onClusterClick: i = Ol }) {
-    super(), this.markers = [...a], this.clusters = [], this.algorithm = r, this.renderer = n, this.onClusterClick = i, t && this.setMap(t);
+class Cd extends Oe {
+  constructor({ map: t, markers: n = [], algorithmOptions: a = {}, algorithm: r = new kd(a), renderer: i = new $d(), onClusterClick: o = Wd }) {
+    super(), this.markers = [...n], this.clusters = [], this.algorithm = r, this.renderer = i, this.onClusterClick = o, t && this.setMap(t);
   }
-  addMarker(t, a) {
-    this.markers.includes(t) || (this.markers.push(t), a || this.render());
+  addMarker(t, n) {
+    this.markers.includes(t) || (this.markers.push(t), n || this.render());
   }
-  addMarkers(t, a) {
-    t.forEach((r) => {
-      this.addMarker(r, !0);
-    }), a || this.render();
+  addMarkers(t, n) {
+    t.forEach((a) => {
+      this.addMarker(a, !0);
+    }), n || this.render();
   }
-  removeMarker(t, a) {
-    const r = this.markers.indexOf(t);
-    return r === -1 ? !1 : (t.setMap(null), this.markers.splice(r, 1), a || this.render(), !0);
+  removeMarker(t, n) {
+    const a = this.markers.indexOf(t);
+    return a === -1 ? !1 : (_.setMap(t, null), this.markers.splice(a, 1), n || this.render(), !0);
   }
-  removeMarkers(t, a) {
-    let r = !1;
-    return t.forEach((n) => {
-      r = this.removeMarker(n, !0) || r;
-    }), r && !a && this.render(), r;
+  removeMarkers(t, n) {
+    let a = !1;
+    return t.forEach((r) => {
+      a = this.removeMarker(r, !0) || a;
+    }), a && !n && this.render(), a;
   }
   clearMarkers(t) {
     this.markers.length = 0, t || this.render();
   }
+  /**
+   * Recalculates and draws all the marker clusters.
+   */
   render() {
     const t = this.getMap();
-    if (t instanceof google.maps.Map && this.getProjection()) {
-      google.maps.event.trigger(this, ae.CLUSTERING_BEGIN, this);
-      const { clusters: a, changed: r } = this.algorithm.calculate({
+    if (t instanceof google.maps.Map && t.getProjection()) {
+      google.maps.event.trigger(this, oe.CLUSTERING_BEGIN, this);
+      const { clusters: n, changed: a } = this.algorithm.calculate({
         markers: this.markers,
         map: t,
         mapCanvasProjection: this.getProjection()
       });
-      (r || r == null) && (this.reset(), this.clusters = a, this.renderClusters()), google.maps.event.trigger(this, ae.CLUSTERING_END, this);
+      if (a || a == null) {
+        const r = /* @__PURE__ */ new Set();
+        for (const o of n)
+          o.markers.length == 1 && r.add(o.markers[0]);
+        const i = [];
+        for (const o of this.clusters)
+          o.marker != null && (o.markers.length == 1 ? r.has(o.marker) || _.setMap(o.marker, null) : i.push(o.marker));
+        this.clusters = n, this.renderClusters(), requestAnimationFrame(() => i.forEach((o) => _.setMap(o, null)));
+      }
+      google.maps.event.trigger(this, oe.CLUSTERING_END, this);
     }
   }
   onAdd() {
@@ -5540,68 +6132,98 @@ class xl extends De {
     google.maps.event.removeListener(this.idleListener), this.reset();
   }
   reset() {
-    this.markers.forEach((t) => t.setMap(null)), this.clusters.forEach((t) => t.delete()), this.clusters = [];
+    this.markers.forEach((t) => _.setMap(t, null)), this.clusters.forEach((t) => t.delete()), this.clusters = [];
   }
   renderClusters() {
-    const t = new Sl(this.markers, this.clusters), a = this.getMap();
-    this.clusters.forEach((r) => {
-      r.markers.length === 1 ? r.marker = r.markers[0] : (r.marker = this.renderer.render(r, t), this.onClusterClick && r.marker.addListener(
+    const t = new Dd(this.markers, this.clusters), n = this.getMap();
+    this.clusters.forEach((a) => {
+      a.markers.length === 1 ? a.marker = a.markers[0] : (a.marker = this.renderer.render(a, t, n), a.markers.forEach((r) => _.setMap(r, null)), this.onClusterClick && a.marker.addListener(
         "click",
-        (n) => {
-          google.maps.event.trigger(this, ae.CLUSTER_CLICK, r), this.onClusterClick(n, r, a);
+        /* istanbul ignore next */
+        (r) => {
+          google.maps.event.trigger(this, oe.CLUSTER_CLICK, a), this.onClusterClick(r, a, n);
         }
-      )), r.marker.setMap(a);
+      )), _.setMap(a.marker, n);
     });
   }
 }
-var Nl = function e(t, a) {
-  if (t === a)
-    return !0;
-  if (t && a && typeof t == "object" && typeof a == "object") {
-    if (t.constructor !== a.constructor)
-      return !1;
-    var r, n, i;
+function Od(e, t, n, a) {
+  function r(i) {
+    return i instanceof n ? i : new n(function(o) {
+      o(i);
+    });
+  }
+  return new (n || (n = Promise))(function(i, o) {
+    function d(l) {
+      try {
+        c(a.next(l));
+      } catch (u) {
+        o(u);
+      }
+    }
+    function s(l) {
+      try {
+        c(a.throw(l));
+      } catch (u) {
+        o(u);
+      }
+    }
+    function c(l) {
+      l.done ? i(l.value) : r(l.value).then(d, s);
+    }
+    c((a = a.apply(e, [])).next());
+  });
+}
+function Ed(e) {
+  return e.__esModule && Object.prototype.hasOwnProperty.call(e, "default") ? e.default : e;
+}
+var Td = function e(t, n) {
+  if (t === n) return !0;
+  if (t && n && typeof t == "object" && typeof n == "object") {
+    if (t.constructor !== n.constructor) return !1;
+    var a, r, i;
     if (Array.isArray(t)) {
-      if (r = t.length, r != a.length)
-        return !1;
-      for (n = r; n-- !== 0; )
-        if (!e(t[n], a[n]))
-          return !1;
+      if (a = t.length, a != n.length) return !1;
+      for (r = a; r-- !== 0; )
+        if (!e(t[r], n[r])) return !1;
       return !0;
     }
-    if (t.constructor === RegExp)
-      return t.source === a.source && t.flags === a.flags;
-    if (t.valueOf !== Object.prototype.valueOf)
-      return t.valueOf() === a.valueOf();
-    if (t.toString !== Object.prototype.toString)
-      return t.toString() === a.toString();
-    if (i = Object.keys(t), r = i.length, r !== Object.keys(a).length)
-      return !1;
-    for (n = r; n-- !== 0; )
-      if (!Object.prototype.hasOwnProperty.call(a, i[n]))
-        return !1;
-    for (n = r; n-- !== 0; ) {
-      var o = i[n];
-      if (!e(t[o], a[o]))
-        return !1;
+    if (t.constructor === RegExp) return t.source === n.source && t.flags === n.flags;
+    if (t.valueOf !== Object.prototype.valueOf) return t.valueOf() === n.valueOf();
+    if (t.toString !== Object.prototype.toString) return t.toString() === n.toString();
+    if (i = Object.keys(t), a = i.length, a !== Object.keys(n).length) return !1;
+    for (r = a; r-- !== 0; )
+      if (!Object.prototype.hasOwnProperty.call(n, i[r])) return !1;
+    for (r = a; r-- !== 0; ) {
+      var o = i[r];
+      if (!e(t[o], n[o])) return !1;
     }
     return !0;
   }
-  return t !== t && a !== a;
-};
-const Ye = "__googleMapsScriptId";
-var J;
+  return t !== t && n !== n;
+}, Nd = /* @__PURE__ */ Ed(Td);
+const Qe = "__googleMapsScriptId";
+var ne;
 (function(e) {
   e[e.INITIALIZED = 0] = "INITIALIZED", e[e.LOADING = 1] = "LOADING", e[e.SUCCESS = 2] = "SUCCESS", e[e.FAILURE = 3] = "FAILURE";
-})(J || (J = {}));
-class B {
-  constructor({ apiKey: t, channel: a, client: r, id: n = Ye, libraries: i = [], language: o, region: u, version: s, mapIds: d, nonce: m, retries: l = 3, url: h = "https://maps.googleapis.com/maps/api/js" }) {
-    if (this.CALLBACK = "__googleMapsCallback", this.callbacks = [], this.done = !1, this.loading = !1, this.errors = [], this.version = s, this.apiKey = t, this.channel = a, this.client = r, this.id = n || Ye, this.libraries = i, this.language = o, this.region = u, this.mapIds = d, this.nonce = m, this.retries = l, this.url = h, B.instance) {
-      if (!Nl(this.options, B.instance.options))
-        throw new Error(`Loader must not be called again with different options. ${JSON.stringify(this.options)} !== ${JSON.stringify(B.instance.options)}`);
-      return B.instance;
+})(ne || (ne = {}));
+class K {
+  /**
+   * Creates an instance of Loader using [[LoaderOptions]]. No defaults are set
+   * using this library, instead the defaults are set by the Google Maps
+   * JavaScript API server.
+   *
+   * ```
+   * const loader = Loader({apiKey, version: 'weekly', libraries: ['places']});
+   * ```
+   */
+  constructor({ apiKey: t, authReferrerPolicy: n, channel: a, client: r, id: i = Qe, language: o, libraries: d = [], mapIds: s, nonce: c, region: l, retries: u = 3, url: h = "https://maps.googleapis.com/maps/api/js", version: p }) {
+    if (this.callbacks = [], this.done = !1, this.loading = !1, this.errors = [], this.apiKey = t, this.authReferrerPolicy = n, this.channel = a, this.client = r, this.id = i || Qe, this.language = o, this.libraries = d, this.mapIds = s, this.nonce = c, this.region = l, this.retries = u, this.url = h, this.version = p, K.instance) {
+      if (!Nd(this.options, K.instance.options))
+        throw new Error(`Loader must not be called again with different options. ${JSON.stringify(this.options)} !== ${JSON.stringify(K.instance.options)}`);
+      return K.instance;
     }
-    B.instance = this;
+    K.instance = this;
   }
   get options() {
     return {
@@ -5615,44 +6237,107 @@ class B {
       region: this.region,
       mapIds: this.mapIds,
       nonce: this.nonce,
-      url: this.url
+      url: this.url,
+      authReferrerPolicy: this.authReferrerPolicy
     };
   }
   get status() {
-    return this.errors.length ? J.FAILURE : this.done ? J.SUCCESS : this.loading ? J.LOADING : J.INITIALIZED;
+    return this.errors.length ? ne.FAILURE : this.done ? ne.SUCCESS : this.loading ? ne.LOADING : ne.INITIALIZED;
   }
   get failed() {
     return this.done && !this.loading && this.errors.length >= this.retries + 1;
   }
+  /**
+   * CreateUrl returns the Google Maps JavaScript API script url given the [[LoaderOptions]].
+   *
+   * @ignore
+   * @deprecated
+   */
   createUrl() {
     let t = this.url;
-    return t += `?callback=${this.CALLBACK}`, this.apiKey && (t += `&key=${this.apiKey}`), this.channel && (t += `&channel=${this.channel}`), this.client && (t += `&client=${this.client}`), this.libraries.length > 0 && (t += `&libraries=${this.libraries.join(",")}`), this.language && (t += `&language=${this.language}`), this.region && (t += `&region=${this.region}`), this.version && (t += `&v=${this.version}`), this.mapIds && (t += `&map_ids=${this.mapIds.join(",")}`), t;
+    return t += "?callback=__googleMapsCallback&loading=async", this.apiKey && (t += `&key=${this.apiKey}`), this.channel && (t += `&channel=${this.channel}`), this.client && (t += `&client=${this.client}`), this.libraries.length > 0 && (t += `&libraries=${this.libraries.join(",")}`), this.language && (t += `&language=${this.language}`), this.region && (t += `&region=${this.region}`), this.version && (t += `&v=${this.version}`), this.mapIds && (t += `&map_ids=${this.mapIds.join(",")}`), this.authReferrerPolicy && (t += `&auth_referrer_policy=${this.authReferrerPolicy}`), t;
   }
   deleteScript() {
     const t = document.getElementById(this.id);
     t && t.remove();
   }
+  /**
+   * Load the Google Maps JavaScript API script and return a Promise.
+   * @deprecated, use importLibrary() instead.
+   */
   load() {
     return this.loadPromise();
   }
+  /**
+   * Load the Google Maps JavaScript API script and return a Promise.
+   *
+   * @ignore
+   * @deprecated, use importLibrary() instead.
+   */
   loadPromise() {
-    return new Promise((t, a) => {
-      this.loadCallback((r) => {
-        r ? a(r.error) : t(window.google);
+    return new Promise((t, n) => {
+      this.loadCallback((a) => {
+        a ? n(a.error) : t(window.google);
       });
     });
   }
+  importLibrary(t) {
+    return this.execute(), google.maps.importLibrary(t);
+  }
+  /**
+   * Load the Google Maps JavaScript API script with a callback.
+   * @deprecated, use importLibrary() instead.
+   */
   loadCallback(t) {
     this.callbacks.push(t), this.execute();
   }
+  /**
+   * Set the script on document.
+   */
   setScript() {
+    var t, n;
     if (document.getElementById(this.id)) {
       this.callback();
       return;
     }
-    const t = this.createUrl(), a = document.createElement("script");
-    a.id = this.id, a.type = "text/javascript", a.src = t, a.onerror = this.loadErrorCallback.bind(this), a.defer = !0, a.async = !0, this.nonce && (a.nonce = this.nonce), document.head.appendChild(a);
+    const a = {
+      key: this.apiKey,
+      channel: this.channel,
+      client: this.client,
+      libraries: this.libraries.length && this.libraries,
+      v: this.version,
+      mapIds: this.mapIds,
+      language: this.language,
+      region: this.region,
+      authReferrerPolicy: this.authReferrerPolicy
+    };
+    Object.keys(a).forEach(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (i) => !a[i] && delete a[i]
+    ), !((n = (t = window?.google) === null || t === void 0 ? void 0 : t.maps) === null || n === void 0) && n.importLibrary || ((i) => {
+      let o, d, s, c = "The Google Maps JavaScript API", l = "google", u = "importLibrary", h = "__ib__", p = document, y = window;
+      y = y[l] || (y[l] = {});
+      const w = y.maps || (y.maps = {}), v = /* @__PURE__ */ new Set(), P = new URLSearchParams(), W = () => (
+        // @ts-ignore
+        o || (o = new Promise((E, A) => Od(this, void 0, void 0, function* () {
+          var q;
+          yield d = p.createElement("script"), d.id = this.id, P.set("libraries", [...v] + "");
+          for (s in i)
+            P.set(s.replace(/[A-Z]/g, (G) => "_" + G[0].toLowerCase()), i[s]);
+          P.set("callback", l + ".maps." + h), d.src = this.url + "?" + P, w[h] = E, d.onerror = () => o = A(Error(c + " could not load.")), d.nonce = this.nonce || ((q = p.querySelector("script[nonce]")) === null || q === void 0 ? void 0 : q.nonce) || "", p.head.append(d);
+        })))
+      );
+      w[u] ? console.warn(c + " only loads once. Ignoring:", i) : w[u] = (E, ...A) => v.add(E) && W().then(() => w[u](E, ...A));
+    })(a);
+    const r = this.libraries.map((i) => this.importLibrary(i));
+    r.length || r.push(this.importLibrary("core")), Promise.all(r).then(() => this.callback(), (i) => {
+      const o = new ErrorEvent("error", { error: i });
+      this.loadErrorCallback(o);
+    });
   }
+  /**
+   * Reset the loader state.
+   */
   reset() {
     this.deleteScript(), this.done = !1, this.loading = !1, this.errors = [], this.onerrorEvent = null;
   }
@@ -5661,15 +6346,12 @@ class B {
   }
   loadErrorCallback(t) {
     if (this.errors.push(t), this.errors.length <= this.retries) {
-      const a = this.errors.length * Math.pow(2, this.errors.length);
-      console.log(`Failed to load Google Maps script, retrying in ${a} ms.`), setTimeout(() => {
+      const n = this.errors.length * Math.pow(2, this.errors.length);
+      console.error(`Failed to load Google Maps script, retrying in ${n} ms.`), setTimeout(() => {
         this.deleteScript(), this.setScript();
-      }, a);
+      }, n);
     } else
       this.onerrorEvent = t, this.callback();
-  }
-  setCallback() {
-    window.__googleMapsCallback = this.callback.bind(this);
   }
   callback() {
     this.done = !0, this.loading = !1, this.callbacks.forEach((t) => {
@@ -5677,19 +6359,20 @@ class B {
     }), this.callbacks = [];
   }
   execute() {
-    if (this.resetIfRetryingFailed(), this.done)
-      this.callback();
-    else {
-      if (window.google && window.google.maps && window.google.maps.version) {
-        console.warn("Google Maps already loaded outside @googlemaps/js-api-loader.This may result in undesirable behavior as options and script parameters may not match."), this.callback();
-        return;
+    if (this.resetIfRetryingFailed(), !this.loading)
+      if (this.done)
+        this.callback();
+      else {
+        if (window.google && window.google.maps && window.google.maps.version) {
+          console.warn("Google Maps already loaded outside @googlemaps/js-api-loader. This may result in undesirable behavior as options and script parameters may not match."), this.callback();
+          return;
+        }
+        this.loading = !0, this.setScript();
       }
-      this.loading || (this.loading = !0, this.setCallback(), this.setScript());
-    }
   }
 }
-const El = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADUAAAA1CAYAAADh5qNwAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMXSURBVHgB7ZnPbxJBFMcfajRBRTQYTdWKBw1JL403kh7w0niDgz+O/qLXCukfUHrzUtt4LUq96qF4q73YJo29UQ+ijcZASjWaElsw4u/gm2WHDhsg+2ZnGw7zSV52ZoHd+c6bX+8BoNFoNBqNRqNpgwdcoF6vB/ESRYugDaIFhY+Lpi2iLXk8nkXoZVBMBO1FnUYB7Qb0GswzEmLaiQuCAhwPP2xIDC8ZND+/V639hdfrNXi6XIaXa9+MerX2z/hsoN8LpwMH4PJFP9pR8Hn3WR85gUMyBQ5wJAoF3YSGoCYzC5/hfvZjU0Q3fN69EB8+CSPDJ6ziHAmTFmV6aI7XS+VfcOfBO8iv/wAqZwL74eHoBcOLAtLCpESZY38VzCGXx6F2GwVtlH+DE6bj5+Dq0HHx1iWZ1XEPyDEFpiDmIRWCGIl0AVZwDgpksAP9QIQsypxHMV6/cu+tEkGcZPqDsbCYBNHuAhEZTzX3lCfLm0oFMUr4vMnsJ/FWguotkihzLkV4fRJXOTdI4woqeIsJGqT8nuqpKC/M57aUe0lkZuGLWCWdOKiiIrzARLmJZcGIAAGqqCAvvMFl3E1W1qot76XMK6qo5tjOuyyKsYHbhcARsInsPtXTaFHQCO4M2EnbbSzvqIBNqKJe8UI4dBjcZKD/oFgt4hlwG2wiLcpyolZOOHSo7XvtQBW1xAvXhwJGPOQWIxhnCWSBAEmUGQYwM4K6OAZ3bnANO0yYT2zYPSP8XGr1e8wLrDdVLxiss8Zip8RbWcp8YpBF4QtmwRzjrAGPRs+DSsZifWJHFdEmgIjsPpXkBbZgTGHEqgLmoXjrXEphJxaBiJMcRQIaEbBBI6R/bz3a2KIx5PqsgqZRUBIkcJpNGsdLitdZaM9iLJYas0s45DNyE5a5OYuCboEkKvJ+LcIYTNx8bhue575aQwiDnbzfsXabuLSHlFJvpJsLnVKvpc2fTat8/9Ppa1to5HyE67BGdRPXRcy4TNZoV8EGRtEyaKsdhBTQ5sxOUC7Glb9yrGDDzwrVCnUz1Wg0Go1Go9l9/gNvkCMbp4Ut3AAAAABJRU5ErkJggg==";
-function jl(e = {
+const Ad = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADUAAAA1CAYAAADh5qNwAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMXSURBVHgB7ZnPbxJBFMcfajRBRTQYTdWKBw1JL403kh7w0niDgz+O/qLXCukfUHrzUtt4LUq96qF4q73YJo29UQ+ijcZASjWaElsw4u/gm2WHDhsg+2ZnGw7zSV52ZoHd+c6bX+8BoNFoNBqNRqNpgwdcoF6vB/ESRYugDaIFhY+Lpi2iLXk8nkXoZVBMBO1FnUYB7Qb0GswzEmLaiQuCAhwPP2xIDC8ZND+/V639hdfrNXi6XIaXa9+MerX2z/hsoN8LpwMH4PJFP9pR8Hn3WR85gUMyBQ5wJAoF3YSGoCYzC5/hfvZjU0Q3fN69EB8+CSPDJ6ziHAmTFmV6aI7XS+VfcOfBO8iv/wAqZwL74eHoBcOLAtLCpESZY38VzCGXx6F2GwVtlH+DE6bj5+Dq0HHx1iWZ1XEPyDEFpiDmIRWCGIl0AVZwDgpksAP9QIQsypxHMV6/cu+tEkGcZPqDsbCYBNHuAhEZTzX3lCfLm0oFMUr4vMnsJ/FWguotkihzLkV4fRJXOTdI4woqeIsJGqT8nuqpKC/M57aUe0lkZuGLWCWdOKiiIrzARLmJZcGIAAGqqCAvvMFl3E1W1qot76XMK6qo5tjOuyyKsYHbhcARsInsPtXTaFHQCO4M2EnbbSzvqIBNqKJe8UI4dBjcZKD/oFgt4hlwG2wiLcpyolZOOHSo7XvtQBW1xAvXhwJGPOQWIxhnCWSBAEmUGQYwM4K6OAZ3bnANO0yYT2zYPSP8XGr1e8wLrDdVLxiss8Zip8RbWcp8YpBF4QtmwRzjrAGPRs+DSsZifWJHFdEmgIjsPpXkBbZgTGHEqgLmoXjrXEphJxaBiJMcRQIaEbBBI6R/bz3a2KIx5PqsgqZRUBIkcJpNGsdLitdZaM9iLJYas0s45DNyE5a5OYuCboEkKvJ+LcIYTNx8bhue575aQwiDnbzfsXabuLSHlFJvpJsLnVKvpc2fTat8/9Ppa1to5HyE67BGdRPXRcy4TNZoV8EGRtEyaKsdhBTQ5sxOUC7Glb9yrGDDzwrVCnUz1Wg0Go1Go9l9/gNvkCMbp4Ut3AAAAABJRU5ErkJggg==";
+function xd(e = {
   apiKey: null,
   mapId: null,
   markersData: N([]),
@@ -5708,147 +6391,126 @@ function jl(e = {
   labelDirectionButton: N("View on Google Maps"),
   ariaLocateButton: "Your Location"
 }) {
-  const { pushTracking: t } = ce();
-  let a = null, r = null, n = [], i = null, o = null;
-  const u = new B({
+  const { pushTracking: t } = me();
+  let n = null, a = null, r = [], i = null, o = null;
+  const d = new K({
     apiKey: e.apiKey,
     version: "weekly"
-  }), s = () => new Promise(async (c) => {
-    if (!e.mapOptions)
-      throw new Error("[useGoogleMap.js] no map options");
-    await u.load(), a = new google.maps.Map(
+  }), s = () => new Promise(async (m) => {
+    if (!e.mapOptions) throw new Error("[useGoogleMap.js] no map options");
+    await d.importLibrary("core"), await d.importLibrary("marker"), n = new google.maps.Map(
       document.getElementById(e.mapId),
       e.mapOptions
-    ), r = new google.maps.InfoWindow(), google.maps.event.addListenerOnce(a, "idle", () => {
-      c(!0);
+    ), a = new google.maps.InfoWindow(), google.maps.event.addListenerOnce(n, "idle", () => {
+      m(!0);
     });
-  }), d = () => {
-    n.forEach((c) => c.setMap(null)), n = [];
-  }, m = () => {
-    d();
-    const c = [...e.markersData.value];
-    if (!c)
-      return;
-    const C = [];
-    c.forEach((S) => {
-      if (!S || typeof S.visible < "u" && !S.visible)
+  }), c = () => {
+    r.forEach((m) => m.setMap(null)), r = [];
+  }, l = () => {
+    c();
+    const m = [...e.markersData.value];
+    if (!m) return;
+    const S = [];
+    m.forEach((D) => {
+      if (!D || typeof D.visible < "u" && !D.visible)
         return;
-      let $ = { ...S }, re = null;
-      $.pinImg ? re = {
+      let $ = { ...D }, V = null;
+      if ($.pinImg ? V = {
         url: $.pinImg,
         scaledSize: new google.maps.Size(e.markerSize, e.markerSize),
         labelOrigin: new google.maps.Point(
           e.markerSize / 2,
           e.markerSize + 4
         )
-      } : $.category && $.category.pinImg ? re = {
+      } : $.category && $.category.pinImg ? V = {
         url: $.category.pinImg,
         scaledSize: new google.maps.Size(e.markerSize, e.markerSize),
         labelOrigin: new google.maps.Point(
           e.markerSize / 2,
           e.markerSize + 4
         )
-      } : e.defaultPinImg && (re = {
+      } : e.defaultPinImg && (V = {
         url: e.defaultPinImg,
         scaledSize: new google.maps.Size(e.markerSize, e.markerSize),
         labelOrigin: new google.maps.Point(
           e.markerSize / 2,
           e.markerSize + 4
         )
-      });
-      const nt = $.pinLabel ? {
-        text: $.pinLabel,
-        color: "#000",
-        fontSize: "14px",
-        fontWeight: "bold"
-      } : void 0;
-      if ($.showName && $.latitude && $.longitude && parseFloat($.latitude) != NaN && parseFloat($.longitude) != NaN && parseFloat($.latitude) >= -90 && parseFloat($.latitude) <= 90 && parseFloat($.longitude) >= -180 && parseFloat($.longitude) <= 180) {
-        const it = new google.maps.LatLng(
+      }), $.showName && $.latitude && $.longitude && parseFloat($.latitude) != NaN && parseFloat($.longitude) != NaN && parseFloat($.latitude) >= -90 && parseFloat($.latitude) <= 90 && parseFloat($.longitude) >= -180 && parseFloat($.longitude) <= 180) {
+        const ht = new google.maps.LatLng(
           parseFloat($.latitude),
           parseFloat($.longitude)
-        ), Ce = new google.maps.Marker({
-          position: it,
-          icon: re,
+        ), Ee = new google.maps.marker.AdvancedMarkerElement({
+          position: ht,
+          content: j(V.url),
           title: `${$.showName}`,
-          optimized: !1,
-          map: a,
-          label: nt
+          map: n
         });
-        Ce.info = $, C.push(Ce);
+        Ee.info = $, S.push(Ee);
       }
-    }), o = new google.maps.LatLngBounds(), C.forEach((S) => {
-      o.extend(S.getPosition()), S.addListener("click", ($) => {
-        W(S), S && S.info && S.info.showName && t(e.tracking?.clickMarker, {
-          "<show_name>": S.info.showName,
-          "<city_name>": S.info.city
+    }), o = new google.maps.LatLngBounds(), S.forEach((D) => {
+      o.extend(D.position), D.addListener("click", ($) => {
+        W(D), D && D.info && D.info.showName && t(e.tracking?.clickMarker, {
+          "<show_name>": D.info.showName,
+          "<city_name>": D.info.city
         });
       });
-    }), n = C;
-  }, l = () => {
+    }), r = S;
+  }, u = () => {
     i && i.clearMarkers(), i = null;
   }, h = () => {
-    l();
-    const c = {
-      render: ({ count: C, position: S }) => new google.maps.Marker({
-        label: { text: String(C), color: "white", fontSize: "14px" },
-        position: S,
-        icon: {
-          url: e.clusterOptions && e.clusterOptions[0] ? e.clusterOptions[0].url : "https://raw.githubusercontent.com/googlemaps/js-marker-clusterer/gh-pages/images/m1.png",
-          scaledSize: e.clusterOptions && e.clusterOptions[0] ? new google.maps.Size(
-            e.clusterOptions[0].width,
-            e.clusterOptions[0].height
-          ) : new google.maps.Size(53, 53),
-          labelOrigin: e.clusterOptions && e.clusterOptions[0] ? new google.maps.Point(
-            e.clusterOptions[0].width / 2,
-            e.clusterOptions[0].height / 2.5
-          ) : new google.maps.Point(26, 21)
-        },
-        zIndex: Number(google.maps.Marker.MAX_ZINDEX) + C
+    u();
+    const m = {
+      render: ({ count: S, position: D }) => new google.maps.marker.AdvancedMarkerElement({
+        content: j(
+          e.clusterOptions && e.clusterOptions[0] ? e.clusterOptions[0].url : "https://raw.githubusercontent.com/googlemaps/js-marker-clusterer/gh-pages/images/m1.png",
+          S
+        ),
+        position: D
       })
     };
-    i = new xl({
-      map: a,
-      markers: n,
-      renderer: c
+    i = new Cd({
+      map: n,
+      markers: r,
+      renderer: m
     });
-  }, b = () => {
-    if (!(!a || !o)) {
-      a.fitBounds(o);
-      var c = k();
-      c > 12 && a.setZoom(12);
+  }, p = () => {
+    if (!(!n || !o)) {
+      n.fitBounds(o);
+      var m = P();
+      m > 12 && n.setZoom(12);
     }
-  }, p = (c) => {
-    !a || !c || a.panTo(c.getPosition());
-  }, v = (c, C) => {
-    !a || !c || !C || a.panTo({ lat: c, lng: C });
-  }, w = (c) => {
-    !a || !c || a.setZoom(parseFloat(c));
-  }, k = () => {
-    if (!!a)
-      return a.getZoom();
-  }, W = (c) => {
-    if (!c || !c.info)
-      return;
-    const C = c.info.showName ? c.info.showName.split('"').join("") : "", S = c.info.showLogo ? c.info.showLogo : null, $ = {
-      pixelOffset: c ? null : new google.maps.Size(0, -50),
-      content: `<div class="marker marker--${c.info.id}">
-              ${S ? ` <div class="marker__image-wrapper"><img class="marker__image" width="242" height="96" src="${S}" /></div>` : ""}
+  }, y = (m) => {
+    !n || !m || n.panTo(m.position);
+  }, w = (m, S) => {
+    !n || !m || !S || n.panTo({ lat: m, lng: S });
+  }, v = (m) => {
+    !n || !m || n.setZoom(parseFloat(m));
+  }, P = () => {
+    if (n)
+      return n.getZoom();
+  }, W = (m) => {
+    if (!m || !m.info) return;
+    const S = m.info.showName ? m.info.showName.split('"').join("") : "", D = m.info.showLogo ? m.info.showLogo : null, $ = {
+      pixelOffset: m ? null : new google.maps.Size(0, -50),
+      content: `<div class="marker marker--${m.info.id}">
+              ${D ? ` <div class="marker__image-wrapper"><img class="marker__image" width="242" height="96" src="${D}" /></div>` : ""}
               <div class="marker__content">
-                ${c.info.showStatus ? `<p class="marker__status">${c.info.showStatus}</p>` : ""}
-                <h2 class="marker__title">${c.info.showName}</h2>
+                ${m.info.showStatus ? `<p class="marker__status">${m.info.showStatus}</p>` : ""}
+                <h2 class="marker__title">${m.info.showName}</h2>
                 <div class="marker__location">
-                ${c.info.city ? `<p class="marker__city">${c.info.city}</p>` : ""}
-                  ${c.info.facility ? `<p class="marker__venue">${c.info.facility}</p>` : ""}
+                ${m.info.city ? `<p class="marker__city">${m.info.city}</p>` : ""}
+                  ${m.info.facility ? `<p class="marker__venue">${m.info.facility}</p>` : ""}
                   
                 </div>
-                ${c.info.dateString ? `<p class="marker__date">${c.info.dateString}</p>` : ""}
+                ${m.info.dateString ? `<p class="marker__date">${m.info.dateString}</p>` : ""}
               </div>
             </div>
             <div class="marker__buttons">
-              ${c.info.ticketPageUrl || c.info.showPageUrl ? `<a class="marker__cta cta-btn cta-btn--grey cta-btn--full-width" href="${c.info.ticketPageUrl || c.info.showPageUrl}" onclick='window.mapTrackingBuyTicket("${C}", "${c.info.city}", "${e.labelBuyButton.value}", "${c.info.ticketPageUrl || c.info.showPageUrl}")' onauxclick='window.mapTrackingBuyTicket("${C}", "${c.info.city}", "${e.labelBuyButton.value}", "${c.info.ticketPageUrl || c.info.showPageUrl}")'>
-                      ${c.info.primaryCtaLabel || e.labelBuyButton.value}
+              ${m.info.ticketPageUrl || m.info.showPageUrl ? `<a class="marker__cta cta-btn cta-btn--grey cta-btn--full-width" href="${m.info.ticketPageUrl || m.info.showPageUrl}" onclick='window.mapTrackingBuyTicket("${S}", "${m.info.city}", "${e.labelBuyButton.value}", "${m.info.ticketPageUrl || m.info.showPageUrl}")' onauxclick='window.mapTrackingBuyTicket("${S}", "${m.info.city}", "${e.labelBuyButton.value}", "${m.info.ticketPageUrl || m.info.showPageUrl}")'>
+                      ${m.info.primaryCtaLabel || e.labelBuyButton.value}
                     </a>` : ""}
-              <a class="marker__link" href="https://www.google.com/maps/search/?api=1&query=${c.info.latitude},${c.info.longitude}" onclick='window.mapTrackingViewGmap("${C}", "${c.info.city}")' onauxclick='window.mapTrackingViewGmap("${C}", "${c.info.city}")'>
+              <a class="marker__link" href="https://www.google.com/maps/search/?api=1&query=${m.info.latitude},${m.info.longitude}" onclick='window.mapTrackingViewGmap("${S}", "${m.info.city}")' onauxclick='window.mapTrackingViewGmap("${S}", "${m.info.city}")'>
       ${e.labelDirectionButton.value}
                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M8.12498 1.875L10.1831 3.93313L5.80811 8.30812L6.69186 9.19187L11.0669 4.81687L13.125 6.875V1.875H8.12498Z" fill="white"/>
@@ -5856,145 +6518,157 @@ function jl(e = {
                 </svg>
               </a>
             </div>`
+      /*
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8.12498 1.875L10.1831 3.93313L5.80811 8.30812L6.69186 9.19187L11.0669 4.81687L13.125 6.875V1.875H8.12498Z" fill="white"/>
+          <path d="M11.875 11.875H3.125V3.125H7.5L6.25 1.875H3.125C2.43562 1.875 1.875 2.43562 1.875 3.125V11.875C1.875 12.5644 2.43562 13.125 3.125 13.125H11.875C12.5644 13.125 13.125 12.5644 13.125 11.875V8.75L11.875 7.5V11.875Z" fill="white"/>
+        </svg>
+      */
     };
-    z(c, $);
-  }, z = (c, C) => {
-    r.setOptions(C), r.open({
-      map: a,
-      anchor: c
+    E(m, $);
+  }, E = (m, S) => {
+    a.setOptions(S), a.open({
+      map: n,
+      anchor: m
     });
-  }, E = () => {
-    r.close();
-  }, X = () => {
-    const c = document.createElement("button");
-    c.ariaLabel = e.ariaLocateButton, c.innerHTML = `
+  }, A = () => {
+    a.close();
+  }, q = () => {
+    const m = document.createElement("button");
+    m.ariaLabel = e.ariaLocateButton, m.innerHTML = `
     <svg width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M10.3873 0.939606C9.06938 0.171571 7.53429 -0.138686 6.0215 0.0572265C4.50872 0.253139 3.1033 0.944205 2.02447 2.02264C0.945634 3.10107 0.25404 4.50622 0.0575599 6.01893C-0.13892 7.53165 0.170761 9.06685 0.938302 10.3851L6.28307 19.6372C6.33025 19.7198 6.39334 19.7922 6.46869 19.8503C6.54404 19.9083 6.63016 19.9508 6.72205 19.9754C6.87609 20.0166 7.0394 20.0058 7.18669 19.9448C7.33398 19.8837 7.45702 19.7758 7.53673 19.6377L12.878 10.3881C13.7983 8.80437 14.053 6.92023 13.5861 5.14895C13.1192 3.37768 11.9688 1.86389 10.3873 0.939606ZM12.3681 6.90817C12.3685 7.87495 12.112 8.82447 11.6248 9.65954L6.90737 17.8296L2.18842 9.65701C1.70554 8.82753 1.44964 7.88551 1.44647 6.92573C1.44329 5.96594 1.69295 5.02225 2.17033 4.1896C2.6477 3.35695 3.33596 2.66471 4.16584 2.18253C4.99572 1.70036 5.93796 1.44526 6.89775 1.44289C7.37068 1.44313 7.84159 1.50457 8.29875 1.62568C9.46505 1.93308 10.4968 2.61793 11.2329 3.57336C11.9691 4.52878 12.3682 5.70103 12.3681 6.90715V6.90817Z" fill="black"/>
       <path d="M6.90737 3.43528C5.98644 3.43528 5.10322 3.80112 4.45203 4.45232C3.80083 5.10352 3.43499 5.98673 3.43499 6.90766C3.43499 7.82859 3.80083 8.71181 4.45203 9.363C5.10322 10.0142 5.98644 10.38 6.90737 10.38C7.8283 10.38 8.71151 10.0142 9.36271 9.363C10.0139 8.71181 10.3797 7.82859 10.3797 6.90766C10.3797 5.98673 10.0139 5.10352 9.36271 4.45232C8.71151 3.80112 7.8283 3.43528 6.90737 3.43528ZM6.90737 8.93347C6.5068 8.93347 6.11523 8.81469 5.78217 8.59214C5.44911 8.3696 5.18952 8.05329 5.03623 7.68322C4.88294 7.31314 4.84284 6.90592 4.92098 6.51305C4.99913 6.12018 5.19202 5.75931 5.47527 5.47606C5.75851 5.19282 6.11938 4.99993 6.51225 4.92178C6.90512 4.84364 7.31234 4.88374 7.68242 5.03703C8.05249 5.19032 8.3688 5.44991 8.59134 5.78297C8.81389 6.11603 8.93267 6.5076 8.93267 6.90817C8.93267 7.44531 8.71929 7.96045 8.33947 8.34027C7.95965 8.72009 7.44451 8.93347 6.90737 8.93347Z" fill="black"/>
-    </svg>`, c.classList.add("location-button"), a.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(c), c.addEventListener("click", () => {
+    </svg>`, m.classList.add("location-button"), n.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(m), m.addEventListener("click", () => {
       navigator.geolocation ? navigator.geolocation.getCurrentPosition(
-        (C) => {
-          const S = {
-            lat: C.coords.latitude,
-            lng: C.coords.longitude
-          }, $ = {
-            url: e.defaultLocationImg ? e.defaultLocationImg : El,
-            scaledSize: new google.maps.Size(30, 30)
+        (S) => {
+          const D = {
+            lat: S.coords.latitude,
+            lng: S.coords.longitude
           };
-          new google.maps.Marker({
-            position: S,
-            optimized: !1,
-            map: a,
-            icon: $
-          }), a.setCenter(S), a.setZoom(8);
+          new google.maps.marker.AdvancedMarkerElement({
+            position: D,
+            content: j(
+              e.defaultLocationImg ? e.defaultLocationImg : Ad
+            )
+          }), n.setCenter(D), n.setZoom(8);
         },
         () => {
           console.warn("Error: The Geolocation service failed.");
         }
       ) : console.warn("Error: Your browser doesn't support geolocation.");
     });
-  }, Z = () => {
-    e.fitMarkers ? n && n.length > 0 ? b() : (w(2), v(40.866667, 34.566667)) : e.center.value && e.zoom && (w(e.zoom), v(e.center.value.lat, e.center.value.lng));
+  }, G = () => {
+    e.fitMarkers ? r && r.length > 0 ? p() : (v(2), w(40.866667, 34.566667)) : e.center.value && e.zoom && (v(e.zoom), w(e.center.value.lat, e.center.value.lng));
+  }, j = (m, S = void 0) => {
+    const D = document.createElement("div");
+    D.classList.add("pin__image-wrapper");
+    const $ = document.createElement("img");
+    if ($.width = 53, $.height = 53, $.src = m, D.appendChild($), S) {
+      const V = document.createElement("div");
+      V.classList.add("pin__text"), V.innerHTML = S, D.appendChild(V);
+    }
+    return D;
   };
-  return Pe(() => {
-    window.mapTrackingBuyTicket = (c, C, S, $) => {
+  return $e(() => {
+    window.mapTrackingBuyTicket = (m, S, D, $) => {
       t(e.tracking?.clickBuy, {
-        "<show_name>": c,
-        "<city_name>": C,
-        "<link_text>": S,
+        "<show_name>": m,
+        "<city_name>": S,
+        "<link_text>": D,
         "<link_url>": $
       });
-    }, window.mapTrackingViewGmap = (c, C) => {
+    }, window.mapTrackingViewGmap = (m, S) => {
       t(e.tracking?.clickViewGmap, {
-        "<show_name>": c,
-        "<city_name>": C
+        "<show_name>": m,
+        "<city_name>": S
       });
-    }, dt(async () => {
+    }, vt(async () => {
       try {
-        await s(), X(), e.markersData.value.length > 0 && (m(), e.hasCluster && h(), Z()), pe(e.markersData, () => {
-          m(), e.hasCluster && h(), Z();
-        }), pe(e.center, () => {
-          Z();
+        await s(), q(), e.markersData.value.length > 0 && (l(), e.hasCluster && h(), G()), be(e.markersData, () => {
+          l(), e.hasCluster && h(), G();
+        }), be(e.center, () => {
+          G();
         });
-      } catch (c) {
-        console.warn("[useGoogleMap.js] error loading the sdk", c);
+      } catch (m) {
+        console.warn("[useGoogleMap.js] error loading the sdk", m);
       }
     });
   }), {
     loadMap: s,
-    closeInfoWindow: E,
-    openInfoWindow: z,
+    closeInfoWindow: A,
+    openInfoWindow: E,
     openShowInfo: W,
-    setZoom: w,
-    getZoom: k,
-    centerOnMarker: p,
-    createMarkers: m,
-    clearMarkers: d,
+    setZoom: v,
+    getZoom: P,
+    centerOnMarker: y,
+    createMarkers: l,
+    clearMarkers: c,
     createClusters: h,
-    resetMapPosition: Z
+    resetMapPosition: G
   };
 }
-function Ll(e, t = null) {
-  const { pushTracking: a } = ce(), r = N(null), n = N(null), i = Xe({
+function jd(e, t = null) {
+  const { pushTracking: n } = me(), a = N(null), r = N(null), i = Ue({
     start: null,
     end: null
-  }), o = A(() => {
-    let l = [];
+  }), o = F(() => {
+    let u = [];
     return e.value.forEach((h) => {
-      l.findIndex((b) => b.value === h.category.value) < 0 && l.push(h.category);
-    }), l;
-  }), u = A(
-    () => [...new Set(e.value.map((l) => l.showName))].map(
-      (l) => ({ label: l, value: l })
+      u.findIndex((p) => p.value === h.category.value) < 0 && u.push(h.category);
+    }), u;
+  }), d = F(
+    () => [...new Set(e.value.map((u) => u.showName))].map(
+      (u) => ({ label: u, value: u })
     )
-  ), s = A(() => e.value.filter((l) => {
+  ), s = F(() => e.value.filter((u) => {
     let h = !0;
-    if (typeof l.visible < "u" && !l.visible || e.value && i.end && (!l.startDate || !l.endDate))
+    if (typeof u.visible < "u" && !u.visible || e.value && i.end && (!u.startDate || !u.endDate))
       return !1;
-    if (r.value && (h = Math.min(
-      l.showType === r.value,
+    if (a.value && (h = Math.min(
+      u.showType === a.value,
       h
-    )), n.value && n.value !== "all" && (h = Math.min(
-      l.showName === n.value,
+    )), r.value && r.value !== "all" && (h = Math.min(
+      u.showName === r.value,
       h
-    )), e.value && i.end && l.startDate && l.endDate) {
-      const b = new Date(i.start), p = new Date(i.end), v = new Date(l.startDate), w = new Date(l.endDate);
+    )), e.value && i.end && u.startDate && u.endDate) {
+      const p = new Date(i.start), y = new Date(i.end), w = new Date(u.startDate), v = new Date(u.endDate);
       h = Math.min(
-        Ct(
-          { start: b, end: p },
-          { start: v, end: w }
+        xt(
+          { start: p, end: y },
+          { start: w, end: v }
         ),
         h
       );
     }
     if (e.value && !i.end) {
-      const b = e.value.filter((p) => p.latitude === l.latitude && p.longitude === l.longitude);
-      if (b.length > 1) {
-        const p = b.sort((v, w) => new Date(v.startDate) - new Date(w.startDate))[0];
-        h = Math.min(p.id === l.id, h);
+      const p = e.value.filter((y) => y.latitude === u.latitude && y.longitude === u.longitude);
+      if (p.length > 1) {
+        const y = p.sort((w, v) => new Date(w.startDate) - new Date(v.startDate))[0];
+        h = Math.min(y.id === u.id, h);
       }
     }
     return h;
   }) || []);
   return {
     showTypes: o,
-    showNames: u,
+    showNames: d,
     markersDataResults: s,
-    changeCurrentDates: (l) => {
-      Object.assign(i, l), l.start && l.end ? a(t?.clickDateSearch) : a(t?.clickDateClear);
+    changeCurrentDates: (u) => {
+      Object.assign(i, u), u.start && u.end ? n(t?.clickDateSearch) : n(t?.clickDateClear);
     },
-    changeCurrentShowName: (l) => {
-      n.value = l, a(t?.clickShow, {
-        "<show_name>": l
+    changeCurrentShowName: (u) => {
+      r.value = u, n(t?.clickShow, {
+        "<show_name>": u
       });
     }
   };
 }
-const zl = me({
+const Ld = ce({
   name: "InteractiveMap",
   components: {
-    DropdownFilters: Mt,
-    DateRangePicker: cl
+    DropdownFilters: Ct,
+    DateRangePicker: hd
   },
   props: {
     mapTitle: { type: String, required: !1, default: "" },
@@ -6066,20 +6740,20 @@ const zl = me({
     }
   },
   setup(e) {
-    const t = I(e, "markersData"), a = I(e, "dateLocale"), r = I(e, "labelBuyButton"), n = I(e, "labelDirectionButton"), i = I(e, "center"), {
+    const t = H(e, "markersData"), n = H(e, "dateLocale"), a = H(e, "labelBuyButton"), r = H(e, "labelDirectionButton"), i = H(e, "center"), {
       showNames: o,
-      markersDataResults: u,
+      markersDataResults: d,
       changeCurrentDates: s,
-      changeCurrentShowName: d
-    } = Ll(t, e.tracking), m = (h) => {
-      d(h);
-    }, l = (h) => {
+      changeCurrentShowName: c
+    } = jd(t, e.tracking), l = (h) => {
+      c(h);
+    }, u = (h) => {
       s(h);
     };
-    return jl({
+    return xd({
       apiKey: e.googleMapApiKey,
       mapId: e.mapId,
-      markersData: u,
+      markersData: d,
       center: i,
       zoom: e.zoom,
       defaultPinImg: e.defaultPinImg,
@@ -6087,9 +6761,9 @@ const zl = me({
       markerSize: e.markerSize ? parseInt(e.markerSize) : 50,
       fitMarkers: e.fitMarkers,
       clusterOptions: e.clusterOptions,
-      dateLocale: a,
-      labelBuyButton: r,
-      labelDirectionButton: n,
+      dateLocale: n,
+      labelBuyButton: a,
+      labelDirectionButton: r,
       ariaLocateButton: e.ariaLocateButton,
       tracking: e.tracking,
       mapOptions: {
@@ -6103,38 +6777,36 @@ const zl = me({
       }
     }), {
       showNames: o,
-      onShowNameFilterChange: m,
-      onDateChanged: l,
-      locale: a
+      onShowNameFilterChange: l,
+      onDateChanged: u,
+      locale: n
     };
   }
-}), _l = { class: "interactive-map__container" }, Al = { class: "interactive-map__split" }, Fl = {
+}), _d = { class: "interactive-map__container" }, Fd = { class: "interactive-map__split" }, zd = {
   key: 0,
   class: "filters-wrapper"
-}, Il = {
+}, qd = {
   key: 0,
   class: "interactive-map__title"
-}, ql = {
+}, Id = {
   key: 1,
   class: "interactive-map__description"
-}, Hl = { class: "interactive-map__slots" }, Gl = { class: "filters" }, Yl = { class: "interactive-map__wrapper" }, Bl = { class: "interactive-map" }, Xl = ["id"], Vl = {
+}, Hd = { class: "interactive-map__slots" }, Bd = { class: "filters" }, Gd = { class: "interactive-map__wrapper" }, Vd = { class: "interactive-map" }, Yd = ["id"], Xd = {
   key: 0,
   class: "loading"
-}, Ul = /* @__PURE__ */ y("div", { class: "spinner" }, null, -1), Rl = [
-  Ul
-];
-function Jl(e, t, a, r, n, i) {
-  const o = we("DateRangePicker"), u = we("DropdownFilters");
-  return T(), x("div", _l, [
-    y("div", Al, [
-      e.mapTitle || !e.hideFilters ? (T(), x("div", Fl, [
-        e.mapTitle ? (T(), x("h2", Il, _(e.mapTitle), 1)) : F("", !0),
-        e.mapDescription ? (T(), x("p", ql, _(e.mapDescription), 1)) : F("", !0),
-        y("div", Hl, [
-          Ve(e.$slots, "default")
+};
+function Rd(e, t, n, a, r, i) {
+  const o = Me("DateRangePicker"), d = Me("DropdownFilters");
+  return C(), T("div", _d, [
+    b("div", Fd, [
+      e.mapTitle || !e.hideFilters ? (C(), T("div", zd, [
+        e.mapTitle ? (C(), T("h2", qd, L(e.mapTitle), 1)) : I("", !0),
+        e.mapDescription ? (C(), T("p", Id, L(e.mapDescription), 1)) : I("", !0),
+        b("div", Hd, [
+          Ke(e.$slots, "default")
         ]),
-        y("div", Gl, [
-          e.hideFilters ? F("", !0) : (T(), Se(o, {
+        b("div", Bd, [
+          e.hideFilters ? I("", !0) : (C(), Te(o, {
             key: 0,
             class: "filters__daterange",
             onDatechanged: e.onDateChanged,
@@ -6149,7 +6821,7 @@ function Jl(e, t, a, r, n, i) {
             "picker-id": e.mapId + "__picker",
             tracking: e.tracking
           }, null, 8, ["onDatechanged", "date-locale", "label-clear-button", "label-save-button", "label-dates-filter", "aria-select-date", "aria-next-month", "aria-previous-month", "aria-toggle-calendar", "picker-id", "tracking"])),
-          e.hideFilters ? F("", !0) : (T(), Se(u, {
+          e.hideFilters ? I("", !0) : (C(), Te(d, {
             key: 1,
             class: "filters__shownames",
             ref: "filterDropdownElement",
@@ -6160,16 +6832,18 @@ function Jl(e, t, a, r, n, i) {
             tracking: e.tracking
           }, null, 8, ["filters", "label-default", "placeholder", "onOnfilterchange", "tracking"]))
         ])
-      ])) : F("", !0),
-      y("div", Yl, [
-        y("div", Bl, [
-          y("div", {
+      ])) : I("", !0),
+      b("div", Gd, [
+        b("div", Vd, [
+          b("div", {
             id: e.mapId,
             class: "map"
-          }, null, 8, Xl),
-          Ue(mt, { name: "spinner-fade" }, {
-            default: Re(() => [
-              e.isLoading ? (T(), x("div", Vl, Rl)) : F("", !0)
+          }, null, 8, Yd),
+          et(yt, { name: "spinner-fade" }, {
+            default: tt(() => [
+              e.isLoading ? (C(), T("div", Xd, t[0] || (t[0] = [
+                b("div", { class: "spinner" }, null, -1)
+              ]))) : I("", !0)
             ]),
             _: 1
           })
@@ -6178,38 +6852,37 @@ function Jl(e, t, a, r, n, i) {
     ])
   ]);
 }
-const Ql = /* @__PURE__ */ he(zl, [["render", Jl]]);
-function Zl(e, t, a) {
-  let r = N(!1);
-  const n = N([]), i = A(() => {
-    let u = [];
-    return n.value.forEach((s, d) => {
-      if (a && a.value) {
-        const m = a.value.find(
-          (l) => l.value == s.showName
+const Jd = /* @__PURE__ */ he(Ld, [["render", Rd]]);
+function Qd(e, t, n) {
+  let a = N(!1);
+  const r = N([]), i = F(() => {
+    let d = [];
+    return r.value.forEach((s, c) => {
+      if (n && n.value) {
+        const l = n.value.find(
+          (u) => u.value == s.showName
         );
-        m && (s = { ...s, ...m });
+        l && (s = { ...s, ...l });
       }
-      s && s.runs && s.runs.filter((m) => m !== null).forEach((m) => {
-        const l = { ...s, ...m };
-        t && t.value && (l.category = t.value.find(
-          (h) => h.value == l.showType
-        )), delete l.runs, u.push(l);
+      s && s.runs && s.runs.filter((l) => l !== null).forEach((l) => {
+        const u = { ...s, ...l };
+        t && t.value && (u.category = t.value.find(
+          (h) => h.value == u.showType
+        )), delete u.runs, d.push(u);
       });
-    }), u;
+    }), d;
   }), o = async () => {
-    if (!e.value)
-      return;
-    r.value = !0;
-    const u = fetch(e.value).then((s) => s.json()).catch((s) => (console.warn("[InteractiveMapApi] Failed silently because of: ", s), []));
-    return n.value = await u.then((s) => (r.value = !1, s && s.content && s.content.Result && s.content.Result.shows ? s.content.Result.shows : [])).catch(() => r.value = !1), Promise.resolve(!0);
+    if (!e.value) return;
+    a.value = !0;
+    const d = fetch(e.value).then((s) => s.json()).catch((s) => (console.warn("[InteractiveMapApi] Failed silently because of: ", s), []));
+    return r.value = await d.then((s) => (a.value = !1, s && s.content && s.content.Result && s.content.Result.shows ? s.content.Result.shows : [])).catch(() => a.value = !1), Promise.resolve(!0);
   };
-  return Pe(o), pe(e, o), { shows: n, runs: i, isLoading: r, fetchShows: o };
+  return $e(o), be(e, o), { shows: r, runs: i, isLoading: a, fetchShows: o };
 }
-const Kl = me({
+const Zd = ce({
   name: "InteractiveMapApi",
   components: {
-    InteractiveMap: Ql
+    InteractiveMap: Jd
   },
   props: {
     apiUrl: { type: String, required: !0 },
@@ -6217,38 +6890,38 @@ const Kl = me({
     showsOverwrite: { type: Array, default: () => [] }
   },
   setup(e) {
-    const t = I(e, "apiUrl"), a = I(e, "categoriesOverwrite"), r = I(e, "showsOverwrite"), { runs: n, isLoading: i } = Zl(
+    const t = H(e, "apiUrl"), n = H(e, "categoriesOverwrite"), a = H(e, "showsOverwrite"), { runs: r, isLoading: i } = Qd(
       t,
-      a,
-      r
+      n,
+      a
     );
     return {
-      runs: n,
+      runs: r,
       isLoading: i
     };
   }
-}), ed = { class: "interactive-map-api" };
-function td(e, t, a, r, n, i) {
-  const o = we("InteractiveMap");
-  return T(), x("div", null, [
-    y("div", ed, [
-      Ue(o, ct({ ...e.$props, ...e.$attrs }, {
+}), Ud = { class: "interactive-map-api" };
+function Kd(e, t, n, a, r, i) {
+  const o = Me("InteractiveMap");
+  return C(), T("div", null, [
+    b("div", Ud, [
+      et(o, bt({ ...e.$props, ...e.$attrs }, {
         "markers-data": e.runs,
         "is-loading": e.isLoading
       }), {
-        default: Re(() => [
-          Ve(e.$slots, "default")
+        default: tt(() => [
+          Ke(e.$slots, "default")
         ]),
         _: 3
       }, 16, ["markers-data", "is-loading"])
     ])
   ]);
 }
-const rd = /* @__PURE__ */ he(Kl, [["render", td]]);
+const tu = /* @__PURE__ */ he(Zd, [["render", Kd]]);
 export {
-  cl as DateRangePicker,
-  Mt as DropdownFilters,
-  Ql as InteractiveMap,
-  rd as InteractiveMapApi,
-  Zl as useShowsApi
+  hd as DateRangePicker,
+  Ct as DropdownFilters,
+  Jd as InteractiveMap,
+  tu as InteractiveMapApi,
+  Qd as useShowsApi
 };
