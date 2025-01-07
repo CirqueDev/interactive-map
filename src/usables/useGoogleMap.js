@@ -120,7 +120,7 @@ export default function useGoogleMap(
 
         const marker = new google.maps.marker.AdvancedMarkerElement({
           position,
-          content: createImage(icon.url),
+          content: createPinImage(icon.url),
           title: `${markerData.showName}`,
           map,
         });
@@ -160,7 +160,7 @@ export default function useGoogleMap(
     const renderer = {
       render: ({ count, position }) =>
         new google.maps.marker.AdvancedMarkerElement({
-          content: createImage(
+          content: createPinImage(
             data.clusterOptions && data.clusterOptions[0]
               ? data.clusterOptions[0].url
               : "https://raw.githubusercontent.com/googlemaps/js-marker-clusterer/gh-pages/images/m1.png",
@@ -335,7 +335,7 @@ export default function useGoogleMap(
             };
             const marker = new google.maps.marker.AdvancedMarkerElement({
               position: pos,
-              content: createImage(
+              content: createPinImage(
                 data.defaultLocationImg ? data.defaultLocationImg : locationImg
               ),
             });
@@ -367,7 +367,7 @@ export default function useGoogleMap(
     }
   };
 
-  const createImage = (url, label = undefined) => {
+  const createPinImage = (url, label = undefined) => {
     const imgWrapper = document.createElement("div");
     imgWrapper.classList.add("pin__image-wrapper");
 
