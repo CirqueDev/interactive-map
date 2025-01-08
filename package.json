@@ -5,13 +5,13 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/interactive-map.umd.js",
-  "module": "./dist/interactive-map.mjs",
+  "main": "./dist/interactive-map.umd.cjs",
+  "module": "./dist/interactive-map.js",
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/interactive-map.mjs",
-      "require": "./dist/interactive-map.umd.js"
+      "import": "./dist/interactive-map.js",
+      "require": "./dist/interactive-map.umd.cjs"
     }
   },
   "publishConfig": {
