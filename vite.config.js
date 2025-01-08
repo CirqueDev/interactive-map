@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
+import { fileURLToPath, URL } from "node:url";
 import vue from "@vitejs/plugin-vue";
-const path = require("path");
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => ({
@@ -25,7 +25,7 @@ export default defineConfig(({ command, mode }) => ({
       : {
           target: "esnext",
           lib: {
-            entry: path.resolve(__dirname, "src/index.js"),
+            entry: fileURLToPath(new URL("src/index.js", import.meta.url)),
             name: "CdsInteractiveMap",
           },
           rollupOptions: {
